@@ -1,0 +1,54 @@
+#! /bin/sh
+
+SCRIPTDIR=`dirname $0`
+TOPSRCDIR=`readlink -f ${SCRIPTDIR}/..`
+
+print_usage() {
+  echo "usage:  $0 <debian-release> <version>";
+  echo "example: $0 stretch 0.1.0";
+}
+
+if [ $# -ge 1 ]; then
+  if (echo $1 | grep -e '^[a-z0-9_-]\+$' > /dev/null); then
+    DEBIAN_RELEASE=$1
+  else
+    echo "error: ill formed debian-release '$1'" >&2
+    exit 1;
+  fi
+  shift
+else
+  echo "error: missing argument 'debian-release'" >&2;
+  print_usage >&2;
+  exit 1
+fi
+
+if [ $# -ge 1 ]; then
+  if (echo $1 | grep -e '^[0-9]\+\.[0-9]\+\.[0-9]\+[a-z]\?$' >/dev/null); then
+    CLXX_VERSION=$1;
+    CLXX_MAJOR=`echo ${CLXX_VERSION} | sed -e 's:^\([0-9]\+\)\..*$:\1:'`
+    CLXX_MINOR=`echo ${CLXX_VERSION} | sed -e 's:^[0-9]\+\.\([0-9]\+\)\..*$:\1:'`
+    PKGVERSION=${CLXX_MAJOR}
+  else
+    echo "error: ill formed version string '$1'" >&2
+    exit 1
+  fi
+else
+  echo "error: missing argument 'version'" >&2
+fi
+
+FOOT_DATE=`LANG=C date -R`
+
+(cd ${TOPSRCDIR} && cp -rp debian.default debian.${DEBIAN_RELEASE})
+(cd ${TOPSRCDIR} && find debian.${DEBIAN_RELEASE} -type f | xargs sed -i \
+  -e "s/@DEBIAN_RELEASE@/${DEBIAN_RELEASE}/g" \
+  -e "s/@CLXX_VERSION@/${CLXX_VERSION}/g" \
+  -e "s/@CLXX_MAJOR@/${CLXX_MAJOR}/g" \
+  -e "s/@CLXX_MINOR@/${CLXX_MINOR}/g" \
+  -e "s/@PKGVERSION@/${PKGVERSION}/g" \
+  -e "s/@FOOT_DATE@/${FOOT_DATE}/g")
+
+##(cd ${TOPSRCDIR} && git checkout --orphan debian-upstream/${DEBIAN_RELEASE})
+##
+##for KIND in debian security backports dfsh; do
+##  git checkout -b debian-${KIND}/${DEBIAN_RELEASE}
+##done

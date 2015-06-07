@@ -1,0 +1,74 @@
+#! /bin/sh
+
+# Clones a remote clxx repository (with all submodules) and creates a source
+# tarball from it.
+#
+# Usage:
+#   build-tarball.sh              # creates tarball for master/head
+#   build-tarball.sh clxx-0.1.2a  # creates tarball from a (named) tag/commit
+#
+# The tarball is created in the current working dir.
+
+set -e
+
+SCRIPTDIR=`dirname $0`
+TOPSRCDIR=`readlink -f ${SCRIPTDIR}/..`
+OUTDIR=`readlink -f ${TOPSRCDIR}/..`
+
+# Make temporary directory
+TMPDIR=`mktemp -d`
+
+if [ $# -ge 1 ]; then
+  REF=$1
+else
+  echo "error: missing argument 'ref'" >&2;
+  echo "usage:   `basename $0` <ref>" >&2;
+  echo "example: `basename $0` v0.1.0" >&2;
+  echo "example: `basename $0` HEAD" >&2;
+  echo "example: `basename $0` 'HEAD~1'" >&2;
+  exit 1;
+fi
+
+# Clone the remote repository and checkout the REF
+REMOTE='git@github.com:ptomulik/clxx'
+(cd ${TMPDIR} && git clone --recursive ${REMOTE} clxx)
+
+if (cd ${TMPDIR}/clxx && (git tag | grep -w $REF)) ; then
+  VREG1='s/^\(v\|clxx-\)\([0-9]\+\.[0-9]\+\.[0-9]\+[-a-z0-9]*\)$/\2/';
+  VERSION=`echo ${REF} | sed -e ${VREG1}`
+  (cd ${TMPDIR}/clxx && git checkout -b "clxx-tgz" ${REF} && git submodule update)
+else
+  (cd ${TMPDIR}/clxx && git checkout ${REF} && git submodule update)
+  VERSION=`(cd ${TMPDIR}/clxx && git rev-parse --short ${REF})`
+fi
+
+
+# Extract sources from top-level git repo
+( cd "${TMPDIR}/clxx" && \
+  git archive --format=tar --prefix="clxx-${VERSION}/" \
+              --output=${TMPDIR}/clxx.tar HEAD );
+( cd ${TMPDIR} && tar -xf clxx.tar && rm clxx.tar )
+
+# Extract sources from all submodules
+MODS=`(cd ${TMPDIR}/clxx && git submodule status | awk '{print $2}')`
+for MOD in ${MODS}; do
+  ( cd "${TMPDIR}/clxx/${MOD}" && \
+    git archive --format=tar --prefix="clxx-${VERSION}/${MOD}/" \
+                --output=${TMPDIR}/submodule.tar HEAD );
+  ( cd ${TMPDIR} && tar -xf submodule.tar && rm submodule.tar )
+done
+
+# Remove files that shouldn't enter the tarball
+#( cd ${TMPDIR}/clxx-${VERSION} && find . -name '.git*' -delete );
+( cd ${TMPDIR}/clxx-${VERSION} && find . -name '.travis.yml' -delete );
+
+# Create the finall tarball
+( cd ${TMPDIR} && tar -czf clxx-${VERSION}.tar.gz clxx-${VERSION} );
+
+# Copy tarball to the current working dir
+cp ${TMPDIR}/clxx-${VERSION}.tar.gz ${OUTDIR}
+
+echo "created ${OUTDIR}/clxx-${VERSION}.tar.gz"
+
+# Cleanup the temporary directory
+rm -rf ${TMPDIR}

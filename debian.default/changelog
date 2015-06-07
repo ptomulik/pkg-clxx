@@ -1,0 +1,5 @@
+clxx@PKGVERSION@ (@CLXX_VERSION@-1) unstable; urgency=low
+
+  * Initial release (Closes: #778823)
+
+ -- Paweł Tomulik <ptomulik@meil.pw.edu.pl>  @FOOT_DATE@

@@ -1,0 +1,8 @@
+clxx for Debian
+---------------
+
+Clxx is a C++ library which exposes OpenCL's functionality in an
+object-oriented way. Its goal is to simplify usage of the OpenCL functions by
+providing type-safe and easy to use interface. 
+
+ -- Paweł Tomulik <ptomulik@meil.pw.edu.pl> @FOOT_DATE@ 

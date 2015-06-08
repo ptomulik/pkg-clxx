@@ -1,0 +1,34 @@
+
+# @COPYRIGHT@
+# Licensed under MIT license (LICENSE.txt).
+
+Import(['env'])
+
+from SCons.Util import CLVar
+
+tests = [
+    'device_info.t.h',
+#    'device_info_ptr.t.h',
+#    'device_info_ptrs.t.h',
+    'device_query.t.h',
+    'platform_info.t.h',
+#    'platform_info_ptr.t.h',
+#    'platform_info_ptrs.t.h',
+    'platform_layer_info.t.h',
+    'platform_query.t.h',
+]
+
+env.CxxTest('../check-libclxx_info', tests,
+           LIBS = CLVar('clxx_info'),
+           CXXTEST_CPPPATH = ['..'],
+           CXXTEST_LIBPATH = env.get('LIBPATH', CLVar()),
+           CXXTEST_TARGET = 'check-libclxx_info')
+
+env.Alias('check', [ 'check-libclxx_info' ])
+env.AlwaysBuild('check-libclxx_info')
+
+# Local Variables:
+# # tab-width:4
+# # indent-tabs-mode:nil
+# # End:
+# vim: set syntax=scons expandtab tabstop=4 shiftwidth=4:

@@ -1,0 +1,71 @@
+#
+# Copyright (c) 2012-2014 by Pawel Tomulik
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE
+
+
+Import('env')
+
+from SConsGnu import AcDirVars
+
+only = ('prefix','exec_prefix','bindir')
+gdecls = AcDirVars.DeclareGVars(name_filter = lambda x : x in only)
+cli_vars = Variables()
+gvars = gdecls.Commit(env, cli_vars, True)
+gvars.UpdateEnvironment(env, cli_vars, True, ARGUMENTS)
+proxy = gvars.EnvProxy(env, strict=True)
+var_proxy = gvars.VarEnvProxy(env, strict=True)
+
+if not GetOption('help'):
+    print ""
+    print "We have imported three `GVar` variables representing GNU"
+    print "directory variables. They are currently defined as:"
+    print "=========================================================="
+    for key in only:
+        print "     %s=%r" % (key, proxy[key])
+    print "=========================================================="
+    print ""
+    print "After substitution (interpolation) they have values:"
+    print "=========================================================="
+    for key in only:
+        print "     %s=%r" % (key, proxy.subst("${%s}" % key))
+    print "=========================================================="
+    print ""
+    print "The corresponding command-line variables are:"
+    print "=========================================================="
+    for key in only:
+        var_key = gvars.var_key(key)
+        print "     %s=%r" % (var_key, var_proxy[var_key])
+    print "=========================================================="
+    print ""
+    print "The corresponding construction variables are:"
+    print "=========================================================="
+    for key in only:
+        env_key = gvars.env_key(key)
+        print "     %s=%r" % (env_key, env[env_key])
+    print "=========================================================="
+    print ""
+    print "There are also corresponding command-line options."
+    print "To see the options type: scons -Q ex2 --help"
+    print ""
+# Local Variables:
+# # tab-width:4
+# # indent-tabs-mode:nil
+# # End:
+# vim: set syntax=python expandtab tabstop=4 shiftwidth=4:

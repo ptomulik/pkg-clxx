@@ -1,0 +1,67 @@
+
+# @COPYRIGHT@
+# Licensed under MIT license (LICENSE.txt).
+
+Import( 'env' )
+
+from SCons.Util import CLVar
+
+# "Generate" __init__.py
+init_py  = env.Substfile(['clxx/__init__.py.in'], SUBST_DICT = {})
+init_py += env.Substfile(['clxx/cl/__init__.py.in'], SUBST_DICT = {})
+init_py += env.Substfile(['clxx/std/__init__.py.in'], SUBST_DICT = {})
+libs = env.get('SWIGPY_LIBS', CLVar())
+
+# Build modules
+out  = env.SwigPyModule('clxx.std.string', SWIGPY_LIBS = libs)
+out += env.SwigPyModule('clxx.std.vector', SWIGPY_LIBS = libs)
+out += env.SwigPyModule('clxx.std.set', SWIGPY_LIBS = libs)
+out += env.SwigPyModule('clxx.std.map', SWIGPY_LIBS = libs)
+out += env.SwigPyModule('clxx.std.exception', SWIGPY_LIBS = libs)
+out += env.SwigPyModule('clxx.std.bad_alloc', SWIGPY_LIBS = libs)
+out += env.SwigPyModule('clxx.cl.opencl_types', SWIGPY_LIBS = libs)
+out += env.SwigPyModule('clxx.cl.opencl1_0', SWIGPY_LIBS = libs + ['OpenCL'])
+out += env.SwigPyModule('clxx.cl.opencl1_1', SWIGPY_LIBS = libs + ['OpenCL'])
+out += env.SwigPyModule('clxx.cl.opencl1_2', SWIGPY_LIBS = libs + ['OpenCL'])
+out += env.SwigPyModule('clxx.cl.opencl2_0', SWIGPY_LIBS = libs + ['OpenCL'])
+out += env.SwigPyModule('clxx.types', SWIGPY_LIBS = libs)
+out += env.SwigPyModule('clxx.exceptions', SWIGPY_LIBS = libs)
+out += env.SwigPyModule('clxx.platform_query', SWIGPY_LIBS = libs + ['clxx_info'])
+out += env.SwigPyModule('clxx.platform_info', SWIGPY_LIBS = libs + ['clxx_info'])
+out += env.SwigPyModule('clxx.device_query', SWIGPY_LIBS = libs + ['clxx_info'])
+out += env.SwigPyModule('clxx.device_info', SWIGPY_LIBS = libs + ['clxx_info'])
+out += env.SwigPyModule('clxx.platform_layer_info', SWIGPY_LIBS = libs + ['clxx_info'])
+out += env.SwigPyModule('clxx.functions', SWIGPY_LIBS = libs + ['clxx_cl'])
+out += env.SwigPyModule('clxx.platforms', SWIGPY_LIBS = libs + ['clxx_cl'])
+out += env.SwigPyModule('clxx.devices', SWIGPY_LIBS = libs + ['clxx_cl'])
+out += env.SwigPyModule('clxx.platform_layer', SWIGPY_LIBS = libs + ['clxx_cl'])
+out += env.SwigPyModule('clxx.context_properties', SWIGPY_LIBS = libs + ['clxx_cl'])
+out += env.SwigPyModule('clxx.context', SWIGPY_LIBS = libs + ['clxx_cl'])
+out += env.SwigPyModule('clxx.device_partition_properties', SWIGPY_LIBS = libs + ['clxx_cl'])
+out += env.SwigPyModule('clxx.device_partition', SWIGPY_LIBS = libs + ['clxx_cl'])
+out += env.SwigPyModule('clxx.command_queue', SWIGPY_LIBS = libs + ['clxx_cl'])
+out += env.SwigPyModule('clxx.program_sources', SWIGPY_LIBS = libs)
+out += env.SwigPyModule('clxx.program_binaries', SWIGPY_LIBS = libs)
+out += env.SwigPyModule('clxx.program', SWIGPY_LIBS = libs + ['clxx_cl'])
+
+# Module files (*.so and *.py)
+mfiles =  [m for m in out if not str(m).endswith('.cc')] + init_py
+
+# FIXME: this is only for now, elaborate what should be the destination path,
+#        also the python packages should be compiled when installed, later on
+#        a plain user can't do this (root owns the directory with installed
+#        *.py files)
+ifiles = []
+for mfile in mfiles:
+    mdir = mfile.get_dir()
+    ifile = env.Install('${libdir}/python/dist-packages/%s' % mdir, mfile)
+    env.Ignore("${INSTALL_SANDBOX}${libdir}/python/dist-packages/%s" % mdir, ifile)
+    ifiles += ifile;
+env.Alias('install-python-clxx', ifiles)
+env.Alias('install', 'install-python-clxx')
+
+# Local Variables:
+# # tab-width:4
+# # indent-tabs-mode:nil
+# # End:
+# vim: set syntax=scons expandtab tabstop=4 shiftwidth=4:

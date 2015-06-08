@@ -1,0 +1,46 @@
+
+# @COPYRIGHT@
+# Licensed under MIT license (LICENSE.txt).
+
+Import('env')
+
+from SCons.Util import CLVar
+
+sources = [
+    'app/clcc/main.cpp',
+    'app/clcc/options.cpp',
+]
+
+headers = [
+    'app/clcc/main.hpp',
+    'app/clcc/options.hpp',
+]
+
+env['CLXX_PACKAGES']['libclxx_app_clcc'] = {
+    'version' : '0.1.0',
+    'libdeps' : CLVar('clxx_app clxx_io clxx_cl clxx_info boost_program_options')
+}
+
+overrides = {
+    'SHLIBVERSION'  : env['CLXX_PACKAGES']['libclxx_app_clcc']['version'],
+    'LIBS'          : env['CLXX_PACKAGES']['libclxx_app_clcc']['libdeps']
+}
+
+lib = env.SharedLibrary('../clxx_app_clcc', sources, **overrides)
+
+ilib = env.InstallVersionedLib('${libdir}', lib, **overrides)
+env.Ignore("${INSTALL_SANDBOX}${libdir}", ilib)
+
+iheaders = env.Install("${includedir}/clxx/app/clcc", headers)
+env.Ignore("${INSTALL_SANDBOX}${includedir}/clxx/app/clcc", iheaders)
+
+env.Alias('install-libclxx_app_clcc-headers', iheaders)
+env.Alias('install-libclxx_app_clcc-lib', ilib)
+env.Alias('install-libclxx_app_clcc-dev', ['install-libclxx_app_clcc-headers', 'install-libclxx_app_clcc-lib' ])
+env.Alias('install','install-libclxx_app_clcc-dev')
+
+# Local Variables:
+# # tab-width:4
+# # indent-tabs-mode:nil
+# # End:
+# vim: set syntax=scons expandtab tabstop=4 shiftwidth=4:

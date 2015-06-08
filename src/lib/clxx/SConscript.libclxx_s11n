@@ -1,0 +1,62 @@
+
+# @COPYRIGHT@
+# Licensed under MIT license (LICENSE.txt).
+
+Import('env')
+
+from SCons.Util import CLVar
+
+sources = [
+    's11n/device_info.cpp',
+    's11n/device_query.cpp',
+    's11n/platform_info.cpp',
+    's11n/platform_layer_info.cpp',
+    's11n/platform_query.cpp',
+]
+
+headers = [
+    's11n/boost_unordered_map.hpp',
+    's11n/boost_unordered_set.hpp',
+    's11n/device_info.hpp',
+    's11n/device_info_impl.hpp',
+    's11n/device_query.hpp',
+    's11n/device_query_impl.hpp',
+    's11n/platform_info.hpp',
+    's11n/platform_info_impl.hpp',
+    's11n/platform_layer_info.hpp',
+    's11n/platform_layer_info_impl.hpp',
+    's11n/platform_query.hpp',
+    's11n/platform_query_impl.hpp',
+    's11n/shared_ptr.hpp',
+]
+
+
+env['CLXX_PACKAGES']['libclxx_s11n'] = {
+    'version' : '0.1.0',
+    'libdeps' : CLVar('clxx_info boost_serialization')
+}
+
+overrides = {
+    'SHLIBVERSION'  : env['CLXX_PACKAGES']['libclxx_s11n']['version'],
+    'LIBS'          : env['CLXX_PACKAGES']['libclxx_s11n']['libdeps']
+}
+
+# rlib - "real" library
+lib = env.SharedLibrary('../clxx_s11n', sources, **overrides)
+
+ilib = env.InstallVersionedLib('${libdir}', lib, **overrides)
+env.Ignore("${INSTALL_SANDBOX}${libdir}", ilib)
+
+iheaders = env.Install("${includedir}/clxx/s11n", headers)
+env.Ignore("${INSTALL_SANDBOX}${includedir}/clxx/s11n", iheaders)
+
+env.Alias('install-libclxx_s11n-headers', iheaders)
+env.Alias('install-libclxx_s11n-lib', ilib)
+env.Alias('install-libclxx_s11n-dev', ['install-libclxx_s11n-headers', 'install-libclxx_s11n-lib' ])
+env.Alias('install','install-libclxx_s11n-dev')
+
+# Local Variables:
+# # tab-width:4
+# # indent-tabs-mode:nil
+# # End:
+# vim: set syntax=scons expandtab tabstop=4 shiftwidth=4:

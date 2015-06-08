@@ -1,0 +1,56 @@
+
+# @COPYRIGHT@
+# Licensed under MIT license (LICENSE.txt).
+
+Import('env')
+
+from SCons.Util import CLVar
+
+local_headers = [
+    'config.h',
+    'clerror.hpp',
+    'clerror_base.hpp',
+    'clerror_no.hpp',
+    'exception.hpp',
+    'exception_base.hpp',
+    'exceptions.hpp',
+    'macros.hpp',
+    'shared_ptr.hpp',
+    'types.hpp',
+]
+cl_headers = [
+    'cl/cl.h',
+]
+util_headers = [
+    'util/clerror_stdexcept.hpp',
+    'util/context_property_type.hpp',
+    'util/context_property_type_fwd.hpp',
+    'util/device_partition_property_type.hpp',
+    'util/device_partition_property_type_fwd.hpp',
+    'util/enum2cstr.hpp',
+    'util/enum2hex.hpp',
+    'util/enum2name.hpp',
+    'util/std_except_ctor_arg.hpp',
+    'util/std_except_ctor_arg_fwd.hpp',
+    'util/to_string.hpp',
+]
+
+local_iheaders = env.Install("${includedir}/clxx", local_headers)
+cl_iheaders = env.Install("${includedir}/clxx/cl", cl_headers)
+util_iheaders = env.Install("${includedir}/clxx/util", util_headers)
+
+env.Ignore("${INSTALL_SANDBOX}${includedir}/clxx", local_iheaders)
+env.Ignore("${INSTALL_SANDBOX}${includedir}/clxx/cl", cl_iheaders)
+env.Ignore("${INSTALL_SANDBOX}${includedir}/clxx/util", util_iheaders)
+
+iheaders = local_iheaders + cl_iheaders + util_iheaders
+
+env.Alias('install-libclxx_common-headers', iheaders)
+env.Alias('install-libclxx_common-dev', ['install-libclxx_common-headers' ])
+env.Alias('install','install-libclxx_common-dev')
+
+# Local Variables:
+# # tab-width:4
+# # indent-tabs-mode:nil
+# # End:
+# vim: set syntax=scons expandtab tabstop=4 shiftwidth=4:

@@ -1,0 +1,12 @@
+{
+  OpenCL suppression 1
+  Memcheck:Leak
+  ...
+  fun:clGetPlatformIDs
+}
+{
+  OpenCL suppression 2
+  Memcheck:Leak
+  ...
+  fun:clGetPlatformInfo
+}

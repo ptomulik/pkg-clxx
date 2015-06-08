@@ -12,7 +12,7 @@ Package: libclxx-common0-dev
 Homepage: https://github.com/ptomulik/clxx
 Architecture: any
 Section: libdevel
-Depends: ${misc:Depends}
+Depends: ${misc:Depends}, libyaul0.1-dev | libyaul-dev (>= 0.1.1)
 Description: C++ library for object-oriented OpenCL programming
  Clxx is a C++ library which exposes OpenCL's functionality in an
  object-oriented way. Its goal is to simplify usage of the OpenCL functions

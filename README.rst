@@ -64,6 +64,7 @@ In the following replace ``stretch`` with your preferred release codename.
 - Prepare initial ``debian`` directory::
 
     git checkout default
+    rm -rf debian.stretch
     ./scripts/create-debian-release stretch 0.1.1
 
   this shall create ``debian.stretch`` with the initial contents of ``debian``
@@ -81,20 +82,13 @@ In the following replace ``stretch`` with your preferred release codename.
     git commit --allow-empty -m 'initial commit for debian-debian/stretch'
 
 
-- put initial files to branches::
-
-    git checkout debian-upstream/stretch
-    rm -rf .gitignore
-    mv gitignore.debian-upstream .gitignore
-    git add .gitignore
-    git commit -m 'added .gitignore'
+- add ``debian/`` directory to ``debian-debian/stretch`` branch::
 
     git checkout debian-debian/stretch
-    rm -rf .gitignore debian
-    mv gitignore.debian-packaging .gitignore
+    rm -rf debian/
     mv debian.stretch debian
-    git add .gitignore debian
-    git commit -m 'added .gitignore and debian/'
+    git add debian
+    git commit -m 'added debian/ directory'
 
 
 - prepare a source tarball::
@@ -111,6 +105,10 @@ In the following replace ``stretch`` with your preferred release codename.
 - build the package::
 
     gbp buildpackage
+
+  or (parallel build, 12 jobs)::
+
+    DEB_BUILD_OPTIONS="parallel=12" gbp buildpackage 
 
 
 Debian: Build package

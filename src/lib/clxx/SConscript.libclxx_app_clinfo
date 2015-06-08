@@ -1,0 +1,60 @@
+
+# @COPYRIGHT@
+# Licensed under MIT license (LICENSE.txt).
+
+Import('env')
+
+from SCons.Util import CLVar
+
+sources = [
+    'app/clinfo/common_options_description.cpp',
+    'app/clinfo/create_query.cpp',
+    'app/clinfo/device_detail_options_description.cpp',
+    'app/clinfo/device_general_options_description.cpp',
+    'app/clinfo/io_options_description.cpp',
+    'app/clinfo/main.cpp',
+    'app/clinfo/options_description.cpp',
+    'app/clinfo/platform_detail_options_description.cpp',
+    'app/clinfo/platform_general_options_description.cpp',
+]
+
+headers = [
+    'app/clinfo/common_options_description.hpp',
+    'app/clinfo/create_query.hpp',
+    'app/clinfo/device_detail_options_description.hpp',
+    'app/clinfo/device_general_options_description.hpp',
+    'app/clinfo/io_options_description.hpp',
+    'app/clinfo/main.hpp',
+    'app/clinfo/options_description.hpp',
+    'app/clinfo/platform_detail_options_description.hpp',
+    'app/clinfo/platform_general_options_description.hpp',
+]
+
+env['CLXX_PACKAGES']['libclxx_app_clinfo'] = {
+    'version' : '0.1.0',
+    'libdeps' : CLVar('clxx_app clxx_io clxx_cl clxx_s11n clxx_info boost_serialization boost_program_options')
+}
+
+overrides = {
+    'SHLIBVERSION'  : env['CLXX_PACKAGES']['libclxx_app_clinfo']['version'],
+    'LIBS'          : env['CLXX_PACKAGES']['libclxx_app_clinfo']['libdeps']
+}
+
+lib = env.SharedLibrary('../clxx_app_clinfo', sources, **overrides)
+
+ilib = env.InstallVersionedLib('${libdir}', lib, **overrides)
+env.Ignore("${INSTALL_SANDBOX}${libdir}", ilib)
+
+iheaders = env.Install("${includedir}/clxx/app/clinfo", headers)
+env.Ignore("${INSTALL_SANDBOX}${includedir}/clxx/app/clinfo", iheaders)
+
+env.Alias('install-libclxx_app_clinfo-headers', iheaders)
+env.Alias('install-libclxx_app_clinfo-lib', ilib)
+env.Alias('install-libclxx_app_clinfo-dev', ['install-libclxx_app_clinfo-headers', 'install-libclxx_app_clinfo-lib' ])
+env.Alias('install','install-libclxx_app_clinfo-dev')
+
+# Local Variables:
+# # tab-width:4
+# # indent-tabs-mode:nil
+# # End:
+# vim: set syntax=scons expandtab tabstop=4 shiftwidth=4:

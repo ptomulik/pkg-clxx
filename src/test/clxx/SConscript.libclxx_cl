@@ -1,0 +1,39 @@
+
+# @COPYRIGHT@
+# Licensed under MIT license (LICENSE.txt).
+
+Import(['env'])
+
+from SCons.Util import CLVar
+
+tests = [
+    'command_queue.t.h',
+    'context.t.h',
+    'context_properties.t.h',
+    'context_property.t.h',
+    'device.t.h',
+    'device_partition.t.h',
+    'device_partition_properties.t.h',
+    'device_partition_property.t.h',
+    'devices.t.h',
+    'functions.t.h',
+    'platform.t.h',
+    'platform_layer.t.h',
+    'platforms.t.h',
+    'program.t.h',
+]
+
+env.CxxTest('../check-libclxx_cl', tests,
+           LIBS = CLVar('clxx_cl_test OpenCL clxx_info'),
+           CXXTEST_CPPPATH = ['..'],
+           CXXTEST_LIBPATH = env.get('LIBPATH', CLVar()),
+           CXXTEST_TARGET = 'check-libclxx_cl')
+
+env.Alias('check', [ 'check-libclxx_cl' ])
+env.AlwaysBuild('check-libclxx_cl')
+
+# Local Variables:
+# # tab-width:4
+# # indent-tabs-mode:nil
+# # End:
+# vim: set syntax=scons expandtab tabstop=4 shiftwidth=4:

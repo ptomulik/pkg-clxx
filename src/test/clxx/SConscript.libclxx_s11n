@@ -1,0 +1,38 @@
+
+# @COPYRIGHT@
+# Licensed under MIT license (LICENSE.txt).
+
+Import(['env'])
+
+from SCons.Util import CLVar
+
+tests = [
+#    's11n/boost_unordered_map.t.h',
+#    's11n/boost_unordered_set.t.h',
+    's11n/device_info.t.h',
+#    's11n/device_info_impl.t.h',
+    's11n/device_query.t.h',
+#    's11n/device_query_impl.t.h',
+    's11n/platform_info.t.h',
+#    's11n/platform_info_impl.t.h',
+    's11n/platform_layer_info.t.h',
+#    's11n/platform_layer_info_impl.t.h',
+    's11n/platform_query.t.h',
+#    's11n/platform_query_impl.t.h',
+#    's11n/shared_ptr.t.h',
+]
+
+env.CxxTest('../check-libclxx_s11n', tests,
+           LIBS = CLVar('clxx_s11n clxx_info boost_serialization'),
+           CXXTEST_CPPPATH = ['..'],
+           CXXTEST_LIBPATH = env.get('LIBPATH', CLVar()),
+           CXXTEST_TARGET = 'check-libclxx_s11n')
+
+env.Alias('check', [ 'check-libclxx_s11n' ])
+env.AlwaysBuild('check-libclxx_s11n')
+
+# Local Variables:
+# # tab-width:4
+# # indent-tabs-mode:nil
+# # End:
+# vim: set syntax=scons expandtab tabstop=4 shiftwidth=4:

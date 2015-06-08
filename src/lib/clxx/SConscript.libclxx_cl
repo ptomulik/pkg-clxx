@@ -1,0 +1,81 @@
+
+# @COPYRIGHT@
+# Licensed under MIT license (LICENSE.txt).
+
+Import('env')
+
+from SCons.Util import CLVar
+
+sources =  [
+    'command_queue.cpp',
+    'context.cpp',
+    'context_properties.cpp',
+    'device.cpp',
+    'device_partition.cpp',
+    'device_partition_properties.cpp',
+    'devices.cpp',
+    'functions.cpp',
+    'platform.cpp',
+    'platform_layer.cpp',
+    'platforms.cpp',
+    'program.cpp',
+    'program_observer.cpp',
+]
+
+headers = [
+    'command_queue.hpp',
+    'context.hpp',
+    'context_properties.hpp',
+    'context_property.hpp',
+    'device.hpp',
+    'device_partition.hpp',
+    'device_partition_properties.hpp',
+    'device_partition_property.hpp',
+    'devices.hpp',
+    'functions.hpp',
+    'platform.hpp',
+    'platform_layer.hpp',
+    'platforms.hpp',
+    'program.hpp',
+    'program_binaries.hpp',
+    'program_binary.hpp',
+    'program_observer.hpp',
+    'program_source.hpp',
+    'program_sources.hpp',
+]
+
+env['CLXX_PACKAGES']['libclxx_cl'] = {
+    'version' : '0.1.0',
+    'libdeps' : CLVar('OpenCL clxx_info')
+}
+
+objects = env.SharedObject(sources)
+
+overrides = {
+    'SHLIBVERSION'  : env['CLXX_PACKAGES']['libclxx_cl']['version'],
+    'LIBS'          : env['CLXX_PACKAGES']['libclxx_cl']['libdeps']
+}
+
+# rlib - "real" libarary
+rlib = env.SharedLibrary('../clxx_cl', objects + ['cl/real.cpp'], **overrides)
+
+# tlib - library for testing (OpenCL functions replaced with mocks)
+tlib = env.SharedLibrary('../clxx_cl_test', objects + ['cl/mock.cpp'], **overrides)
+env.Ignore('../..', tlib)
+
+ilib = env.InstallVersionedLib('${libdir}', rlib, **overrides)
+env.Ignore("${INSTALL_SANDBOX}${libdir}", ilib)
+
+iheaders = env.Install("${includedir}/clxx", headers)
+env.Ignore("${INSTALL_SANDBOX}${includedir}/clxx", iheaders)
+
+env.Alias('install-libclxx_cl-headers', iheaders)
+env.Alias('install-libclxx_cl-lib', ilib)
+env.Alias('install-libclxx_cl-dev', ['install-libclxx_cl-headers', 'install-libclxx_cl-lib' ])
+env.Alias('install','install-libclxx_cl-dev')
+
+# Local Variables:
+# # tab-width:4
+# # indent-tabs-mode:nil
+# # End:
+# vim: set syntax=scons expandtab tabstop=4 shiftwidth=4:

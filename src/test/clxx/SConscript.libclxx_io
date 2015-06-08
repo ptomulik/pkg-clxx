@@ -1,0 +1,26 @@
+
+# @COPYRIGHT@
+# Licensed under MIT license (LICENSE.txt).
+
+## Import(['env'])
+##
+## from SCons.Util import CLVar
+##
+
+## tests = [
+## ]
+
+## env.CxxTest('../check-libclxx_io', tests,
+##            LIBS = CLVar(),
+##            CXXTEST_CPPPATH = ['..'],
+##            CXXTEST_LIBPATH = env.get('LIBPATH', CLVar()),
+##            CXXTEST_TARGET = 'check-libclxx_io')
+##
+## env.Alias('check', [ 'check-libclxx_io' ])
+## env.AlwaysBuild('check-libclxx_io')
+
+# Local Variables:
+# # tab-width:4
+# # indent-tabs-mode:nil
+# # End:
+# vim: set syntax=scons expandtab tabstop=4 shiftwidth=4:

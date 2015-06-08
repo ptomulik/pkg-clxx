@@ -1,0 +1,22 @@
+
+# @COPYRIGHT@
+# Licensed under MIT license (LICENSE.txt).
+
+Import(['env'])
+
+env.Tool('cxxtest')
+env.Tool('doxyfile')
+env.Tool('doxygen')
+env.Tool('gcccov')
+env.Tool('swig')
+env.Tool('swigpy')
+
+# Pre-load 'install' tool to create 'install_sandbox' option
+env.Tool('install')
+env['INSTALL_SANDBOX'] = GetOption('install_sandbox')
+
+# Local Variables:
+# # tab-width:4
+# # indent-tabs-mode:nil
+# # End:
+# vim: set syntax=scons expandtab tabstop=4 shiftwidth=4:

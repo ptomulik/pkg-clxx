@@ -1,0 +1,20 @@
+
+# @COPYRIGHT@
+# Licensed under MIT license (LICENSE.txt).
+
+Import('env')
+
+SConscript('SConscript.libclxx_common', exports = ['env'])
+SConscript('SConscript.libclxx_cl', exports = ['env'])
+SConscript('SConscript.libclxx_app', exports = ['env'])
+SConscript('SConscript.libclxx_app_clcc', exports = ['env'])
+SConscript('SConscript.libclxx_app_clinfo', exports = ['env'])
+SConscript('SConscript.libclxx_info', exports = ['env'])
+SConscript('SConscript.libclxx_io', exports = ['env'])
+SConscript('SConscript.libclxx_s11n', exports = ['env'])
+
+# Local Variables:
+# # tab-width:4
+# # indent-tabs-mode:nil
+# # End:
+# vim: set syntax=scons expandtab tabstop=4 shiftwidth=4:

@@ -1,0 +1,80 @@
+
+# @COPYRIGHT@
+# Licensed under MIT license (LICENSE.txt).
+
+Import('env')
+
+from SCons.Util import CLVar, NodeList
+import os.path
+
+headers = [
+    'app/common_options_description.hpp',
+    'app/exception.hpp',
+    'app/main.hpp',
+    'app/options/exception.hpp',
+    'app/options/exceptions.hpp',
+    'app/options/exceptions/ambiguous_option.hpp',
+    'app/options/exceptions/invalid_bool_value.hpp',
+    'app/options/exceptions/invalid_command_line_style.hpp',
+    'app/options/exceptions/invalid_command_line_syntax.hpp',
+    'app/options/exceptions/invalid_config_file_syntax.hpp',
+    'app/options/exceptions/invalid_option_value.hpp',
+    'app/options/exceptions/invalid_syntax.hpp',
+    'app/options/exceptions/multiple_occurrences.hpp',
+    'app/options/exceptions/multiple_values.hpp',
+    'app/options/exceptions/reading_file.hpp',
+    'app/options/exceptions/required_option.hpp',
+    'app/options/exceptions/too_many_positional_options.hpp',
+    'app/options/exceptions/unknown_option.hpp',
+    'app/options/exceptions/validation_error.hpp',
+    'app/options/exceptions/with_no_option_name.hpp',
+    'app/options/exceptions/with_option_name.hpp',
+    'app/options/option_value.hpp',
+    'app/options/options_description.hpp',
+    'app/options/options_map.hpp',
+    'app/options/parsers.hpp',
+    'app/options/positional_options.hpp',
+    'app/options/rethrow.hpp',
+]
+
+sources = [
+    'app/common_options_description.cpp',
+    'app/main.cpp',
+    'app/options/options_description.cpp',
+    'app/options/options_map.cpp',
+]
+
+env['CLXX_PACKAGES']['libclxx_app'] = {
+    'version' : '0.1.0',
+    'libdeps' : CLVar('boost_program_options')
+}
+
+overrides = {
+    'SHLIBVERSION'  : env['CLXX_PACKAGES']['libclxx_app']['version'],
+    'LIBS'          : env['CLXX_PACKAGES']['libclxx_app']['libdeps']
+}
+
+lib = env.SharedLibrary('../clxx_app', sources, **overrides)
+
+ilib = env.InstallVersionedLib('${libdir}', lib, **overrides)
+env.Ignore("${INSTALL_SANDBOX}${libdir}", ilib)
+
+iheaders = NodeList()
+for header in headers:
+    [head, tail] = os.path.split(header)
+    idir = os.path.join(env.subst("${includedir}"), "clxx", head);
+    iheader = env.Install(idir, header)
+    env.Ignore(idir, iheader)
+    iheaders += iheader
+
+
+env.Alias('install-libclxx_app-headers', iheaders)
+env.Alias('install-libclxx_app-lib', ilib)
+env.Alias('install-libclxx_app-dev', ['install-libclxx_app-headers', 'install-libclxx_app-lib' ])
+env.Alias('install','install-libclxx_app-dev')
+
+# Local Variables:
+# # tab-width:4
+# # indent-tabs-mode:nil
+# # End:
+# vim: set syntax=scons expandtab tabstop=4 shiftwidth=4:

@@ -1,0 +1,45 @@
+# @COPYRIGHT@
+# Licensed under MIT license (LICENSE.txt).
+
+Import(['env'])
+
+from SCons.Util import CLVar
+
+tests = [
+#    'cl/cl.t.h',
+#    'clerror.t.h',
+#    'clerror_base.t.h',
+    'clerror_no.t.h',
+    'exception.t.h',
+#    'exception_base.t.h',
+#    'exceptions.t.h',
+#    'macros.t.h',
+#    'shared_ptr.t.h',
+    'types.t.h',
+#    'util/clerror_stdexcept.t.h',
+    'util/context_property_type.t.h',
+#    'util/context_property_type_fwd.t.h',
+#    'util/device_partition_property_type.t.h',
+#    'util/device_partition_property_type_fwd.t.h',
+    'util/enum2cstr.t.h',
+    'util/enum2hex.t.h',
+    'util/enum2name.t.h',
+#    'util/std_except_ctor_arg.t.h',
+#    'util/std_except_ctor_arg_fwd.t.h',
+    'util/to_string.t.h',
+]
+
+env.CxxTest('../check-libclxx_common', tests,
+           LIBS = CLVar(),
+           CXXTEST_CPPPATH = ['..'],
+           CXXTEST_LIBPATH = env.get('LIBPATH', CLVar()),
+           CXXTEST_TARGET = 'check-libclxx_common')
+
+env.Alias('check', [ 'check-libclxx_common' ])
+env.AlwaysBuild('check-libclxx_common')
+
+# Local Variables:
+# # tab-width:4
+# # indent-tabs-mode:nil
+# # End:
+# vim: set syntax=scons expandtab tabstop=4 shiftwidth=4:

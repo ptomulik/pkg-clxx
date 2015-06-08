@@ -1,0 +1,61 @@
+
+# @COPYRIGHT@
+# Licensed under MIT license (LICENSE.txt).
+
+Import('env')
+
+from SCons.Util import CLVar
+
+sources = [
+    'io/device_query.cpp',
+    'io/platform_info.cpp',
+    'io/platform_query.cpp',
+    'io/types.cpp',
+    'io/device_info.cpp',
+    'io/platform_layer_info.cpp',
+]
+
+headers = [
+    'io/autosep.hpp',
+    'io/device_info.hpp',
+    'io/device_info_impl.hpp',
+    'io/device_query.hpp',
+    'io/device_query_impl.hpp',
+    'io/platform_info.hpp',
+    'io/platform_info_impl.hpp',
+    'io/platform_layer_info.hpp',
+    'io/platform_layer_info_impl.hpp',
+    'io/platform_query.hpp',
+    'io/types.hpp',
+    'io/types_impl.hpp',
+]
+
+env['CLXX_PACKAGES']['libclxx_io'] = {
+    'version' : '0.1.0',
+    'libdeps' : CLVar('clxx_info')
+}
+
+overrides = {
+    'SHLIBVERSION'  : env['CLXX_PACKAGES']['libclxx_io']['version'],
+    'LIBS'          : env['CLXX_PACKAGES']['libclxx_io']['libdeps']
+}
+
+# rlib - "real" library
+lib = env.SharedLibrary('../clxx_io', sources, **overrides)
+
+ilib = env.InstallVersionedLib('${libdir}', lib, **overrides)
+env.Ignore("${INSTALL_SANDBOX}${libdir}", ilib)
+
+iheaders = env.Install("${includedir}/clxx/io", headers)
+env.Ignore("${INSTALL_SANDBOX}${includedir}/clxx/io", iheaders)
+
+env.Alias('install-libclxx_io-headers', iheaders)
+env.Alias('install-libclxx_io-lib', ilib)
+env.Alias('install-libclxx_io-dev', ['install-libclxx_io-headers', 'install-libclxx_io-lib' ])
+env.Alias('install','install-libclxx_io-dev')
+
+# Local Variables:
+# # tab-width:4
+# # indent-tabs-mode:nil
+# # End:
+# vim: set syntax=scons expandtab tabstop=4 shiftwidth=4:

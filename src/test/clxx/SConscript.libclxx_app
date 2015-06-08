@@ -1,0 +1,26 @@
+
+# @COPYRIGHT@
+# Licensed under MIT license (LICENSE.txt).
+
+Import(['env'])
+
+from SCons.Util import CLVar
+
+tests = [
+    'app/options/exceptions.t.h'
+]
+
+env.CxxTest('../check-libclxx_app', tests,
+           LIBS = CLVar('clxx_app boost_program_options'),
+           CXXTEST_CPPPATH = ['..'],
+           CXXTEST_LIBPATH = env.get('LIBPATH', CLVar()),
+           CXXTEST_TARGET = 'check-libclxx_app')
+
+env.Alias('check', [ 'check-libclxx_app' ])
+env.AlwaysBuild('check-libclxx_app')
+
+# Local Variables:
+# # tab-width:4
+# # indent-tabs-mode:nil
+# # End:
+# vim: set syntax=scons expandtab tabstop=4 shiftwidth=4:

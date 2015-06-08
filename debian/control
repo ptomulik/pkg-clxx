@@ -1,0 +1,363 @@
+Source: clxx0
+Section: libs
+Priority: optional
+Maintainer: Paweł Tomulik <ptomulik@meil.pw.edu.pl>
+Build-Depends: debhelper (>= 9), dpkg-dev (>= 1.16.1~), doxygen, scons
+Standards-Version: 3.9.6
+Homepage: https://github.com/ptomulik/clxx
+Vcs-Git: git://github.com/ptomulik/pkg-clxx.git
+Vcs-Browser: https://github.com/ptomulik/pkg-clxx
+
+Package: libclxx-common0-dev
+Homepage: https://github.com/ptomulik/clxx
+Architecture: any
+Section: libdevel
+Depends: ${misc:Depends}
+Description: C++ library for object-oriented OpenCL programming
+ Clxx is a C++ library which exposes OpenCL's functionality in an
+ object-oriented way. Its goal is to simplify usage of the OpenCL functions
+ by providing type-safe and easy to use interface.
+ .
+ Clxx is not just a set of bare wrappers around OpenCL calls. In addition to
+ several objects and functions provided for accessing the OpenCL
+ functionality, it also implements additional facilities such as specialized
+ I/O functions, serialization, swig-based wrappers to access clxx from
+ scripting languages (Python), and even ready-to use applications such as
+ clxx-clinfo or clxx-clcc.
+ .
+ This package contains header files used by several other parts of clxxx.
+
+Package: libclxx-app0
+Homepage: https://github.com/ptomulik/clxx
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: C++ library for object-oriented OpenCL programming
+ Clxx is a C++ library which exposes OpenCL's functionality in an
+ object-oriented way. Its goal is to simplify usage of the OpenCL functions
+ by providing type-safe and easy to use interface.
+ .
+ Clxx is not just a set of bare wrappers around OpenCL calls. In addition to
+ several objects and functions provided for accessing the OpenCL
+ functionality, it also implements additional facilities such as specialized
+ I/O functions, serialization, swig-based wrappers to access clxx from
+ scripting languages (Python), and even ready-to use applications such as
+ clxx-clinfo or clxx-clcc.
+ .
+ This package contains libclxx_app.so, a library used in common by most clxx
+ applications.
+
+Package: libclxx-app0-dev
+Homepage: https://github.com/ptomulik/clxx
+Architecture: any
+Section: libdevel
+Depends: ${misc:Depends}, libclxx-app0 (= ${binary:Version}),
+ libclxx-common0-dev, libboost-program-options-dev
+Description: C++ library for object-oriented OpenCL programming
+ Clxx is a C++ library which exposes OpenCL's functionality in an
+ object-oriented way. Its goal is to simplify usage of the OpenCL functions
+ by providing type-safe and easy to use interface.
+ .
+ Clxx is not just a set of bare wrappers around OpenCL calls. In addition to
+ several objects and functions provided for accessing the OpenCL
+ functionality, it also implements additional facilities such as specialized
+ I/O functions, serialization, swig-based wrappers to access clxx from
+ scripting languages (Python), and even ready-to use applications such as
+ clxx-clinfo or clxx-clcc.
+ .
+ This package contains development files for libclxx-app0.
+
+Package: libclxx-app-clcc0
+Homepage: https://github.com/ptomulik/clxx
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, libclxx-app0, libclxx-io0,
+ libclxx-cl0, libclxx-info0
+Description: C++ library for object-oriented OpenCL programming
+ Clxx is a C++ library which exposes OpenCL's functionality in an
+ object-oriented way. Its goal is to simplify usage of the OpenCL functions
+ by providing type-safe and easy to use interface.
+ .
+ Clxx is not just a set of bare wrappers around OpenCL calls. In addition to
+ several objects and functions provided for accessing the OpenCL
+ functionality, it also implements additional facilities such as specialized
+ I/O functions, serialization, swig-based wrappers to access clxx from
+ scripting languages (Python), and even ready-to use applications such as
+ clxx-clinfo or clxx-clcc.
+ .
+ This package contains libclxx_app_clcc.so, a direct application support
+ library for the clxx-clcc compiler
+
+Package: libclxx-app-clcc0-dev
+Homepage: https://github.com/ptomulik/clxx
+Architecture: any
+Section: libdevel
+Depends: ${misc:Depends}, libclxx-app-clcc0 (= ${binary:Version}),
+ libclxx-app0-dev, libclxx-common0-dev, libclxx-io0-dev,
+ libclxx-cl0-dev, libclxx-info0-dev
+Description: C++ library for object-oriented OpenCL programming
+ Clxx is a C++ library which exposes OpenCL's functionality in an
+ object-oriented way. Its goal is to simplify usage of the OpenCL functions
+ by providing type-safe and easy to use interface.
+ .
+ Clxx is not just a set of bare wrappers around OpenCL calls. In addition to
+ several objects and functions provided for accessing the OpenCL
+ functionality, it also implements additional facilities such as specialized
+ I/O functions, serialization, swig-based wrappers to access clxx from
+ scripting languages (Python), and even ready-to use applications such as
+ clxx-clinfo or clxx-clcc.
+ .
+ This package contains development files for libclxx-app-clcc0.
+
+Package: libclxx-io0
+Homepage: https://github.com/ptomulik/clxx
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, libclxx-info0
+Description: C++ library for object-oriented OpenCL programming
+ Clxx is a C++ library which exposes OpenCL's functionality in an
+ object-oriented way. Its goal is to simplify usage of the OpenCL functions
+ by providing type-safe and easy to use interface.
+ .
+ Clxx is not just a set of bare wrappers around OpenCL calls. In addition to
+ several objects and functions provided for accessing the OpenCL
+ functionality, it also implements additional facilities such as specialized
+ I/O functions, serialization, swig-based wrappers to access clxx from
+ scripting languages (Python), and even ready-to use applications such as
+ clxx-clinfo or clxx-clcc.
+ .
+ This package contains libclxx_io.so, a library of I/O functions to represent
+ objects defined in clxx in a human readable form.
+
+Package: libclxx-io0-dev
+Homepage: https://github.com/ptomulik/clxx
+Architecture: any
+Section: libdevel
+Depends: ${misc:Depends}, libclxx-io0 (= ${binary:Version}),
+ libclxx-common0-dev, libclxx-info0-dev
+Description: C++ library for object-oriented OpenCL programming
+ Clxx is a C++ library which exposes OpenCL's functionality in an
+ object-oriented way. Its goal is to simplify usage of the OpenCL functions
+ by providing type-safe and easy to use interface.
+ .
+ Clxx is not just a set of bare wrappers around OpenCL calls. In addition to
+ several objects and functions provided for accessing the OpenCL
+ functionality, it also implements additional facilities such as specialized
+ I/O functions, serialization, swig-based wrappers to access clxx from
+ scripting languages (Python), and even ready-to use applications such as
+ clxx-clinfo or clxx-clcc.
+ .
+ This package contains development files for libclxx-io0.
+
+Package: libclxx-app-clinfo0
+Homepage: https://github.com/ptomulik/clxx
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, libclxx-app0, libclxx-io0,
+ libclxx-cl0, libclxx-s11n0, libclxx-info0
+Description: C++ library for object-oriented OpenCL programming
+ Clxx is a C++ library which exposes OpenCL's functionality in an
+ object-oriented way. Its goal is to simplify usage of the OpenCL functions
+ by providing type-safe and easy to use interface.
+ .
+ Clxx is not just a set of bare wrappers around OpenCL calls. In addition to
+ several objects and functions provided for accessing the OpenCL
+ functionality, it also implements additional facilities such as specialized
+ I/O functions, serialization, swig-based wrappers to access clxx from
+ scripting languages (Python), and even ready-to use applications such as
+ clxx-clinfo or clxx-clcc.
+ .
+ This package contains libclxx_app_clinfo.so, a direct application support
+ library for the clxx-clinfo utility. The library implements all the functions
+ of the application.
+
+Package: libclxx-app-clinfo0-dev
+Homepage: https://github.com/ptomulik/clxx
+Architecture: any
+Section: libdevel
+Depends: ${misc:Depends}, libclxx-app-clinfo0 (= ${binary:Version}),
+ libclxx-common0-dev, libclxx-app0-dev, libclxx-io0-dev,
+ libclxx-cl0-dev, libclxx-s11n0-dev, libclxx-info0-dev
+Description: C++ library for object-oriented OpenCL programming
+ Clxx is a C++ library which exposes OpenCL's functionality in an
+ object-oriented way. Its goal is to simplify usage of the OpenCL functions
+ by providing type-safe and easy to use interface.
+ .
+ Clxx is not just a set of bare wrappers around OpenCL calls. In addition to
+ several objects and functions provided for accessing the OpenCL
+ functionality, it also implements additional facilities such as specialized
+ I/O functions, serialization, swig-based wrappers to access clxx from
+ scripting languages (Python), and even ready-to use applications such as
+ clxx-clinfo or clxx-clcc.
+ .
+ This package contains development files for libclxx-app-clinfo0.
+
+Package: libclxx-cl0
+Homepage: https://github.com/ptomulik/clxx
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, libclxx-info0
+Description: C++ library for object-oriented OpenCL programming
+ Clxx is a C++ library which exposes OpenCL's functionality in an
+ object-oriented way. Its goal is to simplify usage of the OpenCL functions
+ by providing type-safe and easy to use interface.
+ .
+ Clxx is not just a set of bare wrappers around OpenCL calls. In addition to
+ several objects and functions provided for accessing the OpenCL
+ functionality, it also implements additional facilities such as specialized
+ I/O functions, serialization, swig-based wrappers to access clxx from
+ scripting languages (Python), and even ready-to use applications such as
+ clxx-clinfo or clxx-clcc.
+ .
+ This package contains libclxx_cl.so, a library which provides objec-oriented
+ access to OpenCL functions.
+
+Package: libclxx-cl0-dev
+Homepage: https://github.com/ptomulik/clxx
+Architecture: any
+Section: libdevel
+Depends: ${misc:Depends}, libclxx-cl0 (= ${binary:Version}),
+ libclxx-common0-dev, libclxx-info0-dev
+Description: C++ library for object-oriented OpenCL programming
+ Clxx is a C++ library which exposes OpenCL's functionality in an
+ object-oriented way. Its goal is to simplify usage of the OpenCL functions
+ by providing type-safe and easy to use interface.
+ .
+ Clxx is not just a set of bare wrappers around OpenCL calls. In addition to
+ several objects and functions provided for accessing the OpenCL
+ functionality, it also implements additional facilities such as specialized
+ I/O functions, serialization, swig-based wrappers to access clxx from
+ scripting languages (Python), and even ready-to use applications such as
+ clxx-clinfo or clxx-clcc.
+ .
+ This package contains development files for libclxx-cl0.
+
+Package: libclxx-info0
+Homepage: https://github.com/ptomulik/clxx
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: C++ library for object-oriented OpenCL programming
+ Clxx is a C++ library which exposes OpenCL's functionality in an
+ object-oriented way. Its goal is to simplify usage of the OpenCL functions
+ by providing type-safe and easy to use interface.
+ .
+ Clxx is not just a set of bare wrappers around OpenCL calls. In addition to
+ several objects and functions provided for accessing the OpenCL
+ functionality, it also implements additional facilities such as specialized
+ I/O functions, serialization, swig-based wrappers to access clxx from
+ scripting languages (Python), and even ready-to use applications such as
+ clxx-clinfo or clxx-clcc.
+ .
+ This package contains libclxx_info.so, a library with C++ classes to
+ encapsulate OpenCL information gathered by libclxx methods. This library
+ has no dependency on OpenCL.
+
+Package: libclxx-info0-dev
+Homepage: https://github.com/ptomulik/clxx
+Architecture: any
+Section: libdevel
+Depends: ${misc:Depends}, libclxx-info0 (= ${binary:Version}),
+ libclxx-common0-dev
+Description: C++ library for object-oriented OpenCL programming
+ Clxx is a C++ library which exposes OpenCL's functionality in an
+ object-oriented way. Its goal is to simplify usage of the OpenCL functions
+ by providing type-safe and easy to use interface.
+ .
+ Clxx is not just a set of bare wrappers around OpenCL calls. In addition to
+ several objects and functions provided for accessing the OpenCL
+ functionality, it also implements additional facilities such as specialized
+ I/O functions, serialization, swig-based wrappers to access clxx from
+ scripting languages (Python), and even ready-to use applications such as
+ clxx-clinfo or clxx-clcc.
+ .
+ This package contains development files for libclxx-info0.
+
+Package: libclxx-s11n0
+Homepage: https://github.com/ptomulik/clxx
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, libclxx-info0
+Description: C++ library for object-oriented OpenCL programming
+ Clxx is a C++ library which exposes OpenCL's functionality in an
+ object-oriented way. Its goal is to simplify usage of the OpenCL functions
+ by providing type-safe and easy to use interface.
+ .
+ Clxx is not just a set of bare wrappers around OpenCL calls. In addition to
+ several objects and functions provided for accessing the OpenCL
+ functionality, it also implements additional facilities such as specialized
+ I/O functions, serialization, swig-based wrappers to access clxx from
+ scripting languages (Python), and even ready-to use applications such as
+ clxx-clinfo or clxx-clcc.
+ .
+ This package contains libclxx_s11n.so, a library used to serialize objects
+ implemented by the libclxx-info0.
+
+Package: libclxx-s11n0-dev
+Homepage: https://github.com/ptomulik/clxx
+Architecture: any
+Section: libdevel
+Depends: ${misc:Depends}, libclxx-s11n0 (= ${binary:Version}),
+ libclxx-common0-dev, libclxx-info0-dev
+Description: C++ library for object-oriented OpenCL programming
+ Clxx is a C++ library which exposes OpenCL's functionality in an
+ object-oriented way. Its goal is to simplify usage of the OpenCL functions
+ by providing type-safe and easy to use interface.
+ .
+ Clxx is not just a set of bare wrappers around OpenCL calls. In addition to
+ several objects and functions provided for accessing the OpenCL
+ functionality, it also implements additional facilities such as specialized
+ I/O functions, serialization, swig-based wrappers to access clxx from
+ scripting languages (Python), and even ready-to use applications such as
+ clxx-clinfo or clxx-clcc.
+ .
+ This package contains development files for libclxx-s11n0.
+
+Package: libclxx0-all
+Architecture: any
+Depends: ${misc:Depends}, libclxx-app-clcc0, libclxx-app-clinfo0,
+ libclxx-app0, libclxx-cl0, libclxx-info0, libclxx-io0, libclxx-s11n0
+Description: C++ library for object-oriented OpenCL programming
+ Clxx is a C++ library which exposes OpenCL's functionality in an
+ object-oriented way. Its goal is to simplify usage of the OpenCL functions
+ by providing type-safe and easy to use interface.
+ .
+ Clxx is not just a set of bare wrappers around OpenCL calls. In addition to
+ several objects and functions provided for accessing the OpenCL
+ functionality, it also implements additional facilities such as specialized
+ I/O functions, serialization, swig-based wrappers to access clxx from
+ scripting languages (Python), and even ready-to use applications such as
+ clxx-clinfo or clxx-clcc.
+ .
+ This is a meta-package which install all clxx0 libraries.
+
+Package: libclxx0-all-dev
+Architecture: any
+Section: libdevel
+Depends: ${misc:Depends}, libclxx-app-clcc0-dev, libbclxx-common0-dev,
+ libclxx-app-clinfo0-dev, libclxx-app0-dev, libclxx-cl0-dev, libclxx-info0-dev,
+ libclxx-io0-dev, libclxx-s11n0-dev
+Description: C++ library for object-oriented OpenCL programming
+ Clxx is a C++ library which exposes OpenCL's functionality in an
+ object-oriented way. Its goal is to simplify usage of the OpenCL functions
+ by providing type-safe and easy to use interface.
+ .
+ Clxx is not just a set of bare wrappers around OpenCL calls. In addition to
+ several objects and functions provided for accessing the OpenCL
+ functionality, it also implements additional facilities such as specialized
+ I/O functions, serialization, swig-based wrappers to access clxx from
+ scripting languages (Python), and even ready-to use applications such as
+ clxx-clinfo or clxx-clcc.
+ .
+ This is a meta-package which install all clxx0 development packages.
+
+Package: clxx-tools0
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, libclxx-app-clcc0,
+ libclxx-app-clinfo0
+Description: C++ library for object-oriented OpenCL programming
+ Clxx is a C++ library which exposes OpenCL's functionality in an
+ object-oriented way. Its goal is to simplify usage of the OpenCL functions
+ by providing type-safe and easy to use interface.
+ .
+ Clxx is not just a set of bare wrappers around OpenCL calls. In addition to
+ several objects and functions provided for accessing the OpenCL
+ functionality, it also implements additional facilities such as specialized
+ I/O functions, serialization, swig-based wrappers to access clxx from
+ scripting languages (Python), and even ready-to use applications such as
+ clxx-clinfo or clxx-clcc.
+ .
+ This package provides clxx programs and other utilities.

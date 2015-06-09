@@ -327,7 +327,7 @@ Description: C++ library for object-oriented OpenCL programming
 Package: libclxx@PKGVERSION@-all-dev
 Architecture: any
 Section: libdevel
-Depends: ${misc:Depends}, libclxx-app-clcc@PKGVERSION@-dev, libbclxx-common@PKGVERSION@-dev,
+Depends: ${misc:Depends}, libclxx-app-clcc@PKGVERSION@-dev, libclxx-common@PKGVERSION@-dev,
  libclxx-app-clinfo@PKGVERSION@-dev, libclxx-app@PKGVERSION@-dev, libclxx-cl@PKGVERSION@-dev, libclxx-info@PKGVERSION@-dev,
  libclxx-io@PKGVERSION@-dev, libclxx-s11n@PKGVERSION@-dev
 Description: C++ library for object-oriented OpenCL programming

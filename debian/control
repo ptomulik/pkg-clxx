@@ -327,7 +327,7 @@ Description: C++ library for object-oriented OpenCL programming
 Package: libclxx0-all-dev
 Architecture: any
 Section: libdevel
-Depends: ${misc:Depends}, libclxx-app-clcc0-dev, libbclxx-common0-dev,
+Depends: ${misc:Depends}, libclxx-app-clcc0-dev, libclxx-common0-dev,
  libclxx-app-clinfo0-dev, libclxx-app0-dev, libclxx-cl0-dev, libclxx-info0-dev,
  libclxx-io0-dev, libclxx-s11n0-dev
 Description: C++ library for object-oriented OpenCL programming

@@ -95,12 +95,12 @@ In the following replace ``stretch`` with your preferred release codename.
 
     git checkout default
     ./scripts/create-tarball v0.1.1
-    mv ../clxx-0.1.1.tar.gz ../clxx0.1_0.1.1.orig.tar.gz
+    mv ../clxx-0.1.1.tar.gz ../clxx0_0.1.1.orig.tar.gz
 
 - import the source tarball::
 
     git checkout debian-debian/stretch
-    gbp import-orig ../clxx_0.1.1.orig.tar.gz
+    gbp import-orig ../clxx0_0.1.1.orig.tar.gz
 
 - build the package::
 

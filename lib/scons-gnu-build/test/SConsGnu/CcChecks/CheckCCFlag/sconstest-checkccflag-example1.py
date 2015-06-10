@@ -22,7 +22,7 @@
 __docformat__ = "restructuredText"
 
 """
-CheckCXXFlag() example.
+CheckCCFlag() example.
 """
 
 import TestSCons
@@ -39,14 +39,14 @@ from SConsGnu import CcChecks
 env = Environment()
 cfg = Configure(env)
 cfg.AddTests(CcChecks.Tests())
-result = cfg.CheckCXXFlag('-foobar', CXXFLAGS=['-Werror'], CXX='dummycompiler')
+result = cfg.CheckCCFlag('-foobar', CFLAGS=['-Werror'], CC='dummycompiler')
 env = cfg.Finish()
 print "result: %r" % result
 """)
 
 test.run()
 test.must_contain_all_lines(test.stdout(), [
-    'Checking whether dummycompiler supports -foobar... ',
+    'Checking whether dummycompiler supports -foobar... no',
     'result: '
 ])
 

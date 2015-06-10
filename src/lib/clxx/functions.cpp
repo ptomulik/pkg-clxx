@@ -334,7 +334,7 @@ get_context_info(cl_context context,
     }
 }
 /* ------------------------------------------------------------------------ */
-#if HAVE_OPENCL_clCreateSubDevices
+#if CLXX_OPENCL_ALLOWED(clCreateSubDevices)
 void
 create_sub_devices(cl_device_id in_device,
                    const cl_device_partition_property* properties,
@@ -372,9 +372,9 @@ create_sub_devices(cl_device_id in_device,
         }
     }
 }
-#endif // HAVE_OPENCL_clCreateSubDevices
+#endif // CLXX_OPENCL_ALLOWED(clCreateSubDevices)
 /* ------------------------------------------------------------------------ */
-#if HAVE_OPENCL_clRetainDevice
+#if CLXX_OPENCL_ALLOWED(clRetainDevice)
 void
 retain_device(cl_device_id device)
 {
@@ -394,9 +394,9 @@ retain_device(cl_device_id device)
         }
     }
 }
-#endif // HAVE_OPENCL_clRetainDevice
+#endif // CLXX_OPENCL_ALLOWED(clRetainDevice)
 /* ------------------------------------------------------------------------ */
-#if HAVE_OPENCL_clReleaseDevice
+#if CLXX_OPENCL_ALLOWED(clReleaseDevice)
 void
 release_device(cl_device_id device)
 {
@@ -416,9 +416,9 @@ release_device(cl_device_id device)
         }
     }
 }
-#endif // HAVE_OPENCL_clReleaseDevice
+#endif // CLXX_OPENCL_ALLOWED(clReleaseDevice)
 /* ------------------------------------------------------------------------ */
-#if HAVE_OPENCL_clCreateCommandQueue
+#if CLXX_OPENCL_ALLOWED(clCreateCommandQueue)
 cl_command_queue
 create_command_queue(cl_context context,
                      cl_device_id device,
@@ -452,7 +452,7 @@ create_command_queue(cl_context context,
 }
 #endif
 /* ------------------------------------------------------------------------ */
-#if HAVE_OPENCL_clCreateCommandQueueWithProperties
+#if CLXX_OPENCL_ALLOWED(clCreateCommandQueueWithProperties)
 cl_command_queue
 create_command_queue_with_properties(cl_context context,
                                      cl_device_id device,
@@ -628,7 +628,7 @@ create_program_with_binary(cl_context context,
     }
   return p;
 }
-#if HAVE_OPENCL_clCreateProgramWithBuiltInKernels
+#if CLXX_OPENCL_ALLOWED(clCreateProgramWithBuiltInKernels)
 /* ------------------------------------------------------------------------ */
 cl_program
 create_program_with_built_in_kernels(cl_context context,
@@ -664,7 +664,7 @@ create_program_with_built_in_kernels(cl_context context,
     }
   return p;
 }
-#endif // HAVE_OPENCL_clCreateProgramWithBuiltInKernels
+#endif // CLXX_OPENCL_ALLOWED(clCreateProgramWithBuiltInKernels)
 /* ------------------------------------------------------------------------ */
 void
 retain_program(cl_program program)
@@ -754,7 +754,7 @@ build_program(cl_program program,
     }
 }
 /* ------------------------------------------------------------------------ */
-#if HAVE_OPENCL_clCompileProgram
+#if CLXX_OPENCL_ALLOWED(clCompileProgram)
 void
 compile_program(cl_program program,
                 cl_uint num_devices,
@@ -806,9 +806,9 @@ compile_program(cl_program program,
         }
     }
 }
-#endif // HAVE_OPENCL_clCompileProgram
+#endif // CLXX_OPENCL_ALLOWED(clCompileProgram)
 /* ------------------------------------------------------------------------ */
-#if HAVE_OPENCL_clLinkProgram
+#if CLXX_OPENCL_ALLOWED(clLinkProgram)
 cl_program
 link_program(cl_context context,
              cl_uint num_devices,
@@ -862,8 +862,8 @@ link_program(cl_context context,
     }
   return p;
 }
-#endif // HAVE_OPENCL_clLinkProgram
-#if HAVE_OPENCL_clUnloadPlatformCompiler
+#endif // CLXX_OPENCL_ALLOWED(clLinkProgram)
+#if CLXX_OPENCL_ALLOWED(clUnloadPlatformCompiler)
 /* ------------------------------------------------------------------------ */
 void
 unload_platform_compiler(cl_platform_id platform)
@@ -880,7 +880,7 @@ unload_platform_compiler(cl_platform_id platform)
         }
     }
 }
-#endif // HAVE_OPENCL_clUnloadPlatformCompiler
+#endif // CLXX_OPENCL_ALLOWED(clUnloadPlatformCompiler)
 /* ------------------------------------------------------------------------ */
 void
 get_program_info(cl_program program,

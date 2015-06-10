@@ -8,7 +8,7 @@ doxyfile = env.Doxyfile(
     INPUT                   = ['../../lib/clxx', '../../examples/clxx', '.'],
     RECURSIVE               = True,
     PROJECT_NAME            = "clxx",
-    PROJECT_NUMBER          = '0.1.0',
+    PROJECT_NUMBER          = env.subst('$CLXX_VERSION'),
     PROJECT_BRIEF           = 'C++ wrapper for OpenCL',
     OUTPUT_DIRECTORY        = '.',
     STRIP_FROM_PATH         = '../../..',
@@ -35,15 +35,7 @@ doxyfile = env.Doxyfile(
                                 'cl_khr_dx9_media_sharing',
                                 'cl_khr_d3d10_sharing',
                                 'cl_khr_d3d11_sharing',
-                                'HAVE_OPENCL_clCompileProgram',
-                                'HAVE_OPENCL_clCreateCommandQueue',
-                                'HAVE_OPENCL_clCreateCommandQueueWithProperties',
-                                'HAVE_OPENCL_clCreateProgramWithBuiltInKernels',
-                                'HAVE_OPENCL_clCreateSubDevices',
-                                'HAVE_OPENCL_clLinkProgram',
-                                'HAVE_OPENCL_clReleaseDevice',
-                                'HAVE_OPENCL_clRetainDevice',
-                                'HAVE_OPENCL_clUnloadPlatformCompiler',
+                                'CLXX_OPENCL_ALLOWED',
                                 '_WIN32' ]
 )
 

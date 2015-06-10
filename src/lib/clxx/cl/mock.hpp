@@ -69,29 +69,32 @@ CXXTEST_MOCK_GLOBAL(cl_int, clGetContextInfo,
 CXXTEST_MOCK_GLOBAL(cl_int, clRetainContext,(cl_context context),(context));
 CXXTEST_MOCK_GLOBAL(cl_int, clReleaseContext,(cl_context context),(context));
 
-#if HAVE_OPENCL_clCreateSubDevices
+#if CLXX_OPENCL_ALLOWED(clCreateSubDevices)
 CXXTEST_MOCK_GLOBAL(cl_int, clCreateSubDevices,
   ( cl_device_id in_device, const cl_device_partition_property* properties,
     cl_uint num_devices, cl_device_id* out_devices, cl_uint* num_devices_ret),
   ( in_device, properties, num_devices, out_devices, num_devices_ret)
 );
 #endif
-#if HAVE_OPENCL_clRetainDevice
+#if CLXX_OPENCL_ALLOWED(clRetainDevice)
 CXXTEST_MOCK_GLOBAL(cl_int, clRetainDevice, (cl_device_id device), (device));
 #endif
-#if HAVE_OPENCL_clReleaseDevice
+#if CLXX_OPENCL_ALLOWED(clReleaseDevice)
 CXXTEST_MOCK_GLOBAL(cl_int, clReleaseDevice, (cl_device_id device), (device));
 #endif
 
-#if HAVE_OPENCL_clCreateCommandQueue
+#if CLXX_OPENCL_ALLOWED(clCreateCommandQueue)
+CLXX_DIAGNOSTIC_PUSH
+CLXX_UNDEPRECATE
 CXXTEST_MOCK_GLOBAL(cl_command_queue, clCreateCommandQueue,
   ( cl_context context, cl_device_id device,
     cl_command_queue_properties properties, cl_int* errcode_ret ),
   ( context, device, properties, errcode_ret )
 );
+CLXX_DIAGNOSTIC_POP
 #endif
 
-#if HAVE_OPENCL_clCreateCommandQueueWithProperties
+#if CLXX_OPENCL_ALLOWED(clCreateCommandQueueWithProperties)
 CXXTEST_MOCK_GLOBAL(cl_command_queue, clCreateCommandQueueWithProperties,
   ( cl_context context, cl_device_id device,
     const cl_queue_properties* properties, cl_int* errcode_ret ),
@@ -124,7 +127,7 @@ CXXTEST_MOCK_GLOBAL(cl_program, clCreateProgramWithBinary,
     errcode_ret)
 );
 
-#if HAVE_OPENCL_clCreateProgramWithBuiltInKernels
+#if CLXX_OPENCL_ALLOWED(clCreateProgramWithBuiltInKernels)
 CXXTEST_MOCK_GLOBAL(cl_program, clCreateProgramWithBuiltInKernels,
   ( cl_context context, cl_uint num_devices, const cl_device_id* device_list,
     const char* kernel_names, cl_int* errcode_ret),
@@ -142,7 +145,7 @@ CXXTEST_MOCK_GLOBAL(cl_int, clBuildProgram,
   ( program, num_devices, device_list, options, pfn_notify, user_data )
 );
 
-#if HAVE_OPENCL_clCompileProgram
+#if CLXX_OPENCL_ALLOWED(clCompileProgram)
 CXXTEST_MOCK_GLOBAL(cl_int, clCompileProgram,
   ( cl_program program, cl_uint num_devices, const cl_device_id* device_list,
     const char* options, cl_uint num_input_headers, const cl_program* input_headers,
@@ -153,7 +156,7 @@ CXXTEST_MOCK_GLOBAL(cl_int, clCompileProgram,
 );
 #endif
 
-#if HAVE_OPENCL_clLinkProgram
+#if CLXX_OPENCL_ALLOWED(clLinkProgram)
 CXXTEST_MOCK_GLOBAL(cl_program, clLinkProgram,
   ( cl_context context, cl_uint num_devices, const cl_device_id* device_list,
     const char* options, cl_uint num_input_programs, const cl_program* input_programs,
@@ -164,7 +167,7 @@ CXXTEST_MOCK_GLOBAL(cl_program, clLinkProgram,
 );
 #endif
 
-#if HAVE_OPENCL_clUnloadPlatformCompiler
+#if CLXX_OPENCL_ALLOWED(clUnloadPlatformCompiler)
 CXXTEST_MOCK_GLOBAL(cl_int, clUnloadPlatformCompiler, (cl_platform_id platform), (platform));
 #endif
 

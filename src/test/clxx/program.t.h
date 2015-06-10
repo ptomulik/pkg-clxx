@@ -128,7 +128,7 @@ public:
    */ // }}}
   void test_ctor_5( )
   {
-#if HAVE_OPENCL_clCreateProgramWithBuiltInKernels
+#if CLXX_OPENCL_ALLOWED(clCreateProgramWithBuiltInKernels)
     T::Dummy_clRetainProgram mock1(CL_SUCCESS);
     T::Dummy_clReleaseProgram mock2(CL_SUCCESS);
     T::Dummy_clCreateProgramWithBuiltInKernels mock3((cl_program)0x5678, CL_SUCCESS);
@@ -697,7 +697,7 @@ public:
    */ // }}}
   void test_compile_program_1( )
   {
-#if HAVE_OPENCL_clCompileProgram
+#if CLXX_OPENCL_ALLOWED(clCompileProgram)
     T::Dummy_clRetainProgram mock1(CL_SUCCESS);
     T::Dummy_clReleaseProgram mock2(CL_SUCCESS);
     T::Dummy_clCompileProgram mock3(CL_SUCCESS);
@@ -724,7 +724,7 @@ public:
    */ // }}}
   void test_compile_program_2( )
   {
-#if HAVE_OPENCL_clCompileProgram
+#if CLXX_OPENCL_ALLOWED(clCompileProgram)
     T::Dummy_clRetainProgram mock1(CL_SUCCESS);
     T::Dummy_clReleaseProgram mock2(CL_SUCCESS);
     T::Dummy_clCompileProgram mock3(CL_SUCCESS);
@@ -755,7 +755,7 @@ public:
    */ // }}}
   void test_compile_program_3( )
   {
-#if HAVE_OPENCL_clCompileProgram
+#if CLXX_OPENCL_ALLOWED(clCompileProgram)
     T::Dummy_clRetainProgram mock1(CL_SUCCESS);
     T::Dummy_clReleaseProgram mock2(CL_SUCCESS);
     T::Dummy_clCompileProgram mock3(CL_SUCCESS);
@@ -783,7 +783,7 @@ public:
    */ // }}}
   void test_compile_program_4( )
   {
-#if HAVE_OPENCL_clCompileProgram
+#if CLXX_OPENCL_ALLOWED(clCompileProgram)
     T::Dummy_clRetainProgram mock1(CL_SUCCESS);
     T::Dummy_clReleaseProgram mock2(CL_SUCCESS);
     T::Dummy_clCompileProgram mock3(CL_SUCCESS);
@@ -815,7 +815,7 @@ public:
    */ // }}}
   void test_link_program_1( )
   {
-#if HAVE_OPENCL_clLinkProgram
+#if CLXX_OPENCL_ALLOWED(clLinkProgram)
     T::Dummy_clRetainProgram mock1(CL_SUCCESS);
     T::Dummy_clReleaseProgram mock2(CL_SUCCESS);
     T::Dummy_clLinkProgram mock3((cl_program)0x1234,CL_SUCCESS);
@@ -846,7 +846,7 @@ public:
    */ // }}}
   void test_link_program_2( )
   {
-#if HAVE_OPENCL_clLinkProgram
+#if CLXX_OPENCL_ALLOWED(clLinkProgram)
     T::Dummy_clRetainProgram mock1(CL_SUCCESS);
     T::Dummy_clReleaseProgram mock2(CL_SUCCESS);
     T::Dummy_clLinkProgram mock3((cl_program)0x1234,CL_SUCCESS);

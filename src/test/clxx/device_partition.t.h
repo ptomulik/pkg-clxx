@@ -27,7 +27,7 @@ public:
    */ // }}}
   void test_get_num_sub_devices_1( )
   {
-#if HAVE_OPENCL_clCreateSubDevices
+#if CLXX_OPENCL_ALLOWED(clCreateSubDevices)
     T::Dummy_clCreateSubDevices mock(CL_SUCCESS);
     TS_ASSERT_THROWS_NOTHING(get_num_sub_devices(device((cl_device_id)0x1234),device_partition_properties()));
     TS_ASSERT(mock.called_once());
@@ -43,7 +43,7 @@ public:
    */ // }}}
   void test_create_sub_devices_1( )
   {
-#if HAVE_OPENCL_clCreateSubDevices
+#if CLXX_OPENCL_ALLOWED(clCreateSubDevices)
     T::Dummy_clCreateSubDevices mock(CL_SUCCESS);
 
     TS_ASSERT_THROWS_NOTHING(create_sub_devices(device((cl_device_id)0x1234), make_device_partition_properties(device_partition_equally(2))));
@@ -62,7 +62,7 @@ public:
    */ // }}}
   void test_create_sub_devices_2( )
   {
-#if HAVE_OPENCL_clCreateSubDevices
+#if CLXX_OPENCL_ALLOWED(clCreateSubDevices)
     cl_device_id const out_devices[] = { (cl_device_id)0x2345, (cl_device_id)0x3456 };
     cl_uint const num_devices_ret = 2;
     T::Dummy_clCreateSubDevices mock(CL_SUCCESS, out_devices, &num_devices_ret);

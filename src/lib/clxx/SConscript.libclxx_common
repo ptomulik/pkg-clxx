@@ -8,6 +8,7 @@ from SCons.Util import CLVar
 
 local_headers = [
     'config.h',
+    'config.hpp',
     'clerror.hpp',
     'clerror_base.hpp',
     'clerror_no.hpp',

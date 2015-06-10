@@ -40,9 +40,9 @@ public:
    */ // }}}
   void test_ctor_2( )
   {
-#if HAVE_OPENCL_clCreateCommandQueue
+#if CLXX_OPENCL_ALLOWED(clCreateCommandQueue)
     T::Dummy_clCreateCommandQueue mock1((cl_command_queue)0, CL_SUCCESS);
-#elif HAVE_OPENCL_clCreateCommandQueueWithProperties
+#elif CLXX_OPENCL_ALLOWED(clCreateCommandQueueWithProperties)
     T::Dummy_clCreateCommandQueueWithProperties mock1((cl_command_queue)0, CL_SUCCESS);
 #endif
     T::Dummy_clRetainCommandQueue mock2(CL_SUCCESS);
@@ -60,9 +60,9 @@ public:
    */ // }}}
   void test_ctor_2__uninitialized_context( )
   {
-#if HAVE_OPENCL_clCreateCommandQueue
+#if CLXX_OPENCL_ALLOWED(clCreateCommandQueue)
     T::Dummy_clCreateCommandQueue mock1((cl_command_queue)0, CL_SUCCESS);
-#elif HAVE_OPENCL_clCreateCommandQueueWithProperties
+#elif CLXX_OPENCL_ALLOWED(clCreateCommandQueueWithProperties)
     T::Dummy_clCreateCommandQueueWithProperties mock1((cl_command_queue)0, CL_SUCCESS);
 #endif
     T::Dummy_clRetainCommandQueue mock2(CL_SUCCESS);
@@ -76,9 +76,9 @@ public:
    */ // }}}
   void test_ctor_2__uninitialized_device( )
   {
-#if HAVE_OPENCL_clCreateCommandQueue
+#if CLXX_OPENCL_ALLOWED(clCreateCommandQueue)
     T::Dummy_clCreateCommandQueue mock1((cl_command_queue)0, CL_SUCCESS);
-#elif HAVE_OPENCL_clCreateCommandQueueWithProperties
+#elif CLXX_OPENCL_ALLOWED(clCreateCommandQueueWithProperties)
     T::Dummy_clCreateCommandQueueWithProperties mock1((cl_command_queue)0, CL_SUCCESS);
 #endif
     T::Dummy_clRetainCommandQueue mock2(CL_SUCCESS);
@@ -92,9 +92,9 @@ public:
    */ // }}}
   void test_copy_ctor( )
   {
-#if HAVE_OPENCL_clCreateCommandQueue
+#if CLXX_OPENCL_ALLOWED(clCreateCommandQueue)
     T::Dummy_clCreateCommandQueue mock1((cl_command_queue)0x123, CL_SUCCESS);
-#elif HAVE_OPENCL_clCreateCommandQueueWithProperties
+#elif CLXX_OPENCL_ALLOWED(clCreateCommandQueueWithProperties)
     T::Dummy_clCreateCommandQueueWithProperties mock1((cl_command_queue)0x123, CL_SUCCESS);
 #endif
     T::Dummy_clRetainCommandQueue mock2(CL_SUCCESS);

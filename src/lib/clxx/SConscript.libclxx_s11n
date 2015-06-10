@@ -32,7 +32,7 @@ headers = [
 
 
 env['CLXX_PACKAGES']['libclxx_s11n'] = {
-    'version' : '0.1.0',
+    'version' : env.subst('$CLXX_VERSION'),
     'libdeps' : CLVar('clxx_info boost_serialization')
 }
 

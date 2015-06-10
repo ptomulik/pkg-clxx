@@ -7,6 +7,7 @@
  */ // }}}
 
 %import <clxx/config.h>
+%import <clxx/config.hpp>
 
 %{
 #include <CL/cl_platform.h>

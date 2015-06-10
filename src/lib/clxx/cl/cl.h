@@ -21,7 +21,7 @@
 #ifndef CLXX_CL_CL_H_INCLUDED
 #define CLXX_CL_CL_H_INCLUDED
 
-#include <clxx/config.h>
+#include <clxx/config.hpp>
 
 #include <CL/cl.h>
 #include <CL/cl_ext.h>

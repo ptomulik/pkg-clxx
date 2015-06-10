@@ -1,4 +1,5 @@
-# @COPYRIGHT@
+#
+# Copyright (c) 2012-2014 by Pawel Tomulik
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -18,31 +19,48 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE
 
-import os
+__docformat__ = "restructuredText"
+
+"""
+Test whether CheckCCFlag() doesn't display a message when invoked with
+context.did_show_result set to True.
+"""
+
+import TestSCons
+
+##############################################################################
+#
+##############################################################################
+test = TestSCons.TestSCons()
+test.dir_fixture('../../../../SConsGnu', 'site_scons/SConsGnu')
+test.write('SConstruct',
+"""
+# SConstruct
+from SConsGnu import CcChecks
+
+def CheckCCFlagSilent(context, flag, **overrides):
+    context.did_show_result = 1
+    return CcChecks.CheckCCFlag(context, flag, **overrides)
 
 env = Environment()
-env['CLXX_VERSION'] = '0.1.1'
+cfg = Configure(env)
+cfg.AddTests( CcChecks.Tests() )
+cfg.AddTests( {'CheckCCFlagSilent' : CheckCCFlagSilent })
+result = cfg.CheckCCFlagSilent('-foobar', CFLAGS=['-Werror'], CC='dummycompiler')
+env = cfg.Finish()
+""")
 
-#############################################################################
-# Define variant directory
-#############################################################################
-AddOption('--variant-dir', type='string', default='build', metavar='DIR',
-          help='SCons variant directory (a.k.a build dir)')
-variant = { 'variant_dir' : env.GetOption('variant_dir'),
-            'src_dir' : 'src',
-            'duplicate' : 0,
-            'exports' : { 'env' : env } }
-# Sconsign file goes to variant directory
-env.SConsignFile(os.path.join(variant['variant_dir'], '.sconsign'))
-#############################################################################
+test.run()
+test.must_not_contain_any_line(test.stdout(), [
+    'Checking',
+    'yes',
+    'no'
+])
 
-#############################################################################
-# Build in variant directory
-SConscript( 'src/SConscript', **variant )
-#############################################################################
+test.pass_test()
 
 # Local Variables:
 # # tab-width:4
 # # indent-tabs-mode:nil
 # # End:
-# vim: set syntax=scons expandtab tabstop=4 shiftwidth=4:
+# vim: set syntax=python expandtab tabstop=4 shiftwidth=4:

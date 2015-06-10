@@ -57,7 +57,7 @@ public:
    */ // }}}
   program(context const& ctx, devices const& device_list,
           program_binaries const& binaries);
-#if HAVE_OPENCL_clCreateProgramWithBuiltInKernels
+#if CLXX_OPENCL_ALLOWED(clCreateProgramWithBuiltInKernels)
   /** // doc: program(context, device_list, kernel_names) {{{
    * \todo Write documentation
    */ // }}}
@@ -304,7 +304,7 @@ void build_program(program const& prog, std::string const& options,
  */ // }}}
 void build_program(program const& prog, devices const& devs,
                    std::string const& options, program_observer& observer);
-#if HAVE_OPENCL_clCompileProgram
+#if CLXX_OPENCL_ALLOWED(clCompileProgram)
 /** // doc: compile_program(...) {{{
  * \todo Write documentation
  */ // }}}
@@ -332,7 +332,7 @@ void compile_program(program const&, devices const& devs,
                      std::vector<std::string> const& header_include_names,
                      program_observer& observer);
 #endif
-#if HAVE_OPENCL_clLinkProgram
+#if CLXX_OPENCL_ALLOWED(clLinkProgram)
   /** // doc: link_program(context, devices, options, input_programs) {{{
    * \todo Write documentation
    */ // }}}

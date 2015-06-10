@@ -40,7 +40,7 @@ _identifiers(devices const& x)
 {
   return _identifiers_impl<cl_device_id, devices>(x);
 }
-#if HAVE_OPENCL_clCompileProgram
+#if CLXX_OPENCL_ALLOWED(clCompileProgram)
 /* ------------------------------------------------------------------------ */
 static boost::shared_array<cl_program>
 _identifiers(programs const& x)
@@ -231,7 +231,7 @@ program(context const& ctx, devices const& device_list,
   this->_set_id(id, false, false);
 }
 /* ----------------------------------------------------------------------- */
-#if HAVE_OPENCL_clCreateProgramWithBuiltInKernels
+#if CLXX_OPENCL_ALLOWED(clCreateProgramWithBuiltInKernels)
 program::
 program(context const& ctx, devices const& device_list,
         std::string const& kernel_names)
@@ -447,7 +447,7 @@ build_program(program const& prog, devices const& devs, std::string const& optio
       observer.fcn_arg()
   );
 }
-#if HAVE_OPENCL_clCompileProgram
+#if CLXX_OPENCL_ALLOWED(clCompileProgram)
 /* ----------------------------------------------------------------------- */
 void
 compile_program(program const& prog, std::string const& options,
@@ -535,8 +535,8 @@ compile_program(program const& prog, devices const& devs,
   );
 }
 /* ----------------------------------------------------------------------- */
-#endif // HAVE_OPENCL_clCompileProgram
-#if HAVE_OPENCL_clLinkProgram
+#endif // CLXX_OPENCL_ALLOWED(clCompileProgram)
+#if CLXX_OPENCL_ALLOWED(clLinkProgram)
 /* ----------------------------------------------------------------------- */
 program
 link_program(context const& ctx, devices const& device_list,
@@ -574,7 +574,7 @@ link_program(context const& ctx, devices const& device_list,
     )
   );
 }
-#endif // HAVE_OPENCL_clLinkProgram
+#endif // CLXX_OPENCL_ALLOWED(clLinkProgram)
 } // end namespace clxx
 
 // vim: set expandtab tabstop=2 shiftwidth=2:

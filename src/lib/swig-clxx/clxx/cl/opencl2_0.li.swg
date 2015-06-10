@@ -2,6 +2,7 @@
 // Licensed under MIT license (LICENSE.txt)
 
 %import <clxx/config.h>
+%import <clxx/config.hpp>
 
 #if HAVE_OPENCL_CL_H_VERSION_2_0
 

@@ -17,7 +17,7 @@
 #ifndef CLXX_MACROS_HPP_INCLUDED
 #define CLXX_MACROS_HPP_INCLUDED
 
-#include <clxx/config.h>
+#include <clxx/config.hpp>
 
 //#if defined(SWIG) && CLXX_SWIG_NO_CLASS_ENUM_BITOPS
 //# define CLXX_DEFINE_ENUM_BITOPS(__t, __ut)

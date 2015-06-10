@@ -126,7 +126,7 @@ Debian: New release of package
 .. code::
 
     git checkout debian-debian/stretch
-    gbp --release --auto
+    gbp dch --release --auto
 
 .. _clxx: https://github.com/ptomulik/clxx
 .. _git-buildpackage: https://honk.sigxcpu.org/piki/projects/git-buildpackage/

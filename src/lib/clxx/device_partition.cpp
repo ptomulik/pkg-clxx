@@ -12,7 +12,7 @@
 #include <boost/shared_array.hpp>
 
 namespace clxx {
-#if HAVE_OPENCL_clCreateSubDevices
+#if CLXX_OPENCL_ALLOWED(clCreateSubDevices)
 /* ------------------------------------------------------------------------ */
 static void
 _create_sub_devices(cl_device_id in_device,
@@ -44,7 +44,7 @@ create_sub_devices(device const& in_device,device_partition_properties const& pr
   return make_devices(ids);
 }
 /* ------------------------------------------------------------------------ */
-#endif // HAVE_OPENCL_clCreateSubDevices
+#endif // CLXX_OPENCL_ALLOWED(clCreateSubDevices)
 } // end namespace clxx
 
 // vim: set expandtab tabstop=2 shiftwidth=2:

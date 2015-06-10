@@ -47,11 +47,11 @@ command_queue(cl_command_queue id)
 command_queue::
 command_queue(context const& ctx, device const& dev, command_queue_properties_t props)
 {
-#if HAVE_OPENCL_clCreateCommandQueue
+#if CLXX_OPENCL_ALLOWED(clCreateCommandQueue)
   cl_command_queue id = create_command_queue(ctx.get_valid_id(),
                                              dev.get_valid_id(),
                                              props);
-#elif HAVE_OPENCL_clCreateCommandQueueWithProperties
+#elif CLXX_OPENCL_ALLOWED(clCreateCommandQueueWithProperties)
   cl_queue_properties props_array[3] = {CL_QUEUE_PROPERTIES, intval(props),
                                         static_cast<cl_queue_properties>(0)};
   cl_command_queue id = create_command_queue_with_properties(ctx.get_valid_id(),

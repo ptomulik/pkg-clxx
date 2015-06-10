@@ -281,7 +281,7 @@ public:
    */ // }}}
   Dummy_clGetContextInfo(cl_int err, void* pv = nullptr, size_t pvs = 0);
 };
-#if HAVE_OPENCL_clCreateSubDevices
+#if CLXX_OPENCL_ALLOWED(clCreateSubDevices)
 /** // doc: Dummy_clCreateSubDevices {{{
  * \brief Default mock for clCreateSubDevices OpenCL function.
  */ // }}}
@@ -304,7 +304,7 @@ public:
   Dummy_clCreateSubDevices(cl_int err, cl_device_id const* out_devices = nullptr, cl_uint const* num_devices_ret = nullptr);
 };
 #endif
-#if HAVE_OPENCL_clRetainDevice
+#if CLXX_OPENCL_ALLOWED(clRetainDevice)
 /** // doc: Dummy_clRetainDevice {{{
  * \brief Default mock for clRetainDevice OpenCL function.
  */ // }}}
@@ -321,7 +321,7 @@ public:
   Dummy_clRetainDevice(cl_int err);
 };
 #endif
-#if HAVE_OPENCL_clReleaseDevice
+#if CLXX_OPENCL_ALLOWED(clReleaseDevice)
 /** // doc: Dummy_clReleaseDevice {{{
  * \brief Default mock for clReleaseDevice OpenCL function.
  */ // }}}
@@ -338,7 +338,7 @@ public:
   Dummy_clReleaseDevice(cl_int err);
 };
 #endif
-#if HAVE_OPENCL_clCreateCommandQueue
+#if CLXX_OPENCL_ALLOWED(clCreateCommandQueue)
 /** // doc: Dummy_clCreateCommandQueue {{{
  * \brief Default mock for clCreateCommandQueue OpenCL function.
  */ // }}}
@@ -362,7 +362,7 @@ public:
   Dummy_clCreateCommandQueue(cl_command_queue ctx, cl_int err);
 };
 #endif
-#if HAVE_OPENCL_clCreateCommandQueueWithProperties
+#if CLXX_OPENCL_ALLOWED(clCreateCommandQueueWithProperties)
 /** // doc: Dummy_clCreateCommandQueueWithProperties {{{
  * \brief Default mock for clCreateCommandQueueWithProperties OpenCL function.
  */ // }}}
@@ -481,7 +481,7 @@ public:
    */ // }}}
   Dummy_clCreateProgramWithBinary(cl_program program, cl_int err);
 };
-#if HAVE_OPENCL_clCreateProgramWithBuiltInKernels
+#if CLXX_OPENCL_ALLOWED(clCreateProgramWithBuiltInKernels)
 /** // doc: Dummy_clCreateProgramWithBuiltInKernels {{{
  * \brief Default mock for clCreateProgramWithBuiltInKernels OpenCL function.
  */ // }}}
@@ -555,7 +555,7 @@ public:
    */ // }}}
   Dummy_clBuildProgram(cl_int err);
 };
-#if HAVE_OPENCL_clCompileProgram
+#if CLXX_OPENCL_ALLOWED(clCompileProgram)
 /** // doc: Dummy_clCompileProgram {{{
  * \brief Default mock for clCompileProgram OpenCL function.
  */ // }}}
@@ -582,7 +582,7 @@ public:
   Dummy_clCompileProgram(cl_int err);
 };
 #endif
-#if HAVE_OPENCL_clLinkProgram
+#if CLXX_OPENCL_ALLOWED(clLinkProgram)
 /** // doc: Dummy_clLinkProgram {{{
  * \brief Default mock for clLinkProgram OpenCL function.
  */ // }}}
@@ -611,7 +611,7 @@ public:
   Dummy_clLinkProgram(cl_program program, cl_int err);
 };
 #endif
-#if HAVE_OPENCL_clUnloadPlatformCompiler
+#if CLXX_OPENCL_ALLOWED(clUnloadPlatformCompiler)
 /** // doc: Dummy_clUnloadPlatformCompiler {{{
  * \brief Default mock for clUnloadPlatformCompiler OpenCL function.
  */ // }}}
@@ -822,7 +822,7 @@ Dummy_clGetContextInfo(cl_int err, void* pv, size_t pvs)
 {
 }
 /* ------------------------------------------------------------------------- */
-#if HAVE_OPENCL_clCreateSubDevices
+#if CLXX_OPENCL_ALLOWED(clCreateSubDevices)
 cl_int Dummy_clCreateSubDevices::
 clCreateSubDevices(cl_device_id in_device,
                    const cl_device_partition_property* properties,
@@ -848,7 +848,7 @@ Dummy_clCreateSubDevices(cl_int err, cl_device_id const* out_devices, cl_uint co
 }
 #endif
 /* ------------------------------------------------------------------------- */
-#if HAVE_OPENCL_clRetainDevice
+#if CLXX_OPENCL_ALLOWED(clRetainDevice)
 cl_int Dummy_clRetainDevice::
 clRetainDevice(cl_device_id device)
 {
@@ -862,7 +862,7 @@ Dummy_clRetainDevice(cl_int err)
 }
 #endif
 /* ------------------------------------------------------------------------- */
-#if HAVE_OPENCL_clReleaseDevice
+#if CLXX_OPENCL_ALLOWED(clReleaseDevice)
 cl_int Dummy_clReleaseDevice::
 clReleaseDevice(cl_device_id device)
 {
@@ -876,7 +876,7 @@ Dummy_clReleaseDevice(cl_int err)
 }
 #endif
 /* ------------------------------------------------------------------------- */
-#if HAVE_OPENCL_clCreateCommandQueue
+#if CLXX_OPENCL_ALLOWED(clCreateCommandQueue)
 cl_command_queue Dummy_clCreateCommandQueue::
 clCreateCommandQueue(cl_context context, cl_device_id device,
                      cl_command_queue_properties properties,
@@ -896,7 +896,7 @@ Dummy_clCreateCommandQueue(cl_command_queue ctx, cl_int err)
 }
 #endif
 /* ------------------------------------------------------------------------- */
-#if HAVE_OPENCL_clCreateCommandQueueWithProperties
+#if CLXX_OPENCL_ALLOWED(clCreateCommandQueueWithProperties)
 cl_command_queue Dummy_clCreateCommandQueueWithProperties::
 clCreateCommandQueueWithProperties(cl_context context, cl_device_id device,
                                    const cl_queue_properties* properties,
@@ -998,7 +998,7 @@ Dummy_clCreateProgramWithBinary(cl_program program, cl_int err)
 {
 }
 /* ------------------------------------------------------------------------- */
-#if HAVE_OPENCL_clCreateProgramWithBuiltInKernels
+#if CLXX_OPENCL_ALLOWED(clCreateProgramWithBuiltInKernels)
 cl_program Dummy_clCreateProgramWithBuiltInKernels::
 clCreateProgramWithBuiltInKernels(cl_context context,
                                   cl_uint num_devices,
@@ -1058,7 +1058,7 @@ Dummy_clBuildProgram(cl_int err)
   :_err(err)
 {
 }
-#if HAVE_OPENCL_clCompileProgram
+#if CLXX_OPENCL_ALLOWED(clCompileProgram)
 /* ------------------------------------------------------------------------- */
 cl_int Dummy_clCompileProgram::
 clCompileProgram(cl_program program,
@@ -1081,7 +1081,7 @@ Dummy_clCompileProgram(cl_int err)
 {
 }
 #endif
-#if HAVE_OPENCL_clLinkProgram
+#if CLXX_OPENCL_ALLOWED(clLinkProgram)
 /* ------------------------------------------------------------------------- */
 cl_program Dummy_clLinkProgram::
 clLinkProgram(cl_context context,
@@ -1106,7 +1106,7 @@ Dummy_clLinkProgram(cl_program program, cl_int err)
 {
 }
 #endif
-#if HAVE_OPENCL_clUnloadPlatformCompiler
+#if CLXX_OPENCL_ALLOWED(clUnloadPlatformCompiler)
 /* ------------------------------------------------------------------------- */
 cl_int Dummy_clUnloadPlatformCompiler::
 clUnloadPlatformCompiler(cl_platform_id platform)

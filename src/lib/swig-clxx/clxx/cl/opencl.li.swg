@@ -6,6 +6,7 @@
 %}
 
 %import <clxx/config.h>
+%import <clxx/config.hpp>
 /* XXX: This is necessary for "stdint.i" to choose proper declaration of intptr_t
  *      which is used in turn by CL/cl.h */
 #ifdef CLXX_ARCH_64BIT

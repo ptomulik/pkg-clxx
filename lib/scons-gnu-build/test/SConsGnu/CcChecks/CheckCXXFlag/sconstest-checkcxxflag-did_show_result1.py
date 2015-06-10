@@ -22,7 +22,8 @@
 __docformat__ = "restructuredText"
 
 """
-CheckCCFlag() example.
+Test whether CheckCXXFlag() doesn't display a message when invoked with
+context.did_show_result set to True.
 """
 
 import TestSCons
@@ -36,18 +37,24 @@ test.write('SConstruct',
 """
 # SConstruct
 from SConsGnu import CcChecks
+
+def CheckCXXFlagSilent(context, flag, **overrides):
+    context.did_show_result = 1
+    return CcChecks.CheckCXXFlag(context, flag, **overrides)
+
 env = Environment()
 cfg = Configure(env)
-cfg.AddTests(CcChecks.Tests())
-result = cfg.CheckCCFlag('-foobar', CFLAGS=['-Werror'], CC='dummycompiler')
+cfg.AddTests( CcChecks.Tests() )
+cfg.AddTests( {'CheckCXXFlagSilent' : CheckCXXFlagSilent })
+result = cfg.CheckCXXFlagSilent('-foobar', CFLAGS=['-Werror'], CXX='dummycompiler')
 env = cfg.Finish()
-print "result: %r" % result
 """)
 
 test.run()
-test.must_contain_all_lines(test.stdout(), [
-    'Checking whether dummycompiler supports -foobar... ',
-    'result: '
+test.must_not_contain_any_line(test.stdout(), [
+    'Checking',
+    'yes',
+    'no'
 ])
 
 test.pass_test()

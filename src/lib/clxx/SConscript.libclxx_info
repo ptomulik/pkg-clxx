@@ -27,7 +27,7 @@ headers = [
 ]
 
 env['CLXX_PACKAGES']['libclxx_info'] = {
-    'version' : '0.1.0',
+    'version' : env.subst('$CLXX_VERSION'),
     'libdeps' : CLVar()
 }
 

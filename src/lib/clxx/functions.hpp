@@ -496,7 +496,7 @@ get_context_info(cl_context context,
                  size_t param_value_size,
                  void* param_value,
                  size_t* param_value_size_ret);
-#if HAVE_OPENCL_clCreateSubDevices
+#if CLXX_OPENCL_ALLOWED(clCreateSubDevices)
 /** // doc: create_sub_devices(...) {{{
  * \brief Creates an array of sub-devices that each reference
  *    a non-intersecting set of compute units within \e in_device.
@@ -555,7 +555,7 @@ create_sub_devices(cl_device_id in_device,
                    cl_device_id* out_devices,
                    cl_uint *num_devices_ret);
 #endif
-#if HAVE_OPENCL_clRetainDevice
+#if CLXX_OPENCL_ALLOWED(clRetainDevice)
 /** // doc: retain_device(...) {{{
  * \brief Increments the \e devices reference count
  *
@@ -593,7 +593,7 @@ create_sub_devices(cl_device_id in_device,
 void
 retain_device(cl_device_id device);
 #endif
-#if HAVE_OPENCL_clReleaseDevice
+#if CLXX_OPENCL_ALLOWED(clReleaseDevice)
 /** // doc: release_device(...) {{{
  * \brief Decrements the \e devices reference count
  *
@@ -631,7 +631,7 @@ retain_device(cl_device_id device);
 void
 release_device(cl_device_id device);
 #endif
-#if HAVE_OPENCL_clCreateCommandQueue
+#if CLXX_OPENCL_ALLOWED(clCreateCommandQueue)
 /** // doc: create_command_queue(...) {{{
  * \brief Create a command-queue on a specific device
  *
@@ -696,7 +696,7 @@ create_command_queue(cl_context context,
                      cl_device_id device,
                      command_queue_properties_t properties);
 #endif
-#if HAVE_OPENCL_clCreateCommandQueueWithProperties
+#if CLXX_OPENCL_ALLOWED(clCreateCommandQueueWithProperties)
 /** // doc: create_command_queue_with_properties(...) {{{
  * \brief Create a host or device command-queue on a specific device
  *
@@ -1043,7 +1043,7 @@ create_program_with_binary(cl_context context,
                                       const size_t* lengths,
                                       const unsigned char** binaries,
                                       cl_int* binary_status);
-#if HAVE_OPENCL_clCreateProgramWithBuiltInKernels
+#if CLXX_OPENCL_ALLOWED(clCreateProgramWithBuiltInKernels)
 /** // doc: create_program_with_built_in_kernels(...) {{{
  * \brief  Creates a program object for a context, and loads the information
  * related to the built-in kernels into a program object.
@@ -1265,7 +1265,7 @@ build_program(cl_program program,
               const char* options,
               void (CL_CALLBACK* pfn_notify)(cl_program program, void* user_data),
               void* user_data);
-#if HAVE_OPENCL_clCompileProgram
+#if CLXX_OPENCL_ALLOWED(clCompileProgram)
 /** // doc: compile_program(...) {{{
  * \brief Compiles a program’s source for all the devices or a specific
  *    device(s) in the OpenCL context associated with program.
@@ -1372,7 +1372,7 @@ compile_program(cl_program program,
                 void (CL_CALLBACK* pfn_notify)(cl_program program, void* user_data),
                 void* user_data);
 #endif
-#if HAVE_OPENCL_clLinkProgram
+#if CLXX_OPENCL_ALLOWED(clLinkProgram)
 /** // doc: link_program(...) {{{
  * \brief Links a set of compiled program objects and libraries for all the
  *    devices or a specific device(s) in the OpenCL context and creates an
@@ -1490,7 +1490,7 @@ link_program(cl_context context,
               void (CL_CALLBACK* pfn_notify)(cl_program program, void* user_data),
               void* user_data);
 #endif
-#if HAVE_OPENCL_clUnloadPlatformCompiler
+#if CLXX_OPENCL_ALLOWED(clUnloadPlatformCompiler)
 /** // doc: unload_platform_compiler(...) {{{
  * \brief Allows the implementation to release the resources allocated by the
  *    OpenCL compiler for \e platform.

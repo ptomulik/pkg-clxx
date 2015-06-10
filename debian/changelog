@@ -1,3 +1,11 @@
+clxx0 (0.1.1-1) unstable; urgency=medium
+
+  * add dependency libclxx-common0-dev -> libyaul0.1-dev
+  * corrected typo in debian/control
+  * Imported Upstream version 0.1.1
+
+ -- Paweł Tomulik <ptomulik@meil.pw.edu.pl>  Wed, 10 Jun 2015 06:06:11 +0200
+
 clxx0 (0.1.0-1) unstable; urgency=low
 
   * Initial release (Closes: #778823)

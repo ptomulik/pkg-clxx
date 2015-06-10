@@ -65,7 +65,7 @@ done
 # Create the finall tarball
 ( cd ${TMPDIR} && tar -czf clxx-${VERSION}.tar.gz clxx-${VERSION} );
 
-# Copy tarball to the current working dir
+# Copy tarball to the outer directory
 cp ${TMPDIR}/clxx-${VERSION}.tar.gz ${OUTDIR}
 
 echo "created ${OUTDIR}/clxx-${VERSION}.tar.gz"

@@ -54,7 +54,7 @@ Debian: Creating soruce tarball
 
     git checkout default
     ./scripts/create-tarball v0.1.1
-    mv ../clxx-0.1.1.tar.gz ../clxx0.1_0.1.1.orig.tar.gz
+    mv ../clxx-0.1.1.tar.gz ../clxx0_0.1.1.orig.tar.gz
 
 Debian: Enable support for new Debian release
 `````````````````````````````````````````````

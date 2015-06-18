@@ -1,3 +1,9 @@
+clxx0 (0.1.2-1) unstable; urgency=medium
+
+  * Imported Upstream version 0.1.2
+
+ -- Paweł Tomulik <ptomulik@meil.pw.edu.pl>  Thu, 18 Jun 2015 17:24:25 +0200
+
 clxx0 (0.1.1-1) unstable; urgency=medium
 
   * add dependency libclxx-common0-dev -> libyaul0.1-dev

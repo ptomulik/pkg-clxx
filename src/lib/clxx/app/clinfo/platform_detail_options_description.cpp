@@ -5,7 +5,7 @@
 
 /** // doc: clxx/app/clinfo/platform_detail_options_description.cpp {{{
  * \file clxx/app/clinfo/platform_detail_options_description.cpp
- * \todo Write documentation
+ * \brief Implements the \ref clxx::app::clinfo::platform_detail_options_description class
  */ // }}}
 #include <clxx/app/clinfo/platform_detail_options_description.hpp>
 #include <clxx/app/options/option_value.hpp>

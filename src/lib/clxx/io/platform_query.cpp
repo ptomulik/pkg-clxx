@@ -5,7 +5,7 @@
 
 /** // doc: clxx/io/platform_query.cpp {{{
  * \file clxx/io/platform_query.cpp
- * \todo Write documentation
+ * \brief Implements and instantiates template I/O functions for \ref clxx::platform_query "platform_query" objects
  */ // }}}
 #include <clxx/io/platform_query.hpp>
 #include <clxx/io/autosep.hpp>

@@ -5,7 +5,7 @@
 
 /** // doc: clxx/util/context_property_type.hpp {{{
  * \file clxx/util/context_property_type.hpp
- * \todo Write documentation
+ * \brief Implements the \ref clxx::context_property_type "context_property_type" metafunction
  */ // }}}
 #ifndef CLXX_UTIL_CONTEXT_PROPERTY_TYPE_HPP_INCLUDED
 #define CLXX_UTIL_CONTEXT_PROPERTY_TYPE_HPP_INCLUDED

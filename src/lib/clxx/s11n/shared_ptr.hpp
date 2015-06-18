@@ -5,7 +5,7 @@
 
 /** // doc: clxx/s11n/shared_ptr.hpp {{{
  * \file clxx/s11n/shared_ptr.hpp
- * \todo Write documentation
+ * \brief Shared ptr definition used by \ref clxx_s11n
  */ // }}}
 #ifndef CLXX_S11N_SHARED_PTR_HPP_INCLUDED
 #define CLXX_S11N_SHARED_PTR_HPP_INCLUDED

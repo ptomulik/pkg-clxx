@@ -5,7 +5,7 @@
 
 /** // doc: clxx/io/platform_layer_info.cpp {{{
  * \file clxx/io/platform_layer_info.cpp
- * \todo Write documentation
+ * \brief Instantiates template I/O functions for \ref clxx::platform_layer_info "platform_layer_info" objects
  */ // }}}
 #include <ostream>
 /** \cond SHOW_TEMPLATE_SPECIALIZATIONS */

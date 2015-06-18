@@ -3,13 +3,13 @@
 
 /** // doc: clxx/platform1.cpp {{{
  * \file clxx/platform1.cpp
- * \todo Write file documentation
+ * \brief Example with \ref clxx::platform and \ref clxx::platforms
  */ // }}}
 /** // doc: platform1.cpp {{{
  * \example platform1.cpp
  * This example demonstrates, how OpenCL Platfrom Layer may be accessed from
- * local machine. We get and display some info about platforms and devices
- * available locally. We use clxx::platforms and clxx::platform.
+ * local machine. We get and display some info about platforms available
+ * locally. We use clxx::platforms and clxx::platform.
  */ // }}}
 // [Program]
 // [DumpPlatform]

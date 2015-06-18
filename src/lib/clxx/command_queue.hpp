@@ -5,7 +5,7 @@
 
 /** // doc: clxx/command_queue.hpp {{{
  * \file clxx/command_queue.hpp
- * \todo Write documentation
+ * \brief Defines the \ref clxx::command_queue "command_queue" class
  */ // }}}
 #ifndef CLXX_COMMAND_QUEUE_HPP_INCLUDED
 #define CLXX_COMMAND_QUEUE_HPP_INCLUDED
@@ -15,9 +15,8 @@
 #include <clxx/types.hpp>
 
 namespace clxx {
-
 /** // doc: command_queue {{{
- * \ingroup clxx_platform_layer
+ * \ingroup clxx_command_queues
  * \brief Proxy to OpenCL command_queue.
  *
  * This class represents OpenCL command_queue and forwards basic operations on
@@ -25,7 +24,7 @@ namespace clxx {
  * and supports following operations:
  *
  * - command_queue creation (constructors), by calling internally
- *   \ref create_command_queue() and \ref create_command_queue_from_type(),
+ *   \ref create_command_queue() and \ref create_command_queue_with_properties(),
  * - automatic reference count management by using internally
  *   \ref retain_command_queue() and \ref release_command_queue(),
  * - retrieving command_queue information from OpenCL (via class methods),
@@ -348,11 +347,10 @@ public:
    * \return Properties of this OpenCL command-queue.
    *
    * In case of errors, this method throws one of the exceptions defined by
-   * \ref get_command_queue_info() or \ref command_queue_properties_parse_array().
+   * \ref get_command_queue_info().
    */ // }}}
   command_queue_properties_t get_properties() const;
 };
-
 } // end namespace clxx
 
 #endif /* CLXX_COMMAND_QUEUE_HPP_INCLUDED */

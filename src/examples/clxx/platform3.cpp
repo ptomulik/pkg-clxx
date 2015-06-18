@@ -3,7 +3,7 @@
 
 /** // doc: clxx/platform3.cpp {{{
  * \file clxx/platform3.cpp
- * \todo Write file documentation
+ * \brief Example with \ref clxx::platform_layer_info "platform_layer_info"
  */ // }}}
 /** // doc: platform3.cpp {{{
  * \example platform3.cpp

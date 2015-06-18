@@ -5,7 +5,7 @@
 
 /** // doc: clxx/app/options/exceptions/invalid_config_file_syntax.hpp {{{
  * \file clxx/app/options/exceptions/invalid_config_file_syntax.hpp
- * \todo Write documentation
+ * \brief Defines the \ref clxx::app::options::invalid_config_file_syntax_error
  */ // }}}
 #ifndef CLXX_APP_OPTIONS_EXCEPTIONS_INVALID_CONFIG_FILE_SYNTAX_HPP_INCLUDED
 #define CLXX_APP_OPTIONS_EXCEPTIONS_INVALID_CONFIG_FILE_SYNTAX_HPP_INCLUDED

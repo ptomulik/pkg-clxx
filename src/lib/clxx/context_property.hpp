@@ -5,7 +5,8 @@
 
 /** // doc: clxx/context_property.hpp {{{
  * \file clxx/context_property.hpp
- * \todo Write documentation
+ * \brief Defines \ref clxx::context_property "context_property" class and
+ *        related functions
  */ // }}}
 #ifndef CLXX_CONTEXT_PROPERTY_HPP_INCLUDED
 #define CLXX_CONTEXT_PROPERTY_HPP_INCLUDED
@@ -16,10 +17,8 @@
 
 namespace clxx {
 
-/** \ingroup clxx_platform_layer
- * @{ */
-
 /** // struct context_property {{{
+ * \ingroup clxx_platform_layer
  * \class context_property
  * \brief Encapsulate single OpenCL context property
  *
@@ -151,9 +150,8 @@ private:
   context_properties_t _name;
   cl_context_properties _value;
 };
-/** @} */
 
-/** \ingroup clxx_platform_layer
+/** \addtogroup clxx_platform_layer
  * @{ */
 /** // doc: make_context_property_c<N>(context_property_type<N>::type) {{{
  * \brief Type-safe constructor for \ref clxx::context_property

@@ -5,7 +5,7 @@
 
 /** // doc: clxx/platform_layer.cpp {{{
  * \file clxx/platform_layer.cpp
- * \todo Write documentation
+ * \brief Implements the \ref clxx::platform_layer "platform_layer" class
  */ // }}}
 #include <clxx/platform_layer.hpp>
 #include <clxx/platform.hpp>

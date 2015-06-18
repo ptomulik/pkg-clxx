@@ -5,7 +5,7 @@
 
 /** // doc: clxx/app/clinfo/device_general_options_description.cpp {{{
  * \file clxx/app/clinfo/device_general_options_description.cpp
- * \todo Write documentation
+ * \brief Implements \ref clxx::app::clinfo::device_general_options_description
  */ // }}}
 #include <clxx/app/clinfo/device_general_options_description.hpp>
 #include <clxx/app/options/option_value.hpp>

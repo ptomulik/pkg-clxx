@@ -3,7 +3,7 @@
 
 /** // doc: clxx/s11n/platform_query.cpp {{{
  * \file clxx/s11n/platform_query.cpp
- * \todo Write documentation
+ * \brief Instntiates template serialization functions for \ref clxx::platform_query "platform_query"
  */ // }}}
 #include <clxx/s11n/platform_query_impl.hpp>
 #include <boost/archive/text_iarchive.hpp>

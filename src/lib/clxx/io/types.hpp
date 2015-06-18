@@ -5,7 +5,7 @@
 
 /** // doc: clxx/io/types.hpp {{{
  * \file clxx/io/types.hpp
- * \todo Write documentation
+ * \brief Declares I/O functions for types defined in clxx/types.hpp
  */ // }}}
 #ifndef CLXX_IO_TYPES_HPP_INCLUDED
 #define CLXX_IO_TYPES_HPP_INCLUDED
@@ -13,10 +13,8 @@
 #include <clxx/types.hpp>
 #include <iosfwd>
 
-/**
- * \ingroup clxx_io
- * @{
- */
+/** \addtogroup clxx_io
+ * @{ */
 /** // doc: operator << (os, status_t) {{{
  * \brief Write a value of clxx::status_t to an output stream.
  *

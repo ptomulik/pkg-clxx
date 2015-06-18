@@ -5,7 +5,7 @@
 
 /** // doc: clxx/platform_query.cpp {{{
  * \file clxx/platform_query.cpp
- * \todo Write documentation
+ * \brief Implements the \ref clxx::platform_query "platform_query" class
  */ // }}}
 #include <clxx/platform_query.hpp>
 
@@ -13,30 +13,30 @@ namespace clxx {
 
 /* ------------------------------------------------------------------------ */
 platform_query::
-platform_query()
+platform_query() noexcept
 {
   this->_init(true);
 }
 /* ------------------------------------------------------------------------ */
 platform_query::
-platform_query(bool flag)
+platform_query(bool flag) noexcept
 {
   this->_init(flag);
 }
 /* ------------------------------------------------------------------------ */
 platform_query::
-~platform_query()
+~platform_query() noexcept
 {
 }
 /* ------------------------------------------------------------------------ */
 void platform_query::
-_init(bool flag)
+_init(bool flag) noexcept
 {
   this->_select(flag);
 }
 /* ------------------------------------------------------------------------ */
 void platform_query::
-_select(bool flag)
+_select(bool flag) noexcept
 {
   this -> select_id(flag);
   this -> select_profile(flag);
@@ -47,26 +47,26 @@ _select(bool flag)
 }
 /* ------------------------------------------------------------------------ */
 platform_query& platform_query::
-select_all()
+select_all() noexcept
 {
   this->_select(true);
   return *this;
 }
 /* ------------------------------------------------------------------------ */
 platform_query& platform_query::
-select_none()
+select_none() noexcept
 {
   this->_select(false);
   return *this;
 }
 /* ------------------------------------------------------------------------ */
 platform_query& platform_query::
-select_default()
+select_default() noexcept
 {
   return this->select_all();
 }
 /* ------------------------------------------------------------------------ */
-bool operator== (platform_query const& a, platform_query const& b)
+bool operator== (platform_query const& a, platform_query const& b) noexcept
 {
   return  (a.id_selected() == b.id_selected()) &&
           (a.profile_selected() == b.profile_selected()) &&

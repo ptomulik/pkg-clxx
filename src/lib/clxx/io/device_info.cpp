@@ -5,7 +5,7 @@
 
 /** // doc: clxx/io/device_info.cpp {{{
  * \file clxx/io/device_info.cpp
- * \todo Write documentation
+ * \brief Instantiates templated I/O routines for \ref clxx::device_info
  */ // }}}
 #include <ostream>
 

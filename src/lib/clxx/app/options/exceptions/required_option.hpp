@@ -5,7 +5,7 @@
 
 /** // doc: clxx/app/options/exceptions/required_option.hpp {{{
  * \file clxx/app/options/exceptions/required_option.hpp
- * \todo Write documentation
+ * \brief Defines the \ref clxx::app::options::required_option_error
  */ // }}}
 #ifndef CLXX_APP_OPTIONS_EXCEPTIONS_REQUIRED_OPTION_HPP_INCLUDED
 #define CLXX_APP_OPTIONS_EXCEPTIONS_REQUIRED_OPTION_HPP_INCLUDED

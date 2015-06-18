@@ -19,10 +19,8 @@ BOOST_CLASS_VERSION( clxx::device_query
 
 namespace boost {
 namespace serialization {
-/**
- * \ingroup clxx_s11n
- * @{
- */
+/** \addtogroup clxx_s11n
+ * @{ */
 /** // doc: serialize(ar,obj,ver) {{{
  * \brief Serialize or deserialize \ref clxx::device_query "device_query" object
  *

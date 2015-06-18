@@ -5,7 +5,7 @@
 
 /** // doc: clxx/device.cpp {{{
  * \file clxx/device.cpp
- * \todo Write documentation
+ * \brief Implements the \ref clxx::device "device" class
  */ // }}}
 #include <clxx/device.hpp>
 #include <clxx/functions.hpp>

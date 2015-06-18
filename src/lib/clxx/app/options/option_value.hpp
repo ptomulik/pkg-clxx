@@ -5,7 +5,7 @@
 
 /** // doc: clxx/app/options/option_value.hpp {{{
  * \file clxx/app/options/option_value.hpp
- * \todo Write documentation
+ * \brief Defines the \ref clxx::app::options::option_value class
  */ // }}}
 #ifndef CLXX_APP_OPTIONS_OPTION_VALUE_HPP_INCLUDED
 #define CLXX_APP_OPTIONS_OPTION_VALUE_HPP_INCLUDED

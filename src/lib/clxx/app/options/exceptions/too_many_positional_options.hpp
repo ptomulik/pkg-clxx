@@ -5,7 +5,7 @@
 
 /** // doc: clxx/app/options/exceptions/too_many_positional_options.hpp {{{
  * \file clxx/app/options/exceptions/too_many_positional_options.hpp
- * \todo Write documentation
+ * \brief Defines the \ref clxx::app::options::too_many_positional_options_error
  */ // }}}
 #ifndef CLXX_APP_OPTIONS_EXCEPTIONS_TOO_MANY_POSITIONAL_OPTIONS_HPP_INCLUDED
 #define CLXX_APP_OPTIONS_EXCEPTIONS_TOO_MANY_POSITIONAL_OPTIONS_HPP_INCLUDED

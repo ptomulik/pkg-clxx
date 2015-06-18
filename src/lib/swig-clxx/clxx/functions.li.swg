@@ -40,6 +40,16 @@
 %throws_clerror(clxx::unload_platform_compiler(cl_platform_id))
 %throws_clerror(clxx::get_program_info(cl_program, program_info_t, size_t, void *, size_t *))
 %throws_clerror(clxx::get_program_build_info(cl_program, cl_device_id, program_build_info_t, size_t, void *, size_t *))
+%throws_clerror(clxx::create_kernel(cl_program, const char*))
+%throws_clerror(clxx::create_kernels_in_program(cl_program, cl_uint, cl_kernel*, cl_uint*))
+%throws_clerror(clxx::get_kernel_info(cl_kernel, kernel_info_t, size_t, void*, size_t*))
+%throws_clerror(clxx::get_kernel_arg_info(cl_kernel, kernel_arg_info_t, size_t, void*, size_t*))
+%throws_clerror(clxx::get_kernel_work_group_info(cl_kernel, cl_device_id, kernel_work_group_info_t, size_t, void*, size_t*))
+%throws_clerror(clxx::retain_kernel(cl_kernel))
+%throws_clerror(clxx::release_kernel(cl_kernel))
+%throws_clerror(clxx::set_kernel_arg(cl_kernel, cl_uint, size_t, const void*))
+%throws_clerror(clxx::set_kernel_arg_svm_pointer(cl_kernel, cl_uint, const void*))
+%throws_clerror(clxx::set_kernel_exec_info(cl_kernel, kernel_exec_info_t, size_t, const void*))
 
 %include <clxx/functions.hpp>
 

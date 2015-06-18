@@ -8,7 +8,7 @@
 
 /** // doc: clxx/io/types_impl.hpp {{{
  * \file clxx/io/types_impl.hpp
- * \todo Write documentation
+ * \brief Implements I/O routines for types defined in clxx/types.hpp
  */ // }}}
 #include <clxx/io/types.hpp>
 #include <clxx/util/to_string.hpp>

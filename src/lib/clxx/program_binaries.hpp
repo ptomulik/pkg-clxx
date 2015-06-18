@@ -15,7 +15,9 @@
 
 namespace clxx {
 /** // doc: program_binaries {{{
- * \todo Write documentation
+ * \ingroup clxx_program_objects
+ * \brief A type used to represent multiple OpenCL program binaries
+ * \sa \ref clxx::program_binary "program_binary".
  */ // }}}
 typedef std::vector<program_binary> program_binaries;
 } // end namespace clxx

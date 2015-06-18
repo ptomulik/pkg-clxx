@@ -5,7 +5,8 @@
 
 /** // doc: clxx/devices.hpp {{{
  * \file clxx/devices.hpp
- * \todo Write documentation
+ * \brief Defines \ref clxx::devices "devices" and functions used to create
+ *        \ref clxx::device "device" objects
  */ // }}}
 #ifndef CLXX_DEVICES_HPP_INCLUDED
 #define CLXX_DEVICES_HPP_INCLUDED
@@ -23,8 +24,8 @@ namespace clxx {
  */ // }}}
 typedef std::vector<device> devices;
 
-/** \ingroup clxx_platform_layer */
-/** @{ */
+/** \addtogroup clxx_platform_layer
+ *  @{ */
 /** // doc: get_num_devices() {{{
  * \brief Get number of OpenCL devices available locally.
  *

@@ -5,7 +5,7 @@
 
 /** // doc: clxx/app/options/exceptions/multiple_occurrences.hpp {{{
  * \file clxx/app/options/exceptions/multiple_occurrences.hpp
- * \todo Write documentation
+ * \brief Defines the \ref clxx::app::options::multiple_option_occurrences_error
  */ // }}}
 #ifndef CLXX_APP_OPTIONS_EXCEPTIONS_MULTIPLE_OCCURRENCES_HPP_INCLUDED
 #define CLXX_APP_OPTIONS_EXCEPTIONS_MULTIPLE_OCCURRENCES_HPP_INCLUDED

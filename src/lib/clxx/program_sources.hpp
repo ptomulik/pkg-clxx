@@ -5,7 +5,7 @@
 
 /** // doc: clxx/program_sources.hpp {{{
  * \file clxx/program_sources.hpp
- * \todo Write documentation
+ * \brief Defines the \ref clxx::program_sources "program_sources" type
  */ // }}}
 #ifndef CLXX_PROGRAM_SOURCES_HPP_INCLUDED
 #define CLXX_PROGRAM_SOURCES_HPP_INCLUDED
@@ -15,7 +15,9 @@
 
 namespace clxx {
 /** // doc: program_sources {{{
- * \todo Write documentation
+ * \ingroup clxx_program_objects
+ * \brief A type used to represent multiple OpenCL program sources
+ * \sa \ref clxx::program_source "program_source"
  */ // }}}
 typedef std::vector<program_source> program_sources;
 } // end namespace clxx

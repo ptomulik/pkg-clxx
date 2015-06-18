@@ -12,12 +12,12 @@
  * may be easily extended when new exceptions are needed.
  *
  * From user's view, the exceptions are categorized as follows:
- * - clxx::exception
- *   - clxx::clerror
- *     - clxx::clerror_no
- *     - clxx::unexpected_clerror
- *   - clxx::uninitialized_platform_error
- *   - ...
+ * - #clxx::exception - base class for all clxx exceptions
+ *   - #clxx::clerror - base class for exceptions originating from OpenCL errors
+ *     - #clxx::clerror_no - particular OpenCL errors (template class with OpenCL error code as parameter)
+ *     - #clxx::unexpected_clerror - OpenCL error not expected by clxx,
+ *   - #clxx::uninitialized_platform_error - a non-OpenCL exception ,
+ *   - ... - other exceptions, originating from other source than OpenCL.
  *
  * When handling exception, the user may wish to catch all %clxx exceptions
  * (and ignore others):
@@ -58,7 +58,7 @@
  *     // clxx exceptions also caught here ...
  *   }
  * \endcode
- * will, thus, catch all the standard exceptions and %clxx exceptions.
+ * will, thus, catch all exceptions including %clxx exceptions.
  *
  * When handling %clxx exception, the standard interface is available via
  * the method \ref clxx::exception::clxx2std() "clxx2std()".

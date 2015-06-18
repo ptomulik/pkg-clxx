@@ -5,23 +5,21 @@
 
 /** // doc: clxx/device_info.cpp {{{
  * \file clxx/device_info.cpp
- * \todo Write documentation
+ * \brief Implements the \ref clxx::device_info "device_info" class
  */ // }}}
 #include <clxx/device_info.hpp>
 #include <clxx/exceptions.hpp>
 #include <string>
 
 namespace clxx {
-
 /* ----------------------------------------------------------------------- */
 device_info::
-device_info()
+device_info() noexcept
 {
-  _init();
 }
 /* ----------------------------------------------------------------------- */
 device_info::
-~device_info()
+~device_info() noexcept
 {
 }
 /* ----------------------------------------------------------------------- */
@@ -2204,12 +2202,6 @@ has_image_base_address_alignment() const noexcept
 }
 #endif
 // }}}
-/* ----------------------------------------------------------------------- */
-void device_info::
-_init()
-{
-  this->_clear();
-}
 /* ----------------------------------------------------------------------- */
 void device_info::
 _clear()

@@ -18,9 +18,8 @@
 
 namespace clxx {
 
-/** \ingroup clxx_exceptions */
-/** @{ */
 /** // clerror_base {{{
+ * \ingroup clxx_exceptions
  * \brief Base class for clxx::clerror_no exceptions.
  *
  * \tparam Code error code for the particular exception,
@@ -55,6 +54,7 @@ template < status_t Code
   };
 
 /** // doc: clerror_base<Code, StdExcept, std_except_no_ctor_arg_tag> {{{
+ * \ingroup clxx_exceptions
  * \brief Partial specialization of the clerror_base template for exceptions
  *    based on standard exceptions with immutable error messages
  */ // }}}
@@ -82,6 +82,7 @@ template < status_t Code, class StdExcept>
   };
 
 /** // doc: clerror_base<Code, StdExcept, std_except_xstring_ctor_arg_tag> {{{
+ * \ingroup clxx_exceptions
  * \brief Partial specialization for exceptions with mutable messages.
  */ // }}}
 template < status_t Code, class StdExcept>
@@ -122,12 +123,15 @@ template < status_t Code, class StdExcept>
       : exception_base<clerror, StdExcept, std_except_xstring_ctor_arg_tag>(what_arg)
     { }
     /** // doc: code() {{{
-     * \todo Write documentation
+     * \brief Returns OpenCL error code represented by this exception.
+     *
+     * \returns the value of static_code
      */ // }}}
     status_t code() const noexcept { return Code; }
   };
 
 /** // doc: clerror_base<Code, StdExcept, char const*> {{{
+ * \ingroup clxx_exceptions
  * \brief Partial specialization for exceptions with mutable messages.
  */ // }}}
 template < status_t Code, class StdExcept>
@@ -160,11 +164,12 @@ template < status_t Code, class StdExcept>
       : exception_base<clerror, StdExcept, std_except_xstring_ctor_arg_tag>(what_arg)
     { }
     /** // doc: code() {{{
-     * \todo Write documentation
+     * \brief Returns OpenCL error code represented by this exception.
+     *
+     * \returns the value of static_code
      */ // }}}
     status_t code() const noexcept { return Code; }
   };
-/** @} */
 
 } // end namespace clxx
 

@@ -3,7 +3,7 @@
 
 /** // doc: clxx/context.cpp {{{
  * \file clxx/context.cpp
- * \todo Write documentation
+ * \brief Implements the \ref clxx::context "context" class
  */ // }}}
 #include <clxx/context.hpp>
 #include <clxx/functions.hpp>

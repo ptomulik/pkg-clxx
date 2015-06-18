@@ -5,7 +5,7 @@
 
 /** // doc: clxx/app/clcc/main.cpp {{{
  * \file clxx/app/clcc/main.cpp
- * \todo Write documentation
+ * \brief Implements the \ref clxx::app::clcc::main class
  */ // }}}
 #include <clxx/app/clcc/main.hpp>
 #include <clxx/app/clinfo/main.hpp>

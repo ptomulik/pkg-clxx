@@ -5,7 +5,7 @@
 
 /** // doc: clxx/platform_layer.hpp {{{
  * \file clxx/platform_layer.hpp
- * \todo Write documentation
+ * \brief Defines the \ref clxx::platform_layer "platform_layer" class
  */ // }}}
 #ifndef CLXX_PLATFORM_LAYER_HPP_INCLUDED
 #define CLXX_PLATFORM_LAYER_HPP_INCLUDED
@@ -24,7 +24,7 @@
 namespace clxx {
 
 /** // doc: class platform_layer {{{
- * \ingroup Clxx_Cl_platform
+ * \ingroup clxx_platform_layer
  *
  * Simple associative container to store \ref clxx::device "devices",
  * \ref clxx::platform "platforms" and relations between them. Note, that this
@@ -80,7 +80,7 @@ class platform_layer
 {
 public:
   /** // doc: device_platform_map {{{
-   * \todo Write documetnation
+   * \brief Map type used to map devices to their platforms
    */ // }}}
   typedef std::map<device, platform> device_platform_map;
 public:
@@ -274,8 +274,28 @@ private:
   device_platform_map _device_platform;
 };
 
+/** \addtogroup clxx_info
+ * @{ */
 /** // doc: query_platform_layer_info(layer,pquery,dquery) {{{
- * \todo Write documentation
+ * \brief Perform an aggregate query on multiple platforms and devices
+ *
+ * Queries multiple OpenCL platforms and their devices for information
+ * specified in \em pquery and \em dquery respectivelly. Internally this yields
+ * a series of calls to \ref clxx::query_platform_info()
+ * "query_platform_info()" and \ref clxx::query_device_info()
+ * "query_device_info()".
+ *
+ * \param layer   A \ref clxx::platform_layer "platform_layer" to be queried
+ * \param pquery  What information to retrieve from platforms.
+ * \param dquery  What information to retrieve from devices.
+ * \returns \ref clxx::platform_layer_info "platform_layer_info" object
+ *    containing the result of the query.
+ *
+ * \par Example
+ *
+ * Print complete information about all OpenCL platforms/devices available
+ *
+ * \snippet clxx/query_platform_layer_info1.cpp Program
  */ // }}}
 platform_layer_info
 query_platform_layer_info(
@@ -283,7 +303,7 @@ query_platform_layer_info(
     platform_query const& pquery = platform_query(),
     device_query const& dquery = device_query()
 );
-
+/** @} */
 } // end namespace clxx
 
 #endif /* CLXX_PLATFORM_LAYER_HPP_INCLUDED */

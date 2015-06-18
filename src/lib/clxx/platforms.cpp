@@ -5,7 +5,7 @@
 
 /** // doc: clxx/platforms.cpp {{{
  * \file clxx/platforms.cpp
- * \todo Write documentation
+ * \brief Implements functions for retrieval of \ref clxx::platform "platform" objects
  */ // }}}
 #include <clxx/platforms.hpp>
 #include <clxx/functions.hpp>

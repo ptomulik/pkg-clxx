@@ -5,11 +5,11 @@
 
 /** // doc: clxx/app/options/options_description.cpp {{{
  * \file  clxx/app/options/options_description.cpp
- * \todo Write documentation
+ * \brief Implements the \ref clxx::app::options::options_description class
  */ // }}}
 #include <clxx/app/options/options_description.hpp>
 
-namespace clxx{ namespace app{ namespace options {
+namespace clxx{ namespace app { namespace options {
 /* ------------------------------------------------------------------------ */
 options_description::
 ~options_description()

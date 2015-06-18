@@ -93,6 +93,10 @@ public:
     TS_ASSERT_EQUALS(enum2cstr(status_t::invalid_linker_options),"invalid linker options");
     TS_ASSERT_EQUALS(enum2cstr(status_t::invalid_device_partition_count),"invalid device partition count");
 #endif
+#if CL_VERSION_2_0
+    TS_ASSERT_EQUALS(enum2cstr(status_t::invalid_pipe_size),"invalid pipe size");
+    TS_ASSERT_EQUALS(enum2cstr(status_t::invalid_device_queue),"invalid device queue");
+#endif
 #if cl_khr_icd
     TS_ASSERT_EQUALS(enum2cstr(status_t::platform_not_found_khr),"platform not found khr");
 #endif

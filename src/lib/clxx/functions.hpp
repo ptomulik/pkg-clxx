@@ -14,7 +14,7 @@
 
 namespace clxx {
 
-/** \ingroup clxx_cl_functions
+/** \addtogroup clxx_cl_functions
  *  @{ */
 /** // {{{ doc: get_platform_ids(...)
  * \brief Retrieve platform identifiers of locally available OpenCL platforms.
@@ -48,9 +48,9 @@ namespace clxx {
  * CLXX, or when get_platform_ids() has a bug.
  *
  * \par Available in OpenCL versions
- * |   1.0   |   1.1   |   1.2   |   2.0   |
- * | ------- | ------- | ------- | ------- |
- * | &radic; | &radic; | &radic; |         |
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |  \check   |  \check   |  \check   |  \check   |    ???    |
  */ // }}}
 void
 get_platform_ids(cl_uint num_entries,
@@ -98,9 +98,9 @@ get_platform_ids(cl_uint num_entries,
  * CLXX, or when get_platform_info() has a bug.
  *
  * \par Available in OpenCL versions
- * |   1.0   |   1.1   |   1.2   |   2.0   |
- * | ------- | ------- | ------- | ------- |
- * | &radic; | &radic; | &radic; |         |
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |   \check  |   \check  |   \check  |   \check  |    ???    |
  */ // }}}
 void
 get_platform_info(cl_platform_id platform,
@@ -159,9 +159,9 @@ get_platform_info(cl_platform_id platform,
  * %clxx, or when get_platform_ids() has a bug.
  *
  * \par Available in OpenCL versions
- * |   1.0   |   1.1   |   1.2   |   2.0   |
- * | ------- | ------- | ------- | ------- |
- * | &radic; | &radic; | &radic; |         |
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |   \check  |   \check  |   \check  |   \check  |    ???    |
  */ // }}}
 void
 get_device_ids(cl_platform_id platform,
@@ -210,9 +210,9 @@ get_device_ids(cl_platform_id platform,
  *    when \c clGetDeviceInfo() returns any other error code.
  *
  * \par Available in OpenCL versions
- * |   1.0   |   1.1   |   1.2   |   2.0   |
- * | ------- | ------- | ------- | ------- |
- * | &radic; | &radic; | &radic; |         |
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |   \check  |   \check  |   \check  |   \check  |    ???    |
  */ // }}}
 void
 get_device_info(cl_device_id device,
@@ -293,9 +293,9 @@ get_device_info(cl_device_id device,
  *    When \c clCreateContext() returns other error code.
  *
  * \par Available in OpenCL versions
- * |   1.0   |   1.1   |   1.2   |   2.0   |
- * | ------- | ------- | ------- | ------- |
- * | &radic; | &radic; | &radic; |         |
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |   \check  |   \check  |   \check  |   \check  |    ???    |
  */ // }}}
 cl_context
 create_context(const cl_context_properties* properties,
@@ -375,9 +375,9 @@ create_context(const cl_context_properties* properties,
  *    When \c clCreateContextFromType() returns other error code.
  *
  * \par Available in OpenCL versions
- * |   1.0   |   1.1   |   1.2   |   2.0   |
- * | ------- | ------- | ------- | ------- |
- * | &radic; | &radic; | &radic; |         |
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |   \check  |   \check  |   \check  |   \check  |    ???    |
  */ // }}}
 cl_context
 create_context_from_type(const cl_context_properties* properties,
@@ -413,9 +413,9 @@ create_context_from_type(const cl_context_properties* properties,
  *    implicit retain.
  *
  * \par Available in OpenCL versions
- * |   1.0   |   1.1   |   1.2   |   2.0   |
- * | ------- | ------- | ------- | ------- |
- * | &radic; | &radic; | &radic; |         |
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |   \check  |   \check  |   \check  |   \check  |    ???    |
  */ // }}}
 void
 retain_context(cl_context context);
@@ -442,9 +442,9 @@ retain_context(cl_context context);
  *    When \c clReleaseContext() returns other error code.
  *
  * \par Available in OpenCL versions
- * |   1.0   |   1.1   |   1.2   |   2.0   |
- * | ------- | ------- | ------- | ------- |
- * | &radic; | &radic; | &radic; |         |
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |   \check  |   \check  |   \check  |   \check  |    ???    |
  */ // }}}
 void
 release_context(cl_context context);
@@ -486,9 +486,9 @@ release_context(cl_context context);
  *    When \c clGetContextInfo() returns other error code.
  *
  * \par Available in OpenCL versions
- * |   1.0   |   1.1   |   1.2   |   2.0   |
- * | ------- | ------- | ------- | ------- |
- * | &radic; | &radic; | &radic; |         |
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |   \check  |   \check  |   \check  |   \check  |    ???    |
  */ // }}}
 void
 get_context_info(cl_context context,
@@ -544,9 +544,9 @@ get_context_info(cl_context context,
  *    When \c clCreateSubDevices() returns other error code.
  *
  * \par Available in OpenCL versions
- * |   1.0   |   1.1   |   1.2   |   2.0   |
- * | ------- | ------- | ------- | ------- |
- * |         |         | &radic; |         |
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |           |           |   \check  |   \check  |    ???    |
  */ // }}}
 void
 create_sub_devices(cl_device_id in_device,
@@ -586,9 +586,9 @@ create_sub_devices(cl_device_id in_device,
  *    When \c clRetainDevice() returns other error code.
  *
  * \par Available in OpenCL versions
- * |   1.0   |   1.1   |   1.2   |   2.0   |
- * | ------- | ------- | ------- | ------- |
- * |         |         | &radic; |         |
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |           |           |   \check  |   \check  |    ???    |
  */ // }}}
 void
 retain_device(cl_device_id device);
@@ -624,9 +624,9 @@ retain_device(cl_device_id device);
  *    When \c clReleaseDevice() returns other error code.
  *
  * \par Available in OpenCL versions
- * |   1.0   |   1.1   |   1.2   |   2.0   |
- * | ------- | ------- | ------- | ------- |
- * |         |         | &radic; |         |
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |           |           |   \check  |   \check  |    ???    |
  */ // }}}
 void
 release_device(cl_device_id device);
@@ -687,9 +687,15 @@ release_device(cl_device_id device);
  *    When \c clCreateCommandQueue() returns other error code.
  *
  * \par Available in OpenCL versions
- * |   1.0   |   1.1   |   1.2   |   2.0   |
- * | ------- | ------- | ------- | ------- |
- * | &radic; | &radic; | &radic; |         |
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |   \check  |   \check  |   \check  |   \cross  |    ???    |
+ *
+ * \cross - \c clCreateCommandQueue() has been removed from OpenCL in the
+ * version 2.0, however <tt>CL/cl.h</tt> header still declares it (but
+ * marks it as deprecated); as long as \c clCreateCommandQueue() is
+ * physically available at the library built time (in both, CL/cl.h and
+ * libOpenCL.so), the create_command_queue() will also be present.
  */ // }}}
 cl_command_queue
 create_command_queue(cl_context context,
@@ -755,9 +761,9 @@ create_command_queue(cl_context context,
  *    When \c clCreateCommandQueueWithProperties() returns other error code.
  *
  * \par Available in OpenCL versions
- * |   1.0   |   1.1   |   1.2   |   2.0   |
- * | ------- | ------- | ------- | ------- |
- * |         |         |         | &radic; |
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |           |           |           |   \check  |    ???    |
  */ // }}}
 cl_command_queue
 create_command_queue_with_properties(cl_context context,
@@ -790,9 +796,9 @@ create_command_queue_with_properties(cl_context context,
  * \note \ref create_command_queue() performs an implicit retain.
  *
  * \par Available in OpenCL versions
- * |   1.0   |   1.1   |   1.2   |   2.0   |
- * | ------- | ------- | ------- | ------- |
- * | &radic; | &radic; | &radic; |         |
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |   \check  |   \check  |   \check  |   \check  |    ???    |
  */ // }}}
 void
 retain_command_queue(cl_command_queue command_queue);
@@ -820,9 +826,9 @@ retain_command_queue(cl_command_queue command_queue);
  *    When \c clReleaseCommandQueue() returns other error code.
  *
  * \par Available in OpenCL versions
- * |   1.0   |   1.1   |   1.2   |   2.0   |
- * | ------- | ------- | ------- | ------- |
- * | &radic; | &radic; | &radic; |         |
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |   \check  |   \check  |   \check  |   \check  |    ???    |
  */ // }}}
 void
 release_command_queue(cl_command_queue command_queue);
@@ -865,9 +871,9 @@ release_command_queue(cl_command_queue command_queue);
  *    When \c clGetCommandQueueInfo() returns other error code.
  *
  * \par Available in OpenCL versions
- * |   1.0   |   1.1   |   1.2   |   2.0   |
- * | ------- | ------- | ------- | ------- |
- * | &radic; | &radic; | &radic; |         |
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |   \check  |   \check  |   \check  |   \check  |    ???    |
  */ // }}}
 void
 get_command_queue_info(cl_command_queue command_queue,
@@ -926,9 +932,9 @@ get_command_queue_info(cl_command_queue command_queue,
  *    When \c clCreateProgramWithSource() returns other error code.
  *
  * \par Available in OpenCL versions
- * |   1.0   |   1.1   |   1.2   |   2.0   |
- * | ------- | ------- | ------- | ------- |
- * | &radic; | &radic; | &radic; |         |
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |   \check  |   \check  |   \check  |   \check  |    ???    |
  */ // }}}
 cl_program
 create_program_with_source(cl_context context,
@@ -1032,9 +1038,9 @@ create_program_with_source(cl_context context,
  *    \endcode
  *
  * \par Available in OpenCL versions
- * |   1.0   |   1.1   |   1.2   |   2.0   |
- * | ------- | ------- | ------- | ------- |
- * | &radic; | &radic; | &radic; |         |
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |   \check  |   \check  |   \check  |   \check  |    ???    |
  */ // }}}
 cl_program
 create_program_with_binary(cl_context context,
@@ -1091,9 +1097,9 @@ create_program_with_binary(cl_context context,
  *    When \c clCreateProgramWithBuiltInKernels() returns other error code.
  *
  * \par Available in OpenCL versions
- * |   1.0   |   1.1   |   1.2   |   2.0   |
- * | ------- | ------- | ------- | ------- |
- * |         |         | &radic; |         |
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |           |           |   \check  |   \check  |    ???    |
  */ // }}}
 cl_program
 create_program_with_built_in_kernels(cl_context context,
@@ -1129,9 +1135,9 @@ create_program_with_built_in_kernels(cl_context context,
  *    When \c clRetainProgram() returns other error code.
  *
  * \par Available in OpenCL versions
- * |   1.0   |   1.1   |   1.2   |   2.0   |
- * | ------- | ------- | ------- | ------- |
- * | &radic; | &radic; | &radic; |         |
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |   \check  |   \check  |   \check  |   \check  |    ???    |
  */ // }}}
 void
 retain_program(cl_program program);
@@ -1162,9 +1168,9 @@ retain_program(cl_program program);
  *    When \c clReleaseProgram() returns other error code.
  *
  * \par Available in OpenCL versions
- * |   1.0   |   1.1   |   1.2   |   2.0   |
- * | ------- | ------- | ------- | ------- |
- * | &radic; | &radic; | &radic; |         |
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |   \check  |   \check  |   \check  |   \check  |    ???    |
  */ // }}}
 void
 release_program(cl_program program);
@@ -1211,7 +1217,7 @@ release_program(cl_program program);
  * \param options
  *    A pointer to a null-terminated string of characters that describes the
  *    build options to be used for building the program executable. The list of
- *    supported options is described below.
+ *    supported options is described in the OpenCL standard.
  * \param pfn_notify
  *    A function pointer to a notification routine. The notification routine is
  *    a callback function that an application can register and which will be
@@ -1254,9 +1260,9 @@ release_program(cl_program program);
  *    When \c clBuildProgram() returns other error code.
  *
  * \par Available in OpenCL versions
- * |   1.0   |   1.1   |   1.2   |   2.0   |
- * | ------- | ------- | ------- | ------- |
- * | &radic; | &radic; | &radic; |         |
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |   \check  |   \check  |   \check  |   \check  |    ???    |
  */ // }}}
 void
 build_program(cl_program program,
@@ -1357,9 +1363,9 @@ build_program(cl_program program,
  *    When \c clCompileProgram() returns other error code.
  *
  * \par Available in OpenCL versions
- * |   1.0   |   1.1   |   1.2   |   2.0   |
- * | ------- | ------- | ------- | ------- |
- * |         |         | &radic; |         |
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |           |           |   \check  |   \check  |    ???    |
  */ // }}}
 void
 compile_program(cl_program program,
@@ -1476,9 +1482,9 @@ compile_program(cl_program program,
  *    When \c clLinkProgram() returns other error code.
  *
  * \par Available in OpenCL versions
- * |   1.0   |   1.1   |   1.2   |   2.0   |
- * | ------- | ------- | ------- | ------- |
- * |         |         | &radic; |         |
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |           |           |   \check  |   \check  |    ???    |
  */ // }}}
 cl_program
 link_program(cl_context context,
@@ -1518,9 +1524,9 @@ link_program(cl_context context,
  *    When \c clUnloadPlatformCompiler() returns other error code.
  *
  * \par Available in OpenCL versions
- * |   1.0   |   1.1   |   1.2   |   2.0   |
- * | ------- | ------- | ------- | ------- |
- * |         |         | &radic; |         |
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |           |           |   \check  |   \check  |    ???    |
  */ // }}}
 void
 unload_platform_compiler(cl_platform_id platform);
@@ -1564,6 +1570,11 @@ unload_platform_compiler(cl_platform_id platform);
  *    When \c clGetProgramInfo() returns CL_OUT_OF_HOST_MEMORY.
  * \throw unexpected_clerror
  *    When \c clGetProgramInfo() returns other error code.
+ *
+ * \par Available in OpenCL versions
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |   \check  |   \check  |   \check  |   \check  |    ???    |
  */ // }}}
 void
 get_program_info(cl_program program,
@@ -1623,6 +1634,11 @@ get_program_info(cl_program program,
  *    When \c clGetProgramBuildInfo() returns CL_OUT_OF_HOST_MEMORY.
  * \throw unexpected_clerror
  *    When \c clGetProgramBuildInfo() returns other error code.
+ *
+ * \par Available in OpenCL versions
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |   \check  |   \check  |   \check  |   \check  |    ???    |
  */ // }}}
 void
 get_program_build_info(cl_program program,
@@ -1630,6 +1646,499 @@ get_program_build_info(cl_program program,
                        program_build_info_t param_name,
                        size_t param_value_size, void* param_value,
                        size_t* param_value_size_ret);
+/** // doc: create_kernel() {{{
+ * \brief Creates OpenCL kernel
+ *
+ * This function is a wrapper around \c clCreateKernel(). The call to this
+ * function has same effect as
+ * - \c clCreateKernel(program, kernel_name, &errcode_ret),
+ * with \c errcode_ret being defined internally in #create_kernel().
+ *
+ * The main difference between #create_kernel() and \c clCreateKernel() is that
+ * it throws %clxx exceptions instead of returning OpenCL error codes.
+ *
+ * A kernel is a function declared in a program. A kernel is identified by the
+ * \c __kernel qualifier applied to any function in a program. A kernel object
+ * encapsulates the specific \c __kernel function declared in a program and the
+ * argument values to be used when executing this \c __kernel function.
+ *
+ * \param program A program object with a successfully built executable.
+ * \param kernel_name A function name in the program declared with the __kernel qualifier.
+ * \returns A handle to the newly created kernel object
+ *
+ * \throw clerror_no<status_t::invalid_program>
+ *    When \c clCreateKernel() returns CL_INVALID_PROGRAM
+ * \throw clerror_no<status_t::invalid_program_executable>
+ *    When \c clCreateKernel() returns CL_INVALID_PROGRAM_EXECUTABLE
+ * \throw clerror_no<status_t::invalid_kernel_name>
+ *    When \c clCreateKernel() returns CL_INVALID_KERNEL_NAME
+ * \throw clerror_no<status_t::invalid_kernel_definition>
+ *    When \c clCreateKernel() returns CL_INVALID_KERNEL_DEFINITION
+ * \throw clerror_no<status_t::invalid_value>
+ *    When \c clCreateKernel() returns CL_INVALID_VALUE
+ * \throw clerror_no<status_t::out_of_resources>
+ *    When \c clCreateKernel() returns CL_OUT_OF_RESOURCES
+ * \throw clerror_no<status_t::out_of_host_memory>
+ *    When \c clCreateKernel() returns CL_OUT_OF_HOST_MEMORY
+ * \throw unexpected_clerror
+ *    When \c clCreateKernel() returns other error code.
+ *
+ * \par Available in OpenCL versions
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |   \check  |   \check  |   \check  |   \check  |    ???    |
+ */ // }}}
+cl_kernel
+create_kernel(cl_program program,
+              const char* kernel_name);
+/** // doc: create_kernels_in_program() {{{
+ * \brief Create kernel objects for all kernel functions in \em program
+ *
+ * This function is a wrapper around \c clCreateKernelsInProgram(). The call to
+ * this function has same effect as
+ * - \c clCreateKernelsInProgram(program, num_kernels, kernels, num_kernels_ret).
+ *
+ * The main difference between #create_kernels_in_program() and
+ * \c clCreateKernelsInProgram() is that it throws %clxx exceptions instead of
+ * returning OpenCL error codes.
+ *
+ * \param program
+ *    A program object with a successfully built executable.
+ * \param num_kernels
+ *    The size of memory pointed to by \em kernels specified as the number of
+ *    \c cl_kernel entries.
+ * \param kernels
+ *    The buffer where the kernel objects for kernels in program will be
+ *    returned. If kernels is \c NULL, it is ignored. If kernels is not \c NULL,
+ *    \em num_kernels must be greater than or equal to the number of kernels in
+ *    program.
+ * \param num_kernels_ret
+ *    The number of kernels in program. If \em num_kernels_ret is \c NULL, it
+ *    is ignored.
+ *
+ * \throw clerror_no<status_t::invalid_program>
+ *    When \c clCreateKernelsInProgram() returns CL_INVALID_PROGRAM
+ * \throw clerror_no<status_t::invalid_program_executable>
+ *    When \c clCreateKernelsInProgram() returns CL_INVALID_PROGRAM_EXECUTABLE
+ * \throw clerror_no<status_t::invalid_value>
+ *    When \c clCreateKernelsInProgram() returns CL_INVALID_VALUE
+ * \throw clerror_no<status_t::out_of_resources>
+ *    When \c clCreateKernelsInProgram() returns CL_OUT_OF_RESOURCES
+ * \throw clerror_no<status_t::out_of_host_memory>
+ *    When \c clCreateKernelsInProgram() returns CL_OUT_OF_HOST_MEMORY
+ * \throw unexpected_clerror
+ *    When \c clCreateKernelsInProgram() returns other error code.
+ *
+ * \par Available in OpenCL versions
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |   \check  |   \check  |   \check  |   \check  |    ???    |
+ */ // }}}
+void
+create_kernels_in_program(cl_program program,
+                          cl_uint num_kernels,
+                          cl_kernel* kernels,
+                          cl_uint* num_kernels_ret);
+/** // doc: get_kernel_info() {{{
+ * \brief Returns information about the kernel object
+ *
+ * This function is a wrapper around \c clGetKernelInfo(). The call to
+ * this function has same effect as
+ * - \c clGetKernelInfo(kernel, static_cast<cl_kernel_info>(param_name), param_value_size, param_value, param_value_size_ret).
+ *
+ * The main difference between #get_kernel_info() and
+ * \c clGetKernelInfo() is that it throws %clxx exceptions instead of
+ * returning OpenCL error codes.
+ *
+ * \param kernel
+ *    Specifies the kernel object being queried.
+ * \param param_name
+ *    Specifies the information to query.
+ * \param param_value_size
+ *    Used to specify the size in bytes of memory pointed to by \em param_value.
+ *    This size must be \c >= size of return type.
+ * \param param_value
+ *    A pointer to memory where the appropriate result being queried is
+ *    returned. If \em param_value is \c NULL, it is ignored.
+ * \param param_value_size_ret
+ *    The actual size in bytes of data copied to \em param_value. If
+ *    \em param_value_size_ret is \c NULL, it is ignored.
+ *
+ * \throw clerror_no<status_t::invalid_value>
+ *    When the \c clGetKernelInfo() returns CL_INVALID_VALUE
+ * \throw clerror_no<status_t::invalid_kernel>
+ *    When the \c clGetKernelInfo() returns CL_INVALID_KERNEL
+ * \throw clerror_no<status_t::out_of_resources>
+ *    When the \c clGetKernelInfo() returns CL_OUT_OF_RESOURCES
+ * \throw clerror_no<status_t::out_of_host_memory>
+ *    When the \c clGetKernelInfo() returns CL_OUT_OF_HOST_MEMORY
+ * \throw unexpected_clerror
+ *    When \c clGetKernelInfo() returns other error code.
+ *
+ * \par Available in OpenCL versions
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |   \check  |   \check  |   \check  |   \check  |    ???    |
+ */ // }}}
+void
+get_kernel_info(cl_kernel kernel,
+                kernel_info_t param_name,
+                size_t param_value_size, void* param_value,
+                size_t* param_value_size_ret);
+#if CLXX_OPENCL_ALLOWED(clGetKernelArgInfo)
+/** // doc: get_kernel_arg_info() {{{
+ * \brief Returns information about the arguments of a kernel.
+ *
+ * This function is a wrapper around \c clGetKernelArgInfo(). The call to
+ * this function has same effect as
+ * - \c clGetKernelArgInfo(kernel, arg_index, static_cast<cl_kernel_arg_info>(param_name), param_value_size, param_value, param_value_size_ret).
+ *
+ * The main difference between #get_kernel_arg_info() and
+ * \c clGetKernelArgInfo() is that it throws %clxx exceptions instead of
+ * returning OpenCL error codes.
+ *
+ * \param kernel
+ *    Specifies the kernel object being queried.
+ * \param arg_index
+ *    The argument index. Arguments to the kernel are referred by indices that
+ *    go from \c 0 for the leftmost argument to <tt>n - 1</tt>, where \c n is
+ *    the total number of arguments declared by a kernel.
+ * \param param_name
+ *    Specifies the argument information to query. The list of supported \em
+ *    param_name types and the information returned in \em param_value by
+ *    get_kernel_arg_info is described in the OpenCL standard.
+ * \param param_value_size
+ *    Used to specify the size in bytes of memory pointed to by \em param_value.
+ *    This size must be > size of return type as described in the OpenCL
+ *    standard.
+ * \param param_value
+ *    A pointer to memory where the appropriate result being queried is
+ *    returned. If \em param_value is \c NULL, it is ignored.
+ * \param param_value_size_ret
+ *    Returns the actual size in bytes of data copied to \em param_value. If
+ *    \em param_value_size_ret is \c NULL, it is ignored.
+ *
+ * \throw clerror_no<status_t::invalid_arg_index>
+ *    When \c clGetKernelArgInfo() returns CL_INVALID_ARG_INDEX.
+ * \throw clerror_no<status_t::invalid_value>
+ *    When \c clGetKernelArgInfo() returns CL_INVALID_VALUE.
+ * \throw clerror_no<status_t::arg_info_not_available>
+ *    When \c clGetKernelArgInfo() returns CL_ARG_INFO_NOT_AVAILABLE.
+ * \throw clerror_no<status_t::invalid_kernel>
+ *    When \c clGetKernelArgInfo() returns CL_INVALID_KERNEL.
+ * \throw unexpected_clerror
+ *    When \c clGetKernelArgInfo() returns other error code.
+ *
+ * \par Available in OpenCL versions
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |           |           |   \check  |   \check  |    ???    |
+ */ // }}}
+void
+get_kernel_arg_info(cl_kernel kernel,
+                    cl_uint arg_index,
+                    kernel_arg_info_t param_name,
+                    size_t param_value_size, void* param_value,
+                    size_t* param_value_size_ret);
+#endif
+/** // doc: get_kernel_arg_info() {{{
+ * \brief Returns information about the kernel object that may be specific to a device.
+ *
+ * This function is a wrapper around \c clGetKernelWorkGroupInfo(). The call to
+ * this function has same effect as
+ * - \c clGetKernelWorkGroupInfo(kernel, device, static_cast<cl_kernel_work_group_info>(param_name), param_value_size, param_value, param_value_size_ret).
+ *
+ * The main difference between #get_kernel_work_group_info() and
+ * \c clGetKernelWorkGroupInfo() is that it throws %clxx exceptions instead of
+ * returning OpenCL error codes.
+ *
+ * \param kernel
+ *    Specifies the kernel object being queried.
+ * \param device
+ *    Identifies a specific device in the list of devices associated with
+ *    kernel. The list of devices is the list of devices in the OpenCL context
+ *    that is associated with kernel. If the list of devices associated with
+ *    kernel is a single device, \em device can be a \c NULL value.
+ * \param param_name
+ *    Specifies the information to query. The list of supported \em param_name
+ *    types is documented in \ref clxx::kernel_work_group_info_t. The
+ *    information returned in \em param_value is described in the OpenCL
+ *    standard.
+ * \param param_value_size
+ *    Used to specify the size in bytes of memory pointed to by \em param_value.
+ *    This size must be \c >= size of return type as described in the OpenCL
+ *    standard.
+ * \param param_value
+ *    A pointer to memory where the appropriate result being queried is
+ *    returned. If \em param_value is \c NULL, it is ignored.
+ * \param param_value_size_ret
+ *    Returns the actual size in bytes of data copied to \em param_value. If
+ *    \em param_value_size_ret is \c NULL, it is ignored.
+ *
+ * \throw clerror_no<status_t::invalid_device>
+ *    When \c clGetKernelWorkGroupInfo() returns CL_INVALID_DEVICE
+ * \throw clerror_no<status_t::invalid_value>
+ *    When \c clGetKernelWorkGroupInfo() returns CL_INVALID_VALUE
+ * \throw clerror_no<status_t::invalid_kernel>
+ *    When \c clGetKernelWorkGroupInfo() returns CL_INVALID_KERNEL
+ * \throw clerror_no<status_t::out_of_resources>
+ *    When \c clGetKernelWorkGroupInfo() returns CL_OUT_OF_RESOURCES
+ * \throw clerror_no<status_t::out_of_host_memory>
+ *    When \c clGetKernelWorkGroupInfo() returns CL_OUT_OF_HOST_MEMORY
+ * \throw unexpected_clerror
+ *    When \c clGetKernelWorkGroupInfo() returns other error code.
+ *
+ * \par Available in OpenCL versions
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |   \check  |   \check  |   \check  |   \check  |    ???    |
+ *
+ */ // }}}
+void
+get_kernel_work_group_info(cl_kernel kernel,
+                           cl_device_id device,
+                           kernel_work_group_info_t param_name,
+                           size_t param_value_size, void* param_value,
+                           size_t* param_value_size_ret);
+/** // doc: retain_kernel() {{{
+ * \brief Increments the kernel object reference count.
+ *
+ * This function is a wrapper around \c clRetainKernel(). The call to this
+ * function has same effect as
+ *  - \c clRetainKernel(kernel)
+ *
+ * The main difference between #retain_kernel() and \c clRetainKernel() is that
+ * it throws %clxx exceptions instead of returning OpenCL error codes.
+ *
+ * \note create_kernel() and create_kernels_in_program() do an implicit retain.
+ *
+ * \param kernel
+ *    The kernel to be retained
+ *
+ * \throw clerror_no<status_t::invalid_kernel>
+ *    When \c clRetainKernel() returns CL_INVALID_KERNEL
+ * \throw clerror_no<status_t::out_of_resources>
+ *    When \c clRetainKernel() returns CL_OUT_OF_RESOURCES
+ * \throw clerror_no<status_t::out_of_host_memory>
+ *    When \c clRetainKernel() returns CL_OUT_OF_HOST_MEMORY
+ * \throw unexpected_clerror
+ *    When \c clRetainKernel() returns other error code.
+ *
+ * \par Available in OpenCL versions
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |   \check  |   \check  |   \check  |   \check  |    ???    |
+ */ // }}}
+void
+retain_kernel(cl_kernel kernel);
+/** // doc: release_kernel() {{{
+ * \brief Decrements the \e kernel reference count
+ *
+ * This function is a wrapper around \c clReleaseKernel(). The call to this
+ * function has same effect as
+ *  - \c clReleaseKernel(kernel)
+ *
+ * The main difference between \ref release_kernel() and
+ * \c clReleaseKernel() is that it throws %clxx exceptions instead of
+ * returning OpenCL error codes.
+ *
+ * \note The kernel object is deleted once the number of instances that are
+ *       retained to kernel become zero and the kernel object is no longer
+ *       needed by any enqueued commands that use kernel.
+ *
+ * \param kernel
+ *    The kernel to be released
+ *
+ * \throw clerror_no<status_t::invalid_kernel>
+ *    When \c clReleaseKernel() returns CL_INVALID_KERNEL.
+ * \throw clerror_no<status_t::out_of_resources>
+ *    When \c clReleaseKernel() returns CL_OUT_OF_RESOURCES.
+ * \throw clerror_no<status_t::out_of_host_memory>
+ *    When \c clReleaseKernel() returns CL_OUT_OF_HOST_MEMORY.
+ * \throw unexpected_clerror
+ *    When \c clReleaseKernel() returns other error code.
+ *
+ * \par Available in OpenCL versions
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |   \check  |   \check  |   \check  |   \check  |    ???    |
+ */ // }}}
+void
+release_kernel(cl_kernel kernel);
+/** // doc: set_kernel_arg() {{{
+ * \brief Used to set the argument value for a specific argument of a kernel
+ *
+ * This function is a wrapper around \c clSetKernelArg(). The call to this
+ * function has same effect as
+ *  - \c clSetKernelArg(kernel, arg_index, arg_size, arg_value)
+ *
+ * The main difference between \ref set_kernel_arg() and
+ * \c clSetKernelArg() is that it throws %clxx exceptions instead of
+ * returning OpenCL error codes.
+ *
+ * \param kernel
+ *    A valid kernel object.
+ * \param arg_index
+ *    The argument index. Arguments to the kernel are referred by indices that
+ *    go from \c 0 for the leftmost argument to <tt>n - 1</tt>, where \c n is
+ *    the total number of arguments declared by a kernel.
+ * \param arg_size
+ *    Specifies the size of the argument value. If the argument is a memory
+ *    object, the size is the size of the memory object. For arguments declared
+ *    with the local qualifier, the size specified will be the size in bytes of
+ *    the buffer that must be allocated for the local argument. If the argument
+ *    is of type \c sampler_t, the \em arg_size value must be equal to
+ *    <tt>sizeof(cl_sampler)</tt>. If the argument is of type \c queue_t, the
+ *    \em arg_size value must be equal to <tt>sizeof(cl_command_queue)</tt>.
+ *    For all other arguments, the size will be the size of argument type.
+ * \param arg_value
+ *    A pointer to data that should be used as the argument value for argument
+ *    specified by \em arg_index. The argument data pointed to by \em arg_value
+ *    is copied and the \em arg_value pointer can therefore be reused by the
+ *    application after #set_kernel_arg() returns. The argument value specified
+ *    is the value used by all API calls that enqueue kernel
+ *    (#enqueue_nd_range_kernel()) until the argument value is changed by a
+ *    call to #set_kernel_arg() for kernel.
+ *
+ * \sa <a href="https://www.khronos.org/registry/cl/sdk/2.0/docs/man/xhtml/clSetKernelArg.html">clSetKernelArg()</a>
+ *
+ * \throw clerror_no<status_t::invalid_kernel>
+ *    When \c clSetKernelArg() returns CL_INVALID_KERNEL.
+ * \throw clerror_no<status_t::invalid_arg_index>
+ *    When \c clSetKernelArg() returns CL_INVALID_ARG_INDEX.
+ * \throw clerror_no<status_t::invalid_arg_value>
+ *    When \c clSetKernelArg() returns CL_INVALID_ARG_VALUE.
+ * \throw clerror_no<status_t::invalid_mem_object>
+ *    When \c clSetKernelArg() returns CL_INVALID_MEM_OBJECT.
+ * \throw clerror_no<status_t::invalid_sampler>
+ *    When \c clSetKernelArg() returns CL_INVALID_SAMPLER.
+ * \throw clerror_no<status_t::invalid_device_queue>
+ *    When \c clSetKernelArg() returns CL_INVALID_DEVICE_QUEUE.
+ * \throw clerror_no<status_t::invalid_arg_size>
+ *    When \c clSetKernelArg() returns CL_INVALID_ARG_SIZE.
+ * \throw clerror_no<status_t::out_of_resources>
+ *    When \c clSetKernelArg() returns CL_OUT_OF_RESOURCES.
+ * \throw clerror_no<status_t::out_of_host_memory>
+ *    When \c clSetKernelArg() returns CL_OUT_OF_HOST_MEMORY.
+ * \throw unexpected_clerror
+ *    When \c clSetKernelArg() returns other error code.
+ *
+ * \par Available in OpenCL versions
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |   \check  |   \check  |   \check  |   \check  |    ???    |
+ */ // }}}
+void
+set_kernel_arg(cl_kernel kernel,
+               cl_uint arg_index,
+               size_t arg_size,
+               const void* arg_value);
+#if CLXX_OPENCL_ALLOWED(clSetKernelArgSVMPointer)
+/** // doc: set_kernel_arg_svm_pointer() {{{
+ * \brief Used to set a SVM pointer as the argument value for a specific
+ *        argument of a kernel
+ *
+ * This function is a wrapper around \c clSetKernelArgSVMPointer(). The call to this
+ * function has same effect as
+ *  - \c clSetKernelArgSVMPointer(kernel, arg_index, arg_value)
+ *
+ * The main difference between \ref set_kernel_arg_svm_pointer() and
+ * \c clSetKernelArgSVMPointer() is that it throws %clxx exceptions instead of
+ * returning OpenCL error codes.
+ *
+ * \param kernel
+ *    A valid kernel object.
+ * \param arg_index
+ *    The argument index. Arguments to the kernel are referred by indices that
+ *    go from \c 0 for the leftmost argument to <tt>n - 1</tt>, where \c n is
+ *    the total number of arguments declared by a kernel.
+ * \param arg_value
+ *    A pointer to the SVM pointer that should be used as the argument value
+ *    for argument specified by \em arg_index. The SVM pointer specified is the
+ *    value used by all API calls that enqueue kernel (#enqueue_nd_range_kernel())
+ *    until the argument value is changed by a call to set_kernel_arg_svm_pointer()
+ *    for kernel. The SVM pointer can only be used for arguments that are
+ *    declared to be a pointer to global or constant memory. The SVM pointer
+ *    value must be aligned according to the argument's type. For example, if
+ *    the argument is declared to be global <tt>float4 *p</tt>, the SVM pointer
+ *    value passed for \c p must be at a minimum aligned to a \c float4. The
+ *    SVM pointer value specified as the argument value can be the pointer
+ *    returned by clSVMAlloc or can be a pointer + offset into the SVM region.
+ *
+ * \throw clerror_no<status_t::invalid_kernel>
+ *    When \c clSetKernelArgSVMPointer() returns \c CL_INVALID_KERNEL.
+ * \throw clerror_no<status_t::invalid_arg_index>
+ *    When \c clSetKernelArgSVMPointer() returns \c CL_INVALID_ARG_INDEX.
+ * \throw clerror_no<status_t::invalid_arg_value>
+ *    When \c clSetKernelArgSVMPointer() returns \c CL_INVALID_ARG_VALUE.
+ * \throw clerror_no<status_t::out_of_resources>
+ *    When \c clSetKernelArgSVMPointer() returns \c CL_OUT_OF_RESOURCES.
+ * \throw clerror_no<status_t::out_of_host_memory>
+ *    When \c clSetKernelArgSVMPointer() returns \c CL_OUT_OF_HOST_MEMORY.
+ * \throw unexpected_clerror
+ *    When \c clSetKernelArgSVMPointer() returns other error code.
+ *
+ * \par Available in OpenCL versions
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |           |           |           |   \check  |    ???    |
+ */ // }}}
+void
+set_kernel_arg_svm_pointer(cl_kernel kernel,
+                           cl_uint arg_index,
+                           const void* arg_value);
+#endif
+#if CLXX_OPENCL_ALLOWED(clSetKernelExecInfo)
+/** // doc: set_kernel_exec_info() {{{
+ * \brief Used to pass additional information other than argument values to a kernel
+ *
+ * This function is a wrapper around \c clSetKernelExecInfo(). The call to this
+ * function has same effect as
+ *  - \c clSetKernelExecInfo(kernel, param_name, param_value_size, param_value)
+ *
+ * The main difference between \ref set_kernel_exec_info() and
+ * \c clSetKernelExecInfo() is that it throws %clxx exceptions instead of
+ * returning OpenCL error codes.
+ *
+ * \param kernel
+ *    Specifies the kernel object being queried.
+ * \param param_name
+ *    Specifies the information to be passed to kernel. The list of supported
+ *    \em param_name types may be found in the documentation of
+ *    \ref clxx::kernel_exec_info_t "kernel_exec_info_t". The corresponding
+ *    values passed in \em param_value are described in the OpenCL standard.
+ * \param param_value_size
+ *    Specifies the size in bytes of the memory pointed to by \em param_value.
+ * \param param_value
+ *    A pointer to memory where the appropriate values determined by
+ *    \em param_name are specified.
+ *
+ * \throw clerror_no<status_t::invalid_kernel>
+ *    When \c clSetKernelExecInfo() returns \c CL_INVALID_KERNEL.
+ * \throw clerror_no<status_t::invalid_value>
+ *    When \c clSetKernelExecInfo() returns \c CL_INVALID_VALUE.
+ * \throw clerror_no<status_t::invalid_operation>
+ *    When \c clSetKernelExecInfo() returns \c CL_INVALID_OPERATION.
+ * \throw clerror_no<status_t::out_of_resources>
+ *    When \c clSetKernelExecInfo() returns \c CL_OUT_OF_RESOURCES.
+ * \throw clerror_no<status_t::out_of_host_memory>
+ *    When \c clSetKernelExecInfo() returns \c CL_OUT_OF_HOST_MEMORY.
+ * \throw unexpected_clerror
+ *    When \c clSetKernelExecInfo() returns other error code.
+ *
+ * \par Available in OpenCL versions
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |           |           |           |   \check  |    ???    |
+ *
+ * \sa <a href="https://www.khronos.org/registry/cl/sdk/2.0/docs/man/xhtml/clSetKernelExecInfo.html">clSetKernelExecInfo()</a>
+ */ // }}}
+void
+set_kernel_exec_info(cl_kernel kernel,
+                     kernel_exec_info_t param_name,
+                     size_t param_value_size,
+                     const void* param_value);
+#endif
 /** @} */
 } // end namespace clxx
 

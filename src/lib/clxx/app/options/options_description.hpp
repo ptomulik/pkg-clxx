@@ -5,7 +5,7 @@
 
 /** // doc: clxx/app/options/options_description.hpp {{{
  * \file clxx/app/options/options_description.hpp
- * \todo Write documentation
+ * \brief Defines the \ref clxx::app::options::options_description class
  */ // }}}
 #ifndef CLXX_APP_OPTIONS_OPTIONS_DESCRIPTION_HPP_INCLUDED
 #define CLXX_APP_OPTIONS_OPTIONS_DESCRIPTION_HPP_INCLUDED

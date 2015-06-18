@@ -54,7 +54,9 @@ public:
   virtual ~main();
   /** // doc: main() {{{
    * \brief Default constructor
-   * \todo Write out how does the default-constructed object look like
+   *
+   * The default constructor initializes application without any command-line
+   * arguments.
    */ // }}}
   main();
   /** // doc: main(argc, argv) {{{

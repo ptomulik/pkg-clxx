@@ -3,7 +3,7 @@
 
 /** // doc: clxx/exception3.cpp {{{
  * \file clxx/exception3.cpp
- * \todo Write documentation
+ * \brief Example with clxx exceptions
  */ // }}}
 /** // doc: \example exception3.cpp {{{
  * \example exception3.cpp

@@ -5,7 +5,7 @@
 
 /** // doc: clxx/program_source.hpp {{{
  * \file clxx/program_source.hpp
- * \todo Write documentation
+ * \brief Defines the \ref clxx::program_source "program_source" type
  */ // }}}
 #ifndef CLXX_PROGRAM_SOURCE_HPP_INCLUDED
 #define CLXX_PROGRAM_SOURCE_HPP_INCLUDED
@@ -14,9 +14,8 @@
 
 namespace clxx {
 /** // doc: program_source {{{
+ * \ingroup clxx_program_objects
  * \brief A type used to represent OpenCL program source
- * \todo Refine documentation (what's the API for program_source???, tell
- *       explicitly that it's std::string???)
  */ // }}}
 typedef std::string program_source;
 } // end namespace clxx

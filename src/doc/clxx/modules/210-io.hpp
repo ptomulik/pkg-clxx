@@ -1,7 +1,7 @@
 // @COPYRIGHT@
 // Licensed under MIT license (LICENSE.txt)
 /**
- * \defgroup clxx_io I/O module
+ * \defgroup clxx_io Clxx I/O module
  *
  * This module implements several I/O routines which stream out %clxx objects
  * to output streams in a user-readable form. They may be used for simple

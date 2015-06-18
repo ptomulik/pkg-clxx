@@ -3,7 +3,7 @@
 
 /** // doc: clxx/app/clcc/options.cpp {{{
  * \file clxx/app/clcc/options.cpp
- * \todo Write documentation
+ * \brief Implements the \ref clxx::app::clcc::options class
  */ // }}}
 #include <clxx/app/clcc/options.hpp>
 #include <clxx/app/options/rethrow.hpp>

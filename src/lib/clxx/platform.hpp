@@ -113,8 +113,8 @@ public:
       }
   }
   /** // {{{
-   * \brief Tell whether this object is initialised or not
-   * \return \c true if object is initialised or \c false otherwise
+   * \brief Tell whether this object is initialized or not
+   * \return \c true if object is initialized or \c false otherwise
    */ // }}}
   constexpr bool is_initialized() const noexcept
   {
@@ -296,12 +296,30 @@ public:
 #include <clxx/platform_query.hpp>
 
 namespace clxx {
+/** \addtogroup clxx_info
+ * @{ */
 /** // doc: query_platform_info(platform, query) {{{
- * \todo Write documentation
+ * \brief Query platform info
+ *
+ * Queries the OpenCL platform layer for information describing particular
+ * platform. By default, all supported platform attributes are retrieved.
+ *
+ * \param platform  An OpenCL platform to be queried for information.
+ * \param query     Query specification (what attributes to query for).
+ * \returns An object of type \ref clxx::platform_info "platform_info"
+ *          containing the query result.
+ *
+ * \par Example
+ *
+ * Retrieve and print information describing a first OpenCL platform found by
+ * clxx in operating system.
+ *
+ * \snippet clxx/query_platform_info1.cpp Program
  */ // }}}
 platform_info
 query_platform_info( platform const& platform,
                      platform_query const& query = platform_query() );
+/** @} */
 } // end namespace clxx
 
 #endif /* CLXX_PLATFORM_HPP_INCLUDED */

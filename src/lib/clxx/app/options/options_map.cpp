@@ -5,7 +5,7 @@
 
 /** // doc: clxx/app/options/options_map.cpp {{{
  * \file clxx/app/options/options_map.cpp
- * \todo Write documentation
+ * \brief Implements the \ref clxx::app::options::options_map class
  */ // }}}
 #include <clxx/app/options/options_map.hpp>
 

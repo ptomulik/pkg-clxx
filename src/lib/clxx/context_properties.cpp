@@ -2,7 +2,7 @@
 // Licensed under MIT license (LICENSE.txt)
 /** // doc: clxx/context_properties.cpp {{{
  * \file clxx/context_properties.cpp
- * \todo Write documentation
+ * \brief Implements the \ref clxx::context_properties "context_properties" class
  */ // }}}
 #include <clxx/context_properties.hpp>
 #include <clxx/exceptions.hpp>

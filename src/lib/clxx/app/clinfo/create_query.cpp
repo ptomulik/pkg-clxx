@@ -5,7 +5,7 @@
 
 /** // doc: clxx/app/clinfo/create_query.cpp {{{
  * \file clxx/app/clinfo/create_query.cpp
- * \todo Write documentation
+ * \brief Implements functions that prepare platform/device queries for clinfo application
  */ // }}}
 #include <clxx/app/clinfo/create_query.hpp>
 

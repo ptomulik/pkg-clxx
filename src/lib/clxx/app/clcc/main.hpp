@@ -22,7 +22,7 @@ namespace clxx { namespace app { namespace clcc {
 /** // doc: class main {{{
  * \brief Implements the clxx-clcc program
  *
- * This class implements the clxx-clcc program. Its use is as simple as
+ * This class implements the clxx-clcc application. Its use is as simple as
  * initializing and calling the run() method, for example:
  *
  * \code
@@ -53,7 +53,7 @@ public:
    */ // }}}
   typedef clxx::app::options::positional_options_description positional_options_description;
   /** // doc: parsed_options {{{
-   * \todo Write documentation
+   * \brief Type representing results of parsing an input source.
    */ // }}}
   typedef clxx::app::options::parsed_options parsed_options;
 public:
@@ -63,7 +63,9 @@ public:
   virtual ~main();
   /** // doc: main() {{{
    * \brief Default constructor
-   * \todo Write out how does the default-constructed object look like
+   *
+   * The default constructor initializes application without any command-line
+   * arguments.
    */ // }}}
   main();
   /** // doc: main(argc, argv) {{{

@@ -85,7 +85,7 @@ CXXTEST_MOCK_GLOBAL(cl_int, clReleaseDevice, (cl_device_id device), (device));
 
 #if CLXX_OPENCL_ALLOWED(clCreateCommandQueue)
 CLXX_DIAGNOSTIC_PUSH
-CLXX_UNDEPRECATE
+CLXX_DISABLE_DEPRECATED_DECLARATION_WARNING
 CXXTEST_MOCK_GLOBAL(cl_command_queue, clCreateCommandQueue,
   ( cl_context context, cl_device_id device,
     cl_command_queue_properties properties, cl_int* errcode_ret ),
@@ -182,6 +182,56 @@ CXXTEST_MOCK_GLOBAL(cl_int, clGetProgramBuildInfo,
     size_t param_value_size, void* param_value, size_t* param_value_size_ret),
   ( program, device, param_name, param_value_size, param_value, param_value_size_ret)
 );
+
+CXXTEST_MOCK_GLOBAL(cl_kernel, clCreateKernel,
+  ( cl_program program, const char* kernel_name, cl_int* errcode_ret),
+  ( program, kernel_name, errcode_ret )
+);
+CXXTEST_MOCK_GLOBAL(cl_int, clCreateKernelsInProgram,
+  ( cl_program program, cl_uint num_kernels, cl_kernel* kernels, cl_uint* num_kernels_ret),
+  ( program, num_kernels, kernels, num_kernels_ret )
+);
+
+CXXTEST_MOCK_GLOBAL(cl_int, clGetKernelInfo,
+  ( cl_kernel kernel, cl_kernel_info param_name,
+    size_t param_value_size, void* param_value, size_t* param_value_size_ret),
+  ( kernel, param_name, param_value_size, param_value, param_value_size_ret)
+);
+
+#if CLXX_OPENCL_ALLOWED(clGetKernelArgInfo)
+CXXTEST_MOCK_GLOBAL(cl_int, clGetKernelArgInfo,
+  ( cl_kernel kernel, cl_uint arg_index, cl_kernel_arg_info param_name,
+    size_t param_value_size, void* param_value, size_t* param_value_size_ret),
+  ( kernel, arg_index, param_name, param_value_size, param_value, param_value_size_ret)
+);
+#endif
+
+CXXTEST_MOCK_GLOBAL(cl_int, clGetKernelWorkGroupInfo,
+  ( cl_kernel kernel, cl_device_id device, cl_kernel_work_group_info param_name,
+    size_t param_value_size, void* param_value, size_t* param_value_size_ret),
+  ( kernel, device, param_name, param_value_size, param_value, param_value_size_ret)
+);
+
+CXXTEST_MOCK_GLOBAL(cl_int, clRetainKernel, (cl_kernel kernel), (kernel));
+CXXTEST_MOCK_GLOBAL(cl_int, clReleaseKernel, (cl_kernel kernel), (kernel));
+
+CXXTEST_MOCK_GLOBAL(cl_int, clSetKernelArg,
+  ( cl_kernel kernel, cl_uint arg_index, size_t arg_size, const void* arg_value),
+  ( kernel, arg_index, arg_size, arg_value )
+);
+
+#if CLXX_OPENCL_ALLOWED(clSetKernelArgSVMPointer)
+CXXTEST_MOCK_GLOBAL(cl_int, clSetKernelArgSVMPointer,
+  ( cl_kernel kernel, cl_uint arg_index, const void* arg_value),
+  ( kernel, arg_index, arg_value )
+);
+#endif
+#if CLXX_OPENCL_ALLOWED(clSetKernelExecInfo)
+CXXTEST_MOCK_GLOBAL(cl_int, clSetKernelExecInfo,
+  ( cl_kernel kernel, cl_kernel_exec_info param_name, size_t param_value_size, const void* param_value),
+  ( kernel, param_name, param_value_size, param_value )
+);
+#endif
 /** \endcond */
 
 #include <clxx/cl/mocks/newton.hpp>

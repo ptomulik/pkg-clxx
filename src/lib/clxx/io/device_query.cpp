@@ -5,7 +5,7 @@
 
 /** // doc: clxx/io/device_query.cpp {{{
  * \file clxx/io/device_query.cpp
- * \todo Write documentation
+ * \brief Instantiates templates of I/O routines for \ref clxx::device_query "device_query"
  */ // }}}
 #include <ostream>
 

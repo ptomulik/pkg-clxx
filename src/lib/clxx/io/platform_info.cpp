@@ -5,7 +5,7 @@
 
 /** // doc: clxx/io/platform_info.cpp {{{
  * \file clxx/io/platform_info.cpp
- * \todo Write documentation
+ * \brief Instantiates template I/O functions for \ref clxx::platform_info "platform_info" objects
  */ // }}}
 #include <ostream>
 

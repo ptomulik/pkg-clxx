@@ -16,7 +16,7 @@
 #include <clxx/context.i.hpp>
 #include <clxx/program_sources.i.hpp>
 #include <clxx/program_binaries.i.hpp>
-#include <clxx/string.i.hpp>
+#include <clxx/std/string.i.hpp>
 
 // stuff included by this module
 #include <clxx/program.hpp>

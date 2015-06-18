@@ -5,7 +5,7 @@
 
 /** // doc: clxx/device_query.cpp {{{
  * \file clxx/device_query.cpp
- * \todo Write documentation
+ * \brief Implements the \ref clxx::device_query "device_query" class
  */ // }}}
 #include <clxx/device_query.hpp>
 
@@ -13,44 +13,44 @@ namespace clxx {
 
 /* ------------------------------------------------------------------------ */
 device_query::
-device_query()
+device_query() noexcept
 {
   _init(true);
 }
 /* ------------------------------------------------------------------------ */
 device_query::
-device_query(bool flag)
+device_query(bool flag) noexcept
 {
   _init(flag);
 }
 /* ------------------------------------------------------------------------ */
 device_query::
-~device_query()
+~device_query() noexcept
 {
 }
 /* ------------------------------------------------------------------------ */
 device_query& device_query::
-select_all()
+select_all() noexcept
 {
   this->_select(true);
   return *this;
 }
 /* ------------------------------------------------------------------------ */
 device_query& device_query::
-select_none()
+select_none() noexcept
 {
   this->_select(false);
   return *this;
 }
 /* ------------------------------------------------------------------------ */
 device_query& device_query::
-select_default()
+select_default() noexcept
 {
   return this->select_all();
 }
 /* ------------------------------------------------------------------------ */
 device_query& device_query::
-restrict_to(int major, int minor)
+restrict_to(int major, int minor) noexcept
 {
   if(major == 1 && minor < 1)
     {
@@ -89,13 +89,13 @@ restrict_to(int major, int minor)
 }
 /* ------------------------------------------------------------------------ */
 void device_query::
-_init(bool flag)
+_init(bool flag) noexcept
 {
   this->_select(flag);
 }
 /* ------------------------------------------------------------------------ */
 void device_query::
-_select(bool flag)
+_select(bool flag) noexcept
 {
   this -> select_id(flag);
   this -> select_type(flag);
@@ -175,7 +175,7 @@ _select(bool flag)
   this -> select_image_base_address_alignment(flag);
 }
 /* ------------------------------------------------------------------------ */
-bool operator== (device_query const& a, device_query const& b)
+bool operator== (device_query const& a, device_query const& b) noexcept
 {
   return (a.id_selected() == b.id_selected()
        && a.type_selected() == b.type_selected()

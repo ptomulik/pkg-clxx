@@ -5,7 +5,7 @@
 
 /** // doc: clxx/device_partition_properties.hpp {{{
  * \file clxx/device_partition_properties.hpp
- * \todo Write documentation
+ * \brief Defines the \ref clxx::device_partition_properties "device_partition_properties"
  */ // }}}
 #ifndef CLXX_DEVICE_PARTITION_PROPERTIES_HPP_INCLUDED
 #define CLXX_DEVICE_PARTITION_PROPERTIES_HPP_INCLUDED
@@ -21,7 +21,7 @@ namespace clxx {
  */ // }}}
 typedef std::vector<device_partition_property> device_partition_properties;
 
-/** \ingroup clxx_platform_layer
+/** \addtogroup clxx_platform_layer
  * @{ */
 /** // doc: device_partition_properties_array_size(const device_partition_properties&) {{{
  * \brief Compute minium size of C array necessary to store context properties

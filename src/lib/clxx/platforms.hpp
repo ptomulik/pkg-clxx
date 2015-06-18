@@ -24,8 +24,8 @@ namespace clxx {
  */ // }}}
 typedef std::vector<platform> platforms;
 
-/** \ingroup clxx_platform_layer */
-/** @{ */
+/** \addtogroup clxx_platform_layer
+ *  @{ */
 /** // {{{ doc: get_num_platforms()
  * \brief Get number of OpenCL platforms available locally.
  *

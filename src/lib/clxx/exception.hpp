@@ -102,7 +102,7 @@ struct exception
       );
     }
     /** // doc: ~exception() {{{
-     * \todo Write documentation
+     * \brief Destructor
      */ // }}}
     virtual ~exception() noexcept { }
   };

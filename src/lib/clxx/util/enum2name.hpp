@@ -16,7 +16,10 @@
 
 namespace clxx {
 /** // doc: enum2name(status_t, char const*) {{{
- * \todo Write documentation
+ * \brief Convert #status_t to C string (human-readable enum name)
+ * \param x The enum value to be converted
+ * \param dflt A pointer to string to be returned in case \e x is not recognized by #enum2name()
+ * \returns A null-terminated C string containig the enum name of value \e x
  */ // }}}
 constexpr char const*
 enum2name(status_t x, char const* dflt = nullptr) noexcept
@@ -88,6 +91,10 @@ enum2name(status_t x, char const* dflt = nullptr) noexcept
           (x == status_t::invalid_linker_options) ? "invalid_linker_options" :
           (x == status_t::invalid_device_partition_count) ? "invalid_device_partition_count" :
 #endif
+#if CL_VERSION_2_0
+          (x == status_t::invalid_pipe_size) ? "invalid_pipe_size" :
+          (x == status_t::invalid_device_queue) ? "invalid_device_queue" :
+#endif
 #if cl_khr_icd
           (x == status_t::platform_not_found_khr) ? "platform_not_found_khr" :
 #endif
@@ -120,7 +127,10 @@ enum2name(status_t x, char const* dflt = nullptr) noexcept
           dflt;
 }
 /** // doc: enum2name(platform_info_t, char const*) {{{
- * \todo Write documentation
+ * \brief Convert #platform_info_t to C string (human-readable enum name)
+ * \param x The enum value to be converted
+ * \param dflt A pointer to string to be returned in case \e x is not recognized by #enum2name()
+ * \returns A null-terminated C string containig the enum name of value \e x
  */ // }}}
 constexpr char const*
 enum2name(platform_info_t x, char const* dflt = nullptr) noexcept
@@ -133,7 +143,10 @@ enum2name(platform_info_t x, char const* dflt = nullptr) noexcept
           dflt;
 }
 /** // doc: enum2name(device_type_t, char const*) {{{
- * \todo Write documentation
+ * \brief Convert #device_type_t to C string (human-readable enum name)
+ * \param x The enum value to be converted
+ * \param dflt A pointer to string to be returned in case \e x is not recognized by #enum2name()
+ * \returns A null-terminated C string containig the enum name of value \e x
  */ // }}}
 constexpr char const*
 enum2name(device_type_t x, char const* dflt = nullptr) noexcept
@@ -150,7 +163,10 @@ enum2name(device_type_t x, char const* dflt = nullptr) noexcept
           dflt;
 }
 /** // doc: enum2name(device_info_t, char const*) {{{
- * \todo Write documentation
+ * \brief Convert #device_info_t to C string (human-readable enum name)
+ * \param x The enum value to be converted
+ * \param dflt A pointer to string to be returned in case \e x is not recognized by #enum2name()
+ * \returns A null-terminated C string containig the enum name of value \e x
  */ // }}}
 constexpr char const*
 enum2name(device_info_t x, char const* dflt = nullptr) noexcept
@@ -239,7 +255,10 @@ enum2name(device_info_t x, char const* dflt = nullptr) noexcept
           dflt;
 }
 /** // doc: enum2name(device_fp_config_t, char const*) {{{
- * \todo Write documentation
+ * \brief Convert #device_fp_config_t to C string (human-readable enum name)
+ * \param x The enum value to be converted
+ * \param dflt A pointer to string to be returned in case \e x is not recognized by #enum2name()
+ * \returns A null-terminated C string containig the enum name of value \e x
  */ // }}}
 constexpr char const*
 enum2name(device_fp_config_t x, char const* dflt = nullptr) noexcept
@@ -260,7 +279,10 @@ enum2name(device_fp_config_t x, char const* dflt = nullptr) noexcept
           dflt;
 }
 /** // doc: enum2name(device_mem_cache_type_t, char const*) {{{
- * \todo Write documentation
+ * \brief Convert #device_mem_cache_type_t to C string (human-readable enum name)
+ * \param x The enum value to be converted
+ * \param dflt A pointer to string to be returned in case \e x is not recognized by #enum2name()
+ * \returns A null-terminated C string containig the enum name of value \e x
  */ // }}}
 constexpr char const*
 enum2name(device_mem_cache_type_t x, char const* dflt = nullptr) noexcept
@@ -271,7 +293,10 @@ enum2name(device_mem_cache_type_t x, char const* dflt = nullptr) noexcept
           dflt;
 }
 /** // doc: enum2name(device_local_mem_type_t, char const*) {{{
- * \todo Write documentation
+ * \brief Convert #device_local_mem_type_t to C string (human-readable enum name)
+ * \param x The enum value to be converted
+ * \param dflt A pointer to string to be returned in case \e x is not recognized by #enum2name()
+ * \returns A null-terminated C string containig the enum name of value \e x
  */ // }}}
 constexpr char const*
 enum2name(device_local_mem_type_t x, char const* dflt = nullptr) noexcept
@@ -281,7 +306,10 @@ enum2name(device_local_mem_type_t x, char const* dflt = nullptr) noexcept
           dflt;
 }
 /** // doc: enum2name(device_exec_capabilities_t, char const*) {{{
- * \todo Write documentation
+ * \brief Convert #device_exec_capabilities_t to C string (human-readable enum name)
+ * \param x The enum value to be converted
+ * \param dflt A pointer to string to be returned in case \e x is not recognized by #enum2name()
+ * \returns A null-terminated C string containig the enum name of value \e x
  */ // }}}
 constexpr char const*
 enum2name(device_exec_capabilities_t x, char const* dflt = nullptr) noexcept
@@ -292,7 +320,10 @@ enum2name(device_exec_capabilities_t x, char const* dflt = nullptr) noexcept
           dflt;
 }
 /** // doc: enum2name(command_queue_properties_t, char const*) {{{
- * \todo Write documentation
+ * \brief Convert #command_queue_properties_t to C string (human-readable enum name)
+ * \param x The enum value to be converted
+ * \param dflt A pointer to string to be returned in case \e x is not recognized by #enum2name()
+ * \returns A null-terminated C string containig the enum name of value \e x
  */ // }}}
 constexpr char const*
 enum2name(command_queue_properties_t x, char const* dflt = nullptr) noexcept
@@ -303,7 +334,10 @@ enum2name(command_queue_properties_t x, char const* dflt = nullptr) noexcept
           dflt;
 }
 /** // doc: enum2name(context_info_t, char const*) {{{
- * \todo Write documentation
+ * \brief Convert #context_info_t to C string (human-readable enum name)
+ * \param x The enum value to be converted
+ * \param dflt A pointer to string to be returned in case \e x is not recognized by #enum2name()
+ * \returns A null-terminated C string containig the enum name of value \e x
  */ // }}}
 constexpr char const*
 enum2name(context_info_t x, char const* dflt = nullptr) noexcept
@@ -317,7 +351,10 @@ enum2name(context_info_t x, char const* dflt = nullptr) noexcept
           dflt;
 }
 /** // doc: enum2name(context_properties_t, char const*) {{{
- * \todo Write documentation
+ * \brief Convert #context_properties_t to C string (human-readable enum name)
+ * \param x The enum value to be converted
+ * \param dflt A pointer to string to be returned in case \e x is not recognized by #enum2name()
+ * \returns A null-terminated C string containig the enum name of value \e x
  */ // }}}
 constexpr char const*
 enum2name(context_properties_t x, char const* dflt = nullptr) noexcept
@@ -347,7 +384,10 @@ enum2name(context_properties_t x, char const* dflt = nullptr) noexcept
           dflt;
 }
 /** // doc: enum2name(device_partition_property_t, char const*) {{{
- * \todo Write documentation
+ * \brief Convert #device_partition_property_t to C string (human-readable enum name)
+ * \param x The enum value to be converted
+ * \param dflt A pointer to string to be returned in case \e x is not recognized by #enum2name()
+ * \returns A null-terminated C string containig the enum name of value \e x
  */ // }}}
 #if CL_VERSION_1_2
 constexpr char const*
@@ -361,7 +401,10 @@ enum2name(device_partition_property_t x, char const* dflt = nullptr) noexcept
 }
 #endif
 /** // doc: enum2name(device_affinity_domain_t, char const*) {{{
- * \todo Write documentation
+ * \brief Convert #device_affinity_domain_t to C string (human-readable enum name)
+ * \param x The enum value to be converted
+ * \param dflt A pointer to string to be returned in case \e x is not recognized by #enum2name()
+ * \returns A null-terminated C string containig the enum name of value \e x
  */ // }}}
 #if CL_VERSION_1_2
 constexpr char const*
@@ -378,7 +421,10 @@ enum2name(device_affinity_domain_t x, char const* dflt = nullptr) noexcept
 }
 #endif
 /** // doc: enum2name(command_queue_info_t, char const*) {{{
- * \todo Write documentation
+ * \brief Convert #command_queue_info_t to C string (human-readable enum name)
+ * \param x The enum value to be converted
+ * \param dflt A pointer to string to be returned in case \e x is not recognized by #enum2name()
+ * \returns A null-terminated C string containig the enum name of value \e x
  */ // }}}
 constexpr char const*
 enum2name(command_queue_info_t x, char const* dflt = nullptr) noexcept
@@ -390,7 +436,10 @@ enum2name(command_queue_info_t x, char const* dflt = nullptr) noexcept
           dflt;
 }
 /** // doc: enum2name(mem_flags_t, char const*) {{{
- * \todo Write documentation
+ * \brief Convert #mem_flags_t to C string (human-readable enum name)
+ * \param x The enum value to be converted
+ * \param dflt A pointer to string to be returned in case \e x is not recognized by #enum2name()
+ * \returns A null-terminated C string containig the enum name of value \e x
  */ // }}}
 constexpr char const*
 enum2name(mem_flags_t x, char const* dflt = nullptr) noexcept
@@ -410,7 +459,10 @@ enum2name(mem_flags_t x, char const* dflt = nullptr) noexcept
           dflt;
 }
 /** // doc: enum2name(mem_migration_flags_t, char const*) {{{
- * \todo Write documentation
+ * \brief Convert #mem_migration_flags_t to C string (human-readable enum name)
+ * \param x The enum value to be converted
+ * \param dflt A pointer to string to be returned in case \e x is not recognized by #enum2name()
+ * \returns A null-terminated C string containig the enum name of value \e x
  */ // }}}
 #if CL_VERSION_1_2
 constexpr char const*
@@ -423,7 +475,10 @@ enum2name(mem_migration_flags_t x, char const* dflt = nullptr) noexcept
 }
 #endif
 /** // doc: enum2name(channel_order_t, char const*) {{{
- * \todo Write documentation
+ * \brief Convert #channel_order_t to C string (human-readable enum name)
+ * \param x The enum value to be converted
+ * \param dflt A pointer to string to be returned in case \e x is not recognized by #enum2name()
+ * \returns A null-terminated C string containig the enum name of value \e x
  */ // }}}
 constexpr char const*
 enum2name(channel_order_t x, char const* dflt = nullptr) noexcept
@@ -450,7 +505,10 @@ enum2name(channel_order_t x, char const* dflt = nullptr) noexcept
           dflt;
 }
 /** // doc: enum2name(channel_type_t, char const*) {{{
- * \todo Write documentation
+ * \brief Convert #channel_type_t to C string (human-readable enum name)
+ * \param x The enum value to be converted
+ * \param dflt A pointer to string to be returned in case \e x is not recognized by #enum2name()
+ * \returns A null-terminated C string containig the enum name of value \e x
  */ // }}}
 constexpr char const*
 enum2name(channel_type_t x, char const* dflt = nullptr) noexcept
@@ -476,7 +534,10 @@ enum2name(channel_type_t x, char const* dflt = nullptr) noexcept
           dflt;
 }
 /** // doc: enum2name(mem_object_type_t, char const*) {{{
- * \todo Write documentation
+ * \brief Convert #mem_object_type_t to C string (human-readable enum name)
+ * \param x The enum value to be converted
+ * \param dflt A pointer to string to be returned in case \e x is not recognized by #enum2name()
+ * \returns A null-terminated C string containig the enum name of value \e x
  */ // }}}
 constexpr char const*
 enum2name(mem_object_type_t x, char const* dflt = nullptr) noexcept
@@ -493,7 +554,10 @@ enum2name(mem_object_type_t x, char const* dflt = nullptr) noexcept
           dflt;
 }
 /** // doc: enum2name(mem_info_t, char const*) {{{
- * \todo Write documentation
+ * \brief Convert #mem_info_t to C string (human-readable enum name)
+ * \param x The enum value to be converted
+ * \param dflt A pointer to string to be returned in case \e x is not recognized by #enum2name()
+ * \returns A null-terminated C string containig the enum name of value \e x
  */ // }}}
 constexpr char const*
 enum2name(mem_info_t x, char const* dflt = nullptr) noexcept
@@ -512,7 +576,10 @@ enum2name(mem_info_t x, char const* dflt = nullptr) noexcept
           dflt;
 }
 /** // doc: enum2name(image_info_t, char const*) {{{
- * \todo Write documentation
+ * \brief Convert #image_info_t to C string (human-readable enum name)
+ * \param x The enum value to be converted
+ * \param dflt A pointer to string to be returned in case \e x is not recognized by #enum2name()
+ * \returns A null-terminated C string containig the enum name of value \e x
  */ // }}}
 constexpr char const*
 enum2name(image_info_t x, char const* dflt = nullptr) noexcept
@@ -533,7 +600,10 @@ enum2name(image_info_t x, char const* dflt = nullptr) noexcept
           dflt;
 }
 /** // doc: enum2name(addressing_mode_t, char const*) {{{
- * \todo Write documentation
+ * \brief Convert #addressing_mode_t to C string (human-readable enum name)
+ * \param x The enum value to be converted
+ * \param dflt A pointer to string to be returned in case \e x is not recognized by #enum2name()
+ * \returns A null-terminated C string containig the enum name of value \e x
  */ // }}}
 constexpr char const*
 enum2name(addressing_mode_t x, char const* dflt = nullptr) noexcept
@@ -548,7 +618,10 @@ enum2name(addressing_mode_t x, char const* dflt = nullptr) noexcept
           dflt;
 }
 /** // doc: enum2name(filter_mode_t, char const*) {{{
- * \todo Write documentation
+ * \brief Convert #filter_mode_t to C string (human-readable enum name)
+ * \param x The enum value to be converted
+ * \param dflt A pointer to string to be returned in case \e x is not recognized by #enum2name()
+ * \returns A null-terminated C string containig the enum name of value \e x
  */ // }}}
 constexpr char const*
 enum2name(filter_mode_t x, char const* dflt = nullptr) noexcept
@@ -558,7 +631,10 @@ enum2name(filter_mode_t x, char const* dflt = nullptr) noexcept
           dflt;
 }
 /** // doc: enum2name(sampler_info_t, char const*) {{{
- * \todo Write documentation
+ * \brief Convert #sampler_info_t to C string (human-readable enum name)
+ * \param x The enum value to be converted
+ * \param dflt A pointer to string to be returned in case \e x is not recognized by #enum2name()
+ * \returns A null-terminated C string containig the enum name of value \e x
  */ // }}}
 constexpr char const*
 enum2name(sampler_info_t x, char const* dflt = nullptr) noexcept
@@ -571,7 +647,10 @@ enum2name(sampler_info_t x, char const* dflt = nullptr) noexcept
           dflt;
 }
 /** // doc: enum2name(mem_flags_t, char const*) {{{
- * \todo Write documentation
+ * \brief Convert #map_flags_t to C string (human-readable enum name)
+ * \param x The enum value to be converted
+ * \param dflt A pointer to string to be returned in case \e x is not recognized by #enum2name()
+ * \returns A null-terminated C string containig the enum name of value \e x
  */ // }}}
 constexpr char const*
 enum2name(map_flags_t x, char const* dflt = nullptr) noexcept
@@ -585,7 +664,10 @@ enum2name(map_flags_t x, char const* dflt = nullptr) noexcept
           dflt;
 }
 /** // doc: enum2name(program_info_t, char const*) {{{
- * \todo Write documentation
+ * \brief Convert #program_info_t to C string (human-readable enum name)
+ * \param x The enum value to be converted
+ * \param dflt A pointer to string to be returned in case \e x is not recognized by #enum2name()
+ * \returns A null-terminated C string containig the enum name of value \e x
  */ // }}}
 constexpr char const*
 enum2name(program_info_t x, char const* dflt = nullptr) noexcept
@@ -604,7 +686,10 @@ enum2name(program_info_t x, char const* dflt = nullptr) noexcept
           dflt;
 }
 /** // doc: enum2name(program_build_info_t, char const*) {{{
- * \todo Write documentation
+ * \brief Convert #program_build_info_t to C string (human-readable enum name)
+ * \param x The enum value to be converted
+ * \param dflt A pointer to string to be returned in case \e x is not recognized by #enum2name()
+ * \returns A null-terminated C string containig the enum name of value \e x
  */ // }}}
 constexpr char const*
 enum2name(program_build_info_t x, char const* dflt = nullptr) noexcept
@@ -618,7 +703,10 @@ enum2name(program_build_info_t x, char const* dflt = nullptr) noexcept
           dflt;
 }
 /** // doc: enum2name(program_binary_type_t, char const*) {{{
- * \todo Write documentation
+ * \brief Convert #program_binary_type_t to C string (human-readable enum name)
+ * \param x The enum value to be converted
+ * \param dflt A pointer to string to be returned in case \e x is not recognized by #enum2name()
+ * \returns A null-terminated C string containig the enum name of value \e x
  */ // }}}
 #if CL_VERSION_1_2
 constexpr char const*
@@ -632,7 +720,10 @@ enum2name(program_binary_type_t x, char const* dflt = nullptr) noexcept
 }
 #endif
 /** // doc: enum2name(build_status_t, char const*) {{{
- * \todo Write documentation
+ * \brief Convert #build_status_t to C string (human-readable enum name)
+ * \param x The enum value to be converted
+ * \param dflt A pointer to string to be returned in case \e x is not recognized by #enum2name()
+ * \returns A null-terminated C string containig the enum name of value \e x
  */ // }}}
 constexpr char const*
 enum2name(build_status_t x, char const* dflt = nullptr) noexcept
@@ -644,7 +735,10 @@ enum2name(build_status_t x, char const* dflt = nullptr) noexcept
           dflt;
 }
 /** // doc: enum2name(kernel_info_t, char const*) {{{
- * \todo Write documentation
+ * \brief Convert #kernel_info_t to C string (human-readable enum name)
+ * \param x The enum value to be converted
+ * \param dflt A pointer to string to be returned in case \e x is not recognized by #enum2name()
+ * \returns A null-terminated C string containig the enum name of value \e x
  */ // }}}
 constexpr char const*
 enum2name(kernel_info_t x, char const* dflt = nullptr) noexcept
@@ -660,7 +754,10 @@ enum2name(kernel_info_t x, char const* dflt = nullptr) noexcept
           dflt;
 }
 /** // doc: enum2name(kernel_arg_info_t, char const*) {{{
- * \todo Write documentation
+ * \brief Convert #kernel_arg_info_t to C string (human-readable enum name)
+ * \param x The enum value to be converted
+ * \param dflt A pointer to string to be returned in case \e x is not recognized by #enum2name()
+ * \returns A null-terminated C string containig the enum name of value \e x
  */ // }}}
 #if CL_VERSION_1_2
 constexpr char const*
@@ -675,7 +772,10 @@ enum2name(kernel_arg_info_t x, char const* dflt = nullptr) noexcept
 }
 #endif
 /** // doc: enum2name(kernel_arg_address_qualifier_t, char const*) {{{
- * \todo Write documentation
+ * \brief Convert #kernel_arg_address_qualifier_t to C string (human-readable enum name)
+ * \param x The enum value to be converted
+ * \param dflt A pointer to string to be returned in case \e x is not recognized by #enum2name()
+ * \returns A null-terminated C string containig the enum name of value \e x
  */ // }}}
 #if CL_VERSION_1_2
 constexpr char const*
@@ -689,7 +789,10 @@ enum2name(kernel_arg_address_qualifier_t x, char const* dflt = nullptr) noexcept
 }
 #endif
 /** // doc: enum2name(kernel_arg_access_qualifier_t, char const*) {{{
- * \todo Write documentation
+ * \brief Convert #kernel_arg_access_qualifier_t to C string (human-readable enum name)
+ * \param x The enum value to be converted
+ * \param dflt A pointer to string to be returned in case \e x is not recognized by #enum2name()
+ * \returns A null-terminated C string containig the enum name of value \e x
  */ // }}}
 #if CL_VERSION_1_2
 constexpr char const*
@@ -703,7 +806,10 @@ enum2name(kernel_arg_access_qualifier_t x, char const* dflt = nullptr) noexcept
 }
 #endif
 /** // doc: enum2name(kernel_arg_type_qualifier_t, char const*) {{{
- * \todo Write documentation
+ * \brief Convert #kernel_arg_type_qualifier_t to C string (human-readable enum name)
+ * \param x The enum value to be converted
+ * \param dflt A pointer to string to be returned in case \e x is not recognized by #enum2name()
+ * \returns A null-terminated C string containig the enum name of value \e x
  */ // }}}
 #if CL_VERSION_1_2
 constexpr char const*
@@ -717,7 +823,10 @@ enum2name(kernel_arg_type_qualifier_t x, char const* dflt = nullptr) noexcept
 }
 #endif
 /** // doc: enum2name(kernel_work_group_info_t, char const*) {{{
- * \todo Write documentation
+ * \brief Convert #kernel_work_group_info_t to C string (human-readable enum name)
+ * \param x The enum value to be converted
+ * \param dflt A pointer to string to be returned in case \e x is not recognized by #enum2name()
+ * \returns A null-terminated C string containig the enum name of value \e x
  */ // }}}
 constexpr char const*
 enum2name(kernel_work_group_info_t x, char const* dflt = nullptr) noexcept
@@ -735,7 +844,10 @@ enum2name(kernel_work_group_info_t x, char const* dflt = nullptr) noexcept
           dflt;
 }
 /** // doc: enum2name(event_info_t, char const*) {{{
- * \todo Write documentation
+ * \brief Convert #event_info_t to C string (human-readable enum name)
+ * \param x The enum value to be converted
+ * \param dflt A pointer to string to be returned in case \e x is not recognized by #enum2name()
+ * \returns A null-terminated C string containig the enum name of value \e x
  */ // }}}
 constexpr char const*
 enum2name(event_info_t x, char const* dflt = nullptr) noexcept
@@ -750,7 +862,10 @@ enum2name(event_info_t x, char const* dflt = nullptr) noexcept
           dflt;
 }
 /** // doc: enum2name(command_type_t, char const*) {{{
- * \todo Write documentation
+ * \brief Convert #command_type_t to C string (human-readable enum name)
+ * \param x The enum value to be converted
+ * \param dflt A pointer to string to be returned in case \e x is not recognized by #enum2name()
+ * \returns A null-terminated C string containig the enum name of value \e x
  */ // }}}
 constexpr char const*
 enum2name(command_type_t x, char const* dflt = nullptr) noexcept
@@ -787,7 +902,10 @@ enum2name(command_type_t x, char const* dflt = nullptr) noexcept
           dflt;
 }
 /** // doc: enum2name(command_exec_status_t, char const*) {{{
- * \todo Write documentation
+ * \brief Convert #command_exec_status_t to C string (human-readable enum name)
+ * \param x The enum value to be converted
+ * \param dflt A pointer to string to be returned in case \e x is not recognized by #enum2name()
+ * \returns A null-terminated C string containig the enum name of value \e x
  */ // }}}
 constexpr char const*
 enum2name(command_exec_status_t x, char const* dflt = nullptr) noexcept
@@ -799,7 +917,10 @@ enum2name(command_exec_status_t x, char const* dflt = nullptr) noexcept
          enum2name(static_cast<status_t>(x), dflt);
 }
 /** // doc: enum2name(buffer_create_type_t, char const*) {{{
- * \todo Write documentation
+ * \brief Convert #buffer_create_type_t to C string (human-readable enum name)
+ * \param x The enum value to be converted
+ * \param dflt A pointer to string to be returned in case \e x is not recognized by #enum2name()
+ * \returns A null-terminated C string containig the enum name of value \e x
  */ // }}}
 #if CL_VERSION_1_1
 constexpr char const*
@@ -810,7 +931,10 @@ enum2name(buffer_create_type_t x, char const* dflt = nullptr) noexcept
 }
 #endif
 /** // doc: enum2name(profiling_info_t, char const*) {{{
- * \todo Write documentation
+ * \brief Convert #profiling_info_t to C string (human-readable enum name)
+ * \param x The enum value to be converted
+ * \param dflt A pointer to string to be returned in case \e x is not recognized by #enum2name()
+ * \returns A null-terminated C string containig the enum name of value \e x
  */ // }}}
 constexpr char const*
 enum2name(profiling_info_t x, char const* dflt = nullptr) noexcept

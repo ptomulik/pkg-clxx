@@ -5,7 +5,7 @@
 
 /** // doc: clxx/io/platform_query.hpp {{{
  * \file clxx/io/platform_query.hpp
- * \todo Write documentation
+ * \brief Declares I/O functions for \ref clxx::platform_query "platform_query" objects
  */ // }}}
 #ifndef CLXX_IO_PLATFORM_QUERY_HPP_INCLUDED
 #define CLXX_IO_PLATFORM_QUERY_HPP_INCLUDED
@@ -15,10 +15,8 @@
 
 namespace clxx { namespace io {
 
-/**
- * \ingroup clxx_io
- * @{
- */
+/** \addtogroup clxx_io
+ *  @{ */
 /** // doc: write(os,query){{{
  * \brief Write out clxx::platform_query object to a stream
  *

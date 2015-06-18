@@ -5,7 +5,7 @@
 
 /** // doc: clxx/devices.cpp {{{
  * \file clxx/devices.cpp
- * \todo Write documentation
+ * \brief Implements functions used to create \ref clxx::device "device" objects
  */ // }}}
 #include <clxx/devices.hpp>
 #include <clxx/functions.hpp>

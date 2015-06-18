@@ -5,7 +5,8 @@
 
 /** // doc: clxx/context_properties.hpp {{{
  * \file clxx/context_properties.hpp
- * \todo Write documentation
+ * \brief Defines \ref clxx::context_properties "context_properties" and
+ *        related functions
  */ // }}}
 #ifndef CLXX_CONTEXT_PROPERTIES_HPP_INCLUDED
 #define CLXX_CONTEXT_PROPERTIES_HPP_INCLUDED
@@ -21,7 +22,7 @@ namespace clxx {
  */ // }}}
 typedef std::vector<context_property> context_properties;
 
-/** \ingroup clxx_platform_layer
+/** \addtogroup clxx_platform_layer
  * @{ */
 /** // doc: context_properties_array_size(const context_properties&) {{{
  * \brief Compute minium size of C array necessary to store context properties

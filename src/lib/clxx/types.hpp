@@ -18,9 +18,6 @@
 #include <clxx/cl/cl.h>
 #include <clxx/macros.hpp>
 
-/** // doc: namespace clxx {{{
- * \todo Write documentation
- */ // }}}
 namespace clxx {
 /** // doc: status_t {{{
  * \brief A value returned by several functions to indicate success or failure.
@@ -32,9 +29,9 @@ namespace clxx {
  * the OpenCL standard.
  *
  * \par Supported OpenCL versions
- * |   1.0   |   1.1   |   1.2   |   2.0   |
- * | ------- | ------- | ------- | ------- |
- * | &radic; | &radic; | &radic; |         |
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |  \check |  \check |  \check |  \check |  \check |
  *
  */ // }}}
 enum class status_t : cl_int {
@@ -166,6 +163,13 @@ enum class status_t : cl_int {
   /// Corresponds to \c CL_INVALID_DEVICE_PARTITION_COUNT
   invalid_device_partition_count  = CL_INVALID_DEVICE_PARTITION_COUNT
 #endif
+#if CL_VERSION_2_0
+  ,
+  /// Corresponds to \c CL_INVALID_PIPE_SIZE
+  invalid_pipe_size               = CL_INVALID_PIPE_SIZE,
+  /// Corresponds to \c CL_INVALID_DEVICE_QUEUE
+  invalid_device_queue            = CL_INVALID_DEVICE_QUEUE
+#endif
 //
 // codes defined by OpenCL extensions
 //
@@ -251,9 +255,9 @@ constexpr bool is_error(status_t code) noexcept
  * cl_platform_info, its used by get_platform_info().
  *
  * \par Supported OpenCL versions
- * |   1.0   |   1.1   |   1.2   |   2.0   |
- * | ------- | ------- | ------- | ------- |
- * | &radic; | &radic; | &radic; |         |
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |  \check |  \check |  \check |  \check |  \check |
  *
  */ // }}}
 enum class platform_info_t : cl_platform_info {
@@ -280,9 +284,9 @@ CLXX_MAKE_INTEGER_ENUM(platform_info_t, cl_platform_info)
  * by some of clxx functions, such as get_devices().
  *
  * \par Supported OpenCL versions
- * |   1.0   |   1.1   |   1.2   |   2.0   |
- * | ------- | ------- | ------- | ------- |
- * | &radic; | &radic; | &radic; |         |
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |  \check |  \check |  \check |  \check |  \check |
  *
  */ // }}}
 enum class device_type_t : cl_device_type {
@@ -315,9 +319,9 @@ CLXX_MAKE_BITMASK_ENUM(device_type_t, cl_device_type)
  * \c cl_device_info, its used by get_device_info().
  *
  * \par Supported OpenCL versions
- * |   1.0   |   1.1   |   1.2   |   2.0   |
- * | ------- | ------- | ------- | ------- |
- * | &radic; | &radic; | &radic; |         |
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |  \check |  \check |  \check |  \check |  \check |
  *
  */ // }}}
 enum class device_info_t : cl_device_info {
@@ -494,9 +498,9 @@ CLXX_MAKE_INTEGER_ENUM(device_info_t, cl_device_info)
  * device_info_t::single_fp_config or device_info_t::double_fp_config.
  *
  * \par Supported OpenCL versions
- * |   1.0   |   1.1   |   1.2   |   2.0   |
- * | ------- | ------- | ------- | ------- |
- * | &radic; | &radic; | &radic; |         |
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |   \check  |   \check  |   \check  |   \check  |    ???    |
  *
  */ // }}}
 enum class device_fp_config_t : cl_device_fp_config {
@@ -538,9 +542,9 @@ CLXX_MAKE_BITMASK_ENUM(device_fp_config_t, cl_device_fp_config)
  * device_info_t::global_mem_cache_type.
  *
  * \par Supported OpenCL versions
- * |   1.0   |   1.1   |   1.2   |   2.0   |
- * | ------- | ------- | ------- | ------- |
- * | &radic; | &radic; | &radic; |         |
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |   \check  |   \check  |   \check  |   \check  |    ???    |
  *
  */ // }}}
 enum class device_mem_cache_type_t : cl_device_mem_cache_type {
@@ -564,9 +568,9 @@ CLXX_MAKE_INTEGER_ENUM(device_mem_cache_type_t, cl_device_mem_cache_type)
  * querying for device_info_t::local_mem_type.
  *
  * \par Supported OpenCL versions
- * |   1.0   |   1.1   |   1.2   |   2.0   |
- * | ------- | ------- | ------- | ------- |
- * | &radic; | &radic; | &radic; |         |
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |   \check  |   \check  |   \check  |   \check  |    ???    |
  *
  */ // }}}
 enum class device_local_mem_type_t : cl_device_local_mem_type {
@@ -588,9 +592,9 @@ CLXX_MAKE_INTEGER_ENUM(device_local_mem_type_t, cl_device_local_mem_type)
  * querying for device_info_t::execution_capabilities.
  *
  * \par Supported OpenCL versions
- * |   1.0   |   1.1   |   1.2   |   2.0   |
- * | ------- | ------- | ------- | ------- |
- * | &radic; | &radic; | &radic; |         |
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |   \check  |   \check  |   \check  |   \check  |    ???    |
  *
  */ // }}}
 enum class device_exec_capabilities_t : cl_device_exec_capabilities {
@@ -614,9 +618,9 @@ CLXX_MAKE_BITMASK_ENUM(device_exec_capabilities_t, cl_device_exec_capabilities)
  * get_device_info() when querying for device_info_t::queue_properties.
  *
  * \par Supported OpenCL versions
- * |   1.0   |   1.1   |   1.2   |   2.0   |
- * | ------- | ------- | ------- | ------- |
- * | &radic; | &radic; | &radic; |         |
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |   \check  |   \check  |   \check  |   \check  |    ???    |
  *
  * \todo Elaborate how to map \c clCreateCommandQueue() case to CLXX.
  *
@@ -641,9 +645,9 @@ CLXX_MAKE_BITMASK_ENUM(command_queue_properties_t, cl_command_queue_properties)
  * by get_context_info() for the same purpose.
  *
  * \par Supported OpenCL versions
- * |   1.0   |   1.1   |   1.2   |   2.0   |
- * | ------- | ------- | ------- | ------- |
- * | &radic; | &radic; | &radic; |         |
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |   \check  |   \check  |   \check  |   \check  |    ???    |
  *
  */ // }}}
 enum class context_info_t : cl_context_info {
@@ -671,9 +675,9 @@ CLXX_MAKE_INTEGER_ENUM(context_info_t, cl_context_info)
  * get_context_properties() when querying for context_info_t::properties.
  *
  * \par Supported OpenCL versions
- * |   1.0   |   1.1   |   1.2   |   2.0   |
- * | ------- | ------- | ------- | ------- |
- * | &radic; | &radic; | &radic; |         |
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |   \check  |   \check  |   \check  |   \check  |    ???    |
  *
  */ // }}}
 enum class context_properties_t : cl_context_properties {
@@ -733,9 +737,9 @@ CLXX_MAKE_INTEGER_ENUM(context_properties_t, cl_context_properties)
  * device_info_t::partition_type.
  *
  * \par Supported OpenCL versions
- * |   1.0   |   1.1   |   1.2   |   2.0   |
- * | ------- | ------- | ------- | ------- |
- * | &radic; | &radic; | &radic; |         |
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |   \check  |   \check  |   \check  |   \check  |    ???    |
  *
  * \todo Elaborate how to cover the \c clCreateSubDevices() case.
  *
@@ -767,9 +771,9 @@ CLXX_MAKE_INTEGER_ENUM(device_partition_property_t, cl_device_partition_property
  * device_info_t::partition_affinity_domain.
  *
  * \par Supported OpenCL versions
- * |   1.0   |   1.1   |   1.2   |   2.0   |
- * | ------- | ------- | ------- | ------- |
- * |         |         | &radic; |         |
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |           |           |   \check  |   \check  |    ???    |
  *
  * \todo Elaborate how to cover the \c clCreateSubDevices() case.
  *
@@ -803,9 +807,9 @@ CLXX_MAKE_BITMASK_ENUM(device_affinity_domain_t, cl_device_affinity_domain)
  * It's used by get_command_queue_info() for the same purpose.
  *
  * \par Supported OpenCL versions
- * |   1.0   |   1.1   |   1.2   |   2.0   |
- * | ------- | ------- | ------- | ------- |
- * | &radic; | &radic; | &radic; |         |
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |   \check  |   \check  |   \check  |   \check  |    ???    |
  *
  */ // }}}
 enum class command_queue_info_t : cl_command_queue_info {
@@ -830,9 +834,9 @@ CLXX_MAKE_INTEGER_ENUM(command_queue_info_t, cl_command_queue_info)
  * the \c cl_mem_flags.
  *
  * \par Supported OpenCL versions
- * |   1.0   |   1.1   |   1.2   |   2.0   |
- * | ------- | ------- | ------- | ------- |
- * | &radic; | &radic; | &radic; |         |
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |   \check  |   \check  |   \check  |   \check  |    ???    |
  *
  * \todo Elaborate where and how the \ref clxx::mem_flags_t are used.
  *
@@ -874,9 +878,9 @@ CLXX_MAKE_BITMASK_ENUM(mem_flags_t, cl_mem_flags)
  * C++ equivalent of the \c cl_mem_migration_flags.
  *
  * \par Supported OpenCL versions
- * |   1.0   |   1.1   |   1.2   |   2.0   |
- * | ------- | ------- | ------- | ------- |
- * |         |         | &radic; |         |
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |           |           |   \check  |   \check  |    ???    |
  *
  * \todo Elaborate where and how is the \ref clxx::mem_migration_flags_t used.
  *
@@ -901,9 +905,9 @@ CLXX_MAKE_BITMASK_ENUM(mem_migration_flags_t, cl_mem_migration_flags)
  * \c cl_channel_order.
  *
  * \par Supported OpenCL versions
- * |   1.0   |   1.1   |   1.2   |   2.0   |
- * | ------- | ------- | ------- | ------- |
- * | &radic; | &radic; | &radic; |         |
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |   \check  |   \check  |   \check  |   \check  |    ???    |
  *
  * \todo Elaborate where and how is the \ref clxx::channel_order_t used.
  *
@@ -957,9 +961,9 @@ CLXX_MAKE_INTEGER_ENUM(channel_order_t, cl_channel_order)
  * \c cl_channel_type.
  *
  * \par Supported OpenCL versions
- * |   1.0   |   1.1   |   1.2   |   2.0   |
- * | ------- | ------- | ------- | ------- |
- * | &radic; | &radic; | &radic; |         |
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |   \check  |   \check  |   \check  |   \check  |    ???    |
  *
  * \todo Elaborate where and how is the \ref clxx::channel_type_t used.
  *
@@ -1014,9 +1018,9 @@ CLXX_MAKE_INTEGER_ENUM(channel_type_t, cl_channel_type)
  * \c cl_mem_object_type.
  *
  * \par Supported OpenCL versions
- * |   1.0   |   1.1   |   1.2   |   2.0   |
- * | ------- | ------- | ------- | ------- |
- * | &radic; | &radic; | &radic; |         |
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |   \check  |   \check  |   \check  |   \check  |    ???    |
  *
  * \todo Elaborate where and how is the \ref clxx::mem_object_type_t used.
  *
@@ -1052,9 +1056,9 @@ CLXX_MAKE_INTEGER_ENUM(mem_object_type_t, cl_mem_object_type)
  * for the same purpose.
  *
  * \par Supported OpenCL versions
- * |   1.0   |   1.1   |   1.2   |   2.0   |
- * | ------- | ------- | ------- | ------- |
- * | &radic; | &radic; | &radic; |         |
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |   \check  |   \check  |   \check  |   \check  |    ???    |
  *
  */ // }}}
 enum class mem_info_t : cl_mem_info {
@@ -1092,9 +1096,9 @@ CLXX_MAKE_INTEGER_ENUM(mem_info_t, cl_mem_info)
  * for the same purpose.
  *
  * \par Supported OpenCL versions
- * |   1.0   |   1.1   |   1.2   |   2.0   |
- * | ------- | ------- | ------- | ------- |
- * | &radic; | &radic; | &radic; |         |
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |   \check  |   \check  |   \check  |   \check  |    ???    |
  *
  */ // }}}
 enum class image_info_t : cl_image_info {
@@ -1134,9 +1138,9 @@ CLXX_MAKE_INTEGER_ENUM(image_info_t, cl_image_info)
  * \ref addressing_mode_t is a C++ equivalent of the \c cl_addressing_mode.
  *
  * \par Supported OpenCL versions
- * |   1.0   |   1.1   |   1.2   |   2.0   |
- * | ------- | ------- | ------- | ------- |
- * | &radic; | &radic; | &radic; |         |
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |   \check  |   \check  |   \check  |   \check  |    ???    |
  *
  * \todo Elaborate where and how is the \ref clxx::addressing_mode_t used.
  *
@@ -1169,9 +1173,9 @@ CLXX_MAKE_INTEGER_ENUM(addressing_mode_t, cl_addressing_mode)
  * sampler_info_t::filter_mode.
  *
  * \par Supported OpenCL versions
- * |   1.0   |   1.1   |   1.2   |   2.0   |
- * | ------- | ------- | ------- | ------- |
- * | &radic; | &radic; | &radic; |         |
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |   \check  |   \check  |   \check  |   \check  |    ???    |
  *
  * \todo Elaborate how to cover the \c clCreateSampler() case.
  *
@@ -1194,9 +1198,9 @@ CLXX_MAKE_INTEGER_ENUM(filter_mode_t, cl_filter_mode)
  * used by get_sampler_info() for the same purpose.
  *
  * \par Supported OpenCL versions
- * |   1.0   |   1.1   |   1.2   |   2.0   |
- * | ------- | ------- | ------- | ------- |
- * | &radic; | &radic; | &radic; |         |
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |   \check  |   \check  |   \check  |   \check  |    ???    |
  *
  */ // }}}
 enum class sampler_info_t : cl_sampler_info {
@@ -1222,9 +1226,9 @@ CLXX_MAKE_INTEGER_ENUM(sampler_info_t, cl_sampler_info)
  * \c cl_map_flags.
  *
  * \par Supported OpenCL versions
- * |   1.0   |   1.1   |   1.2   |   2.0   |
- * | ------- | ------- | ------- | ------- |
- * | &radic; | &radic; | &radic; |         |
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |   \check  |   \check  |   \check  |   \check  |    ???    |
  *
  * \todo Elaborate where and how are the clxx::map_flags_t used.
  *
@@ -1254,9 +1258,9 @@ CLXX_MAKE_BITMASK_ENUM(map_flags_t, cl_map_flags)
  * by get_platform_info() for the same purpose.
  *
  * \par Supported OpenCL versions
- * |   1.0   |   1.1   |   1.2   |   2.0   |
- * | ------- | ------- | ------- | ------- |
- * | &radic; | &radic; | &radic; |         |
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |   \check  |   \check  |   \check  |   \check  |    ???    |
  *
  */ // }}}
 enum class program_info_t : cl_program_info {
@@ -1295,9 +1299,9 @@ CLXX_MAKE_INTEGER_ENUM(program_info_t, cl_program_info)
  * same purpose.
  *
  * \par Supported OpenCL versions
- * |   1.0   |   1.1   |   1.2   |   2.0   |
- * | ------- | ------- | ------- | ------- |
- * | &radic; | &radic; | &radic; |         |
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |   \check  |   \check  |   \check  |   \check  |    ???    |
  *
  */ // }}}
 enum class program_build_info_t : cl_program_build_info {
@@ -1327,9 +1331,9 @@ CLXX_MAKE_INTEGER_ENUM(program_build_info_t, cl_program_build_info)
  * querying for program_build_info_t::binary_type.
  *
  * \par Supported OpenCL versions
- * |   1.0   |   1.1   |   1.2   |   2.0   |
- * | ------- | ------- | ------- | ------- |
- * | &radic; | &radic; | &radic; |         |
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |   \check  |   \check  |   \check  |   \check  |    ???    |
  *
  */ // }}}
 enum class program_binary_type_t : cl_program_binary_type {
@@ -1355,9 +1359,9 @@ CLXX_MAKE_BITMASK_ENUM(program_binary_type_t, cl_program_binary_type)
  * get_program_build_info() when querying for program_build_info_t::status.
  *
  * \par Supported OpenCL versions
- * |   1.0   |   1.1   |   1.2   |   2.0   |
- * | ------- | ------- | ------- | ------- |
- * | &radic; | &radic; | &radic; |         |
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |   \check  |   \check  |   \check  |   \check  |    ???    |
  *
  */ // }}}
 enum class build_status_t : cl_build_status {
@@ -1401,9 +1405,9 @@ constexpr bool is_error(build_status_t status)
  * for the same purpose.
  *
  * \par Supported OpenCL versions
- * |   1.0   |   1.1   |   1.2   |   2.0   |
- * | ------- | ------- | ------- | ------- |
- * | &radic; | &radic; | &radic; |         |
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |   \check  |   \check  |   \check  |   \check  |    ???    |
  *
  */ // }}}
 enum class kernel_info_t : cl_kernel_info {
@@ -1436,9 +1440,9 @@ CLXX_MAKE_INTEGER_ENUM(kernel_info_t, cl_kernel_info)
  * It's used by get_kernel_arg_info() for the same purpose.
  *
  * \par Supported OpenCL versions
- * |   1.0   |   1.1   |   1.2   |   2.0   |
- * | ------- | ------- | ------- | ------- |
- * | &radic; | &radic; | &radic; |         |
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |   \check  |   \check  |   \check  |   \check  |    ???    |
  *
  */ // }}}
 enum class kernel_arg_info_t : cl_kernel_arg_info {
@@ -1457,6 +1461,30 @@ enum class kernel_arg_info_t : cl_kernel_arg_info {
 CLXX_MAKE_INTEGER_ENUM(kernel_arg_info_t, cl_kernel_arg_info)
 #endif
 
+#if CL_VERSION_2_0
+/** // doc: kernel_exec_info_t {{{
+ * \brief Corresponds to \c cl_kernel_exec_info
+ *
+ * The OpenCL's \c cl_kernel_exec_info is used by \c clSetKernelExecInfo(). The
+ * \ref kernel_exec_info_t is a C++ equivalent of the \c cl_kernel_exec_info.
+ * It's used by set_kernel_exec_info() for the same purpose.
+ *
+ * \par Supported OpenCL versions
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |           |           |           |   \check  |    ???    |
+ *
+ */ // }}}
+enum class kernel_exec_info_t : cl_kernel_exec_info {
+  /// Corresponds to \c CL_KERNEL_EXEC_INFO_SVM_PTRS
+  svm_ptrs              = CL_KERNEL_EXEC_INFO_SVM_PTRS,
+  /// Corresponds to \c CL_KERNEL_EXEC_INFO_SVM_FINE_GRAIN_SYSTEM
+  svm_fine_grain_system = CL_KERNEL_EXEC_INFO_SVM_FINE_GRAIN_SYSTEM
+};
+
+CLXX_MAKE_INTEGER_ENUM(kernel_exec_info_t, cl_kernel_exec_info)
+#endif
+
 #if CL_VERSION_1_2
 /** // doc: kernel_arg_address_qualifier_t {{{
  * \brief Corresponds to OpenCL's \c cl_kernel_arg_address_qualifier
@@ -1469,9 +1497,9 @@ CLXX_MAKE_INTEGER_ENUM(kernel_arg_info_t, cl_kernel_arg_info)
  * kernel_arg_info_t::address_qualifier.
  *
  * \par Supported OpenCL versions
- * |   1.0   |   1.1   |   1.2   |   2.0   |
- * | ------- | ------- | ------- | ------- |
- * | &radic; | &radic; | &radic; |         |
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |   \check  |   \check  |   \check  |   \check  |    ???    |
  *
  */ // }}}
 enum class kernel_arg_address_qualifier_t : cl_kernel_arg_address_qualifier {
@@ -1500,9 +1528,9 @@ CLXX_MAKE_INTEGER_ENUM(kernel_arg_address_qualifier_t, cl_kernel_arg_address_qua
  * kernel_arg_info_t::access_qualifier.
  *
  * \par Supported OpenCL versions
- * |   1.0   |   1.1   |   1.2   |   2.0   |
- * | ------- | ------- | ------- | ------- |
- * | &radic; | &radic; | &radic; |         |
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |   \check  |   \check  |   \check  |   \check  |    ???    |
  *
  */ // }}}
 enum class kernel_arg_access_qualifier_t : cl_kernel_arg_access_qualifier {
@@ -1531,9 +1559,9 @@ CLXX_MAKE_INTEGER_ENUM(kernel_arg_access_qualifier_t, cl_kernel_arg_access_quali
  * kernel_arg_info_t::type_qualifier.
  *
  * \par Supported OpenCL versions
- * |   1.0   |   1.1   |   1.2   |   2.0   |
- * | ------- | ------- | ------- | ------- |
- * | &radic; | &radic; | &radic; |         |
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |   \check  |   \check  |   \check  |   \check  |    ???    |
  *
  */ // }}}
 enum class kernel_arg_type_qualifier_t : cl_kernel_arg_type_qualifier {
@@ -1560,9 +1588,9 @@ CLXX_MAKE_BITMASK_ENUM(kernel_arg_type_qualifier_t, cl_kernel_arg_type_qualifier
  * for the same purpose.
  *
  * \par Supported OpenCL versions
- * |   1.0   |   1.1   |   1.2   |   2.0   |
- * | ------- | ------- | ------- | ------- |
- * | &radic; | &radic; | &radic; |         |
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |   \check  |   \check  |   \check  |   \check  |    ???    |
  *
  */ // }}}
 enum class kernel_work_group_info_t : cl_kernel_work_group_info {
@@ -1599,9 +1627,9 @@ CLXX_MAKE_INTEGER_ENUM(kernel_work_group_info_t, cl_kernel_work_group_info)
  * for the same purpose.
  *
  * \par Supported OpenCL versions
- * |   1.0   |   1.1   |   1.2   |   2.0   |
- * | ------- | ------- | ------- | ------- |
- * | &radic; | &radic; | &radic; |         |
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |   \check  |   \check  |   \check  |   \check  |    ???    |
  *
  */ // }}}
 enum class event_info_t : cl_event_info {
@@ -1631,9 +1659,9 @@ CLXX_MAKE_INTEGER_ENUM(event_info_t, cl_event_info)
  * when querying for event_info_t::command_type.
  *
  * \par Supported OpenCL versions
- * |   1.0   |   1.1   |   1.2   |   2.0   |
- * | ------- | ------- | ------- | ------- |
- * | &radic; | &radic; | &radic; |         |
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |   \check  |   \check  |   \check  |   \check  |    ???    |
  *
  */ // }}}
 enum class command_type_t : cl_command_type {
@@ -1704,9 +1732,9 @@ CLXX_MAKE_INTEGER_ENUM(command_type_t, cl_command_type)
  * when querying for \c CL_EVENT_COMMAND_EXECUTION_STATUS.
  *
  * \par Supported OpenCL versions
- * |   1.0   |   1.1   |   1.2   |   2.0   |
- * | ------- | ------- | ------- | ------- |
- * | &radic; | &radic; | &radic; |         |
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |   \check  |   \check  |   \check  |   \check  |    ???    |
  *
  */ // }}}
 enum class command_exec_status_t : cl_int {
@@ -1777,84 +1805,120 @@ constexpr bool is_state(command_exec_status_t status) noexcept
 }
 #if !defined(SWIG) || !CLXX_SWIG_NO_CLASS_ENUM_CMPOPS
 /** // doc: operator==(status_t, command_exec_status_t) {{{
- * \todo Write documentation
+ * \brief Compare \ref clxx::status_t "status_t" with \ref clxx::command_exec_status_t "command_exec_status_t"
+ * \param s1 First operand
+ * \param s2 Second operand
+ * \returns \c true if codes are equal or \c false otherwise
  */ // }}}
 constexpr bool operator == (status_t s1, command_exec_status_t s2) noexcept
 {
   return static_cast<cl_int>(s1) == static_cast<cl_int>(s2);
 }
 /** // doc: operator==(command_exec_status_t, status_t) {{{
- * \todo Write documentation
+ * \brief Compare \ref clxx::command_exec_status_t "command_exec_status_t" with \ref clxx::status_t "status_t"
+ * \param s1 First operand
+ * \param s2 Second operand
+ * \returns \c true if codes are equal or \c false otherwise
  */ // }}}
 constexpr bool operator == (command_exec_status_t s1, status_t s2) noexcept
 {
   return static_cast<cl_int>(s1) == static_cast<cl_int>(s2);
 }
 /** // doc: operator!=(status_t, command_exec_status_t) {{{
- * \todo Write documentation
+ * \brief Compare \ref clxx::status_t "status_t" with \ref clxx::command_exec_status_t "command_exec_status_t"
+ * \param s1 First operand
+ * \param s2 Second operand
+ * \returns \c false if codes are equal or \c true otherwise
  */ // }}}
 constexpr bool operator != (status_t s1, command_exec_status_t s2) noexcept
 {
   return static_cast<cl_int>(s1) != static_cast<cl_int>(s2);
 }
 /** // doc: operator!=(command_exec_status_t, status_t) {{{
- * \todo Write documentation
+ * \brief Compare \ref clxx::command_exec_status_t "command_exec_status_t" with \ref clxx::status_t "status_t"
+ * \param s1 First operand
+ * \param s2 Second operand
+ * \returns \c false if codes are equal or \c true otherwise
  */ // }}}
 constexpr bool operator != (command_exec_status_t s1, status_t s2) noexcept
 {
   return static_cast<cl_int>(s1) != static_cast<cl_int>(s2);
 }
 /** // doc: operator<(status_t, command_exec_status_t) {{{
- * \todo Write documentation
+ * \brief Compare \ref clxx::status_t "status_t" with \ref clxx::command_exec_status_t "command_exec_status_t"
+ * \param s1 First operand
+ * \param s2 Second operand
+ * \returns \c true if \em s1 < \em s2  or \c false otherwise
  */ // }}}
 constexpr bool operator < (status_t s1, command_exec_status_t s2) noexcept
 {
   return static_cast<cl_int>(s1) < static_cast<cl_int>(s2);
 }
 /** // doc: operator<(command_exec_status_t, status_t) {{{
- * \todo Write documentation
+ * \brief Compare \ref clxx::command_exec_status_t "command_exec_status_t" with \ref clxx::status_t "status_t"
+ * \param s1 First operand
+ * \param s2 Second operand
+ * \returns \c true if \em s1 < \em s2 or \c false otherwise
  */ // }}}
 constexpr bool operator < (command_exec_status_t s1, status_t s2) noexcept
 {
   return static_cast<cl_int>(s1) < static_cast<cl_int>(s2);
 }
 /** // doc: operator>(status_t, command_exec_status_t) {{{
- * \todo Write documentation
+ * \brief Compare \ref clxx::status_t "status_t" with \ref clxx::command_exec_status_t "command_exec_status_t"
+ * \param s1 First operand
+ * \param s2 Second operand
+ * \returns \c true if \em s1 > \em s2  or \c false otherwise
  */ // }}}
 constexpr bool operator > (status_t s1, command_exec_status_t s2) noexcept
 {
   return static_cast<cl_int>(s1) > static_cast<cl_int>(s2);
 }
 /** // doc: operator>(command_exec_status_t, status_t) {{{
- * \todo Write documentation
+ * \brief Compare \ref clxx::command_exec_status_t "command_exec_status_t" with \ref clxx::status_t "status_t"
+ * \param s1 First operand
+ * \param s2 Second operand
+ * \returns \c true if \em s1 > \em s2 or \c false otherwise
  */ // }}}
 constexpr bool operator > (command_exec_status_t s1, status_t s2) noexcept
 {
   return static_cast<cl_int>(s1) > static_cast<cl_int>(s2);
 }
 /** // doc: operator<=(status_t, command_exec_status_t) {{{
- * \todo Write documentation
+ * \brief Compare \ref clxx::status_t "status_t" with \ref clxx::command_exec_status_t "command_exec_status_t"
+ * \param s1 First operand
+ * \param s2 Second operand
+ * \returns \c true if \em s1 <= \em s2  or \c false otherwise
  */ // }}}
 constexpr bool operator <= (status_t s1, command_exec_status_t s2) noexcept
 {
   return static_cast<cl_int>(s1) <= static_cast<cl_int>(s2);
 }
 /** // doc: operator<=(command_exec_status_t, status_t) {{{
- * \todo Write documentation
+ * \brief Compare \ref clxx::command_exec_status_t "command_exec_status_t" with \ref clxx::status_t "status_t"
+ * \param s1 First operand
+ * \param s2 Second operand
+ * \returns \c true if \em s1 <= \em s2 or \c false otherwise
  */ // }}}
 constexpr bool operator <= (command_exec_status_t s1, status_t s2) noexcept
 {
   return static_cast<cl_int>(s1) <= static_cast<cl_int>(s2);
 }
 /** // doc: operator>=(status_t, command_exec_status_t) {{{
- * \todo Write documentation
+ * \brief Compare \ref clxx::status_t "status_t" with \ref clxx::command_exec_status_t "command_exec_status_t"
+ * \param s1 First operand
+ * \param s2 Second operand
+ * \returns \c true if \em s1 >= \em s2  or \c false otherwise
  */ // }}}
 constexpr bool operator >= (status_t s1, command_exec_status_t s2) noexcept
 {
   return static_cast<cl_int>(s1) >= static_cast<cl_int>(s2);
 }
 /** // doc: operator>=(command_exec_status_t, status_t) {{{
- * \todo Write documentation
+ * \brief Compare \ref clxx::command_exec_status_t "command_exec_status_t" with \ref clxx::status_t "status_t"
+ * \param s1 First operand
+ * \param s2 Second operand
+ * \returns \c true if \em s1 >= \em s2 or \c false otherwise
  */ // }}}
 constexpr bool operator >= (command_exec_status_t s1, status_t s2) noexcept
 {
@@ -1871,9 +1935,9 @@ constexpr bool operator >= (command_exec_status_t s1, status_t s2) noexcept
  * cl_buffer_create_type.
  *
  * \par Supported OpenCL versions
- * |   1.0   |   1.1   |   1.2   |   2.0   |
- * | ------- | ------- | ------- | ------- |
- * | &radic; | &radic; | &radic; |         |
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |   \check  |   \check  |   \check  |   \check  |    ???    |
  *
  * \todo Elaborate where and how the clxx::buffer_create_type_t is used.
  *
@@ -1895,9 +1959,9 @@ CLXX_MAKE_INTEGER_ENUM(buffer_create_type_t, cl_buffer_create_type)
  * used by get_event_profiling_info() for the same purpose.
  *
  * \par Supported OpenCL versions
- * |   1.0   |   1.1   |   1.2   |   2.0   |
- * | ------- | ------- | ------- | ------- |
- * | &radic; | &radic; | &radic; |         |
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |   \check  |   \check  |   \check  |   \check  |    ???    |
  *
  */ // }}}
 enum class profiling_info_t : cl_profiling_info {

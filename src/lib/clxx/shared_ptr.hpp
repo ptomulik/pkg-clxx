@@ -5,7 +5,7 @@
 
 /** // doc: clxx/shared_ptr.hpp {{{
  * \file clxx/shared_ptr.hpp
- * \todo Write documentation
+ * \brief Declares the \ref clxx::shared_ptr
  */ // }}}
 #ifndef CLXX_SHARED_PTR_HPP_INCLUDED
 #define CLXX_SHARED_PTR_HPP_INCLUDED
@@ -13,7 +13,9 @@
 #include <boost/shared_ptr.hpp>
 namespace clxx {
 /** // doc: shared_ptr {{{
- * \todo Write documentation
+ * \brief Shared pointer
+ *
+ * Currently \c boost::shared_ptr is used.
  */ // }}}
 template <typename T> using shared_ptr = boost::shared_ptr<T>;
 } // end namespace clxx

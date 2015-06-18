@@ -5,7 +5,7 @@
 
 /** // doc: clxx/app/options/exceptions.hpp {{{
  * \file clxx/app/options/exceptions.hpp
- * \todo Write documentation
+ * \brief Includes exceptions related to app CLI options
  */ // }}}
 #ifndef CLXX_APP_OPTIONS_EXCEPTIONS_HPP_INCLUDED
 #define CLXX_APP_OPTIONS_EXCEPTIONS_HPP_INCLUDED

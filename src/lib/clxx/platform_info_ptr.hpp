@@ -5,7 +5,7 @@
 
 /** // doc: clxx/platform_info_ptr.hpp {{{
  * \file clxx/platform_info_ptr.hpp
- * \todo Write documentation
+ * \brief Defines \ref clxx::platform_info_ptr "platform_info_ptr"
  */ // }}}
 #ifndef CLXX_PLATFORM_INFO_PTR_HPP_INCLUDED
 #define CLXX_PLATFORM_INFO_PTR_HPP_INCLUDED
@@ -15,10 +15,18 @@
 namespace clxx {
 
 class platform_info;
-/** \cond SHOW_TEMPLATE_SPECIALIZATIONS */
+/** // doc: platform_info_ptr // {{{
+ * \brief Shared pointer to \ref clxx::platform_info "platform_info" object
+ *
+ * This is used by containers such as \ref clxx::platform_layer_info.
+ */ // }}}
 typedef shared_ptr<platform_info> platform_info_ptr;
+/** // doc: platform_info_ptr // {{{
+ * \brief Shared pointer to const \ref clxx::platform_info "platform_info" object
+ *
+ * This is used by containers such as \ref clxx::platform_layer_info.
+ */ // }}}
 typedef shared_ptr<const platform_info> const_platform_info_ptr;
-/** \endcond */
 
 } // end namespace clxx
 

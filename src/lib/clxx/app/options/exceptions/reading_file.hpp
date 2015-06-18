@@ -5,7 +5,7 @@
 
 /** // doc: clxx/app/options/exceptions/reading_file.hpp {{{
  * \file clxx/app/options/exceptions/reading_file.hpp
- * \todo Write documentation
+ * \brief Defines the \ref clxx::app::options::reading_options_file_error
  */ // }}}
 #ifndef CLXX_APP_OPTIONS_EXCEPTIONS_READING_FILE_HPP_INCLUDED
 #define CLXX_APP_OPTIONS_EXCEPTIONS_READING_FILE_HPP_INCLUDED

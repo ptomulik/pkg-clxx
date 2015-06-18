@@ -5,7 +5,7 @@
 
 /** // doc: clxx/app/options.hpp {{{
  * \file clxx/app/options.hpp
- * \todo Write documentation
+ * \brief Command line options API for a clxx application
  */ // }}}
 #ifndef CLXX_APP_OPTIONS_HPP_INCLUDED
 #define CLXX_APP_OPTIONS_HPP_INCLUDED

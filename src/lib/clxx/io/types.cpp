@@ -5,7 +5,7 @@
 
 /** // doc: clxx/io/types.cpp {{{
  * \file clxx/io/types.cpp
- * \todo Write documentation
+ * \brief Instantiates template I/O functions for types defined in clxx/types.hpp
  */ // }}}
 #include <ostream>
 #include <string>

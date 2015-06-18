@@ -5,7 +5,7 @@
 
 /** // doc: clxx/app/options/exceptions/invalid_option_value.hpp {{{
  * \file clxx/app/options/exceptions/invalid_option_value.hpp
- * \todo Write documentation
+ * \brief Defines the \ref clxx::app::options::invalid_option_value_error
  */ // }}}
 #ifndef CLXX_APP_OPTIONS_EXCEPTIONS_INVALID_OPTION_VALUE_HPP_INCLUDED
 #define CLXX_APP_OPTIONS_EXCEPTIONS_INVALID_OPTION_VALUE_HPP_INCLUDED

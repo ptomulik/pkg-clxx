@@ -5,7 +5,7 @@
 
 /** // doc: clxx/app/options/exceptions/multiple_values.hpp {{{
  * \file clxx/app/options/exceptions/multiple_values.hpp
- * \todo Write documentation
+ * \brief Implements the \ref clxx::app::options::multiple_option_values_error
  */ // }}}
 #ifndef CLXX_APP_OPTIONS_EXCEPTIONS_MULTIPLE_VALUES_HPP_INCLUDED
 #define CLXX_APP_OPTIONS_EXCEPTIONS_MULTIPLE_VALUES_HPP_INCLUDED

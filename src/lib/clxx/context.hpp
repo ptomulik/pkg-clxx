@@ -5,7 +5,7 @@
 
 /** // doc: clxx/context.hpp {{{
  * \file clxx/context.hpp
- * \todo Write documentation
+ * \brief Defines the \ref clxx::context "context" class
  */ // }}}
 #ifndef CLXX_CONTEXT_HPP_INCLUDED
 #define CLXX_CONTEXT_HPP_INCLUDED
@@ -400,7 +400,9 @@ public:
 #include <vector>
 namespace clxx {
 /** // doc: contexts {{{
- * \todo Write documentation
+ * \brief Sequence of \ref clxx::context "context"s
+ *
+ * It's basically same as std::vector<clxx::context>.
  */ // }}}
 typedef std::vector<context> contexts;
 } // end namespace clxx

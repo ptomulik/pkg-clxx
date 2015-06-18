@@ -2,7 +2,7 @@
 // Licensed under MIT license (LICENSE.txt)
 /** // doc: clxx/device_partition_properties.cpp {{{
  * \file clxx/device_partition_properties.cpp
- * \todo Write documentation
+ * \brief Implements the \ref clxx::device_partition_properties "device_partition_properties"
  */ // }}}
 #include <clxx/device_partition_properties.hpp>
 #include <clxx/exceptions.hpp>

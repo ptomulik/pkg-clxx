@@ -5,7 +5,7 @@
 
 /** // doc: clxx/io/platform_info.hpp {{{
  * \file clxx/io/platform_info.hpp
- * \todo Write documentation
+ * \brief Declares I/O routines for \ref clxx::platform_info "platform_info" objects
  */ // }}}
 #ifndef CLXX_IO_PLATFORM_INFO_HPP_INCLUDED
 #define CLXX_IO_PLATFORM_INFO_HPP_INCLUDED
@@ -15,10 +15,8 @@
 
 namespace clxx { namespace io {
 
-/**
- * \ingroup clxx_io
- * @{
- */
+/** \addtogroup clxx_io
+ *  @{ */
 /** // doc: write(os, info, pre) {{{
  * \brief Write out clxx::platform_info object to a stream
  *

@@ -5,7 +5,7 @@
 
 /** // doc: clxx/exceptions.hpp {{{
  * \file clxx/exceptions.hpp
- * \todo Write documentation
+ * \brief Defines several exceptions used across clxx project
  */ // }}}
 #ifndef CLXX_EXCEPTIONS_HPP_INCLUDED
 #define CLXX_EXCEPTIONS_HPP_INCLUDED
@@ -17,8 +17,10 @@
 #include <string>
 
 namespace clxx {
+
 /** // doc: invalid_argument_error {{{
- * \todo Write documentation
+ * \ingroup clxx_exceptions
+ * \brief An exception thrown when an invalid argument is provided to a function
  */ // }}}
 struct invalid_argument_error
     : public exception_base<clxx::exception, std::invalid_argument>
@@ -47,7 +49,8 @@ struct invalid_argument_error
     { }
   };
 /** // doc: length_error {{{
- * \todo Write documentation
+ * \ingroup clxx_exceptions
+ * \brief An exception thrown when a sequence of invalid length is provided as an argument to a function
  */ // }}}
 struct length_error
     : public exception_base<clxx::exception, std::length_error>
@@ -76,7 +79,8 @@ struct length_error
     { }
   };
 /** // doc: out_of_range_error {{{
- * \todo Write documentation
+ * \ingroup clxx_exceptions
+ * \brief An exception thrown when a value provided to a function is out of allowed range
  */ // }}}
 struct out_of_range_error
     : public exception_base<clxx::exception, std::out_of_range>
@@ -105,7 +109,9 @@ struct out_of_range_error
     { }
   };
 /** // doc: not_enough_space_error {{{
- * \todo Write documentation
+ * \ingroup clxx_exceptions
+ * \brief An exception thrown when a user-defined storage is not sufficient to
+ *        contain data provided by function caller
  */ // }}}
 struct not_enough_space_error
     : public exception_base<clxx::exception, std::logic_error>
@@ -134,7 +140,9 @@ struct not_enough_space_error
     { }
   };
 /** // doc: uninitialized_platform_error {{{
- * \todo Write documentation
+ * \ingroup clxx_exceptions
+ * \brief An exception thrown when user tries to operate on an uninitialized
+ *        \ref clxx::platform "platform" object
  */ // }}}
 struct uninitialized_platform_error
     : public exception_base<clxx::exception, std::logic_error>
@@ -163,7 +171,9 @@ struct uninitialized_platform_error
     { }
   };
 /** // doc: uninitialized_device_error {{{
- * \todo Write documentation
+ * \ingroup clxx_exceptions
+ * \brief An exception thrown when a user tries to operate on an uninitialized
+ *        \ref clxx::device "device" object
  */ // }}}
 struct uninitialized_device_error
     : public exception_base<clxx::exception, std::logic_error>
@@ -192,7 +202,9 @@ struct uninitialized_device_error
     { }
   };
 /** // doc: uninitialized_context_error {{{
- * \todo Write documentation
+ * \ingroup clxx_exceptions
+ * \brief An exception being thrown when a user tries to operate on an
+ *        uninitialized \ref clxx::context "context" object
  */ // }}}
 struct uninitialized_context_error
     : public exception_base<clxx::exception, std::logic_error>
@@ -221,7 +233,9 @@ struct uninitialized_context_error
     { }
   };
 /** // doc: uninitialized_command_queue_error {{{
- * \todo Write documentation
+ * \ingroup clxx_exceptions
+ * \brief An exception being thrown when a user tries to operate on an
+ *        uninitialized \ref clxx::command_queue "command_queue" object
  */ // }}}
 struct uninitialized_command_queue_error
     : public exception_base<clxx::exception, std::logic_error>
@@ -250,7 +264,9 @@ struct uninitialized_command_queue_error
     { }
   };
 /** // doc: uninitialized_program_error {{{
- * \todo Write documentation
+ * \ingroup clxx_exceptions
+ * \brief An exception being thrown when a user tries to operate on an
+ *        uninitialized \ref clxx::program "program" object
  */ // }}}
 struct uninitialized_program_error
     : public exception_base<clxx::exception, std::logic_error>
@@ -278,8 +294,45 @@ struct uninitialized_program_error
       : Base(what_arg)
     { }
   };
+/** // doc: uninitialized_kernel_error {{{
+ * \ingroup clxx_exceptions
+ * \brief An exception being thrown when a user tries to operate on an
+ *        uninitialized \ref clxx::kernel "kernel" object
+ */ // }}}
+struct uninitialized_kernel_error
+    : public exception_base<clxx::exception, std::logic_error>
+  {
+    /** // doc: Base {{{
+     * \brief Typedef for base class
+     */ // }}}
+    typedef clxx::exception_base<clxx::exception, std::logic_error> Base;
+    /** // doc: uninitialized_kernel_error() {{{
+     * \brief Default constructor
+     */ // }}}
+    uninitialized_kernel_error() noexcept
+      : Base("attempted to use uninitialized clxx::kernel object")
+    { }
+    /** // doc: uninitialized_kernel_error() {{{
+     * \brief Constructor
+     */ // }}}
+    uninitialized_kernel_error(std::string const& what_arg) noexcept
+      : Base(what_arg)
+    { }
+    /** // doc: uninitialized_kernel_error() {{{
+     * \brief Constructor
+     */ // }}}
+    uninitialized_kernel_error(char const* what_arg) noexcept
+      : Base(what_arg)
+    { }
+  };
 /** // doc: uninitialized_value_error {{{
- * \todo Write documentation
+ * \ingroup clxx_exceptions
+ * \brief An exception begin thrown when a user tries to access a value which
+ *        was not initialized
+ *
+ * This is used mainly by the \ref clxx::platform_info "platform_info" and
+ * \ref clxx::device_info "device_info" object, which contain attributes that
+ * may have a value but may also be in uninitialized state.
  */ // }}}
 struct uninitialized_value_error
     : public exception_base<clxx::exception, std::logic_error>
@@ -308,7 +361,14 @@ struct uninitialized_value_error
     { }
   };
 /** // doc: value_access_error {{{
- * \todo Write documentation
+ * \ingroup clxx_exceptions
+ * \brief An exception being thrown when there is an error in a value access
+ *        logic
+ *
+ *  This is used, for example, by a \ref clxx::device_partition_property
+ *  "device_partition_property". If, for example, it is of a non-sequence type
+ *  and user tries to access its value as a sequence, then the
+ *  #value_access_error is thrown.
  */ // }}}
 struct value_access_error
     : public exception_base<clxx::exception, std::logic_error>
@@ -337,7 +397,8 @@ struct value_access_error
     { }
   };
 /** // doc: invalid_key_error {{{
- * \todo Write documentation
+ * \ingroup clxx_exceptions
+ * \brief An exception being thrown when an inexistent key is used to lookup a map
  */ // }}}
 struct invalid_key_error
     : public exception_base<clxx::exception, std::out_of_range>
@@ -366,7 +427,8 @@ struct invalid_key_error
     { }
   };
 /** // doc: unexpected_clerror {{{
- * \todo Write documentation
+ * \ingroup clxx_exceptions
+ * \brief An exception when an OpenCL function returns error code that is unknown to clxx
  */ // }}}
 struct unexpected_clerror
     : public exception_base<clxx::clerror, std::logic_error>
@@ -397,18 +459,17 @@ struct unexpected_clerror
         _code(c)
     { }
     /** // doc: code() {{{
-     * \todo Write documentation
+     * \brief Returns the OpenCL error code encapsulated in the exception
+     * \returns The OpenCL error code
      */ // }}}
     status_t code() const noexcept
     { return this->_code; }
   private:
-    /** // doc: _code {{{
-     * \todo Write documentation
-     */ // }}}
     status_t _code;
   protected:
     unexpected_clerror();
   };
+
 } // end namespace clxx
 
 #endif /* CLXX_EXCEPTIONS_HPP_INCLUDED */

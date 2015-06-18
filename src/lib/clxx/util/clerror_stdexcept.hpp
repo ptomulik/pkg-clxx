@@ -215,6 +215,14 @@ template<>
   struct clerror_stdexcept<status_t::invalid_device_partition_count>
   { typedef std::invalid_argument type; };
 #endif
+#if CL_VERSION_2_0
+template<>
+  struct clerror_stdexcept<status_t::invalid_pipe_size>
+  { typedef std::invalid_argument type; };
+template<>
+  struct clerror_stdexcept<status_t::invalid_device_queue>
+  { typedef std::invalid_argument type; };
+#endif
 #if cl_khr_d3d10_sharing
 template<>
   struct clerror_stdexcept<status_t::invalid_d3d10_device_khr>

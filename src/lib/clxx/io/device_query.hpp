@@ -5,7 +5,7 @@
 
 /** // doc: clxx/io/device_query.hpp {{{
  * \file clxx/io/device_query.hpp
- * \todo Write documentation
+ * \brief Declares the I/O routines for \ref clxx::device_query "device_query" objects
  */ // }}}
 #ifndef CLXX_IO_DEVICE_QUERY_HPP_INCLUDED
 #define CLXX_IO_DEVICE_QUERY_HPP_INCLUDED
@@ -15,10 +15,8 @@
 
 namespace clxx { namespace io {
 
-/**
- * \ingroup clxx_io
- * @{
- */
+/** \addtogroup clxx_io
+ *  @{ */
 /** // doc: write(os, info, pre) {{{
  * \brief Write out clxx::device_query object to a stream
  *

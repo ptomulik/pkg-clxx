@@ -101,6 +101,10 @@ public:
     TS_ASSERT_EQUALS(static_cast<cl_int>(status_t::invalid_linker_options), CL_INVALID_LINKER_OPTIONS);
     TS_ASSERT_EQUALS(static_cast<cl_int>(status_t::invalid_device_partition_count), CL_INVALID_DEVICE_PARTITION_COUNT);
 #endif
+#if CL_VERSION_2_0
+    TS_ASSERT_EQUALS(static_cast<cl_int>(status_t::invalid_pipe_size), CL_INVALID_PIPE_SIZE);
+    TS_ASSERT_EQUALS(static_cast<cl_int>(status_t::invalid_device_queue), CL_INVALID_DEVICE_QUEUE);
+#endif
 #if cl_khr_icd
   TS_ASSERT_EQUALS(static_cast<cl_int>(status_t::platform_not_found_khr), CL_PLATFORM_NOT_FOUND_KHR);
 #endif
@@ -1050,12 +1054,12 @@ public:
     TS_ASSERT_EQUALS(intval(context_properties_t::d3d11_device_khr), CL_CONTEXT_D3D11_DEVICE_KHR);
 #endif
   }
-#if CL_VERSION_1_2
   /** // doc: test_device_partition_property_t() {{{
    * \brief Test the device_partition_property_t type.
    */ // }}}
   void test_device_partition_property_t( )
   {
+#if CL_VERSION_1_2
     //
     // Check the underlying type
     //
@@ -1067,12 +1071,14 @@ public:
     TS_ASSERT_EQUALS(static_cast<cl_device_partition_property>(device_partition_property_t::by_counts), CL_DEVICE_PARTITION_BY_COUNTS);
     TS_ASSERT_EQUALS(static_cast<cl_device_partition_property>(device_partition_property_t::by_counts_list_end), CL_DEVICE_PARTITION_BY_COUNTS_LIST_END);
     TS_ASSERT_EQUALS(static_cast<cl_device_partition_property>(device_partition_property_t::by_affinity_domain), CL_DEVICE_PARTITION_BY_AFFINITY_DOMAIN);
+#endif
   }
   /** // doc: test_device_partition_property_t__intval() {{{
    * \brief Test the device_partition_property_t type with intval().
    */ // }}}
   void test_device_partition_property_t__intval( )
   {
+#if CL_VERSION_1_2
     //
     // Check enum values
     //
@@ -1080,14 +1086,14 @@ public:
     TS_ASSERT_EQUALS(intval(device_partition_property_t::by_counts), CL_DEVICE_PARTITION_BY_COUNTS);
     TS_ASSERT_EQUALS(intval(device_partition_property_t::by_counts_list_end), CL_DEVICE_PARTITION_BY_COUNTS_LIST_END);
     TS_ASSERT_EQUALS(intval(device_partition_property_t::by_affinity_domain), CL_DEVICE_PARTITION_BY_AFFINITY_DOMAIN);
-  }
 #endif
-#if CL_VERSION_1_2
+  }
   /** // doc: test_device_affinity_domain_t() {{{
    * \brief Test the device_affinity_domain_t type.
    */ // }}}
   void test_device_affinity_domain_t( )
   {
+#if CL_VERSION_1_2
     //
     // Check the underlying type
     //
@@ -1102,12 +1108,14 @@ public:
     TS_ASSERT_EQUALS(static_cast<cl_device_affinity_domain>(device_affinity_domain_t::l2_cache), CL_DEVICE_AFFINITY_DOMAIN_L2_CACHE);
     TS_ASSERT_EQUALS(static_cast<cl_device_affinity_domain>(device_affinity_domain_t::l1_cache), CL_DEVICE_AFFINITY_DOMAIN_L1_CACHE);
     TS_ASSERT_EQUALS(static_cast<cl_device_affinity_domain>(device_affinity_domain_t::next_partitionable), CL_DEVICE_AFFINITY_DOMAIN_NEXT_PARTITIONABLE);
+#endif
   }
   /** // doc: test_device_affinity_domain_t__intval() {{{
    * \brief Test the device_affinity_domain_t type with intval().
    */ // }}}
   void test_device_affinity_domain_t__intval( )
   {
+#if CL_VERSION_1_2
     //
     // Check enum values
     //
@@ -1118,12 +1126,14 @@ public:
     TS_ASSERT_EQUALS(intval(device_affinity_domain_t::l2_cache), CL_DEVICE_AFFINITY_DOMAIN_L2_CACHE);
     TS_ASSERT_EQUALS(intval(device_affinity_domain_t::l1_cache), CL_DEVICE_AFFINITY_DOMAIN_L1_CACHE);
     TS_ASSERT_EQUALS(intval(device_affinity_domain_t::next_partitionable), CL_DEVICE_AFFINITY_DOMAIN_NEXT_PARTITIONABLE);
+#endif
   }
   /** // doc: test_device_affinity_domain_t__bitops() {{{
    * \brief Ensure that bitwise operators work with device_affinity_domain_t
    */ // }}}
   void test_device_affinity_domain_t__bitops( )
   {
+#if CL_VERSION_1_2
     // Just ensure that certain expressions get compiled ...
     TS_ASSERT_EQUALS(~(device_affinity_domain_t::numa), static_cast<device_affinity_domain_t>(~CL_DEVICE_AFFINITY_DOMAIN_NUMA));
     TS_ASSERT_EQUALS((device_affinity_domain_t::numa & device_affinity_domain_t::l4_cache), static_cast<device_affinity_domain_t>(CL_DEVICE_AFFINITY_DOMAIN_NUMA & CL_DEVICE_AFFINITY_DOMAIN_L4_CACHE));
@@ -1138,8 +1148,8 @@ public:
     TS_ASSERT_EQUALS(x, static_cast<device_affinity_domain_t>(CL_DEVICE_AFFINITY_DOMAIN_NUMA));
     x ^= device_affinity_domain_t::l4_cache;
     TS_ASSERT_EQUALS(x, static_cast<device_affinity_domain_t>(CL_DEVICE_AFFINITY_DOMAIN_NUMA | CL_DEVICE_AFFINITY_DOMAIN_L4_CACHE));
-  }
 #endif
+  }
   /** // doc: test_command_queue_info_t() {{{
    * \brief Test the command_queue_info_t type.
    */ // }}}
@@ -1760,12 +1770,12 @@ public:
     TS_ASSERT_EQUALS(intval(program_build_info_t::binary_type), CL_PROGRAM_BINARY_TYPE);
 #endif
   }
-#if CL_VERSION_1_2
   /** // doc: test_program_binary_type_t() {{{
    * \brief Test the program_binary_type_t type.
    */ // }}}
   void test_program_binary_type_t( )
   {
+#if CL_VERSION_1_2
     //
     // Check the underlying type
     //
@@ -1777,12 +1787,14 @@ public:
     TS_ASSERT_EQUALS(static_cast<cl_program_binary_type>(program_binary_type_t::compiled_object), CL_PROGRAM_BINARY_TYPE_COMPILED_OBJECT);
     TS_ASSERT_EQUALS(static_cast<cl_program_binary_type>(program_binary_type_t::library), CL_PROGRAM_BINARY_TYPE_LIBRARY);
     TS_ASSERT_EQUALS(static_cast<cl_program_binary_type>(program_binary_type_t::executable), CL_PROGRAM_BINARY_TYPE_EXECUTABLE);
+#endif
   }
   /** // doc: test_program_binary_type_t__intval() {{{
    * \brief Test the program_binary_type_t type with intval().
    */ // }}}
   void test_program_binary_type_t__intval( )
   {
+#if CL_VERSION_1_2
     //
     // Check enum values
     //
@@ -1790,12 +1802,14 @@ public:
     TS_ASSERT_EQUALS(intval(program_binary_type_t::compiled_object), CL_PROGRAM_BINARY_TYPE_COMPILED_OBJECT);
     TS_ASSERT_EQUALS(intval(program_binary_type_t::library), CL_PROGRAM_BINARY_TYPE_LIBRARY);
     TS_ASSERT_EQUALS(intval(program_binary_type_t::executable), CL_PROGRAM_BINARY_TYPE_EXECUTABLE);
+#endif
   }
   /** // doc: test_program_binary_type_t__bitops() {{{
    * \brief Ensure that bitwise operators work for program_binary_type_t
    */ // }}}
   void test_program_binary_type_t__bitops( )
   {
+#if CL_VERSION_1_2
     // Just ensure that certain expressions get compiled ...
     TS_ASSERT_EQUALS(~(program_binary_type_t::none), static_cast<program_binary_type_t>(~CL_PROGRAM_BINARY_TYPE_NONE));
     TS_ASSERT_EQUALS((program_binary_type_t::none & program_binary_type_t::compiled_object), program_binary_type_t::none);
@@ -1810,8 +1824,8 @@ public:
     TS_ASSERT_EQUALS(x, program_binary_type_t::none);
     x ^= program_binary_type_t::library;
     TS_ASSERT_EQUALS(x, program_binary_type_t::library);
-  }
 #endif
+  }
   /** // doc: test_build_status_t() {{{
    * \brief Test the build_status_t type.
    */ // }}}
@@ -1934,12 +1948,31 @@ public:
     TS_ASSERT_EQUALS(intval(kernel_arg_info_t::name), CL_KERNEL_ARG_NAME);
   }
 #endif
-#if CL_VERSION_1_2
+  void test_kernel_exec_info_t( )
+  {
+#if CL_VERSION_2_0
+    // Check the underlying type
+    TS_ASSERT((std::is_same<std::underlying_type<kernel_exec_info_t>::type, cl_kernel_exec_info>::value));
+    //
+    // Check enum values
+    //
+    TS_ASSERT_EQUALS(static_cast<cl_kernel_exec_info>(kernel_exec_info_t::svm_ptrs), CL_KERNEL_EXEC_INFO_SVM_PTRS);
+    TS_ASSERT_EQUALS(static_cast<cl_kernel_exec_info>(kernel_exec_info_t::svm_fine_grain_system), CL_KERNEL_EXEC_INFO_SVM_FINE_GRAIN_SYSTEM);
+#endif
+  }
+  void test_kernel_exec_info_t__intval( )
+  {
+#if CL_VERSION_2_0
+    TS_ASSERT_EQUALS(intval(kernel_exec_info_t::svm_ptrs), CL_KERNEL_EXEC_INFO_SVM_PTRS);
+    TS_ASSERT_EQUALS(intval(kernel_exec_info_t::svm_fine_grain_system), CL_KERNEL_EXEC_INFO_SVM_FINE_GRAIN_SYSTEM);
+#endif
+  }
   /** // doc: test_kernel_arg_address_qualifier_t() {{{
    * \brief Test the kernel_arg_address_qualifier_t type.
    */ // }}}
   void test_kernel_arg_address_qualifier_t( )
   {
+#if CL_VERSION_1_2
     //
     // Check the underlying type
     //
@@ -1951,12 +1984,14 @@ public:
     TS_ASSERT_EQUALS(static_cast<cl_kernel_arg_address_qualifier>(kernel_arg_address_qualifier_t::local), CL_KERNEL_ARG_ADDRESS_LOCAL);
     TS_ASSERT_EQUALS(static_cast<cl_kernel_arg_address_qualifier>(kernel_arg_address_qualifier_t::constant), CL_KERNEL_ARG_ADDRESS_CONSTANT);
     TS_ASSERT_EQUALS(static_cast<cl_kernel_arg_address_qualifier>(kernel_arg_address_qualifier_t::private_), CL_KERNEL_ARG_ADDRESS_PRIVATE);
+#endif
   }
   /** // doc: test_kernel_arg_address_qualifier_t__intval() {{{
    * \brief Test the kernel_arg_address_qualifier_t type with intval().
    */ // }}}
   void test_kernel_arg_address_qualifier_t__intval( )
   {
+#if CL_VERSION_1_2
     //
     // Check enum values
     //
@@ -1964,14 +1999,14 @@ public:
     TS_ASSERT_EQUALS(intval(kernel_arg_address_qualifier_t::local), CL_KERNEL_ARG_ADDRESS_LOCAL);
     TS_ASSERT_EQUALS(intval(kernel_arg_address_qualifier_t::constant), CL_KERNEL_ARG_ADDRESS_CONSTANT);
     TS_ASSERT_EQUALS(intval(kernel_arg_address_qualifier_t::private_), CL_KERNEL_ARG_ADDRESS_PRIVATE);
-  }
 #endif
-#if CL_VERSION_1_2
+  }
   /** // doc: test_kernel_arg_access_qualifier_t() {{{
    * \brief Test the kernel_arg_access_qualifier_t type.
    */ // }}}
   void test_kernel_arg_access_qualifier_t( )
   {
+#if CL_VERSION_1_2
     //
     // Check the underlying type
     //
@@ -1983,12 +2018,14 @@ public:
     TS_ASSERT_EQUALS(static_cast<cl_kernel_arg_access_qualifier>(kernel_arg_access_qualifier_t::write_only), CL_KERNEL_ARG_ACCESS_WRITE_ONLY);
     TS_ASSERT_EQUALS(static_cast<cl_kernel_arg_access_qualifier>(kernel_arg_access_qualifier_t::read_write), CL_KERNEL_ARG_ACCESS_READ_WRITE);
     TS_ASSERT_EQUALS(static_cast<cl_kernel_arg_access_qualifier>(kernel_arg_access_qualifier_t::none), CL_KERNEL_ARG_ACCESS_NONE);
+#endif
   }
   /** // doc: test_kernel_arg_access_qualifier_t__intval() {{{
    * \brief Test the kernel_arg_access_qualifier_t type with intval().
    */ // }}}
   void test_kernel_arg_access_qualifier_t__intval( )
   {
+#if CL_VERSION_1_2
     //
     // Check enum values
     //
@@ -1996,14 +2033,14 @@ public:
     TS_ASSERT_EQUALS(intval(kernel_arg_access_qualifier_t::write_only), CL_KERNEL_ARG_ACCESS_WRITE_ONLY);
     TS_ASSERT_EQUALS(intval(kernel_arg_access_qualifier_t::read_write), CL_KERNEL_ARG_ACCESS_READ_WRITE);
     TS_ASSERT_EQUALS(intval(kernel_arg_access_qualifier_t::none), CL_KERNEL_ARG_ACCESS_NONE);
-  }
 #endif
-#if CL_VERSION_1_2
+  }
   /** // doc: test_kernel_arg_type_qualifier_t() {{{
    * \brief Test the kernel_arg_type_qualifier_t type.
    */ // }}}
   void test_kernel_arg_type_qualifier_t( )
   {
+#if CL_VERSION_1_2
     //
     // Check the underlying type
     //
@@ -2015,12 +2052,14 @@ public:
     TS_ASSERT_EQUALS(static_cast<cl_kernel_arg_type_qualifier>(kernel_arg_type_qualifier_t::const_), CL_KERNEL_ARG_TYPE_CONST);
     TS_ASSERT_EQUALS(static_cast<cl_kernel_arg_type_qualifier>(kernel_arg_type_qualifier_t::restrict_), CL_KERNEL_ARG_TYPE_RESTRICT);
     TS_ASSERT_EQUALS(static_cast<cl_kernel_arg_type_qualifier>(kernel_arg_type_qualifier_t::volatile_), CL_KERNEL_ARG_TYPE_VOLATILE);
+#endif
   }
   /** // doc: test_kernel_arg_type_qualifier_t__intval() {{{
    * \brief Test the kernel_arg_type_qualifier_t type with intval().
    */ // }}}
   void test_kernel_arg_type_qualifier_t__intval( )
   {
+#if CL_VERSION_1_2
     //
     // Check enum values
     //
@@ -2028,12 +2067,14 @@ public:
     TS_ASSERT_EQUALS(intval(kernel_arg_type_qualifier_t::const_), CL_KERNEL_ARG_TYPE_CONST);
     TS_ASSERT_EQUALS(intval(kernel_arg_type_qualifier_t::restrict_), CL_KERNEL_ARG_TYPE_RESTRICT);
     TS_ASSERT_EQUALS(intval(kernel_arg_type_qualifier_t::volatile_), CL_KERNEL_ARG_TYPE_VOLATILE);
+#endif
   }
   /** // doc: test_kernel_arg_type_qualifier_t__bitops() {{{
    * \brief Ensure that bitwise operations work fow kernel_arg_type_qualifier_t
    */ // }}}
   void test_kernel_arg_type_qualifier_t__bitops( )
   {
+#if CL_VERSION_1_2
     // Just ensure that certain expressions get compiled ...
     TS_ASSERT_EQUALS(~(kernel_arg_type_qualifier_t::none), static_cast<kernel_arg_type_qualifier_t>(~CL_KERNEL_ARG_TYPE_NONE));
     TS_ASSERT_EQUALS((kernel_arg_type_qualifier_t::none & kernel_arg_type_qualifier_t::const_), kernel_arg_type_qualifier_t::none);
@@ -2048,8 +2089,8 @@ public:
     TS_ASSERT_EQUALS(x, kernel_arg_type_qualifier_t::none);
     x ^= kernel_arg_type_qualifier_t::volatile_;
     TS_ASSERT_EQUALS(x, kernel_arg_type_qualifier_t::volatile_);
-  }
 #endif
+  }
   /** // doc: test_kernel_work_group_info_t() {{{
    * \brief Test the kernel_work_group_info_t type.
    */ // }}}
@@ -2290,12 +2331,12 @@ public:
     TS_ASSERT(command_exec_status_t::complete >= status_t::success);
     TS_ASSERT(status_t::success >= command_exec_status_t::complete);
   }
-#if CL_VERSION_1_1
   /** // doc: test_buffer_create_type_t() {{{
    * \brief Test the buffer_create_type_t type.
    */ // }}}
   void test_buffer_create_type_t( )
   {
+#if CL_VERSION_1_1
     //
     // Check the underlying type
     //
@@ -2304,18 +2345,20 @@ public:
     // Check enum values
     //
     TS_ASSERT_EQUALS(static_cast<cl_buffer_create_type>(buffer_create_type_t::region), CL_BUFFER_CREATE_TYPE_REGION);
+#endif
   }
   /** // doc: test_buffer_create_type_t__intval() {{{
    * \brief Test the buffer_create_type_t type with intval().
    */ // }}}
   void test_buffer_create_type_t__intval( )
   {
+#if CL_VERSION_1_1
     //
     // Check enum values
     //
     TS_ASSERT_EQUALS(intval(buffer_create_type_t::region), CL_BUFFER_CREATE_TYPE_REGION);
-  }
 #endif
+  }
   /** // doc: test_profiling_info_t() {{{
    * \brief Test the profiling_info_t type.
    */ // }}}

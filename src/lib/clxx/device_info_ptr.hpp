@@ -5,7 +5,7 @@
 
 /** // doc: clxx/device_info_ptr.hpp {{{
  * \file clxx/device_info_ptr.hpp
- * \todo Write documentation
+ * \brief Defines \ref clxx::device_info_ptr "device_info_ptr"
  */ // }}}
 #ifndef CLXX_DEVICE_INFO_PTR_HPP_INCLUDED
 #define CLXX_DEVICE_INFO_PTR_HPP_INCLUDED
@@ -15,10 +15,18 @@
 namespace clxx {
 
 class device_info;
-/** \cond SHOW_TEMPLATE_SPECIALIZATIONS */
+/** // doc: device_info_ptr // {{{
+ * \brief Shared pointer to \ref clxx::device_info "device_info" object
+ *
+ * This is used by containers such as \ref clxx::platform_layer_info.
+ */ // }}}
 typedef shared_ptr<device_info> device_info_ptr;
+/** // doc: device_info_ptr // {{{
+ * \brief Shared pointer to const \ref clxx::device_info "device_info" object
+ *
+ * This is used by containers such as \ref clxx::platform_layer_info.
+ */ // }}}
 typedef shared_ptr<const device_info> const_device_info_ptr;
-/** \endcond */
 
 } // end namespace clxx;
 

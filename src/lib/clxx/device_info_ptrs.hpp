@@ -5,7 +5,7 @@
 
 /** // doc: clxx/device_info_ptrs.hpp {{{
  * \file clxx/device_info_ptrs.hpp
- * \todo Write documentation
+ * \brief Defines \ref clxx::device_info_ptrs "device_info_ptrs"
  */ // }}}
 #ifndef CLXX_DEVICE_INFO_PTRS_HPP_INCLUDED
 #define CLXX_DEVICE_INFO_PTRS_HPP_INCLUDED
@@ -14,10 +14,14 @@
 #include <vector>
 
 namespace clxx {
-/** \cond SHOW_TEMPLATE_SPECIALIZATIONS */
+/** // doc: device_info_ptrs {{{
+ * \brief Sequence of (shared) pointers to \ref clxx::device_info "device_info" objects
+ */ // }}}
 typedef std::vector<clxx::device_info_ptr> device_info_ptrs;
+/** // doc: const_device_info_ptrs {{{
+ * \brief Sequence of (shared) pointers to const \ref clxx::device_info "device_info" objects
+ */ // }}}
 typedef std::vector<clxx::const_device_info_ptr> const_device_info_ptrs;
-/** \endcond */
 } // end namespace clxx
 
 #endif /* CLXX_DEVICE_INFO_PTRS_HPP_INCLUDED */

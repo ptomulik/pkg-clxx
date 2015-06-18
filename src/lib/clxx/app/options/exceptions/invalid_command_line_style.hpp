@@ -5,7 +5,7 @@
 
 /** // doc: clxx/app/options/exceptions/invalid_command_line_style.hpp {{{
  * \file clxx/app/options/exceptions/invalid_command_line_style.hpp
- * \todo Write documentation
+ * \brief Defines the \ref clxx::app::options::invalid_command_line_style_error
  */ // }}}
 #ifndef CLXX_APP_OPTIONS_EXCEPTIONS_INVALID_COMMAND_LINE_STYLE_HPP_INCLUDED
 #define CLXX_APP_OPTIONS_EXCEPTIONS_INVALID_COMMAND_LINE_STYLE_HPP_INCLUDED

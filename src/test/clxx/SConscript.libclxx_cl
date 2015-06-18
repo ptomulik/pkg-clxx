@@ -21,6 +21,7 @@ tests = [
     'platform_layer.t.h',
     'platforms.t.h',
     'program.t.h',
+    'kernel.t.h',
 ]
 
 env.CxxTest('../check-libclxx_cl', tests,

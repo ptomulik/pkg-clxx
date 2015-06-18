@@ -3,9 +3,9 @@
 
 // clxx/platform.hpp
 
-/** // doc: clxx/platform.hpp {{{
- * \file clxx/platform.hpp
- * \todo Write documentation
+/** // doc: clxx/platform.cpp {{{
+ * \file clxx/platform.cpp
+ * \brief Implements the \ref clxx::platform "platform" class
  */ // }}}
 #include <clxx/platform.hpp>
 #include <clxx/functions.hpp>

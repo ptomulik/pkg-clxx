@@ -17,6 +17,11 @@ env.Program('platform2.cpp', LIBS = CLVar('clxx_cl clxx_info clxx_io'))
 env.Program('platform3.cpp', LIBS = CLVar('clxx_cl clxx_info clxx_io'))
 env.Program('platform4.cpp', LIBS = CLVar('clxx_cl clxx_info clxx_io'))
 env.Program('device1.cpp', LIBS = CLVar('clxx_cl'))
+env.Program('device_info1.cpp', LIBS = CLVar('clxx_info clxx_io'))
+env.Program('platform_info1.cpp', LIBS = CLVar('clxx_info clxx_io'))
+env.Program('query_platform_info1.cpp', LIBS = CLVar('clxx_info clxx_io clxx_cl'))
+env.Program('query_device_info1.cpp', LIBS = CLVar('clxx_info clxx_io clxx_cl'))
+env.Program('query_platform_layer_info1.cpp', LIBS = CLVar('clxx_info clxx_io clxx_cl'))
 
 # Local Variables:
 # # tab-width:4

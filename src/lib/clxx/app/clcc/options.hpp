@@ -5,7 +5,7 @@
 
 /** // doc: clxx/app/clcc/options.hpp {{{
  * \file clxx/app/clcc/options.hpp
- * \todo Write documentation
+ * \brief Defines \ref clxx::app::clcc::options class.
  */ // }}}
 #ifndef CLXX_APP_CLCC_OPTIONS_HPP_INCLUDED
 #define CLXX_APP_CLCC_OPTIONS_HPP_INCLUDED
@@ -16,66 +16,111 @@
 
 namespace clxx { namespace app { namespace clcc {
 
+/** // doc: options {{{
+ * \brief Options for clxx-clcc aplication
+ *
+ * This class encapsulates command line options for the *clxx-clcc* (OpenCL
+ * compiler) application.
+ */ // }}}
 class options : boost::noncopyable
 {
   typedef clxx::app::options::options_map options_map;
   typedef clxx::app::options::options_description options_description;
 public:
   /** // doc: options(argc, argv[]) {{{
-   * \todo Write documentation
+   * \brief Constructor
+   *
+   * Initializes internal data of the \ref options object and parses options
+   * passed  in (*argc*,*argv*) pair and stores result in the object.
+   *
+   * \param argc
+   *    this argument has same meaning, as the corresponding *argc* argument in
+   *    the global \c main() function - it passes number of command line
+   *    parameters passed to the application (including the application name).
+   * \param argv
+   *    this argument has same meaning, as the corresponding *argv* argument in
+   *    the global \c main() function; argv is a pointer to array of C strings
+   *    containing command-line arguments passed to the application.
    */ // }}}
   options(int argc, char const* argv[]);
   /** // doc: ~options() {{{
-   * \todo Write documentation
+   * \brief Destructor
    */ // }}}
   ~options();
   /** // doc: visible_options_description() {{{
-   * \todo Write documentation
+   * \brief Return map of options
+   *
+   * \returns map of options representing options and their values produced
+   *          by command-line parser
    */ // }}}
   options_map const& map() const noexcept
   { return this->_map; }
   /** // doc: visible_options_description() {{{
-   * \todo Write documentation
+   * \brief Returns description of application's visible options
    */ // }}}
   options_description const& visible_options_description() const noexcept
   { return this->_visible_options_description; }
   /** // doc: hidden_options_description() {{{
-   * \todo Write documentation
+   * \brief Returns description of application's hidden options
    */ // }}}
   options_description const& hidden_options_description() const noexcept
   { return this->_hidden_options_description; }
   /** // doc: help() {{{
-   * \todo Write documentation
+   * \brief Check if \em --help option is active
+   *
+   * \returns \c true if \em --help option was provided via **argv**, or
+   *    \c false otherwise.
    */ // }}}
   bool help() const noexcept
   { return this->_help; }
   /** // doc: version() {{{
-   * \todo Write documentation
+   * \brief Check if \em --version option is active
+   *
+   * \returns \c true if \em --version option was provided via **argv**,
+   *    or \c false otherwise.
    */ // }}}
   bool version() const noexcept
   { return this->_version; }
   /** // doc: info() {{{
-   * \todo Write documentation
+   * \brief Check if \em --info option is active
+   *
+   * \returns \c true if \em --info option was provided via **argv**,
+   *    or \c false otherwise.
    */ // }}}
   bool info() const noexcept
   { return this->_info; }
   /** // doc: build() {{{
-   * \todo Write documentation
+   * \brief Check if the application is supposed to build a program
+   *
+   * \returns \c true if conditions allow for program to be built (currently
+   *    it's required that number of input files is non-zero).
    */ // }}}
   bool build() const noexcept
   { return this->_build; }
   /** // doc: short_info() {{{
-   * \todo Write documentation
+   * \brief Check if \em --short_info option is active
+   *
+   * \returns \c true if \em --short_info option was provided via **argv**,
+   *    or \c false otherwise.
    */ // }}}
   bool short_info() const noexcept
   { return this->_short_info; }
   /** // doc: device_type() {{{
-   * \todo Write documentation
+   * \brief Returns value of \em --device_type option
+   *
+   * \returns value of \em --device_type option converted to
+   *    \ref clxx::device_type_t "device_type_t" enum; by default
+   *    (in the absence of \em --device_type) \ref clxx::device_type_t::all
+   *    "device_type_t::all" is returned.
    */ // }}}
   device_type_t device_type() const noexcept
   { return this->_device_type; }
   /** // doc: cloptions() {{{
-   * \todo Write documentation
+   * \brief Returns compiler options passed via \em --cloptions option
+   *
+   * \returns a string of OpenCL compiler options provided through
+   *    \em --cloptions, by default (in the absence of \em --cloptions) an
+   *    empty string is returned.
    */ // }}}
   std::string const& cloptions() const noexcept
   { return this->_cloptions; }
@@ -90,27 +135,43 @@ public:
   std::string const& device_filter() const noexcept
   { return this->_device_filter; }
   /** // doc: output_file() {{{
-   * \todo Write documentation
+   * \brief Returns the value of \em --output_file option
+   *
+   * \returns the value of \em --output_file
    */ // }}}
   std::string const& output_file() const noexcept
   { return this->_output_file; }
   /** // doc: platform_index() {{{
-   * \todo Write documentation
+   * \brief Returns the value of \em --platform_index option
+   *
+   * \returns the value of \em --platform_index option converted to \c int;
+   *    by default (in the absence of \em --platform_index) a value of \c -1
+   *    is returned.
    */ // }}}
   int platform_index() const noexcept
   { return this->_platform_index; }
   /** // doc: device_index() {{{
-   * \todo Write documentation
+   * \brief Returns the value of \em --device_index option
+   *
+   * \returns the value of \em --device_index option converted to \c int;
+   *    by default (in the absence of \em --device_index) a value of \c -1
+   *    is returned.
    */ // }}}
   int device_index() const noexcept
   { return this->_device_index; }
   /** // doc: has_input_files() {{{
-   * \todo Write documentation
+   * \brief Check, whether input files were provided
+   *
+   * \returns \c true if at least one input file was specified via command-line
+   *    or \c false otherwise.
    */ // }}}
   bool has_input_files() const noexcept
   { return this->_map.count("input_file"); }
   /** // doc: input_files() {{{
-   * \todo Write documentation
+   * \brief Returns names of input files specified in commandline
+   *
+   * \returns a vector of strings containing names of input files specified
+   *    in the command-line.
    */ // }}}
   std::vector<std::string> const& input_files() const noexcept
   { return this->_map["input_file"].as< std::vector<std::string> >(); }

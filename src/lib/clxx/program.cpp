@@ -3,7 +3,7 @@
 
 /** // doc: clxx/program.cpp {{{
  * \file clxx/program.cpp
- * \todo Write documentation
+ * \brief Implements the \ref clxx::program "program" class and related functions
  */ // }}}
 #include <clxx/program.hpp>
 #include <clxx/functions.hpp>
@@ -157,21 +157,21 @@ _set_id(cl_program p, bool retain_new, bool release_old)
 /* ----------------------------------------------------------------------- */
 program::
 program(cl_program id)
-  :_id((cl_program)NULL) // because it's read bt _set_id()
+  :_id((cl_program)NULL) // because it's read by _set_id()
 {
   this->_set_id(id, true, false);
 }
 /* ----------------------------------------------------------------------- */
 program::
 program(program const& p)
-  :_id((cl_program)NULL) // because it's read bt _set_id()
+  :_id((cl_program)NULL) // because it's read by _set_id()
 {
   this->_set_id(p.id(), true, false);
 }
 /* ----------------------------------------------------------------------- */
 program::
 program(context const& ctx, program_sources const& sources)
-  :_id((cl_program)NULL) // because it's read bt _set_id()
+  :_id((cl_program)NULL) // because it's read by _set_id()
 {
   if(sources.size() == 0ul)
       throw invalid_argument_error();
@@ -191,7 +191,7 @@ program::
 program(context const& ctx, devices const& device_list,
         program_binaries const& binaries,
         std::vector<status_t>& binary_status)
-  :_id((cl_program)NULL) // because it's read bt _set_id()
+  :_id((cl_program)NULL) // because it's read by _set_id()
 {
   if(device_list.size() == 0ul || device_list.size() != binaries.size())
       throw invalid_argument_error();
@@ -213,7 +213,7 @@ program(context const& ctx, devices const& device_list,
 program::
 program(context const& ctx, devices const& device_list,
         program_binaries const& binaries)
-  :_id((cl_program)NULL) // because it's read bt _set_id()
+  :_id((cl_program)NULL) // because it's read by _set_id()
 {
   if(device_list.size() == 0ul || device_list.size() != binaries.size())
       throw invalid_argument_error();
@@ -235,7 +235,7 @@ program(context const& ctx, devices const& device_list,
 program::
 program(context const& ctx, devices const& device_list,
         std::string const& kernel_names)
-  :_id((cl_program)NULL) // because it's read bt _set_id()
+  :_id((cl_program)NULL) // because it's read by _set_id()
 {
   cl_program id = create_program_with_built_in_kernels(
       ctx.get_valid_id(),

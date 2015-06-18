@@ -3,7 +3,7 @@
 
 /** // doc: clxx/command_queue.cpp {{{
  * \file clxx/command_queue.cpp
- * \todo Write documentation
+ * \brief Implements the \ref clxx::command_queue "command_queue" class
  */ // }}}
 #include <clxx/command_queue.hpp>
 #include <clxx/functions.hpp>

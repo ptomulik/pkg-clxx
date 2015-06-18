@@ -5,15 +5,11 @@
 
 /** // doc: clxx/io/platform_layer_info_impl.hpp {{{
  * \file clxx/io/platform_layer_info_impl.hpp
- * \todo Write documentation
+ * \brief Implements I/O routines for \ref clxx::platform_layer_info "platform_layer_info" objects
  */ // }}}
 #ifndef CLXX_IO_PLATFORM_LAYER_INFO_IMPL_HPP_INCLUDED
 #define CLXX_IO_PLATFORM_LAYER_INFO_IMPL_HPP_INCLUDED
 
-/** // doc: clxx/io/platform_info_impl.hpp {{{
- * \file clxx/io/platform_info_impl.hpp
- * \todo Write documentation
- */ // }}}
 #include <clxx/io/platform_layer_info.hpp>
 #include <clxx/io/platform_info.hpp>
 #include <clxx/io/device_info.hpp>

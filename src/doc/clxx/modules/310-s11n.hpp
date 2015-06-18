@@ -1,7 +1,7 @@
 // @COPYRIGHT@
 // Licensed under MIT license (LICENSE.txt)
 /**
- * \defgroup clxx_s11n Serialization
+ * \defgroup clxx_s11n Clxx Serialization
  *
  * \todo Write few words about serialization in %clxx.
  */

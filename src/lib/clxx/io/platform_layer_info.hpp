@@ -5,7 +5,7 @@
 
 /** // doc: clxx/io/platform_layer_info.hpp {{{
  * \file clxx/io/platform_layer_info.hpp
- * \todo Write documentation
+ * \brief Declares I/O functions for \ref clxx::platform_layer_info "platform_layer_info" objects
  */ // }}}
 #ifndef CLXX_IO_PLATFORM_LAYER_INFO_HPP_INCLUDED
 #define CLXX_IO_PLATFORM_LAYER_INFO_HPP_INCLUDED
@@ -15,10 +15,8 @@
 
 namespace clxx { namespace io {
 
-/**
- * \ingroup clxx_io
- * @{
- */
+/** \addtogroup clxx_io
+ * @{ */
 /** // doc: write(os, info, pre) {{{
  * \brief Write out clxx::platform_layer_info object to a stream
  *

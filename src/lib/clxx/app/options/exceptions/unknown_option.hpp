@@ -5,7 +5,7 @@
 
 /** // doc: clxx/app/options/exceptions/unknown_option.hpp {{{
  * \file clxx/app/options/exceptions/unknown_option.hpp
- * \todo Write documentation
+ * \brief Defines the \ref clxx::app::options::unknown_option_error
  */ // }}}
 #ifndef CLXX_APP_OPTIONS_EXCEPTIONS_UNKNOWN_OPTION_HPP_INCLUDED
 #define CLXX_APP_OPTIONS_EXCEPTIONS_UNKNOWN_OPTION_HPP_INCLUDED
@@ -24,7 +24,7 @@ struct std_except_ctor_arg< boost::program_options::unknown_option>
 
 namespace clxx { namespace app { namespace options {
 /** doc: unknown_option_error {{{
- * \todo Write documentation
+ * \brief Exception thrown when unknown option is passed to a clxx application
  */ // }}}
 class unknown_option_error
   : public clxx::exception_base<
@@ -38,7 +38,10 @@ class unknown_option_error
     > base_;
 public:
   /** // doc: unknown_option_error(boost::program_options::unknown_optione) {{{
-   * \todo Write documentation
+   * \brief Constructor
+   *
+   * \param e
+   *    An exception object to be used as this object's initializer.
    */ // }}}
   unknown_option_error(boost::program_options::unknown_option const& e)
     : base_(e)

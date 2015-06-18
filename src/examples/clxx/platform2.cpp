@@ -3,13 +3,14 @@
 
 /** // doc: clxx/platform2.cpp {{{
  * \file clxx/platform2.cpp
- * \todo Write file documentation
+ * \brief Example with \ref clxx::platform_info and \ref clxx::device_info
  */ // }}}
 /** // doc: platform2.cpp {{{
  * \example platform2.cpp
  * This example demonstrates, how OpenCL Platfrom Layer may be accessed from
  * local machine. We get and display some info about platforms and devices
- * available locally.
+ * available locally. We use \ref clxx::platform_info "platform_info" and
+ * \ref clxx::device_info "device_info".
  */ // }}}
 // [Program]
 // [Includes]

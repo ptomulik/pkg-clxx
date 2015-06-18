@@ -5,7 +5,7 @@
 
 /** // doc: clxx/app/main.cpp {{{
  * \file clxx/app/main.cpp
- * \todo Write documentation
+ * \brief Implements \ref clxx::app::main
  */ // }}}
 #include <clxx/app/main.hpp>
 

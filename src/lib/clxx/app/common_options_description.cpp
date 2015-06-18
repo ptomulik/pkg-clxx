@@ -5,7 +5,7 @@
 
 /** // doc: clxx/app/common_options_description.cpp {{{
  * \file clxx/app/common_options_description.cpp
- * \todo Write documentation
+ * \brief Implements the \ref clxx::app::common_options_description class
  */ // }}}
 #include <clxx/app/common_options_description.hpp>
 

@@ -5,7 +5,7 @@
 
 /** // doc: clxx/exception_base.hpp {{{
  * \file clxx/exception_base.hpp
- * \todo Write documentation
+ * \brief Defines the \ref clxx::exception_base "exception_base" template
  */ // }}}
 #ifndef CLXX_EXCEPTION_BASE_HPP_INCLUDED
 #define CLXX_EXCEPTION_BASE_HPP_INCLUDED
@@ -15,10 +15,8 @@
 #include <string>
 
 namespace clxx {
-
-/** \ingroup clxx_exceptions */
-/** @{ */
 /** // doc: exception_base {{{
+ * \ingroup clxx_exceptions
  * \brief Template to generate clxx exceptions.
  *
  * \tparam ClxxExcept clxx base class for the exception, usually
@@ -86,6 +84,7 @@ template < class ClxxExcept
   };
 
 /** // doc: exception_base {{{
+ * \ingroup clxx_exceptions
  * \brief Template to generate clxx exceptions.
  *
  * \tparam ClxxExcept clxx base class for the exception, usually
@@ -162,6 +161,7 @@ template < class ClxxExcept
   };
 
 /** // doc: exception_base<StdExcept, std_except_no_ctor_arg_tag> {{{
+ * \ingroup clxx_exceptions
  * \brief Partial specialization of clxx::exception_base.
  *
  * This is partial specialization of clxx::exception_base for cases when the
@@ -185,8 +185,6 @@ template <class ClxxExcept, class StdExcept>
      */ // }}}
     virtual ~exception_base() noexcept {}
   };
-/** @} */
-
 } // end namespace clxx
 
 #endif /* CLXX_EXCEPTION_BASE_HPP_INCLUDED */

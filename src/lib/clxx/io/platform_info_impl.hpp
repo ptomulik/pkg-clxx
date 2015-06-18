@@ -8,7 +8,7 @@
 
 /** // doc: clxx/io/platform_info_impl.hpp {{{
  * \file clxx/io/platform_info_impl.hpp
- * \todo Write documentation
+ * \brief Implements I/O operations for \ref clxx::platform_info "platform_info" objects
  */ // }}}
 #include <clxx/io/platform_info.hpp>
 #include <clxx/io/autosep.hpp>

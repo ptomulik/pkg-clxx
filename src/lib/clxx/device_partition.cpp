@@ -5,7 +5,7 @@
 
 /** // doc: clxx/device_partition.cpp {{{
  * \file clxx/device_partition.cpp
- * \todo Write documentation
+ * \brief Implements API for \ref clxx::device "device" partitioning
  */ // }}}
 #include <clxx/device_partition.hpp>
 #include <clxx/functions.hpp>

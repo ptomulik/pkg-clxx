@@ -3,7 +3,7 @@
 
 /** // doc: clxx/device1.cpp {{{
  * \file clxx/device1.cpp
- * \todo Write file documentation
+ * \brief Example with \ref clxx::device and \ref clxx::platform
  */ // }}}
 /** // doc: device1.cpp {{{
  * \example device1.cpp

@@ -5,17 +5,17 @@
 
 /** // doc: clxx/util/device_partition_property_type_fwd.hpp {{{
  * \file clxx/util/device_partition_property_type_fwd.hpp
- * \todo Write documentation
+ * \brief Forward-declaration of \ref clxx::device_partition_property_type
  */ // }}}
 #ifndef CLXX_UTIL_DEVICE_PARTITION_PROPERTY_TYPE_FWD_HPP_INCLUDED
 #define CLXX_UTIL_DEVICE_PARTITION_PROPERTY_TYPE_FWD_HPP_INCLUDED
 
+#include <clxx/types.hpp>
+
 namespace clxx {
 
-/** // doc: device_partition_property_type {{{
- * \todo Write documentation
- */ // }}}
-template <device_partition_property_t> struct device_partition_property_type;
+template <device_partition_property_t Name>
+  struct device_partition_property_type;
 
 } // end namespace clxx
 

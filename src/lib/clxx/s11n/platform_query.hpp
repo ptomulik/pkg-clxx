@@ -19,10 +19,8 @@ BOOST_CLASS_VERSION( clxx::platform_query
 
 namespace boost {
 namespace serialization {
-/**
- * \ingroup clxx_s11n
- * @{
- */
+/** \addtogroup clxx_s11n
+ *  @{ */
 /** // doc: serialize(ar,obj,ver) {{{
  * \brief Serialize or deserialize \ref clxx::platform_query "platform_query" object
  *

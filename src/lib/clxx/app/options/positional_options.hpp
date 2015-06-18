@@ -5,7 +5,7 @@
 
 /** // doc: clxx/app/options/positional_options.hpp {{{
  * \file clxx/app/options/positional_options.hpp
- * \todo Write documentation
+ * \brief Defines clxx::app::options::positional_options_description
  */ // }}}
 #ifndef CLXX_APP_OPTIONS_POSITIONAL_OPTIONS_HPP_INCLUDED
 #define CLXX_APP_OPTIONS_POSITIONAL_OPTIONS_HPP_INCLUDED

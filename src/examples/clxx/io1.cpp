@@ -3,11 +3,11 @@
 
 /** // doc: clxx/io1.cpp {{{
  * \file clxx/io1.cpp
- * \todo Write documentation
+ * \brief Example usage for I/O functions used to pring an enum value
  */ // }}}
 /** // doc: io1.cpp {{{
  * \example io1.cpp
- * This example demonstrates usage of I/O functions with CLXX types.
+ * This example demonstrates usage of I/O functions with clxx enum value.
  */ // }}}
 // [Program]
 #include <clxx/io/types.hpp>

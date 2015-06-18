@@ -5,7 +5,7 @@
 
 /** // doc: clxx/app/clinfo/main.cpp {{{
  * \file clxx/app/clinfo/main.cpp
- * \todo Write documentation
+ * \brief Implements the \ref clxx::app::clinfo::main class
  */ // }}}
 #include <clxx/app/clinfo/main.hpp>
 #include <clxx/app/clinfo/create_query.hpp>

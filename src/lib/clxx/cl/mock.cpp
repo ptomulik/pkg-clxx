@@ -3,7 +3,7 @@
 
 /** // doc: clxx/cl/mock.cpp {{{
  * \file clxx/cl/mock.cpp
- * \todo Write documentation
+ * \brief OpenCL mocks
  */ // }}}
 #define CXXTEST_MOCK_TEST_SOURCE_FILE
 #include <clxx/cl/mock.hpp>

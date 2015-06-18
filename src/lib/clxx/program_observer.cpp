@@ -3,7 +3,7 @@
 
 /** // doc: clxx/program_observer.cpp {{{
  * \file clxx/program_observer.cpp
- * \todo Write documentation
+ * \brief Implements the base class \ref clxx::program_observer "program_observer"
  */ // }}}
 #include <clxx/program_observer.hpp>
 #include <clxx/program.hpp>

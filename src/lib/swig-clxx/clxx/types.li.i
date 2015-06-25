@@ -6,6 +6,7 @@
  * \todo Write documentation
  */ // }}}
 
+%import <clxx/wknd.swg>
 %import <clxx/cl/opencl_types.i>
 %{
 #include <clxx/cl/opencl_types.i.hpp>

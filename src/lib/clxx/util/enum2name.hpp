@@ -37,11 +37,11 @@ enum2name(status_t x, char const* dflt = nullptr) noexcept
           (x == status_t::image_format_not_supported) ? "image_format_not_supported" :
           (x == status_t::build_program_failure) ? "build_program_failure" :
           (x == status_t::map_failure) ? "map_failure" :
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
           (x == status_t::misaligned_sub_buffer_offset) ? "misaligned_sub_buffer_offset" :
           (x == status_t::exec_status_error_for_events_in_wait_list) ? "exec_status_error_for_events_in_wait_list" :
 #endif
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
           (x == status_t::compile_program_failure) ? "compile_program_failure" :
           (x == status_t::linker_not_available) ? "linker_not_available" :
           (x == status_t::link_program_failure) ? "link_program_failure" :
@@ -82,16 +82,16 @@ enum2name(status_t x, char const* dflt = nullptr) noexcept
           (x == status_t::invalid_buffer_size) ? "invalid_buffer_size" :
           (x == status_t::invalid_mip_level) ? "invalid_mip_level" :
           (x == status_t::invalid_global_work_size) ? "invalid_global_work_size" :
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
           (x == status_t::invalid_property) ? "invalid_property" :
 #endif
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
           (x == status_t::invalid_image_descriptor) ? "invalid_image_descriptor" :
           (x == status_t::invalid_compiler_options) ? "invalid_compiler_options" :
           (x == status_t::invalid_linker_options) ? "invalid_linker_options" :
           (x == status_t::invalid_device_partition_count) ? "invalid_device_partition_count" :
 #endif
-#if CL_VERSION_2_0
+#if CLXX_CL_H_VERSION_2_0
           (x == status_t::invalid_pipe_size) ? "invalid_pipe_size" :
           (x == status_t::invalid_device_queue) ? "invalid_device_queue" :
 #endif
@@ -156,7 +156,7 @@ enum2name(device_type_t x, char const* dflt = nullptr) noexcept
           (x == device_type_t::cpu) ? "cpu" :
           (x == device_type_t::gpu) ? "gpu" :
           (x == device_type_t::accelerator) ? "accelerator" :
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
           (x == device_type_t::custom) ? "custom" :
 #endif
           (x == device_type_t::all) ? "all" :
@@ -221,10 +221,10 @@ enum2name(device_info_t x, char const* dflt = nullptr) noexcept
           (x == device_info_t::version) ? "version" :
           (x == device_info_t::extensions) ? "extensions" :
           (x == device_info_t::platform) ? "platform" :
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
           (x == device_info_t::double_fp_config) ? "double_fp_config" :
 #endif
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
           (x == device_info_t::preferred_vector_width_half) ? "preferred_vector_width_half" :
           (x == device_info_t::host_unified_memory) ? "host_unified_memory" :
           (x == device_info_t::native_vector_width_char) ? "native_vector_width_char" :
@@ -236,7 +236,7 @@ enum2name(device_info_t x, char const* dflt = nullptr) noexcept
           (x == device_info_t::native_vector_width_half) ? "native_vector_width_half" :
           (x == device_info_t::opencl_c_version) ? "opencl_c_version" :
 #endif
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
           (x == device_info_t::linker_available) ? "linker_available" :
           (x == device_info_t::built_in_kernels) ? "built_in_kernels" :
           (x == device_info_t::image_max_buffer_size) ? "image_max_buffer_size" :
@@ -270,10 +270,10 @@ enum2name(device_fp_config_t x, char const* dflt = nullptr) noexcept
           (x == device_fp_config_t::round_to_zero) ? "round_to_zero" :
           (x == device_fp_config_t::round_to_inf) ? "round_to_inf" :
           (x == device_fp_config_t::fma) ? "fma" :
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
           (x == device_fp_config_t::soft_float) ? "soft_float" :
 #endif
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
           (x == device_fp_config_t::correctly_rounded_divide_sqrt) ? "correctly_rounded_divide_sqrt" :
 #endif
           dflt;
@@ -345,7 +345,7 @@ enum2name(context_info_t x, char const* dflt = nullptr) noexcept
   return  (x == context_info_t::reference_count) ? "reference_count" :
           (x == context_info_t::devices) ? "devices" :
           (x == context_info_t::properties) ? "properties" :
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
           (x == context_info_t::num_devices) ? "num_devices" :
 #endif
           dflt;
@@ -360,7 +360,7 @@ constexpr char const*
 enum2name(context_properties_t x, char const* dflt = nullptr) noexcept
 {
   return  (x == context_properties_t::platform) ? "platform" :
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
           (x == context_properties_t::interop_user_sync) ? "interop_user_sync" :
 #endif
 #if cl_khr_gl_sharing
@@ -389,7 +389,7 @@ enum2name(context_properties_t x, char const* dflt = nullptr) noexcept
  * \param dflt A pointer to string to be returned in case \e x is not recognized by #enum2name()
  * \returns A null-terminated C string containig the enum name of value \e x
  */ // }}}
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
 constexpr char const*
 enum2name(device_partition_property_t x, char const* dflt = nullptr) noexcept
 {
@@ -406,7 +406,7 @@ enum2name(device_partition_property_t x, char const* dflt = nullptr) noexcept
  * \param dflt A pointer to string to be returned in case \e x is not recognized by #enum2name()
  * \returns A null-terminated C string containig the enum name of value \e x
  */ // }}}
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
 constexpr char const*
 enum2name(device_affinity_domain_t x, char const* dflt = nullptr) noexcept
 {
@@ -451,7 +451,7 @@ enum2name(mem_flags_t x, char const* dflt = nullptr) noexcept
           (x == mem_flags_t::use_host_ptr) ? "use_host_ptr" :
           (x == mem_flags_t::alloc_host_ptr) ? "alloc_host_ptr" :
           (x == mem_flags_t::copy_host_ptr) ? "copy_host_ptr" :
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
           (x == mem_flags_t::host_write_only) ? "host_write_only" :
           (x == mem_flags_t::host_read_only) ? "host_read_only" :
           (x == mem_flags_t::host_no_access) ? "host_no_access" :
@@ -464,7 +464,7 @@ enum2name(mem_flags_t x, char const* dflt = nullptr) noexcept
  * \param dflt A pointer to string to be returned in case \e x is not recognized by #enum2name()
  * \returns A null-terminated C string containig the enum name of value \e x
  */ // }}}
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
 constexpr char const*
 enum2name(mem_migration_flags_t x, char const* dflt = nullptr) noexcept
 {
@@ -493,12 +493,12 @@ enum2name(channel_order_t x, char const* dflt = nullptr) noexcept
           (x == channel_order_t::argb) ? "argb" :
           (x == channel_order_t::intensity) ? "intensity" :
           (x == channel_order_t::luminance) ? "luminance" :
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
           (x == channel_order_t::rx) ? "rx" :
           (x == channel_order_t::rgx) ? "rgx" :
           (x == channel_order_t::rgbx) ? "rgbx" :
 #endif
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
           (x == channel_order_t::depth) ? "depth" :
           (x == channel_order_t::depth_stencil) ? "depth_stencil" :
 #endif
@@ -528,7 +528,7 @@ enum2name(channel_type_t x, char const* dflt = nullptr) noexcept
           (x == channel_type_t::unsigned_int32) ? "unsigned_int32" :
           (x == channel_type_t::half_float) ? "half_float" :
           (x == channel_type_t::float_) ? "float_" :
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
           (x == channel_type_t::unorm_int24) ? "unorm_int24" :
 #endif
           dflt;
@@ -545,7 +545,7 @@ enum2name(mem_object_type_t x, char const* dflt = nullptr) noexcept
   return  (x == mem_object_type_t::buffer) ? "buffer" :
           (x == mem_object_type_t::image2d) ? "image2d" :
           (x == mem_object_type_t::image3d) ? "image3d" :
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
           (x == mem_object_type_t::image2d_array) ? "image2d_array" :
           (x == mem_object_type_t::image1d) ? "image1d" :
           (x == mem_object_type_t::image1d_array) ? "image1d_array" :
@@ -569,7 +569,7 @@ enum2name(mem_info_t x, char const* dflt = nullptr) noexcept
           (x == mem_info_t::map_count) ? "map_count" :
           (x == mem_info_t::reference_count) ? "reference_count" :
           (x == mem_info_t::context) ? "context" :
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
           (x == mem_info_t::associated_memobject) ? "associated_memobject" :
           (x == mem_info_t::offset) ? "offset" :
 #endif
@@ -591,7 +591,7 @@ enum2name(image_info_t x, char const* dflt = nullptr) noexcept
           (x == image_info_t::width) ? "width" :
           (x == image_info_t::height) ? "height" :
           (x == image_info_t::depth) ? "depth" :
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
           (x == image_info_t::array_size) ? "array_size" :
           (x == image_info_t::buffer) ? "buffer" :
           (x == image_info_t::num_mip_levels) ? "num_mip_levels" :
@@ -612,7 +612,7 @@ enum2name(addressing_mode_t x, char const* dflt = nullptr) noexcept
           (x == addressing_mode_t::clamp_to_edge) ? "clamp_to_edge" :
           (x == addressing_mode_t::clamp) ? "clamp" :
           (x == addressing_mode_t::repeat) ? "repeat" :
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
           (x == addressing_mode_t::mirrored_repeat) ? "mirrored_repeat" :
 #endif
           dflt;
@@ -658,7 +658,7 @@ enum2name(map_flags_t x, char const* dflt = nullptr) noexcept
   return  (x == map_flags_t::none) ? "none" :
           (x == map_flags_t::read) ? "read" :
           (x == map_flags_t::write) ? "write" :
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
           (x == map_flags_t::write_invalidate_region) ? "write_invalidate_region" :
 #endif
           dflt;
@@ -679,7 +679,7 @@ enum2name(program_info_t x, char const* dflt = nullptr) noexcept
           (x == program_info_t::source) ? "source" :
           (x == program_info_t::binary_sizes) ? "binary_sizes" :
           (x == program_info_t::binaries) ? "binaries" :
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
           (x == program_info_t::num_kernels) ? "num_kernels" :
           (x == program_info_t::kernel_names) ? "kernel_names" :
 #endif
@@ -697,7 +697,7 @@ enum2name(program_build_info_t x, char const* dflt = nullptr) noexcept
   return  (x == program_build_info_t::status) ? "status" :
           (x == program_build_info_t::options) ? "options" :
           (x == program_build_info_t::log) ? "log" :
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
           (x == program_build_info_t::binary_type) ? "binary_type" :
 #endif
           dflt;
@@ -708,7 +708,7 @@ enum2name(program_build_info_t x, char const* dflt = nullptr) noexcept
  * \param dflt A pointer to string to be returned in case \e x is not recognized by #enum2name()
  * \returns A null-terminated C string containig the enum name of value \e x
  */ // }}}
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
 constexpr char const*
 enum2name(program_binary_type_t x, char const* dflt = nullptr) noexcept
 {
@@ -748,7 +748,7 @@ enum2name(kernel_info_t x, char const* dflt = nullptr) noexcept
           (x == kernel_info_t::reference_count) ? "reference_count" :
           (x == kernel_info_t::context) ? "context" :
           (x == kernel_info_t::program) ? "program" :
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
           (x == kernel_info_t::attributes) ? "attributes" :
 #endif
           dflt;
@@ -759,7 +759,7 @@ enum2name(kernel_info_t x, char const* dflt = nullptr) noexcept
  * \param dflt A pointer to string to be returned in case \e x is not recognized by #enum2name()
  * \returns A null-terminated C string containig the enum name of value \e x
  */ // }}}
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
 constexpr char const*
 enum2name(kernel_arg_info_t x, char const* dflt = nullptr) noexcept
 {
@@ -777,7 +777,7 @@ enum2name(kernel_arg_info_t x, char const* dflt = nullptr) noexcept
  * \param dflt A pointer to string to be returned in case \e x is not recognized by #enum2name()
  * \returns A null-terminated C string containig the enum name of value \e x
  */ // }}}
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
 constexpr char const*
 enum2name(kernel_arg_address_qualifier_t x, char const* dflt = nullptr) noexcept
 {
@@ -794,7 +794,7 @@ enum2name(kernel_arg_address_qualifier_t x, char const* dflt = nullptr) noexcept
  * \param dflt A pointer to string to be returned in case \e x is not recognized by #enum2name()
  * \returns A null-terminated C string containig the enum name of value \e x
  */ // }}}
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
 constexpr char const*
 enum2name(kernel_arg_access_qualifier_t x, char const* dflt = nullptr) noexcept
 {
@@ -811,7 +811,7 @@ enum2name(kernel_arg_access_qualifier_t x, char const* dflt = nullptr) noexcept
  * \param dflt A pointer to string to be returned in case \e x is not recognized by #enum2name()
  * \returns A null-terminated C string containig the enum name of value \e x
  */ // }}}
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
 constexpr char const*
 enum2name(kernel_arg_type_qualifier_t x, char const* dflt = nullptr) noexcept
 {
@@ -834,11 +834,11 @@ enum2name(kernel_work_group_info_t x, char const* dflt = nullptr) noexcept
   return  (x == kernel_work_group_info_t::work_group_size) ? "work_group_size" :
           (x == kernel_work_group_info_t::compile_work_group_size) ? "compile_work_group_size" :
           (x == kernel_work_group_info_t::local_mem_size) ? "local_mem_size" :
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
           (x == kernel_work_group_info_t::preferred_work_group_size_multiple) ? "preferred_work_group_size_multiple" :
           (x == kernel_work_group_info_t::private_mem_size) ? "private_mem_size" :
 #endif
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
           (x == kernel_work_group_info_t::global_work_size) ? "global_work_size" :
 #endif
           dflt;
@@ -856,7 +856,7 @@ enum2name(event_info_t x, char const* dflt = nullptr) noexcept
           (x == event_info_t::command_type) ? "command_type" :
           (x == event_info_t::reference_count) ? "reference_count" :
           (x == event_info_t::command_execution_status) ? "command_execution_status" :
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
           (x == event_info_t::context) ? "context" :
 #endif
           dflt;
@@ -887,13 +887,13 @@ enum2name(command_type_t x, char const* dflt = nullptr) noexcept
           (x == command_type_t::marker) ? "marker" :
           (x == command_type_t::acquire_gl_objects) ? "acquire_gl_objects" :
           (x == command_type_t::release_gl_objects) ? "release_gl_objects" :
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
           (x == command_type_t::read_buffer_rect) ? "read_buffer_rect" :
           (x == command_type_t::write_buffer_rect) ? "write_buffer_rect" :
           (x == command_type_t::copy_buffer_rect) ? "copy_buffer_rect" :
           (x == command_type_t::user) ? "user" :
 #endif
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
           (x == command_type_t::barrier) ? "barrier" :
           (x == command_type_t::migrate_mem_objects) ? "migrate_mem_objects" :
           (x == command_type_t::fill_buffer) ? "fill_buffer" :
@@ -922,7 +922,7 @@ enum2name(command_exec_status_t x, char const* dflt = nullptr) noexcept
  * \param dflt A pointer to string to be returned in case \e x is not recognized by #enum2name()
  * \returns A null-terminated C string containig the enum name of value \e x
  */ // }}}
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
 constexpr char const*
 enum2name(buffer_create_type_t x, char const* dflt = nullptr) noexcept
 {

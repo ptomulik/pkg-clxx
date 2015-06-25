@@ -6,6 +6,9 @@
  * \brief Implements the \ref clxx::kernel "kernel" class
  */ // }}}
 #include <clxx/kernel.hpp>
+#include <clxx/program.hpp>
+#include <clxx/context.hpp>
+#include <clxx/device.hpp>
 #include <clxx/functions.hpp>
 #include <clxx/exceptions.hpp>
 #include <boost/shared_array.hpp>
@@ -75,6 +78,12 @@ _set_id(cl_kernel k, bool retain_new, bool release_old)
           retain_kernel(this->_id);
         }
     }
+}
+/* ----------------------------------------------------------------------- */
+kernel::
+kernel() noexcept
+  :_id((cl_kernel)NULL)
+{
 }
 /* ----------------------------------------------------------------------- */
 kernel::
@@ -161,7 +170,7 @@ get_program() const
 {
   return program(_get_pod_info<cl_program>(*this, kernel_info_t::program));
 }
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
 /* ----------------------------------------------------------------------- */
 std::string kernel::
 get_attributes() const
@@ -265,7 +274,7 @@ get_local_mem_size(device const& dev) const
             kernel_work_group_info_t::local_mem_size
          );
 }
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
 /* ----------------------------------------------------------------------- */
 size_t kernel::
 get_preferred_work_group_size_multiple(device const& dev) const
@@ -283,7 +292,7 @@ get_private_mem_size(device const& dev) const
          );
 }
 #endif
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
 /* ----------------------------------------------------------------------- */
 void kernel::
 get_global_work_size(size_t* result, device const& dev) const

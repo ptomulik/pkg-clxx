@@ -164,7 +164,7 @@ inline string to_string(clxx::context_info_t x)
  */ // }}}
 inline string to_string(clxx::context_properties_t x)
 { return clxx::enum_to_name_or_hex(x); }
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
 /** // doc: to_string(clxx::device_partition_property_t) {{{
  * \brief Convert \ref clxx::device_partition_property_t "device_partition_property_t" to string
  * \param x An enum value to be converted to a string
@@ -173,7 +173,7 @@ inline string to_string(clxx::context_properties_t x)
 inline string to_string(clxx::device_partition_property_t x)
 { return clxx::enum_to_name_or_hex(x); }
 #endif
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
 /** // doc: to_string(clxx::device_affinity_domain_t) {{{
  * \brief Convert \ref clxx::device_affinity_domain_t "device_affinity_domain_t" to string
  * \param x An enum value to be converted to a string
@@ -196,7 +196,7 @@ inline string to_string(clxx::command_queue_info_t x)
  */ // }}}
 inline string to_string(clxx::mem_flags_t x)
 { return clxx::enum_bitmask_to_string(x); }
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
 /** // doc: to_string(clxx::mem_migration_flags_t) {{{
  * \brief Convert \ref clxx::mem_migration_flags_t "mem_flags_t" to string
  * \param x An enum value to be converted to a string
@@ -282,7 +282,7 @@ inline string to_string(clxx::program_info_t x)
  */ // }}}
 inline string to_string(clxx::program_build_info_t x)
 { return clxx::enum_to_name_or_hex(x); }
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
 /** // doc: to_string(clxx::program_binary_type_t) {{{
  * \brief Convert \ref clxx::program_binary_type_t "program_binary_type_t" to string
  * \param x An enum value to be converted to a string
@@ -305,7 +305,7 @@ inline string to_string(clxx::build_status_t x)
  */ // }}}
 inline string to_string(clxx::kernel_info_t x)
 { return clxx::enum_to_name_or_hex(x); }
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
 /** // doc: to_string(clxx::kernel_arg_info_t) {{{
  * \brief Convert \ref clxx::kernel_arg_info_t "kernel_arg_info_t" to string
  * \param x An enum value to be converted to a string
@@ -314,7 +314,7 @@ inline string to_string(clxx::kernel_info_t x)
 inline string to_string(clxx::kernel_arg_info_t x)
 { return clxx::enum_to_name_or_hex(x); }
 #endif
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
 /** // doc: to_string(clxx::kernel_arg_address_qualifier_t) {{{
  * \brief Convert \ref clxx::kernel_arg_address_qualifier_t "kernel_arg_address_qualifier_t" to string
  * \param x An enum value to be converted to a string
@@ -323,7 +323,7 @@ inline string to_string(clxx::kernel_arg_info_t x)
 inline string to_string(clxx::kernel_arg_address_qualifier_t x)
 { return clxx::enum_to_name_or_hex(x); }
 #endif
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
 /** // doc: to_string(clxx::kernel_arg_access_qualifier_t) {{{
  * \brief Convert \ref clxx::kernel_arg_access_qualifier_t "kernel_arg_access_qualifier_t" to string
  * \param x An enum value to be converted to a string
@@ -332,7 +332,7 @@ inline string to_string(clxx::kernel_arg_address_qualifier_t x)
 inline string to_string(clxx::kernel_arg_access_qualifier_t x)
 { return clxx::enum_to_name_or_hex(x); }
 #endif
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
 /** // doc: to_string(clxx::kernel_arg_type_qualifier_t) {{{
  * \brief Convert \ref clxx::kernel_arg_type_qualifier_t "kernel_arg_type_qualifier_t" to string
  * \param x An enum value to be converted to a string
@@ -369,7 +369,7 @@ inline string to_string(clxx::command_type_t x)
  */ // }}}
 inline string to_string(clxx::command_exec_status_t x)
 { return clxx::enum_to_name_or_hex(x); }
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
 /** // doc: to_string(clxx::buffer_create_type_t) {{{
  * \brief Convert \ref clxx::buffer_create_type_t "buffer_create_type_t" to string
  * \param x An enum value to be converted to a string

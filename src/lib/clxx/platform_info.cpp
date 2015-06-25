@@ -37,7 +37,11 @@ cmp(platform_info const& rhs) const
       && ((this->_vendor == rhs._vendor))
       && ((this->_extensions == rhs._extensions)));
 }
-// getters {{{
+
+//
+// getters
+//
+
 /* ------------------------------------------------------------------------ */
 unsigned long platform_info::
 id() const
@@ -81,8 +85,12 @@ extensions() const
   return this->_extensions.get();
 }
 /* ------------------------------------------------------------------------ */
-// }}}
-// setters {{{
+
+//
+// setters
+//
+
+/* ------------------------------------------------------------------------ */
 platform_info& platform_info::
 set_id(unsigned long val) noexcept
 {
@@ -124,8 +132,11 @@ set_extensions(std::string const& val)
   this->_extensions = val;
   return *this;
 }
-// }}}
-// cleaners {{{
+
+//
+// cleaners
+//
+
 platform_info& platform_info::
 clear_id() noexcept
 {

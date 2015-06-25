@@ -10,8 +10,9 @@
 #ifndef CLXX_COMMAND_QUEUE_HPP_INCLUDED
 #define CLXX_COMMAND_QUEUE_HPP_INCLUDED
 
-#include <clxx/context.hpp>
-#include <clxx/device.hpp>
+#include <clxx/command_queue_fwd.hpp>
+#include <clxx/context_fwd.hpp>
+#include <clxx/device_fwd.hpp>
 #include <clxx/types.hpp>
 
 namespace clxx {
@@ -52,11 +53,10 @@ namespace clxx {
  * gets deleted (the ~command_queue() destructor decreases reference count for its
  * \c cl_command_queue handle with \ref release_command_queue()).
  */ // }}}
-class command_queue
+class alignas(cl_command_queue) command_queue
 {
 private:
   cl_command_queue  _id;
-  command_queue();
 protected:
   /** // doc: _sdoc: _set_id() {{{
    * \brief Set new \c cl_command_queue handle to this object
@@ -78,6 +78,14 @@ protected:
    */ // }}}
   void _set_id(cl_command_queue id, bool retain_new, bool release_old);
 public:
+  /** // doc: command_queue() {{{
+   * \brief Default constructor
+   *
+   * Sets the internal \c cl_command_queue handle to \c NULL. The
+   * default-constructed \ref clxx::command_queue "command_queue" object is
+   * considered to be uninitialized (see #is_initialized()).
+   */ // }}}
+  command_queue() noexcept;
   /** // doc: command_queue(cl_command_queue) {{{
    * \brief Constructor
    *
@@ -141,7 +149,7 @@ public:
    *
    * Internally decreases reference count for this command_queue.
    */ // }}}
-  virtual ~command_queue();
+  ~command_queue();
   /** // doc: id() {{{
    * \brief   Get \c cl_command_queue handle held by \c this object.
    *
@@ -350,6 +358,14 @@ public:
    * \ref get_command_queue_info().
    */ // }}}
   command_queue_properties_t get_properties() const;
+  /** // doc: flush() {{{
+   * \todo Write documentation
+   */ // }}}
+  void flush() const;
+  /** // doc: finish() {{{
+   * \todo Write documentation
+   */ // }}}
+  void finish() const;
 };
 } // end namespace clxx
 

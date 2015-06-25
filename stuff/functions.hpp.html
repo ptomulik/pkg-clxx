@@ -5,11 +5,11 @@
 	
 	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
 	<title></title>
-	<meta name="generator" content="LibreOffice 4.3.3.2 (Linux)"/>
+	<meta name="generator" content="LibreOffice 4.4.4.1.0 (Linux)"/>
 	<meta name="author" content="Paweł Tomulik"/>
 	<meta name="created" content="2014-10-30T07:47:14.899028736"/>
 	<meta name="changedby" content="Paweł Tomulik"/>
-	<meta name="changed" content="2014-12-22T15:41:43.323058742"/>
+	<meta name="changed" content="2015-06-24T11:30:18.319085499"/>
 	
 	<style type="text/css">
 		body,div,table,thead,tbody,tfoot,tr,th,td,p { font-family:"Courier 10 Pitch"; font-size:xx-small }
@@ -20,17 +20,17 @@
 <body>
 <hr>
 	<p><center>
-		<h1>Overview</h1>
+		<h1>Przegląd</h1>
 		<A HREF="#table0">functions.hpp</A><br>
 		<A HREF="#table1">Progress</A><br>
 		
 	</center></p>
 <hr>
-<A NAME="table0"><h1>Sheet 1: <em>functions.hpp</em></h1></A>
+<A NAME="table0"><h1>Arkusz 1: <em>functions.hpp</em></h1></A>
 <table cellspacing="0" border="0">
-	<colgroup width="220"></colgroup>
-	<colgroup span="3" width="27"></colgroup>
-	<colgroup span="2" width="129"></colgroup>
+	<colgroup width="195"></colgroup>
+	<colgroup span="3" width="24"></colgroup>
+	<colgroup span="2" width="176"></colgroup>
 	<tr>
 		<td rowspan=2 height="31" align="center"><b>FUNCTION</b></td>
 		<td colspan=3 align="center"><b>OpenCL ver.</b></td>
@@ -63,16 +63,16 @@
 		<td align="center">✓</td>
 		<td align="center">✓</td>
 		<td align="center">✓</td>
-		<td align="left"><br></td>
-		<td align="left"><br></td>
+		<td align="left">create_buffer</td>
+		<td align="left">create_buffer</td>
 	</tr>
 	<tr>
 		<td height="15" align="left">clCreateCommandQueue</td>
 		<td align="center">✓</td>
 		<td align="center">✓</td>
 		<td align="center">✓</td>
-		<td align="left"><br></td>
-		<td align="left"><br></td>
+		<td align="left">create_command_queue</td>
+		<td align="left">create_command_queue</td>
 	</tr>
 	<tr>
 		<td height="15" align="left">clCreateContext</td>
@@ -119,16 +119,16 @@
 		<td align="center">✓</td>
 		<td align="center">✓</td>
 		<td align="center">✓</td>
-		<td align="left"><br></td>
-		<td align="left"><br></td>
+		<td align="left">create_kernel</td>
+		<td align="left">create_kernel</td>
 	</tr>
 	<tr>
 		<td height="15" align="left">clCreateKernelsInProgram</td>
 		<td align="center">✓</td>
 		<td align="center">✓</td>
 		<td align="center">✓</td>
-		<td align="left"><br></td>
-		<td align="left"><br></td>
+		<td align="left">create_kernels_in_program</td>
+		<td align="left">create_kernels_in_program</td>
 	</tr>
 	<tr>
 		<td height="15" align="left">clCreateProgramWithBinary</td>
@@ -167,8 +167,8 @@
 		<td align="center"><br></td>
 		<td align="center">✓</td>
 		<td align="center">✓</td>
-		<td align="left"><br></td>
-		<td align="left"><br></td>
+		<td align="left">create_sub_buffer</td>
+		<td align="left">create_sub_buffer</td>
 	</tr>
 	<tr>
 		<td height="15" align="left">clCreateSubDevices</td>
@@ -183,8 +183,8 @@
 		<td align="center"><br></td>
 		<td align="center">✓</td>
 		<td align="center">✓</td>
-		<td align="left"><br></td>
-		<td align="left"><br></td>
+		<td align="left">create_user_event</td>
+		<td align="left">create_user_event</td>
 	</tr>
 	<tr>
 		<td height="15" align="left">clEnqueueBarrier</td>
@@ -207,8 +207,8 @@
 		<td align="center">✓</td>
 		<td align="center">✓</td>
 		<td align="center">✓</td>
-		<td align="left"><br></td>
-		<td align="left"><br></td>
+		<td align="left">enqueue_copy_buffer</td>
+		<td align="left">enqueue_copy_buffer</td>
 	</tr>
 	<tr>
 		<td height="15" align="left">clEnqueueCopyBufferRect</td>
@@ -223,24 +223,24 @@
 		<td align="center">✓</td>
 		<td align="center">✓</td>
 		<td align="center">✓</td>
-		<td align="left"><br></td>
-		<td align="left"><br></td>
+		<td align="left">enqueue_copy_buffer_to_image</td>
+		<td align="left">enqueue_copy_buffer_to_image</td>
 	</tr>
 	<tr>
 		<td height="15" align="left">clEnqueueCopyImage</td>
 		<td align="center">✓</td>
 		<td align="center">✓</td>
 		<td align="center">✓</td>
-		<td align="left"><br></td>
-		<td align="left"><br></td>
+		<td align="left">enqueue_copy_image</td>
+		<td align="left">enqueue_copy_image</td>
 	</tr>
 	<tr>
 		<td height="15" align="left">clEnqueueCopyImageToBuffer</td>
 		<td align="center">✓</td>
 		<td align="center">✓</td>
 		<td align="center">✓</td>
-		<td align="left"><br></td>
-		<td align="left"><br></td>
+		<td align="left">enqueue_copy_image_to_buffer</td>
+		<td align="left">enqueue_copy_image_to_buffer</td>
 	</tr>
 	<tr>
 		<td height="15" align="left">clEnqueueFillBuffer</td>
@@ -263,16 +263,16 @@
 		<td align="center">✓</td>
 		<td align="center">✓</td>
 		<td align="center">✓</td>
-		<td align="left"><br></td>
-		<td align="left"><br></td>
+		<td align="left">enqueue_map_buffer</td>
+		<td align="left">enqueue_map_buffer</td>
 	</tr>
 	<tr>
 		<td height="15" align="left">clEnqueueMapImage</td>
 		<td align="center">✓</td>
 		<td align="center">✓</td>
 		<td align="center">✓</td>
-		<td align="left"><br></td>
-		<td align="left"><br></td>
+		<td align="left">enqueue_map_image</td>
+		<td align="left">enqueue_map_image</td>
 	</tr>
 	<tr>
 		<td height="15" align="left">clEnqueueMarker</td>
@@ -295,32 +295,32 @@
 		<td align="center"><br></td>
 		<td align="center"><br></td>
 		<td align="center">✓</td>
-		<td align="left"><br></td>
-		<td align="left"><br></td>
+		<td align="left">enqueue_migrate_mem_objects</td>
+		<td align="left">enqueue_migrate_mem_objects</td>
 	</tr>
 	<tr>
 		<td height="15" align="left">clEnqueueNativeKernel</td>
 		<td align="center">✓</td>
 		<td align="center">✓</td>
 		<td align="center">✓</td>
-		<td align="left"><br></td>
-		<td align="left"><br></td>
+		<td align="left">enqueue_native_kernel</td>
+		<td align="left">enqueue_native_kernel</td>
 	</tr>
 	<tr>
 		<td height="15" align="left">clEnqueueNDRangeKernel</td>
 		<td align="center">✓</td>
 		<td align="center">✓</td>
 		<td align="center">✓</td>
-		<td align="left"><br></td>
-		<td align="left"><br></td>
+		<td align="left">enqueue_ndrange_kernel</td>
+		<td align="left">enqueue_ndrange_kernel</td>
 	</tr>
 	<tr>
 		<td height="15" align="left">clEnqueueReadBuffer</td>
 		<td align="center">✓</td>
 		<td align="center">✓</td>
 		<td align="center">✓</td>
-		<td align="left"><br></td>
-		<td align="left"><br></td>
+		<td align="left">enqueue_read_buffer</td>
+		<td align="left">enqueue_read_buffer</td>
 	</tr>
 	<tr>
 		<td height="15" align="left">clEnqueueReadBufferRect</td>
@@ -335,8 +335,8 @@
 		<td align="center">✓</td>
 		<td align="center">✓</td>
 		<td align="center">✓</td>
-		<td align="left"><br></td>
-		<td align="left"><br></td>
+		<td align="left">enqueue_read_image</td>
+		<td align="left">enqueue_read_image</td>
 	</tr>
 	<tr>
 		<td height="15" align="left">clEnqueueTask</td>
@@ -351,8 +351,8 @@
 		<td align="center">✓</td>
 		<td align="center">✓</td>
 		<td align="center">✓</td>
-		<td align="left"><br></td>
-		<td align="left"><br></td>
+		<td align="left">enqueue_unmap_mem_object</td>
+		<td align="left">enqueue_unmap_mem_object</td>
 	</tr>
 	<tr>
 		<td height="15" align="left">clEnqueueWaitForEvents</td>
@@ -367,8 +367,8 @@
 		<td align="center">✓</td>
 		<td align="center">✓</td>
 		<td align="center">✓</td>
-		<td align="left"><br></td>
-		<td align="left"><br></td>
+		<td align="left">enqueue_write_buffer</td>
+		<td align="left">enqueue_write_buffer</td>
 	</tr>
 	<tr>
 		<td height="15" align="left">clEnqueueWriteBufferRect</td>
@@ -383,8 +383,8 @@
 		<td align="center">✓</td>
 		<td align="center">✓</td>
 		<td align="center">✓</td>
-		<td align="left"><br></td>
-		<td align="left"><br></td>
+		<td align="left">enqueue_write_image</td>
+		<td align="left">enqueue_write_image</td>
 	</tr>
 	<tr>
 		<td height="15" align="left">clFinish</td>
@@ -439,8 +439,8 @@
 		<td align="center">✓</td>
 		<td align="center">✓</td>
 		<td align="center">✓</td>
-		<td align="left"><br></td>
-		<td align="left"><br></td>
+		<td align="left">get_event_info</td>
+		<td align="left">get_event_info</td>
 	</tr>
 	<tr>
 		<td height="15" align="left">clGetEventProfilingInfo</td>
@@ -471,40 +471,40 @@
 		<td align="center">✓</td>
 		<td align="center">✓</td>
 		<td align="center">✓</td>
-		<td align="left"><br></td>
-		<td align="left"><br></td>
+		<td align="left">get_image_info</td>
+		<td align="left">get_image_info</td>
 	</tr>
 	<tr>
 		<td height="15" align="left">clGetKernelArgInfo</td>
 		<td align="center"><br></td>
 		<td align="center"><br></td>
 		<td align="center">✓</td>
-		<td align="left"><br></td>
-		<td align="left"><br></td>
+		<td align="left">get_kernel_arg_info</td>
+		<td align="left">get_kernel_arg_info</td>
 	</tr>
 	<tr>
 		<td height="15" align="left">clGetKernelInfo</td>
 		<td align="center">✓</td>
 		<td align="center">✓</td>
 		<td align="center">✓</td>
-		<td align="left"><br></td>
-		<td align="left"><br></td>
+		<td align="left">get_kernel_info</td>
+		<td align="left">get_kernel_info</td>
 	</tr>
 	<tr>
 		<td height="15" align="left">clGetKernelWorkGroupInfo</td>
 		<td align="center">✓</td>
 		<td align="center">✓</td>
 		<td align="center">✓</td>
-		<td align="left"><br></td>
-		<td align="left"><br></td>
+		<td align="left">get_kernel_work_group_info</td>
+		<td align="left">get_kernel_work_group_info</td>
 	</tr>
 	<tr>
 		<td height="15" align="left">clGetMemObjectInfo</td>
 		<td align="center">✓</td>
 		<td align="center">✓</td>
 		<td align="center">✓</td>
-		<td align="left"><br></td>
-		<td align="left"><br></td>
+		<td align="left">get_mem_object_info</td>
+		<td align="left">get_mem_object_info</td>
 	</tr>
 	<tr>
 		<td height="15" align="left">clGetPlatformIDs</td>
@@ -551,8 +551,8 @@
 		<td align="center">✓</td>
 		<td align="center">✓</td>
 		<td align="center">✓</td>
-		<td align="left"><br></td>
-		<td align="left"><br></td>
+		<td align="left">get_supported_image_formats</td>
+		<td align="left">get_supported_image_formats</td>
 	</tr>
 	<tr>
 		<td height="15" align="left">clLinkProgram</td>
@@ -591,24 +591,24 @@
 		<td align="center">✓</td>
 		<td align="center">✓</td>
 		<td align="center">✓</td>
-		<td align="left"><br></td>
-		<td align="left"><br></td>
+		<td align="left">release_event</td>
+		<td align="left">release_event</td>
 	</tr>
 	<tr>
 		<td height="15" align="left">clReleaseKernel</td>
 		<td align="center">✓</td>
 		<td align="center">✓</td>
 		<td align="center">✓</td>
-		<td align="left"><br></td>
-		<td align="left"><br></td>
+		<td align="left">release_kernel</td>
+		<td align="left">release_kernel</td>
 	</tr>
 	<tr>
 		<td height="15" align="left">clReleaseMemObject</td>
 		<td align="center">✓</td>
 		<td align="center">✓</td>
 		<td align="center">✓</td>
-		<td align="left"><br></td>
-		<td align="left"><br></td>
+		<td align="left">release_mem_object</td>
+		<td align="left">release_mem_object</td>
 	</tr>
 	<tr>
 		<td height="15" align="left">clReleaseProgram</td>
@@ -655,24 +655,24 @@
 		<td align="center">✓</td>
 		<td align="center">✓</td>
 		<td align="center">✓</td>
-		<td align="left"><br></td>
-		<td align="left"><br></td>
+		<td align="left">retain_event</td>
+		<td align="left">retain_event</td>
 	</tr>
 	<tr>
 		<td height="15" align="left">clRetainKernel</td>
 		<td align="center">✓</td>
 		<td align="center">✓</td>
 		<td align="center">✓</td>
-		<td align="left"><br></td>
-		<td align="left"><br></td>
+		<td align="left">retain_kernel</td>
+		<td align="left">retain_kernel</td>
 	</tr>
 	<tr>
 		<td height="15" align="left">clRetainMemObject</td>
 		<td align="center">✓</td>
 		<td align="center">✓</td>
 		<td align="center">✓</td>
-		<td align="left"><br></td>
-		<td align="left"><br></td>
+		<td align="left">retain_mem_object</td>
+		<td align="left">retain_mem_object</td>
 	</tr>
 	<tr>
 		<td height="15" align="left">clRetainProgram</td>
@@ -703,16 +703,16 @@
 		<td align="center"><br></td>
 		<td align="center">✓</td>
 		<td align="center">✓</td>
-		<td align="left"><br></td>
-		<td align="left"><br></td>
+		<td align="left">set_event_callback</td>
+		<td align="left">set_event_callback</td>
 	</tr>
 	<tr>
 		<td height="15" align="left">clSetKernelArg</td>
 		<td align="center">✓</td>
 		<td align="center">✓</td>
 		<td align="center">✓</td>
-		<td align="left"><br></td>
-		<td align="left"><br></td>
+		<td align="left">set_kernel_arg</td>
+		<td align="left">set_kernel_arg</td>
 	</tr>
 	<tr>
 		<td height="15" align="left">clSetMemObjectDestructorCallback</td>
@@ -727,8 +727,8 @@
 		<td align="center"><br></td>
 		<td align="center">✓</td>
 		<td align="center">✓</td>
-		<td align="left"><br></td>
-		<td align="left"><br></td>
+		<td align="left">set_user_event_status</td>
+		<td align="left">set_user_event_status</td>
 	</tr>
 	<tr>
 		<td height="15" align="left">clUnloadCompiler</td>
@@ -751,8 +751,8 @@
 		<td align="center">✓</td>
 		<td align="center">✓</td>
 		<td align="center">✓</td>
-		<td align="left"><br></td>
-		<td align="left"><br></td>
+		<td align="left">wait_for_events</td>
+		<td align="left">wait_for_events</td>
 	</tr>
 </table>
 <!-- ************************************************************************** -->
@@ -804,22 +804,22 @@
 	<tr>
 		<td height="15" align="right" sdval="3" sdnum="1045;">3</td>
 		<td align="left">clCreateBuffer</td>
+		<td align="center">✓</td>
+		<td align="center">✓</td>
+		<td align="center">✓</td>
 		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="right" sdval="0" sdnum="1045;">0</td>
+		<td align="right" sdval="3" sdnum="1045;">3</td>
 		<td align="left"><br></td>
 		<td align="left"><br></td>
 	</tr>
 	<tr>
 		<td height="15" align="right" sdval="4" sdnum="1045;">4</td>
 		<td align="left">clCreateCommandQueue</td>
-		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="right" sdval="0" sdnum="1045;">0</td>
+		<td align="center">✓</td>
+		<td align="center">✓</td>
+		<td align="center">✓</td>
+		<td align="center">✓</td>
+		<td align="right" sdval="4" sdnum="1045;">4</td>
 		<td align="left"><br></td>
 		<td align="left"><br></td>
 	</tr>
@@ -881,22 +881,22 @@
 	<tr>
 		<td height="15" align="right" sdval="10" sdnum="1045;">10</td>
 		<td align="left">clCreateKernel</td>
-		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="right" sdval="0" sdnum="1045;">0</td>
+		<td align="center">✓</td>
+		<td align="center">✓</td>
+		<td align="center">✓</td>
+		<td align="center">✓</td>
+		<td align="right" sdval="4" sdnum="1045;">4</td>
 		<td align="left"><br></td>
 		<td align="left"><br></td>
 	</tr>
 	<tr>
 		<td height="15" align="right" sdval="11" sdnum="1045;">11</td>
 		<td align="left">clCreateKernelsInProgram</td>
-		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="right" sdval="0" sdnum="1045;">0</td>
+		<td align="center">✓</td>
+		<td align="center">✓</td>
+		<td align="center">✓</td>
+		<td align="center">✓</td>
+		<td align="right" sdval="4" sdnum="1045;">4</td>
 		<td align="left"><br></td>
 		<td align="left"><br></td>
 	</tr>
@@ -947,11 +947,11 @@
 	<tr>
 		<td height="15" align="right" sdval="16" sdnum="1045;">16</td>
 		<td align="left">clCreateSubBuffer</td>
+		<td align="center">✓</td>
+		<td align="center">✓</td>
+		<td align="center">✓</td>
 		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="right" sdval="0" sdnum="1045;">0</td>
+		<td align="right" sdval="3" sdnum="1045;">3</td>
 		<td align="left"><br></td>
 		<td align="left"><br></td>
 	</tr>
@@ -969,11 +969,11 @@
 	<tr>
 		<td height="15" align="right" sdval="18" sdnum="1045;">18</td>
 		<td align="left">clCreateUserEvent</td>
-		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="right" sdval="0" sdnum="1045;">0</td>
+		<td align="center">✓</td>
+		<td align="center">✓</td>
+		<td align="center">✓</td>
+		<td align="center">✓</td>
+		<td align="right" sdval="4" sdnum="1045;">4</td>
 		<td align="left"><br></td>
 		<td align="left"><br></td>
 	</tr>
@@ -1002,11 +1002,11 @@
 	<tr>
 		<td height="15" align="right" sdval="21" sdnum="1045;">21</td>
 		<td align="left">clEnqueueCopyBuffer</td>
+		<td align="center">✓</td>
+		<td align="center">✓</td>
+		<td align="center">✓</td>
 		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="right" sdval="0" sdnum="1045;">0</td>
+		<td align="right" sdval="3" sdnum="1045;">3</td>
 		<td align="left"><br></td>
 		<td align="left"><br></td>
 	</tr>
@@ -1024,33 +1024,33 @@
 	<tr>
 		<td height="15" align="right" sdval="23" sdnum="1045;">23</td>
 		<td align="left">clEnqueueCopyBufferToImage</td>
+		<td align="center">✓</td>
+		<td align="center">✓</td>
+		<td align="center">✓</td>
 		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="right" sdval="0" sdnum="1045;">0</td>
+		<td align="right" sdval="3" sdnum="1045;">3</td>
 		<td align="left"><br></td>
 		<td align="left"><br></td>
 	</tr>
 	<tr>
 		<td height="15" align="right" sdval="24" sdnum="1045;">24</td>
 		<td align="left">clEnqueueCopyImage</td>
+		<td align="center">✓</td>
+		<td align="center">✓</td>
+		<td align="center">✓</td>
 		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="right" sdval="0" sdnum="1045;">0</td>
+		<td align="right" sdval="3" sdnum="1045;">3</td>
 		<td align="left"><br></td>
 		<td align="left"><br></td>
 	</tr>
 	<tr>
 		<td height="15" align="right" sdval="25" sdnum="1045;">25</td>
 		<td align="left">clEnqueueCopyImageToBuffer</td>
+		<td align="center">✓</td>
+		<td align="center">✓</td>
+		<td align="center">✓</td>
 		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="right" sdval="0" sdnum="1045;">0</td>
+		<td align="right" sdval="3" sdnum="1045;">3</td>
 		<td align="left"><br></td>
 		<td align="left"><br></td>
 	</tr>
@@ -1079,22 +1079,22 @@
 	<tr>
 		<td height="15" align="right" sdval="28" sdnum="1045;">28</td>
 		<td align="left">clEnqueueMapBuffer</td>
+		<td align="center">✓</td>
+		<td align="center">✓</td>
+		<td align="center">✓</td>
 		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="right" sdval="0" sdnum="1045;">0</td>
+		<td align="right" sdval="3" sdnum="1045;">3</td>
 		<td align="left"><br></td>
 		<td align="left"><br></td>
 	</tr>
 	<tr>
 		<td height="15" align="right" sdval="29" sdnum="1045;">29</td>
 		<td align="left">clEnqueueMapImage</td>
+		<td align="center">✓</td>
+		<td align="center">✓</td>
+		<td align="center">✓</td>
 		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="right" sdval="0" sdnum="1045;">0</td>
+		<td align="right" sdval="3" sdnum="1045;">3</td>
 		<td align="left"><br></td>
 		<td align="left"><br></td>
 	</tr>
@@ -1123,44 +1123,44 @@
 	<tr>
 		<td height="15" align="right" sdval="32" sdnum="1045;">32</td>
 		<td align="left">clEnqueueMigrateMemObjects</td>
+		<td align="center">✓</td>
+		<td align="center">✓</td>
+		<td align="center">✓</td>
 		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="right" sdval="0" sdnum="1045;">0</td>
+		<td align="right" sdval="3" sdnum="1045;">3</td>
 		<td align="left"><br></td>
 		<td align="left"><br></td>
 	</tr>
 	<tr>
 		<td height="15" align="right" sdval="33" sdnum="1045;">33</td>
 		<td align="left">clEnqueueNativeKernel</td>
-		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="right" sdval="0" sdnum="1045;">0</td>
+		<td align="center">✓</td>
+		<td align="center">✓</td>
+		<td align="center">✓</td>
+		<td align="center">✓</td>
+		<td align="right" sdval="4" sdnum="1045;">4</td>
 		<td align="left"><br></td>
 		<td align="left"><br></td>
 	</tr>
 	<tr>
 		<td height="15" align="right" sdval="34" sdnum="1045;">34</td>
 		<td align="left">clEnqueueNDRangeKernel</td>
-		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="right" sdval="0" sdnum="1045;">0</td>
+		<td align="center">✓</td>
+		<td align="center">✓</td>
+		<td align="center">✓</td>
+		<td align="center">✓</td>
+		<td align="right" sdval="4" sdnum="1045;">4</td>
 		<td align="left"><br></td>
 		<td align="left"><br></td>
 	</tr>
 	<tr>
 		<td height="15" align="right" sdval="35" sdnum="1045;">35</td>
 		<td align="left">clEnqueueReadBuffer</td>
+		<td align="center">✓</td>
+		<td align="center">✓</td>
+		<td align="center">✓</td>
 		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="right" sdval="0" sdnum="1045;">0</td>
+		<td align="right" sdval="3" sdnum="1045;">3</td>
 		<td align="left"><br></td>
 		<td align="left"><br></td>
 	</tr>
@@ -1178,11 +1178,11 @@
 	<tr>
 		<td height="15" align="right" sdval="37" sdnum="1045;">37</td>
 		<td align="left">clEnqueueReadImage</td>
+		<td align="center">✓</td>
+		<td align="center">✓</td>
+		<td align="center">✓</td>
 		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="right" sdval="0" sdnum="1045;">0</td>
+		<td align="right" sdval="3" sdnum="1045;">3</td>
 		<td align="left"><br></td>
 		<td align="left"><br></td>
 	</tr>
@@ -1200,11 +1200,11 @@
 	<tr>
 		<td height="15" align="right" sdval="39" sdnum="1045;">39</td>
 		<td align="left">clEnqueueUnmapMemObject</td>
+		<td align="center">✓</td>
+		<td align="center">✓</td>
+		<td align="center">✓</td>
 		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="right" sdval="0" sdnum="1045;">0</td>
+		<td align="right" sdval="3" sdnum="1045;">3</td>
 		<td align="left"><br></td>
 		<td align="left"><br></td>
 	</tr>
@@ -1222,11 +1222,11 @@
 	<tr>
 		<td height="15" align="right" sdval="41" sdnum="1045;">41</td>
 		<td align="left">clEnqueueWriteBuffer</td>
+		<td align="center">✓</td>
+		<td align="center">✓</td>
+		<td align="center">✓</td>
 		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="right" sdval="0" sdnum="1045;">0</td>
+		<td align="right" sdval="3" sdnum="1045;">3</td>
 		<td align="left"><br></td>
 		<td align="left"><br></td>
 	</tr>
@@ -1244,11 +1244,11 @@
 	<tr>
 		<td height="15" align="right" sdval="43" sdnum="1045;">43</td>
 		<td align="left">clEnqueueWriteImage</td>
+		<td align="center">✓</td>
+		<td align="center">✓</td>
+		<td align="center">✓</td>
 		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="right" sdval="0" sdnum="1045;">0</td>
+		<td align="right" sdval="3" sdnum="1045;">3</td>
 		<td align="left"><br></td>
 		<td align="left"><br></td>
 	</tr>
@@ -1321,11 +1321,11 @@
 	<tr>
 		<td height="15" align="right" sdval="50" sdnum="1045;">50</td>
 		<td align="left">clGetEventInfo</td>
-		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="right" sdval="0" sdnum="1045;">0</td>
+		<td align="center">✓</td>
+		<td align="center">✓</td>
+		<td align="center">✓</td>
+		<td align="center">✓</td>
+		<td align="right" sdval="4" sdnum="1045;">4</td>
 		<td align="left"><br></td>
 		<td align="left"><br></td>
 	</tr>
@@ -1365,55 +1365,55 @@
 	<tr>
 		<td height="15" align="right" sdval="54" sdnum="1045;">54</td>
 		<td align="left">clGetImageInfo</td>
+		<td align="center">✓</td>
+		<td align="center">✓</td>
+		<td align="center">✓</td>
 		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="right" sdval="0" sdnum="1045;">0</td>
+		<td align="right" sdval="3" sdnum="1045;">3</td>
 		<td align="left"><br></td>
 		<td align="left"><br></td>
 	</tr>
 	<tr>
 		<td height="15" align="right" sdval="55" sdnum="1045;">55</td>
 		<td align="left">clGetKernelArgInfo</td>
-		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="right" sdval="0" sdnum="1045;">0</td>
+		<td align="center">✓</td>
+		<td align="center">✓</td>
+		<td align="center">✓</td>
+		<td align="center">✓</td>
+		<td align="right" sdval="4" sdnum="1045;">4</td>
 		<td align="left"><br></td>
 		<td align="left"><br></td>
 	</tr>
 	<tr>
 		<td height="15" align="right" sdval="56" sdnum="1045;">56</td>
 		<td align="left">clGetKernelInfo</td>
-		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="right" sdval="0" sdnum="1045;">0</td>
+		<td align="center">✓</td>
+		<td align="center">✓</td>
+		<td align="center">✓</td>
+		<td align="center">✓</td>
+		<td align="right" sdval="4" sdnum="1045;">4</td>
 		<td align="left"><br></td>
 		<td align="left"><br></td>
 	</tr>
 	<tr>
 		<td height="15" align="right" sdval="57" sdnum="1045;">57</td>
 		<td align="left">clGetKernelWorkGroupInfo</td>
-		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="right" sdval="0" sdnum="1045;">0</td>
+		<td align="center">✓</td>
+		<td align="center">✓</td>
+		<td align="center">✓</td>
+		<td align="center">✓</td>
+		<td align="right" sdval="4" sdnum="1045;">4</td>
 		<td align="left"><br></td>
 		<td align="left"><br></td>
 	</tr>
 	<tr>
 		<td height="15" align="right" sdval="58" sdnum="1045;">58</td>
 		<td align="left">clGetMemObjectInfo</td>
+		<td align="center">✓</td>
+		<td align="center">✓</td>
+		<td align="center">✓</td>
 		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="right" sdval="0" sdnum="1045;">0</td>
+		<td align="right" sdval="3" sdnum="1045;">3</td>
 		<td align="left"><br></td>
 		<td align="left"><br></td>
 	</tr>
@@ -1475,11 +1475,11 @@
 	<tr>
 		<td height="15" align="right" sdval="64" sdnum="1045;">64</td>
 		<td align="left">clGetSupportedImageFormats</td>
+		<td align="center">✓</td>
+		<td align="center">✓</td>
+		<td align="center">✓</td>
 		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="right" sdval="0" sdnum="1045;">0</td>
+		<td align="right" sdval="3" sdnum="1045;">3</td>
 		<td align="left"><br></td>
 		<td align="left"><br></td>
 	</tr>
@@ -1530,33 +1530,33 @@
 	<tr>
 		<td height="15" align="right" sdval="69" sdnum="1045;">69</td>
 		<td align="left">clReleaseEvent</td>
-		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="right" sdval="0" sdnum="1045;">0</td>
+		<td align="center">✓</td>
+		<td align="center">✓</td>
+		<td align="center">✓</td>
+		<td align="center">✓</td>
+		<td align="right" sdval="4" sdnum="1045;">4</td>
 		<td align="left"><br></td>
 		<td align="left"><br></td>
 	</tr>
 	<tr>
 		<td height="15" align="right" sdval="70" sdnum="1045;">70</td>
 		<td align="left">clReleaseKernel</td>
-		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="right" sdval="0" sdnum="1045;">0</td>
+		<td align="center">✓</td>
+		<td align="center">✓</td>
+		<td align="center">✓</td>
+		<td align="center">✓</td>
+		<td align="right" sdval="4" sdnum="1045;">4</td>
 		<td align="left"><br></td>
 		<td align="left"><br></td>
 	</tr>
 	<tr>
 		<td height="15" align="right" sdval="71" sdnum="1045;">71</td>
 		<td align="left">clReleaseMemObject</td>
+		<td align="center">✓</td>
+		<td align="center">✓</td>
+		<td align="center">✓</td>
 		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="right" sdval="0" sdnum="1045;">0</td>
+		<td align="right" sdval="3" sdnum="1045;">3</td>
 		<td align="left"><br></td>
 		<td align="left"><br></td>
 	</tr>
@@ -1618,33 +1618,33 @@
 	<tr>
 		<td height="15" align="right" sdval="77" sdnum="1045;">77</td>
 		<td align="left">clRetainEvent</td>
-		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="right" sdval="0" sdnum="1045;">0</td>
+		<td align="center">✓</td>
+		<td align="center">✓</td>
+		<td align="center">✓</td>
+		<td align="center">✓</td>
+		<td align="right" sdval="4" sdnum="1045;">4</td>
 		<td align="left"><br></td>
 		<td align="left"><br></td>
 	</tr>
 	<tr>
 		<td height="15" align="right" sdval="78" sdnum="1045;">78</td>
 		<td align="left">clRetainKernel</td>
-		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="right" sdval="0" sdnum="1045;">0</td>
+		<td align="center">✓</td>
+		<td align="center">✓</td>
+		<td align="center">✓</td>
+		<td align="center">✓</td>
+		<td align="right" sdval="4" sdnum="1045;">4</td>
 		<td align="left"><br></td>
 		<td align="left"><br></td>
 	</tr>
 	<tr>
 		<td height="15" align="right" sdval="79" sdnum="1045;">79</td>
 		<td align="left">clRetainMemObject</td>
-		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="right" sdval="0" sdnum="1045;">0</td>
+		<td align="center">✓</td>
+		<td align="center">✓</td>
+		<td align="center">✓</td>
+		<td align="center">✓</td>
+		<td align="right" sdval="4" sdnum="1045;">4</td>
 		<td align="left"><br></td>
 		<td align="left"><br></td>
 	</tr>
@@ -1684,22 +1684,22 @@
 	<tr>
 		<td height="15" align="right" sdval="83" sdnum="1045;">83</td>
 		<td align="left">clSetEventCallback</td>
-		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="right" sdval="0" sdnum="1045;">0</td>
+		<td align="center">✓</td>
+		<td align="center">✓</td>
+		<td align="center">✓</td>
+		<td align="center">✓</td>
+		<td align="right" sdval="4" sdnum="1045;">4</td>
 		<td align="left"><br></td>
 		<td align="left"><br></td>
 	</tr>
 	<tr>
 		<td height="15" align="right" sdval="84" sdnum="1045;">84</td>
 		<td align="left">clSetKernelArg</td>
-		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="right" sdval="0" sdnum="1045;">0</td>
+		<td align="center">✓</td>
+		<td align="center">✓</td>
+		<td align="center">✓</td>
+		<td align="center">✓</td>
+		<td align="right" sdval="4" sdnum="1045;">4</td>
 		<td align="left"><br></td>
 		<td align="left"><br></td>
 	</tr>
@@ -1717,11 +1717,11 @@
 	<tr>
 		<td height="15" align="right" sdval="86" sdnum="1045;">86</td>
 		<td align="left">clSetUserEventStatus</td>
-		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="right" sdval="0" sdnum="1045;">0</td>
+		<td align="center">✓</td>
+		<td align="center">✓</td>
+		<td align="center">✓</td>
+		<td align="center">✓</td>
+		<td align="right" sdval="4" sdnum="1045;">4</td>
 		<td align="left"><br></td>
 		<td align="left"><br></td>
 	</tr>
@@ -1750,11 +1750,11 @@
 	<tr>
 		<td height="15" align="right" sdval="89" sdnum="1045;">89</td>
 		<td align="left">clWaitForEvents</td>
-		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="center"><br></td>
-		<td align="right" sdval="0" sdnum="1045;">0</td>
+		<td align="center">✓</td>
+		<td align="center">✓</td>
+		<td align="center">✓</td>
+		<td align="center">✓</td>
+		<td align="right" sdval="4" sdnum="1045;">4</td>
 		<td align="left"><br></td>
 		<td align="left"><br></td>
 	</tr>
@@ -1770,9 +1770,9 @@
 	</tr>
 	<tr>
 		<td height="15" align="right" sdval="89" sdnum="1045;">89</td>
-		<td align="right" sdval="104" sdnum="1045;">104</td>
+		<td align="right" sdval="234" sdnum="1045;">234</td>
 		<td align="right" sdval="356" sdnum="1045;">356</td>
-		<td align="right" sdval="0,292134831460674" sdnum="1045;0;0,00%">29,21%</td>
+		<td align="right" sdval="0,657303370786517" sdnum="1045;0;0,00%">65,73%</td>
 	</tr>
 </table>
 <!-- ************************************************************************** -->

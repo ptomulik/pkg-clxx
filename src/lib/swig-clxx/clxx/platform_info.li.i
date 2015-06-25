@@ -7,6 +7,8 @@
  */ // }}}
 
 %include <std_vector.i>
+
+%import <clxx/wknd.swg>
 %include <clxx/exception_support.swg>
 
 %import <clxx/std/string.i>

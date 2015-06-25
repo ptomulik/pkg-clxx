@@ -10,6 +10,7 @@
 #ifndef CLXX_CONTEXT_HPP_INCLUDED
 #define CLXX_CONTEXT_HPP_INCLUDED
 
+#include <clxx/context_fwd.hpp>
 #include <clxx/context_properties.hpp>
 #include <clxx/devices.hpp>
 #include <clxx/types.hpp>
@@ -53,11 +54,10 @@ namespace clxx {
  * gets deleted (the ~context() destructor decreases reference count for its
  * \c cl_context handle with \ref release_context()).
  */ // }}}
-class context
+class alignas(cl_context) context
 {
 private:
   cl_context  _id;
-  context();
 protected:
   /** // doc: _sdoc: _set_id() {{{
    * \brief Set new \c cl_context handle to this object
@@ -79,6 +79,14 @@ protected:
    */ // }}}
   void _set_id(cl_context id, bool retain_new, bool release_old);
 public:
+  /** // doc: context() {{{
+   * \brief Default constructor
+   *
+   * Sets the internal \c cl_context handle to \c NULL. A default-constructed
+   * \ref clxx::context "context" object is considered to be uninitialized
+   * (see #is_initialized()).
+   */ // }}}
+  context() noexcept;
   /** // doc: context(cl_context) {{{
    * \brief Constructor
    *
@@ -196,7 +204,7 @@ public:
    *
    * Internally decreases reference count for this context.
    */ // }}}
-  virtual ~context();
+  ~context();
   /** // doc: id() {{{
    * \brief   Get \c cl_context handle held by \c this object.
    *

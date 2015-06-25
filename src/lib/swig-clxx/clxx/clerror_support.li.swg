@@ -36,13 +36,13 @@ int SWIG_Clxx_clerror_type(clxx::clerror const& e)
         return SWIG_RuntimeError;
       case clxx::status_t::map_failure:
         return SWIG_RuntimeError;
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
       case clxx::status_t::misaligned_sub_buffer_offset:
         return SWIG_ValueError;
       case clxx::status_t::exec_status_error_for_events_in_wait_list:
         return SWIG_RuntimeError;
 #endif
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
       case clxx::status_t::compile_program_failure:
         return SWIG_RuntimeError;
       case clxx::status_t::linker_not_available:
@@ -122,11 +122,11 @@ int SWIG_Clxx_clerror_type(clxx::clerror const& e)
         return SWIG_ValueError;
       case clxx::status_t::invalid_global_work_size:
         return SWIG_ValueError;
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
       case clxx::status_t::invalid_property:
         return SWIG_ValueError;
 #endif
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
       case clxx::status_t::invalid_image_descriptor:
         return SWIG_ValueError;
       case clxx::status_t::invalid_compiler_options:

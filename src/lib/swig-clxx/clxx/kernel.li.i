@@ -7,6 +7,7 @@
  */ // }}}
 
 %include <std_vector.i>
+%import <clxx/wknd.swg>
 %include <clxx/exception_support.swg>
 
 %import <clxx/types.i>
@@ -23,6 +24,7 @@
 #include <clxx/std/string.i.hpp>
 %}
 
+%include <clxx/ndrange.swg>
 %include <clxx/kernel.swg>
 
 // vim: set expandtab tabstop=2 shiftwidth=2:

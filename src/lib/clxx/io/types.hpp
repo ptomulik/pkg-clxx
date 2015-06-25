@@ -115,7 +115,7 @@ operator<< (std::basic_ostream<_CharT, _Traits>& os, clxx::context_info_t x);
 template <typename _CharT, typename _Traits>
 std::basic_ostream<_CharT, _Traits>&
 operator<< (std::basic_ostream<_CharT, _Traits>& os, clxx::context_properties_t x);
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
 /** // doc: operator << (os, device_partition_property_t) {{{
  * \brief Write out clxx::device_partition_property_t value to a stream
  * \param os  The output stream.
@@ -126,7 +126,7 @@ template <typename _CharT, typename _Traits>
 std::basic_ostream<_CharT, _Traits>&
 operator<< (std::basic_ostream<_CharT, _Traits>& os, clxx::device_partition_property_t x);
 #endif
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
 /** // doc: operator << (os, device_affinity_domain_t) {{{
  * \brief Write out clxx::device_affinity_domain_t value to a stream
  * \param os  The output stream.
@@ -155,7 +155,7 @@ operator<< (std::basic_ostream<_CharT, _Traits>& os, clxx::command_queue_info_t 
 template <typename _CharT, typename _Traits>
 std::basic_ostream<_CharT, _Traits>&
 operator<< (std::basic_ostream<_CharT, _Traits>& os, clxx::mem_flags_t x);
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
 /** // doc: operator << (os, mem_migration_flags_t) {{{
  * \brief Write out clxx::mem_migration_flags_t value to a stream
  * \param os  The output stream.
@@ -265,7 +265,7 @@ operator<< (std::basic_ostream<_CharT, _Traits>& os, clxx::program_info_t x);
 template <typename _CharT, typename _Traits>
 std::basic_ostream<_CharT, _Traits>&
 operator<< (std::basic_ostream<_CharT, _Traits>& os, clxx::program_build_info_t x);
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
 /** // doc: operator << (os, program_binary_type_t) {{{
  * \brief Write out clxx::program_binary_type_t value to a stream
  * \param os  The output stream.
@@ -294,7 +294,7 @@ operator<< (std::basic_ostream<_CharT, _Traits>& os, clxx::build_status_t x);
 template <typename _CharT, typename _Traits>
 std::basic_ostream<_CharT, _Traits>&
 operator<< (std::basic_ostream<_CharT, _Traits>& os, clxx::kernel_info_t x);
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
 /** // doc: operator << (os, kernel_arg_info_t) {{{
  * \brief Write out clxx::kernel_arg_info_t value to a stream
  * \param os  The output stream.
@@ -305,7 +305,7 @@ template <typename _CharT, typename _Traits>
 std::basic_ostream<_CharT, _Traits>&
 operator<< (std::basic_ostream<_CharT, _Traits>& os, clxx::kernel_arg_info_t x);
 #endif
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
 /** // doc: operator << (os, kernel_arg_address_qualifier_t) {{{
  * \brief Write out clxx::kernel_arg_address_qualifier_t value to a stream
  * \param os  The output stream.
@@ -316,7 +316,7 @@ template <typename _CharT, typename _Traits>
 std::basic_ostream<_CharT, _Traits>&
 operator<< (std::basic_ostream<_CharT, _Traits>& os, clxx::kernel_arg_address_qualifier_t x);
 #endif
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
 /** // doc: operator << (os, kernel_arg_access_qualifier_t) {{{
  * \brief Write out clxx::kernel_arg_access_qualifier_t to a stream
  * \param os  The output stream.
@@ -327,7 +327,7 @@ template <typename _CharT, typename _Traits>
 std::basic_ostream<_CharT, _Traits>&
 operator<< (std::basic_ostream<_CharT, _Traits>& os, clxx::kernel_arg_access_qualifier_t x);
 #endif
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
 /** // doc: operator << (os, kernel_arg_type_qualifier_t) {{{
  * \brief Write out clxx::kernel_arg_type_qualifier_t value to a stream
  * \param os  The output stream.
@@ -374,7 +374,7 @@ operator<< (std::basic_ostream<_CharT, _Traits>& os, clxx::command_type_t x);
 template <typename _CharT, typename _Traits>
 std::basic_ostream<_CharT, _Traits>&
 operator<< (std::basic_ostream<_CharT, _Traits>& os, clxx::command_exec_status_t x);
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
 /** // doc: operator << (os, buffer_create_type_t) {{{
  * \brief Write out clxx:buffer_create_type_t value to a stream
  * \param os  The output stream.

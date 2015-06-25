@@ -8,6 +8,7 @@
 
 %include <std_vector.i>
 
+%import <clxx/wknd.swg>
 %include <clxx/program_binary.swg>
 %include <clxx/program_binaries.swg>
 

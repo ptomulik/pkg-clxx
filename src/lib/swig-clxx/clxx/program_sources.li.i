@@ -8,6 +8,7 @@
 
 %include <std_vector.i>
 
+%import <clxx/wknd.swg>
 %import <clxx/std/string.i>
 %{
 #include <clxx/std/string.i.hpp>

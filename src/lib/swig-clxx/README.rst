@@ -38,7 +38,7 @@ You'll find four types of files here
 - ``.i.hpp``, interface header, one for each ``.li.i`` file,
 - ``.swg``, - language-dependent swig library, one for each header in
   ``#/src/lib/clxx``.,
-- ``.li.swg``, language-independent swig library, one for each ``.li.swg`` file.
+- ``.li.swg``, language-independent swig library, one for each ``.swg`` file.
 
 The intended way to generate a module using this library is to just create a
 language-specific interface file ``*.i`` which set's up appropriate ``%module``

@@ -44,6 +44,7 @@ out += env.SwigPyModule('clxx.program_sources', SWIGPY_LIBS = libs)
 out += env.SwigPyModule('clxx.program_binaries', SWIGPY_LIBS = libs)
 out += env.SwigPyModule('clxx.program', SWIGPY_LIBS = libs + ['clxx_cl'])
 out += env.SwigPyModule('clxx.kernel', SWIGPY_LIBS = libs + ['clxx_cl'])
+out += env.SwigPyModule('clxx.mem', SWIGPY_LIBS = libs + ['clxx_cl'])
 
 # Module files (*.so and *.py)
 mfiles =  [m for m in out if not str(m).endswith('.cc')] + init_py

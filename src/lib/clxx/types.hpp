@@ -61,13 +61,13 @@ enum class status_t : cl_int {
   build_program_failure           = CL_BUILD_PROGRAM_FAILURE,
   /// Corresponds to \c CL_MAP_FAILURE
   map_failure                     = CL_MAP_FAILURE,
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
   /// Corresponds to \c CL_MISALIGNED_SUB_BUFFER_OFFSET
   misaligned_sub_buffer_offset    = CL_MISALIGNED_SUB_BUFFER_OFFSET,
   /// Corresponds to \c CL_EXEC_STATUS_ERROR_FOR_EVENTS_IN_WAIT_LIST
   exec_status_error_for_events_in_wait_list = CL_EXEC_STATUS_ERROR_FOR_EVENTS_IN_WAIT_LIST,
 #endif
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
   /// Corresponds to \c CL_COMPILE_PROGRAM_FAILURE
   compile_program_failure         = CL_COMPILE_PROGRAM_FAILURE,
   /// Corresponds to \c CL_LINKER_NOT_AVAILABLE
@@ -147,12 +147,12 @@ enum class status_t : cl_int {
   invalid_mip_level               = CL_INVALID_MIP_LEVEL,
   /// Corresponds to \c CL_INVALID_GLOBAL_WORK_SIZE
   invalid_global_work_size        = CL_INVALID_GLOBAL_WORK_SIZE
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
   ,
   /// Corresponds to \c CL_INVALID_PROPERTY
   invalid_property                = CL_INVALID_PROPERTY
 #endif
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
   ,
   /// Corresponds to \c CL_INVALID_IMAGE_DESCRIPTOR
   invalid_image_descriptor        = CL_INVALID_IMAGE_DESCRIPTOR,
@@ -163,7 +163,7 @@ enum class status_t : cl_int {
   /// Corresponds to \c CL_INVALID_DEVICE_PARTITION_COUNT
   invalid_device_partition_count  = CL_INVALID_DEVICE_PARTITION_COUNT
 #endif
-#if CL_VERSION_2_0
+#if CLXX_CL_H_VERSION_2_0
   ,
   /// Corresponds to \c CL_INVALID_PIPE_SIZE
   invalid_pipe_size               = CL_INVALID_PIPE_SIZE,
@@ -300,7 +300,7 @@ enum class device_type_t : cl_device_type {
   gpu         = CL_DEVICE_TYPE_GPU,
   /// Corresponds to \c CL_DEVICE_TYPE_ACCELERATOR
   accelerator = CL_DEVICE_TYPE_ACCELERATOR,
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
   /// Corresponds to \c CL_DEVICE_TYPE_CUSTOM
   custom      = CL_DEVICE_TYPE_CUSTOM,
 #endif
@@ -425,12 +425,12 @@ enum class device_info_t : cl_device_info {
   extensions                     = CL_DEVICE_EXTENSIONS,
   /// Corresponds to \c CL_DEVICE_PLATFORM
   platform                       = CL_DEVICE_PLATFORM
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
   ,
   /// Corresponds to \c CL_DEVICE_DOUBLE_FP_CONFIG
   double_fp_config               = CL_DEVICE_DOUBLE_FP_CONFIG
 #endif
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
   ,
   /// Corresponds to \c CL_DEVICE_PREFERRED_VECTOR_WIDTH_HALF
   preferred_vector_width_half    = CL_DEVICE_PREFERRED_VECTOR_WIDTH_HALF,
@@ -453,7 +453,7 @@ enum class device_info_t : cl_device_info {
   /// Corresponds to \c CL_DEVICE_OPENCL_C_VERSION
   opencl_c_version               = CL_DEVICE_OPENCL_C_VERSION
 #endif
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
   ,
   /// Corresponds to \c CL_DEVICE_LINKER_AVAILABLE
   linker_available               = CL_DEVICE_LINKER_AVAILABLE,
@@ -518,12 +518,12 @@ enum class device_fp_config_t : cl_device_fp_config {
   round_to_inf                   = CL_FP_ROUND_TO_INF,
   /// Corresponds to \c CL_FP_FMA
   fma                            = CL_FP_FMA
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
   ,
   /// Corresponds to \c CL_FP_SOFT_FLOAT
   soft_float                     = CL_FP_SOFT_FLOAT
 #endif
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
   ,
   /// Corresponds to \c CL_FP_CORRECTLY_ROUNDED_DIVIDE_SQRT
   correctly_rounded_divide_sqrt  = CL_FP_CORRECTLY_ROUNDED_DIVIDE_SQRT
@@ -657,7 +657,7 @@ enum class context_info_t : cl_context_info {
   devices         = CL_CONTEXT_DEVICES,
   /// Corresponds to \c CL_CONTEXT_PROPERTIES
   properties      = CL_CONTEXT_PROPERTIES
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
   ,
   /// Corresponds to \c CL_CONTEXT_NUM_DEVICES
   num_devices     = CL_CONTEXT_NUM_DEVICES
@@ -683,7 +683,7 @@ CLXX_MAKE_INTEGER_ENUM(context_info_t, cl_context_info)
 enum class context_properties_t : cl_context_properties {
   /// Corresponds to \c CL_CONTEXT_PLATFORM
   platform          = CL_CONTEXT_PLATFORM
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
   ,
   /// Corresponds to \c CL_CONTEXT_INTEROP_USER_SYNC
   interop_user_sync = CL_CONTEXT_INTEROP_USER_SYNC
@@ -724,7 +724,7 @@ enum class context_properties_t : cl_context_properties {
 
 CLXX_MAKE_INTEGER_ENUM(context_properties_t, cl_context_properties)
 
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
 /** // doc: device_partition_property_t {{{
  * \brief Corresponds to OpenCL's \c cl_device_partition_property
  *
@@ -758,7 +758,7 @@ enum class device_partition_property_t : cl_device_partition_property {
 CLXX_MAKE_INTEGER_ENUM(device_partition_property_t, cl_device_partition_property)
 #endif
 
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
 /** // doc: device_affinity_domain_t {{{
  * \brief Corresponds to OpenCL's \c cl_device_affinity_domain
  *
@@ -856,7 +856,7 @@ enum class mem_flags_t : cl_mem_flags {
   alloc_host_ptr  = CL_MEM_ALLOC_HOST_PTR,
   /// Corresponds to \c CL_MEM_COPY_HOST_PTR
   copy_host_ptr   = CL_MEM_COPY_HOST_PTR
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
   ,
   /// Corresponds to \c CL_MEM_HOST_WRITE_ONLY
   host_write_only = CL_MEM_HOST_WRITE_ONLY,
@@ -869,7 +869,7 @@ enum class mem_flags_t : cl_mem_flags {
 
 CLXX_MAKE_BITMASK_ENUM(mem_flags_t, cl_mem_flags)
 
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
 /** // doc: mem_migration_flags_t {{{
  * \brief Correspond to OpenCL's \c cl_mem_migration_flags
  *
@@ -933,7 +933,7 @@ enum class channel_order_t : cl_channel_order {
   intensity     = CL_INTENSITY,
   /// Corresponds to \c CL_LUMINANCE
   luminance     = CL_LUMINANCE
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
   ,
   /// Corresponds to \c CL_Rx
   rx            = CL_Rx,
@@ -942,7 +942,7 @@ enum class channel_order_t : cl_channel_order {
   /// Corresponds to \c CL_RGBx
   rgbx          = CL_RGBx
 #endif
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
   ,
   /// Corresponds to \c CL_DEPTH
   depth         = CL_DEPTH,
@@ -999,7 +999,7 @@ enum class channel_type_t : cl_channel_type {
   half_float        = CL_HALF_FLOAT,
   /// Corresponds to \c CL_FLOAT
   float_            = CL_FLOAT
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
   ,
   /// Corresponds to \c CL_UNORM_INT24
   unorm_int24       = CL_UNORM_INT24
@@ -1032,7 +1032,7 @@ enum class mem_object_type_t : cl_mem_object_type {
   image2d        = CL_MEM_OBJECT_IMAGE2D,
   /// Corresponds to \c CL_MEM_OBJECT_IMAGE3D
   image3d        = CL_MEM_OBJECT_IMAGE3D
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
   ,
   /// Corresponds to \c CL_MEM_OBJECT_IMAGE2D_ARRAY
   image2d_array  = CL_MEM_OBJECT_IMAGE2D_ARRAY,
@@ -1076,12 +1076,17 @@ enum class mem_info_t : cl_mem_info {
   reference_count       = CL_MEM_REFERENCE_COUNT,
   /// Corresponds to \c CL_MEM_CONTEXT
   context               = CL_MEM_CONTEXT
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
   ,
   /// Corresponds to \c CL_MEM_ASSOCIATED_MEMOBJECT
   associated_memobject  = CL_MEM_ASSOCIATED_MEMOBJECT,
   /// Corresponds to \c CL_MEM_OFFSET
   offset                = CL_MEM_OFFSET
+#endif
+#if CLXX_CL_H_VERSION_2_0
+  ,
+  /// Corresponds to \c CL_MEM_USES_SVM_POINTER
+  uses_svm_pointer      = CL_MEM_USES_SVM_POINTER
 #endif
 };
 
@@ -1116,7 +1121,7 @@ enum class image_info_t : cl_image_info {
   height          = CL_IMAGE_HEIGHT,
   /// Corresponds to \c CL_IMAGE_DEPTH
   depth           = CL_IMAGE_DEPTH
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
   ,
   /// Corresponds to \c CL_IMAGE_ARRAY_SIZE
   array_size      = CL_IMAGE_ARRAY_SIZE,
@@ -1154,7 +1159,7 @@ enum class addressing_mode_t : cl_addressing_mode {
   clamp           = CL_ADDRESS_CLAMP,
   /// Corresponds to \c CL_ADDRESS_REPEAT
   repeat          = CL_ADDRESS_REPEAT
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
   ,
   /// Corresponds to \c CL_ADDRESS_MIRRORED_REPEAT
   mirrored_repeat = CL_ADDRESS_MIRRORED_REPEAT
@@ -1240,7 +1245,7 @@ enum class map_flags_t : cl_map_flags {
   read                    = CL_MAP_READ,
   /// Corresponds to \c CL_MAP_WRITE
   write                   = CL_MAP_WRITE
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
   ,
   /// Corresponds to \c CL_MAP_WRITE_INVALIDATE_REGION
   write_invalidate_region = CL_MAP_WRITE_INVALIDATE_REGION
@@ -1278,7 +1283,7 @@ enum class program_info_t : cl_program_info {
   binary_sizes    = CL_PROGRAM_BINARY_SIZES,
   /// Corresponds to \c CL_PROGRAM_BINARIES
   binaries        = CL_PROGRAM_BINARIES
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
   ,
   /// Corresponds to \c CL_PROGRAM_NUM_KERNELS
   num_kernels     = CL_PROGRAM_NUM_KERNELS,
@@ -1311,7 +1316,7 @@ enum class program_build_info_t : cl_program_build_info {
   options     = CL_PROGRAM_BUILD_OPTIONS,
   /// Corresponds to \c CL_PROGRAM_BUILD_LOG
   log         = CL_PROGRAM_BUILD_LOG
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
   ,
   /// Corresponds to \c CL_PROGRAM_BINARY_TYPE
   binary_type = CL_PROGRAM_BINARY_TYPE
@@ -1320,7 +1325,7 @@ enum class program_build_info_t : cl_program_build_info {
 
 CLXX_MAKE_INTEGER_ENUM(program_build_info_t, cl_program_build_info)
 
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
 /** // doc: program_binary_type_t {{{
  * \brief Corresponds to OpenCL's \c cl_program_binary_type
  *
@@ -1421,7 +1426,7 @@ enum class kernel_info_t : cl_kernel_info {
   context          = CL_KERNEL_CONTEXT,
   /// Corresponds to \c CL_KERNEL_PROGRAM
   program          = CL_KERNEL_PROGRAM
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
   ,
   /// Corresponds to \c CL_KERNEL_ATTRIBUTES
   attributes       = CL_KERNEL_ATTRIBUTES
@@ -1430,7 +1435,7 @@ enum class kernel_info_t : cl_kernel_info {
 
 CLXX_MAKE_INTEGER_ENUM(kernel_info_t, cl_kernel_info)
 
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
 /** // doc: kernel_arg_info_t {{{
  * \brief Corresponds to \c cl_kernel_arg_info
  *
@@ -1461,7 +1466,7 @@ enum class kernel_arg_info_t : cl_kernel_arg_info {
 CLXX_MAKE_INTEGER_ENUM(kernel_arg_info_t, cl_kernel_arg_info)
 #endif
 
-#if CL_VERSION_2_0
+#if CLXX_CL_H_VERSION_2_0
 /** // doc: kernel_exec_info_t {{{
  * \brief Corresponds to \c cl_kernel_exec_info
  *
@@ -1485,7 +1490,7 @@ enum class kernel_exec_info_t : cl_kernel_exec_info {
 CLXX_MAKE_INTEGER_ENUM(kernel_exec_info_t, cl_kernel_exec_info)
 #endif
 
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
 /** // doc: kernel_arg_address_qualifier_t {{{
  * \brief Corresponds to OpenCL's \c cl_kernel_arg_address_qualifier
  *
@@ -1516,7 +1521,7 @@ enum class kernel_arg_address_qualifier_t : cl_kernel_arg_address_qualifier {
 CLXX_MAKE_INTEGER_ENUM(kernel_arg_address_qualifier_t, cl_kernel_arg_address_qualifier)
 #endif
 
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
 /** // doc: kernel_arg_access_qualifier_t {{{
  * \brief Corresponds to OpenCL's \c cl_kernel_arg_access_qualifier
  *
@@ -1547,7 +1552,7 @@ enum class kernel_arg_access_qualifier_t : cl_kernel_arg_access_qualifier {
 CLXX_MAKE_INTEGER_ENUM(kernel_arg_access_qualifier_t, cl_kernel_arg_access_qualifier)
 #endif
 
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
 /** // doc: kernel_arg_type_qualifier_t {{{
  * \brief Corresponds to OpenCL's \c cl_kernel_arg_type_qualifier
  *
@@ -1600,14 +1605,14 @@ enum class kernel_work_group_info_t : cl_kernel_work_group_info {
   compile_work_group_size            = CL_KERNEL_COMPILE_WORK_GROUP_SIZE,
   /// Corresponds to \c CL_KERNEL_LOCAL_MEM_SIZE
   local_mem_size                     = CL_KERNEL_LOCAL_MEM_SIZE
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
   ,
   /// Corresponds to \c CL_KERNEL_PREFERRED_WORK_GROUP_SIZE_MULTIPLE
   preferred_work_group_size_multiple = CL_KERNEL_PREFERRED_WORK_GROUP_SIZE_MULTIPLE,
   /// Corresponds to \c CL_KERNEL_PRIVATE_MEM_SIZE
   private_mem_size                   = CL_KERNEL_PRIVATE_MEM_SIZE
 #endif
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
   ,
   /// Corresponds to \c CL_KERNEL_GLOBAL_WORK_SIZE
   global_work_size                   = CL_KERNEL_GLOBAL_WORK_SIZE
@@ -1641,7 +1646,7 @@ enum class event_info_t : cl_event_info {
   reference_count           = CL_EVENT_REFERENCE_COUNT,
   /// Corresponds to \c CL_EVENT_COMMAND_EXECUTION_STATUS
   command_execution_status  = CL_EVENT_COMMAND_EXECUTION_STATUS
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
   ,
   /// Corresponds to \c CL_EVENT_CONTEXT
   context                   = CL_EVENT_CONTEXT
@@ -1699,7 +1704,7 @@ enum class command_type_t : cl_command_type {
   acquire_gl_objects    = CL_COMMAND_ACQUIRE_GL_OBJECTS,
   /// Corresponds to \c CL_COMMAND_RELEASE_GL_OBJECTS
   release_gl_objects    = CL_COMMAND_RELEASE_GL_OBJECTS
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
   ,
   /// Corresponds to \c CL_COMMAND_READ_BUFFER_RECT
   read_buffer_rect      = CL_COMMAND_READ_BUFFER_RECT,
@@ -1710,7 +1715,7 @@ enum class command_type_t : cl_command_type {
   /// Corresponds to \c CL_COMMAND_USER
   user                  = CL_COMMAND_USER
 #endif
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
   ,
   /// Corresponds to \c CL_COMMAND_BARRIER
   barrier               = CL_COMMAND_BARRIER,
@@ -1926,7 +1931,7 @@ constexpr bool operator >= (command_exec_status_t s1, status_t s2) noexcept
 }
 #endif
 
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
 /** // doc: buffer_create_type_t {{{
  * \brief Corresponds to OpenCL's \c cl_buffer_create_type
  *

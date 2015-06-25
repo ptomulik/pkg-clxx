@@ -41,6 +41,10 @@
 #define %catch_uninitialized_device_error catch(clxx::uninitialized_device_error const& e) { SWIG_Clxx_RuntimeError(e); }
 #define %catch_uninitialized_context_error catch(clxx::uninitialized_context_error const& e) { SWIG_Clxx_RuntimeError(e); }
 #define %catch_uninitialized_command_queue_error catch(clxx::uninitialized_command_queue_error const& e) { SWIG_Clxx_RuntimeError(e); }
+#define %catch_uninitialized_mem_error catch(clxx::uninitialized_mem_error const& e) { SWIG_Clxx_RuntimeError(e); }
+#define %catch_uninitialized_program_error catch(clxx::uninitialized_program_error const& e) { SWIG_Clxx_RuntimeError(e); }
+#define %catch_uninitialized_kernel_error catch(clxx::uninitialized_kernel_error const& e) { SWIG_Clxx_RuntimeError(e); }
+#define %catch_uninitialized_event_error catch(clxx::uninitialized_event_error const& e) { SWIG_Clxx_RuntimeError(e); }
 #define %catch_uninitialized_value_error catch(clxx::uninitialized_value_error const& e) { SWIG_Clxx_RuntimeError(e); }
 #define %catch_value_access_error catch(clxx::value_access_error const& e) { SWIG_Clxx_RuntimeError(e); }
 #define %catch_invalid_key_error catch(clxx::invalid_key_error const& e) { SWIG_Clxx_KeyError(e); }

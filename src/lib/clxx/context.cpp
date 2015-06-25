@@ -49,7 +49,14 @@ _set_id(cl_context id, bool retain_new, bool release_old)
 }
 /* ------------------------------------------------------------------------ */
 context::
+context() noexcept
+  : _id((cl_context)NULL)
+{
+}
+/* ------------------------------------------------------------------------ */
+context::
 context(cl_context id)
+  : _id((cl_context)NULL) // because it's read by _set_id()
 {
   this->_set_id(id, true, false);
 }
@@ -59,6 +66,7 @@ context(context_properties const& props, devices const& devs,
         void(*pfn_notify)(const char* errinfo, const void* private_info,
                           size_t cb, void* user_data),
         void* user_data)
+  : _id((cl_context)NULL) // because it's read by _set_id()
 {
   const size_t props_n = context_properties_array_size(props);
   std::vector<cl_context_properties> props_v(props_n);
@@ -77,6 +85,7 @@ context(const context_properties& props,
         void(*pfn_notify)(const char* errinfo, const void* private_info,
                           size_t cb, void* user_data),
         void* user_data)
+  : _id((cl_context)NULL) // because it's read by _set_id()
 {
   const size_t props_n = context_properties_array_size(props);
   std::vector<cl_context_properties> props_v(props_n);
@@ -88,6 +97,7 @@ context(const context_properties& props,
 /* ------------------------------------------------------------------------ */
 context::
 context(const context& rhs)
+  : _id((cl_context)NULL) // because it's read by _set_id()
 {
   this->_set_id(rhs.get_valid_id(), true, false);
 }

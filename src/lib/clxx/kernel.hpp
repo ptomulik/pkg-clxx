@@ -10,10 +10,11 @@
 #ifndef CLXX_KERNEL_HPP_INCLUDED
 #define CLXX_KERNEL_HPP_INCLUDED
 
-#include <clxx/types.hpp>
-#include <clxx/program.hpp>
-#include <clxx/context.hpp>
+#include <clxx/kernel_fwd.hpp>
+#include <clxx/program_fwd.hpp>
+#include <clxx/context_fwd.hpp>
 #include <clxx/device.hpp>
+#include <clxx/types.hpp>
 #include <clxx/config.hpp>
 #include <string>
 
@@ -66,11 +67,10 @@ namespace clxx {
  * object gets assigned another OpenCL kernel (via assignment operator or the
  * #assign() method).
  */ // }}}
-class kernel
+class alignas(cl_kernel) kernel
 {
 private:
   cl_kernel _id;
-  kernel();
 protected:
   /** // doc: _set_id(cl_kernel, bool, bool) {{{
    * \brief Set the \c cl_kernel handle to this object
@@ -86,6 +86,14 @@ protected:
    */ // }}}
   void _set_id(cl_kernel kern, bool retain_new, bool release_old);
 public:
+  /** // doc: kernel() {{{
+   * \brief Default constructor
+   *
+   * Sets the internal \c cl_kernel handle to NULL. A default-constructed
+   * \ref clxx::kernel "kernel" object is considered to be uninitialized (see
+   * #is_initialized()).
+   */ // }}}
+  kernel() noexcept;
   /** // doc: kernel(cl_kernel) {{{
    * \brief Creates \ref clxx::kernel "kernel" object from explicitly given
    *        OpenCL \c cl_kernel handle.
@@ -135,7 +143,7 @@ public:
    * If the kernel was initialized properly, then it internally releases the
    * kernel by \ref release_kernel().
    */ // }}}
-  virtual ~kernel();
+  ~kernel();
   /** // doc: id() {{{
    * \brief Get the \c cl_kernel handle held by this object
    *
@@ -340,7 +348,7 @@ public:
    * Also throws exceptions originating from #get_kernel_info()
    */ // }}}
   program get_program() const;
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
   /** // doc: get_attributes()  {{{
    * \brief Returns any attributes specified with the kernel function declaration
    *
@@ -554,7 +562,7 @@ public:
    *
    * Also throws exceptions originating from #get_kernel_work_group_info()
    */ // }}}
-  size_t get_work_group_size(device const& dev = device((cl_device_id)NULL)) const;
+  size_t get_work_group_size(device const& dev = device()) const;
   /** // doc: get_compile_work_group_size() {{{
    * \brief Returns reqd_work_group_size
    *
@@ -578,7 +586,7 @@ public:
    *
    * Also throws exceptions originating from #get_kernel_work_group_info()
    */ // }}}
-  void get_compile_work_group_size(size_t* result, device const& dev = device((cl_device_id)NULL)) const;
+  void get_compile_work_group_size(size_t* result, device const& dev = device()) const;
   /** // doc: get_local_mem_size() {{{
    * \brief Returns the amount of local memory being used by kernel
    *
@@ -607,15 +615,15 @@ public:
    *
    * Also throws exceptions originating from #get_kernel_work_group_info()
    */ // }}}
-  cl_ulong get_local_mem_size(device const& dev = device((cl_device_id)NULL)) const;
-#if CL_VERSION_1_1
+  cl_ulong get_local_mem_size(device const& dev = device()) const;
+#if CLXX_CL_H_VERSION_1_1
   /** // doc: get_preferred_work_group_size_multiple() {{{
    * \brief Returns the preferred multiple of workgroup size for launch
    *
    * Returns the preferred multiple of workgroup size for launch. This is a
    * performance hint. Specifying a workgroup size that is not a multiple of
    * the value returned by this query as the value of the local work size
-   * argument to #enqueue_nd_range_kernel() will not fail to enqueue the kernel
+   * argument to #enqueue_ndrange_kernel() will not fail to enqueue the kernel
    * for execution unless the work-group size specified is larger than the
    * device maximum.
    *
@@ -633,7 +641,7 @@ public:
    *
    * Also throws exceptions originating from #get_kernel_work_group_info()
    */ // }}}
-  size_t get_preferred_work_group_size_multiple(device const& dev = device((cl_device_id)NULL)) const;
+  size_t get_preferred_work_group_size_multiple(device const& dev = device()) const;
   /** // doc: get_private_mem_size() {{{
    * \brief Returns the minimum amount of private memory used by workitems
    *
@@ -657,15 +665,15 @@ public:
    *
    * Also throws exceptions originating from #get_kernel_work_group_info()
    */ // }}}
-  cl_ulong get_private_mem_size(device const& dev = device((cl_device_id)NULL)) const;
+  cl_ulong get_private_mem_size(device const& dev = device()) const;
 #endif
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
   /** // doc: get_global_work_size() {{{
    * \brief Query the maximum global size that can be used to execute a kernel
    *
    *  This provides a mechanism for the application to query the maximum global
    *  size that can be used to execute a kernel (i.e. global_work_size argument
-   *  to enqueue_nd_range_kernel()) on a custom device given by device or a
+   *  to enqueue_ndrange_kernel()) on a custom device given by device or a
    *  built-in kernel on an OpenCL device given by device.
    *
    *  If device is not a custom device or kernel is not a built-in kernel,
@@ -687,7 +695,7 @@ public:
    *
    * Also throws exceptions originating from #get_kernel_work_group_info()
    */ // }}}
-  void get_global_work_size(size_t* result, device const& dev = device((cl_device_id)NULL)) const;
+  void get_global_work_size(size_t* result, device const& dev = device()) const;
 #endif
   /** // doc: set_arg() {{{
    * \brief Used to set the argument value to a specific argument of the kernel
@@ -712,7 +720,7 @@ public:
    *    \em arg_value is copied and the \em arg_value pointer can therefore be
    *    reused by the application after #set_arg() returns. The argument
    *    value specified is the value used by all API calls that enqueue kernel
-   *    (#enqueue_nd_range_kernel()) until the argument value is changed by a
+   *    (#enqueue_ndrange_kernel()) until the argument value is changed by a
    *    call to #set_arg() for kernel.
    *
    * \throw uninitialized_kernel_error
@@ -733,7 +741,7 @@ public:
    *    A pointer to the SVM pointer that should be used as the argument value
    *    for argument specified by \em arg_index. The SVM pointer specified is
    *    the value used by all API calls that enqueue kernel
-   *    (#enqueue_nd_range_kernel()) until the argument value is changed by a
+   *    (#enqueue_ndrange_kernel()) until the argument value is changed by a
    *    call to #set_arg_svm_pointer() for kernel. The SVM pointer can
    *    only be used for arguments that are declared to be a pointer to global
    *    or constant memory. The SVM pointer value must be aligned according to

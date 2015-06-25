@@ -6,6 +6,7 @@
  * \todo Write documentation
  */ // }}}
 
+%import <clxx/wknd.swg>
 %include <clxx/exception_support.swg>
 
 %import <clxx/cl/opencl_types.i>

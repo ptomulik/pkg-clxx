@@ -361,7 +361,7 @@ get_platform_id() const
 {
   return _get_pod_info<cl_platform_id>(*this, device_info_t::platform);
 }
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
 /* ------------------------------------------------------------------------ */
 device_fp_config_t device::
 get_double_fp_config() const
@@ -369,7 +369,7 @@ get_double_fp_config() const
   return _get_pod_info<device_fp_config_t>(*this, device_info_t::double_fp_config);
 }
 #endif
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
 /* ------------------------------------------------------------------------ */
 cl_uint device::
 get_preferred_vector_width_half() const
@@ -431,7 +431,7 @@ get_opencl_c_version() const
   return _get_str_info(*this, device_info_t::opencl_c_version);
 }
 #endif
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
 /* ------------------------------------------------------------------------ */
 cl_bool device::
 get_linker_available() const
@@ -694,12 +694,12 @@ query_device_info(device const& dev, device_query const& query)
   if(query2.platform_id_selected()) {
     info.set_platform_id(reinterpret_cast<unsigned long>(dev.get_platform_id()));
   }
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
   if(query2.double_fp_config_selected()) {
     info.set_double_fp_config(dev.get_double_fp_config());
   }
 #endif
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
   if(query2.preferred_vector_width_half_selected()) {
     info.set_preferred_vector_width_half(dev.get_preferred_vector_width_half());
   }
@@ -731,7 +731,7 @@ query_device_info(device const& dev, device_query const& query)
     info.set_opencl_c_version(dev.get_opencl_c_version());
   }
 #endif
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
   if(query2.linker_available_selected()) {
     info.set_linker_available(dev.get_linker_available());
   }

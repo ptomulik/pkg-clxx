@@ -6,6 +6,7 @@
  * \todo Write documentation
  */ // }}}
 
+%import <clxx/wknd.swg>
 %include <clxx/cl/opencl_types.swg>
 
 // vim: set expandtab tabstop=2 shiftwidth=2:

@@ -23,6 +23,19 @@ namespace clxx { class context_test_suite; }
 class clxx::context_test_suite : public CxxTest::TestSuite
 {
 public:
+  /** // doc: test__default_ctor() {{{
+   * \todo Write documentation
+   */ // }}}
+  void test__default_ctor( )
+  {
+    T::Dummy_clRetainContext mock1(CL_SUCCESS);
+    T::Dummy_clReleaseContext mock2(CL_SUCCESS);
+    context c;
+    TS_ASSERT(!c.is_initialized());
+    TS_ASSERT_EQUALS(c.id(), (cl_context)NULL);
+    TS_ASSERT(mock1.never_called());
+    TS_ASSERT(mock2.never_called());
+  }
   /** // doc: test_ctor_1() {{{
    * \todo Write documentation
    */ // }}}

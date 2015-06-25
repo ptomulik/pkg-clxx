@@ -14,6 +14,7 @@
 #ifndef CLXX_PLATFORM_HPP_INCLUDED
 #define CLXX_PLATFORM_HPP_INCLUDED
 
+#include <clxx/platform_fwd.hpp>
 #include <clxx/types.hpp>
 #include <string>
 
@@ -42,7 +43,7 @@ namespace clxx {
  * \snippet platform1.cpp DumpPlatform
  *
  */ // }}}
-class platform
+class alignas(cl_platform_id) platform
 {
 private:
   cl_platform_id _platform_id;

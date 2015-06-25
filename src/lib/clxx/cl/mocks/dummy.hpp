@@ -1941,6 +1941,31 @@ public:
    */ // }}}
   Dummy_clReleaseEvent(cl_int err);
 };
+/** // doc: Dummy_clGetEventProfilingInfo {{{
+ * \brief Mock for clGetEventProfilingInfo OpenCL function.
+ *
+ * Does nothing except it returns a custom code defined by user.
+ */ // }}}
+class Dummy_clGetEventProfilingInfo
+  : public T::Base_clGetEventProfilingInfo,
+    public T::Dummy_CallArgs<cl_event, cl_profiling_info, size_t, void*, size_t*>
+{
+  cl_int _err;
+  void* _param_value;
+  size_t* _param_value_size_ret;
+  cl_int clGetEventProfilingInfo(cl_event kernel, cl_profiling_info param_name,
+                                 size_t param_value_size, void* param_value,
+                                 size_t* param_value_size_ret);
+public:
+  /** // doc: Dummy_clGetEventProfilingInfo() {{{
+   * \brief Constructor, initializes the mock object.
+   *
+   * \param err Error code to be returned by the mock
+   * \param param_value A parameter value to be returned by the mock
+   * \param param_value_size_ret A parameter value size to be returned by the mock
+   */ // }}}
+  Dummy_clGetEventProfilingInfo(cl_int err, void* param_value = nullptr, size_t* param_value_size_ret = nullptr);
+};
 /** // doc: Dummy_clFlush {{{
  * \brief Default mock for clFlush OpenCL function.
  */ // }}}
@@ -3404,6 +3429,28 @@ clReleaseEvent(cl_event event)
 Dummy_clReleaseEvent::
 Dummy_clReleaseEvent(cl_int err)
   : _err(err)
+{
+}
+/* ------------------------------------------------------------------------- */
+cl_int Dummy_clGetEventProfilingInfo::
+clGetEventProfilingInfo(cl_event event, cl_profiling_info param_name,
+                size_t param_value_size, void* param_value,
+                size_t* param_value_size_ret)
+{
+  call_with(event, param_name, param_value_size, param_value, param_value_size_ret);
+  if(param_value && _param_value && _param_value_size_ret)
+    {
+      std::memcpy(param_value, _param_value, std::min(*_param_value_size_ret, param_value_size));
+    }
+  if(_param_value_size_ret && param_value_size_ret)
+    {
+      *param_value_size_ret = *_param_value_size_ret;
+    }
+  return _err;
+}
+Dummy_clGetEventProfilingInfo::
+Dummy_clGetEventProfilingInfo(cl_int err, void* param_value, size_t* param_value_size_ret)
+  : _err(err), _param_value(param_value), _param_value_size_ret(param_value_size_ret)
 {
 }
 /* ------------------------------------------------------------------------- */

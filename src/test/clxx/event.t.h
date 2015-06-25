@@ -269,6 +269,37 @@ public:
     event e((cl_event)NULL);
     TS_ASSERT_THROWS(e.get_info(event_info_t::context, 0, nullptr, nullptr), uninitialized_event_error);
   }
+  /** // doc: test__get_profiling_info() {{{
+   * \todo Write documentation
+   */ // }}}
+  void test__get_profiling_info( )
+  {
+    T::Dummy_clRetainEvent mock1(CL_SUCCESS);
+    T::Dummy_clReleaseEvent mock2(CL_SUCCESS);
+    T::Dummy_clGetEventProfilingInfo mock3(CL_SUCCESS);
+
+    event e((cl_event)0x4321);
+    e.get_profiling_info(profiling_info_t::start, 2, (void*)0x1234, (size_t*)0x5678);
+
+    TS_ASSERT(mock3.called_once());
+    TS_ASSERT_EQUALS(std::get<0>(mock3.calls().back()), (cl_event)0x4321);
+    TS_ASSERT_EQUALS(std::get<1>(mock3.calls().back()), (cl_uint)CL_PROFILING_COMMAND_START);
+    TS_ASSERT_EQUALS(std::get<2>(mock3.calls().back()), 2);
+    TS_ASSERT_EQUALS(std::get<3>(mock3.calls().back()), (void*)0x1234);
+    TS_ASSERT_EQUALS(std::get<4>(mock3.calls().back()), (size_t*)0x5678);
+  }
+  /** // doc: test__get_profiling_info__uninitialized_event() {{{
+   * \todo Write documentation
+   */ // }}}
+  void test__get_profiling_info__uninitialized_event( )
+  {
+    T::Dummy_clRetainEvent mock1(CL_SUCCESS);
+    T::Dummy_clReleaseEvent mock2(CL_SUCCESS);
+    T::Dummy_clGetEventProfilingInfo mock3(CL_SUCCESS);
+
+    event e((cl_event)NULL);
+    TS_ASSERT_THROWS(e.get_profiling_info(profiling_info_t::start, 0, nullptr, nullptr), uninitialized_event_error);
+  }
   /** // doc: test__get_reference_count() {{{
    * \todo Write documentation
    */ // }}}
@@ -371,6 +402,108 @@ public:
 
     TS_ASSERT(mock3.called_once());
     TS_ASSERT_EQUALS(std::get<1>(mock3.calls().back()), (cl_uint)CL_EVENT_COMMAND_EXECUTION_STATUS);
+  }
+  /** // doc: test__get_profiling_command_queued() {{{
+   * \todo Write documentation
+   */ // }}}
+  void test__get_profiling_command_queued( )
+  {
+    T::Dummy_clRetainEvent mock1(CL_SUCCESS);
+    T::Dummy_clReleaseEvent mock2(CL_SUCCESS);
+
+    cl_ulong var = 123ul;
+    size_t n = sizeof(var);
+
+    T::Dummy_clGetEventProfilingInfo mock3(CL_SUCCESS, &var, &n);
+
+    event e((cl_event)0x4321);
+
+    TS_ASSERT_EQUALS(e.get_profiling_command_queued(), var);
+
+    TS_ASSERT(mock3.called_once());
+    TS_ASSERT_EQUALS(std::get<1>(mock3.calls().back()), (cl_profiling_info)CL_PROFILING_COMMAND_QUEUED);
+  }
+  /** // doc: test__get_profiling_command_submit() {{{
+   * \todo Write documentation
+   */ // }}}
+  void test__get_profiling_command_submit( )
+  {
+    T::Dummy_clRetainEvent mock1(CL_SUCCESS);
+    T::Dummy_clReleaseEvent mock2(CL_SUCCESS);
+
+    cl_ulong var = 123ul;
+    size_t n = sizeof(var);
+
+    T::Dummy_clGetEventProfilingInfo mock3(CL_SUCCESS, &var, &n);
+
+    event e((cl_event)0x4321);
+
+    TS_ASSERT_EQUALS(e.get_profiling_command_submit(), var);
+
+    TS_ASSERT(mock3.called_once());
+    TS_ASSERT_EQUALS(std::get<1>(mock3.calls().back()), (cl_profiling_info)CL_PROFILING_COMMAND_SUBMIT);
+  }
+  /** // doc: test__get_profiling_command_start() {{{
+   * \todo Write documentation
+   */ // }}}
+  void test__get_profiling_command_start( )
+  {
+    T::Dummy_clRetainEvent mock1(CL_SUCCESS);
+    T::Dummy_clReleaseEvent mock2(CL_SUCCESS);
+
+    cl_ulong var = 123ul;
+    size_t n = sizeof(var);
+
+    T::Dummy_clGetEventProfilingInfo mock3(CL_SUCCESS, &var, &n);
+
+    event e((cl_event)0x4321);
+
+    TS_ASSERT_EQUALS(e.get_profiling_command_start(), var);
+
+    TS_ASSERT(mock3.called_once());
+    TS_ASSERT_EQUALS(std::get<1>(mock3.calls().back()), (cl_profiling_info)CL_PROFILING_COMMAND_START);
+  }
+  /** // doc: test__get_profiling_command_end() {{{
+   * \todo Write documentation
+   */ // }}}
+  void test__get_profiling_command_end( )
+  {
+    T::Dummy_clRetainEvent mock1(CL_SUCCESS);
+    T::Dummy_clReleaseEvent mock2(CL_SUCCESS);
+
+    cl_ulong var = 123ul;
+    size_t n = sizeof(var);
+
+    T::Dummy_clGetEventProfilingInfo mock3(CL_SUCCESS, &var, &n);
+
+    event e((cl_event)0x4321);
+
+    TS_ASSERT_EQUALS(e.get_profiling_command_end(), var);
+
+    TS_ASSERT(mock3.called_once());
+    TS_ASSERT_EQUALS(std::get<1>(mock3.calls().back()), (cl_profiling_info)CL_PROFILING_COMMAND_END);
+  }
+  /** // doc: test__get_profiling_command_complete() {{{
+   * \todo Write documentation
+   */ // }}}
+  void test__get_profiling_command_complete( )
+  {
+#if CLXX_CL_H_VERSION_2_0
+    T::Dummy_clRetainEvent mock1(CL_SUCCESS);
+    T::Dummy_clReleaseEvent mock2(CL_SUCCESS);
+
+    cl_ulong var = 123ul;
+    size_t n = sizeof(var);
+
+    T::Dummy_clGetEventProfilingInfo mock3(CL_SUCCESS, &var, &n);
+
+    event e((cl_event)0x4321);
+
+    TS_ASSERT_EQUALS(e.get_profiling_command_complete(), var);
+
+    TS_ASSERT(mock3.called_once());
+    TS_ASSERT_EQUALS(std::get<1>(mock3.calls().back()), (cl_profiling_info)CL_PROFILING_COMMAND_COMPLETE);
+#endif
   }
 };
 

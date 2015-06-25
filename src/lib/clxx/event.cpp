@@ -18,6 +18,14 @@ _get_pod_info(event const& p, event_info_t name)
   p.get_info(name,sizeof(value),&value,NULL);
   return value;
 }
+/* ------------------------------------------------------------------------ */
+template<typename T> static T
+_get_pod_profiling_info(event const& p, profiling_info_t name)
+{
+  T value;
+  p.get_profiling_info(name,sizeof(value),&value,NULL);
+  return value;
+}
 /* ----------------------------------------------------------------------- */
 void event::
 _set_id(cl_event p, bool retain_new, bool release_old)
@@ -86,6 +94,19 @@ get_info(event_info_t name, size_t value_size, void* value,
   );
 }
 /* ----------------------------------------------------------------------- */
+void event::
+get_profiling_info(profiling_info_t name, size_t value_size, void* value,
+                   size_t* value_size_ret) const
+{
+  get_event_profiling_info(
+      this->get_valid_id(),
+      name,
+      value_size,
+      value,
+      value_size_ret
+  );
+}
+/* ----------------------------------------------------------------------- */
 cl_event event::
 get_valid_id() const
 {
@@ -123,6 +144,38 @@ get_command_exec_status() const
 {
   return _get_pod_info<command_exec_status_t>(*this, event_info_t::command_execution_status);
 }
+/* ----------------------------------------------------------------------- */
+cl_ulong event::
+get_profiling_command_queued() const
+{
+  return _get_pod_profiling_info<cl_ulong>(*this, profiling_info_t::queued);
+}
+/* ----------------------------------------------------------------------- */
+cl_ulong event::
+get_profiling_command_submit() const
+{
+  return _get_pod_profiling_info<cl_ulong>(*this, profiling_info_t::submit);
+}
+/* ----------------------------------------------------------------------- */
+cl_ulong event::
+get_profiling_command_start() const
+{
+  return _get_pod_profiling_info<cl_ulong>(*this, profiling_info_t::start);
+}
+/* ----------------------------------------------------------------------- */
+cl_ulong event::
+get_profiling_command_end() const
+{
+  return _get_pod_profiling_info<cl_ulong>(*this, profiling_info_t::end);
+}
+/* ----------------------------------------------------------------------- */
+#if CLXX_CL_H_VERSION_2_0
+cl_ulong event::
+get_profiling_command_complete() const
+{
+  return _get_pod_profiling_info<cl_ulong>(*this, profiling_info_t::complete);
+}
+#endif
 /* ----------------------------------------------------------------------- */
 } // end namespace clxx
 // vim: set expandtab tabstop=2 shiftwidth=2:

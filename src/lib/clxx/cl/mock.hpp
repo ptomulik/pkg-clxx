@@ -494,6 +494,11 @@ CXXTEST_MOCK_GLOBAL(cl_int, clSetEventCallback,
 CXXTEST_MOCK_GLOBAL(cl_int, clRetainEvent, (cl_event event), (event));
 CXXTEST_MOCK_GLOBAL(cl_int, clReleaseEvent, (cl_event event), (event));
 
+CXXTEST_MOCK_GLOBAL(cl_int, clGetEventProfilingInfo,
+  (cl_event event, cl_profiling_info param_name, size_t param_value_size,
+   void* param_value, size_t* param_value_size_ret),
+  (event, param_name, param_value_size, param_value, param_value_size_ret));
+
 CXXTEST_MOCK_GLOBAL(cl_int, clFlush, (cl_command_queue command_queue), (command_queue));
 CXXTEST_MOCK_GLOBAL(cl_int, clFinish, (cl_command_queue command_queue), (command_queue));
 /** \endcond */

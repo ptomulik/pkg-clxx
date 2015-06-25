@@ -14,6 +14,7 @@
 #include <clxx/kernel.hpp>
 #include <clxx/device.hpp>
 #include <clxx/context.hpp>
+#include <clxx/mem.hpp>
 #include <clxx/program.hpp>
 #include <clxx/exceptions.hpp>
 #include <clxx/cl/mock.hpp>
@@ -751,10 +752,10 @@ public:
     TS_ASSERT_EQUALS(std::get<5>(mock3.calls().back()), nullptr);
 #endif
   }
-  /** // doc: test__set_arg() {{{
+  /** // doc: test__set_arg_1() {{{
    * \todo Write documentation
    */ // }}}
-  void test__set_arg( )
+  void test__set_arg_1( )
   {
     T::Dummy_clRetainKernel mock1(CL_SUCCESS);
     T::Dummy_clReleaseKernel mock2(CL_SUCCESS);
@@ -770,6 +771,30 @@ public:
     TS_ASSERT_EQUALS(std::get<1>(mock3.calls().back()), 2);
     TS_ASSERT_EQUALS(std::get<2>(mock3.calls().back()), 7);
     TS_ASSERT_EQUALS(std::get<3>(mock3.calls().back()), (const void*)0x7654);
+  }
+  /** // doc: test__set_arg_2() {{{
+   * \todo Write documentation
+   */ // }}}
+  void test__set_arg_2( )
+  {
+    T::Dummy_clRetainKernel mock1(CL_SUCCESS);
+    T::Dummy_clReleaseKernel mock2(CL_SUCCESS);
+
+    T::Dummy_clSetKernelArg mock3(CL_SUCCESS);
+
+    kernel k((cl_kernel)0x4321);
+
+    T::Dummy_clRetainMemObject mock4(CL_SUCCESS);
+    T::Dummy_clReleaseMemObject mock5(CL_SUCCESS);
+    mem m((cl_mem)0x1234);
+
+    k.set_arg(2, m);
+
+    TS_ASSERT(mock3.called_once());
+    TS_ASSERT_EQUALS(std::get<0>(mock3.calls().back()), (cl_kernel)0x4321);
+    TS_ASSERT_EQUALS(std::get<1>(mock3.calls().back()), 2);
+    TS_ASSERT_EQUALS(std::get<2>(mock3.calls().back()), sizeof(cl_mem));
+    TS_ASSERT_EQUALS(std::get<3>(mock3.calls().back()), &m);
   }
   /** // doc: test__set_arg_svm_pointer() {{{
    * \todo Write documentation

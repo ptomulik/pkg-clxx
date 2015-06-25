@@ -11,6 +11,7 @@
 #include <clxx/device.hpp>
 #include <clxx/functions.hpp>
 #include <clxx/exceptions.hpp>
+#include <clxx/util/obj2cl.hpp>
 #include <boost/shared_array.hpp>
 
 namespace clxx {
@@ -306,6 +307,12 @@ void kernel::
 set_arg(cl_uint arg_index, size_t size, const void* arg_value) const
 {
   set_kernel_arg(this->get_valid_id(), arg_index, size, arg_value);
+}
+/* ----------------------------------------------------------------------- */
+void kernel::
+set_arg(cl_uint arg_index, clxx::mem const& mem) const
+{
+  set_kernel_arg(this->get_valid_id(), arg_index, sizeof(cl_mem), obj2cl(&mem));
 }
 /* ----------------------------------------------------------------------- */
 #if CLXX_OPENCL_ALLOWED(clSetKernelArgSVMPointer)

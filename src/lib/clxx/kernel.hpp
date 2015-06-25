@@ -13,6 +13,7 @@
 #include <clxx/kernel_fwd.hpp>
 #include <clxx/program_fwd.hpp>
 #include <clxx/context_fwd.hpp>
+#include <clxx/mem_fwd.hpp>
 #include <clxx/device.hpp>
 #include <clxx/types.hpp>
 #include <clxx/config.hpp>
@@ -729,6 +730,32 @@ public:
    * Also throws exceptions originating from #set_kernel_arg()
    */ // }}}
   void set_arg(cl_uint arg_index, size_t size, const void* arg_value) const;
+  /** // doc: set_arg() {{{
+   * \brief Used to set the argument value to a specific argument of the kernel
+   *
+   * \param arg_index
+   *    The argument index. Arguments to the kernel are referred by indices
+   *    that go from \c 0 for the leftmost argument to <tt>n - 1</tt>, where
+   *    \c n is the total number of arguments declared by a kernel.
+   * \param size
+   *    Specifies the size of the argument value. If the argument is a memory
+   *    object, the size is the size of the memory object. For arguments
+   *    declared with the local qualifier, the size specified will be the size
+   *    in bytes of the buffer that must be allocated for the local argument.
+   *    If the argument is of type \c sampler_t, the \em arg_size value must be
+   *    equal to <tt>sizeof(cl_sampler)</tt>. If the argument is of type
+   *    \c queue_t, the \em arg_size value must be equal to
+   *    <tt>sizeof(cl_command_queue)</tt>. For all other arguments, the size
+   *    will be the size of argument type.
+   * \param mem
+   *    Use this memory object (buffer) as an argument value.
+   *
+   * \throw uninitialized_kernel_error
+   *    When the \ref clxx::kernel "kernel" object is not properly initialized
+   *
+   * Also throws exceptions originating from #set_kernel_arg()
+   */ // }}}
+  void set_arg(cl_uint arg_index, clxx::mem const& mem) const;
 #if CLXX_OPENCL_ALLOWED(clSetKernelArgSVMPointer)
   /** // doc: set_arg_svm_pointer() {{{
    * \brief Used to set a SVM pointer as the argument value for a specific argument of the kernel

@@ -1,3 +1,9 @@
+clxx0 (0.1.5-1) unstable; urgency=medium
+
+  * Imported Upstream version 0.1.5
+
+ -- Paweł Tomulik <ptomulik@meil.pw.edu.pl>  Thu, 25 Jun 2015 14:42:39 +0200
+
 clxx0 (0.1.4-1) unstable; urgency=medium
 
   * Imported Upstream version 0.1.4

@@ -3,7 +3,10 @@
 
 /** // doc: clxx/cl/real.cpp {{{
  * \file clxx/cl/real.cpp
- * \todo Write documentation
+ * \brief Binds OpenCL mocks to real OpenCL functions
+ *
+ * - include this file if you wish to switch to real OpenCL API.
+ * - include clxx/cl/mock.hpp if you wish to use mocks.
  */ // }}}
 #define CXXTEST_MOCK_REAL_SOURCE_FILE
 #include <clxx/cl/mock.hpp>

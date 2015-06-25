@@ -21,7 +21,24 @@
 import os
 
 env = Environment()
-env['CLXX_VERSION'] = '0.1.2'
+
+#############################################################################
+# VERSION
+#
+# Currently this is used by all the subpackages of clxx. It should have form:
+#
+#   <major>.<minor>.<patch>
+#
+# for example:
+#   
+#   1.2.3
+#
+# You may add optional alhanumeric suffix to version, for example:
+#
+#   1.2.3alpha
+#   1.2.3alpha2
+#############################################################################
+env['CLXX_VERSION'] = '0.1.3'
 
 #############################################################################
 # Define variant directory

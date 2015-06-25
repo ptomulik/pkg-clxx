@@ -10,12 +10,13 @@
 #ifndef CLXX_PROGRAM_HPP_INCLUDED
 #define CLXX_PROGRAM_HPP_INCLUDED
 
-#include <clxx/types.hpp>
+#include <clxx/program_fwd.hpp>
 #include <clxx/devices.hpp>
-#include <clxx/context.hpp>
+#include <clxx/context_fwd.hpp>
 #include <clxx/program_sources.hpp>
 #include <clxx/program_binaries.hpp>
 #include <clxx/program_observer.hpp>
+#include <clxx/types.hpp>
 #include <vector>
 #include <string>
 
@@ -71,11 +72,10 @@ namespace clxx {
  * last object gets assigned another OpenCL program (assignment operator or the
  * #assign() method).
  */ // }}}
-class program
+class alignas(cl_program) program
 {
 private:
   cl_program _id;
-  program();
 protected:
   /** // doc: _set_id(cl_program, bool, bool) {{{
    * \brief Set the \c cl_program handle to this object
@@ -91,6 +91,14 @@ protected:
    */ // }}}
   void _set_id(cl_program prog, bool retain_new, bool release_old);
 public:
+  /** // doc: program() {{{
+   * \brief Default constructor
+   *
+   * Sets the internal \c cl_program handle to \c NULL. A default-constructed
+   * \ref clxx::program "program" object is considered to be uninitialized (see
+   * #is_initialized()).
+   */ // }}}
+  program() noexcept;
   /** // doc: program(cl_program) {{{
    * \brief Creates \ref clxx::program "program" object from explicitly given
    *        OpenCL \c cl_program handle.
@@ -218,7 +226,7 @@ public:
    * If the program was initialized properly, then it internally releases the
    * program by \ref release_program().
    */ // }}}
-  virtual ~program();
+  ~program();
   /** // doc: id() {{{
    * \brief Get the \c cl_program handle held by this object
    *

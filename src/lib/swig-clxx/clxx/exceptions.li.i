@@ -10,6 +10,8 @@
 %import <clxx/std/string.i>
 %import <clxx/std/exception.i>
 %import <clxx/std/bad_alloc.i>
+
+%import <clxx/wknd.swg>
 %import <clxx/types.i>
 %{
 #include <clxx/std/string.i.hpp>

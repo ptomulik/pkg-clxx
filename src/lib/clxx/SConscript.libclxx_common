@@ -31,6 +31,7 @@ util_headers = [
     'util/enum2cstr.hpp',
     'util/enum2hex.hpp',
     'util/enum2name.hpp',
+    'util/obj2cl.hpp',
     'util/std_except_ctor_arg.hpp',
     'util/std_except_ctor_arg_fwd.hpp',
     'util/to_string.hpp',

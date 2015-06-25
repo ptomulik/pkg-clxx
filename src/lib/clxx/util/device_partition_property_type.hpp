@@ -62,7 +62,7 @@ template <>
   {
     typedef std::vector<unsigned int> const& type;
   };
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
 template <>
   struct device_partition_property_type<device_partition_property_t::by_affinity_domain>
   {

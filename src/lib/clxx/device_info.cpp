@@ -85,10 +85,10 @@ cmp(device_info const& rhs) const
       && (this->_version == rhs._version)
       && (this->_extensions == rhs._extensions)
       && (this->_platform_id == rhs._platform_id)
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
       && (this->_double_fp_config == rhs._double_fp_config)
 #endif
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
       && (this->_preferred_vector_width_half == rhs._preferred_vector_width_half)
       && (this->_host_unified_memory == rhs._host_unified_memory)
       && (this->_native_vector_width_char == rhs._native_vector_width_char)
@@ -100,7 +100,7 @@ cmp(device_info const& rhs) const
       && (this->_native_vector_width_half == rhs._native_vector_width_half)
       && (this->_opencl_c_version == rhs._opencl_c_version)
 #endif
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
       && (this->_linker_available == rhs._linker_available)
       && (this->_built_in_kernels == rhs._built_in_kernels)
       && (this->_image_max_buffer_size == rhs._image_max_buffer_size)
@@ -476,7 +476,7 @@ platform_id() const
   if(!this->has_platform_id()) { throw uninitialized_value_error(); }
   return this->_platform_id.get();
 }
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
 /* ----------------------------------------------------------------------- */
 device_fp_config_t device_info::
 double_fp_config() const
@@ -485,7 +485,7 @@ double_fp_config() const
   return this->_double_fp_config.get();
 }
 #endif
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
 /* ----------------------------------------------------------------------- */
 cl_uint device_info::
 preferred_vector_width_half() const
@@ -557,7 +557,7 @@ opencl_c_version() const
   return this->_opencl_c_version.get();
 }
 #endif
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
 /* ----------------------------------------------------------------------- */
 cl_bool device_info::
 linker_available() const
@@ -1016,7 +1016,7 @@ set_platform_id(unsigned long val) noexcept
   this->_platform_id = val;
   return *this;
 }
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
 /* ----------------------------------------------------------------------- */
 device_info& device_info::
 set_double_fp_config(device_fp_config_t val) noexcept
@@ -1025,7 +1025,7 @@ set_double_fp_config(device_fp_config_t val) noexcept
   return *this;
 }
 #endif
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
 /* ----------------------------------------------------------------------- */
 device_info& device_info::
 set_preferred_vector_width_half(cl_uint val) noexcept
@@ -1097,7 +1097,7 @@ set_opencl_c_version(std::string const& val)
   return *this;
 }
 #endif
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
 /* ----------------------------------------------------------------------- */
 device_info& device_info::
 set_linker_available(cl_bool val) noexcept
@@ -1556,7 +1556,7 @@ clear_platform_id() noexcept
   this->_platform_id = boost::none;
   return *this;
 }
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
 /* ----------------------------------------------------------------------- */
 device_info& device_info::
 clear_double_fp_config() noexcept
@@ -1565,7 +1565,7 @@ clear_double_fp_config() noexcept
   return *this;
 }
 #endif
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
 /* ----------------------------------------------------------------------- */
 device_info& device_info::
 clear_preferred_vector_width_half() noexcept
@@ -1637,7 +1637,7 @@ clear_opencl_c_version() noexcept
   return *this;
 }
 #endif
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
 /* ----------------------------------------------------------------------- */
 device_info& device_info::
 clear_linker_available() noexcept
@@ -2045,7 +2045,7 @@ has_platform_id() const noexcept
 {
   return this->_platform_id.is_initialized();
 }
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
 /* ----------------------------------------------------------------------- */
 bool device_info::
 has_double_fp_config() const noexcept
@@ -2053,7 +2053,7 @@ has_double_fp_config() const noexcept
   return this->_double_fp_config.is_initialized();
 }
 #endif
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
 /* ----------------------------------------------------------------------- */
 bool device_info::
 has_preferred_vector_width_half() const noexcept
@@ -2115,7 +2115,7 @@ has_opencl_c_version() const noexcept
   return this->_opencl_c_version.is_initialized();
 }
 #endif
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
 /* ----------------------------------------------------------------------- */
 bool device_info::
 has_linker_available() const noexcept
@@ -2257,10 +2257,10 @@ _clear()
   this -> _version = boost::none;
   this -> _extensions = boost::none;
   this -> _platform_id = boost::none;
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
   this -> _double_fp_config = boost::none;
 #endif
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
   this -> _preferred_vector_width_half = boost::none;
   this -> _host_unified_memory = boost::none;
   this -> _native_vector_width_char = boost::none;
@@ -2272,7 +2272,7 @@ _clear()
   this -> _native_vector_width_half = boost::none;
   this -> _opencl_c_version = boost::none;
 #endif
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
   this -> _linker_available = boost::none;
   this -> _built_in_kernels = boost::none;
   this -> _image_max_buffer_size = boost::none;

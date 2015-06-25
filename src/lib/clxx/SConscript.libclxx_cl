@@ -14,8 +14,13 @@ sources =  [
     'device_partition.cpp',
     'device_partition_properties.cpp',
     'devices.cpp',
+    'event.cpp',
     'functions.cpp',
     'kernel.cpp',
+    'kernel_exec.cpp',
+    'mem.cpp',
+    'mem_fcn.cpp',
+    'ndrange.cpp',
     'platform.cpp',
     'platform_layer.cpp',
     'platforms.cpp',
@@ -25,26 +30,44 @@ sources =  [
 
 headers = [
     'command_queue.hpp',
+    'command_queue_fwd.hpp',
     'context.hpp',
+    'context_fwd.hpp',
     'context_properties.hpp',
     'context_property.hpp',
     'device.hpp',
+    'device_fwd.hpp',
     'device_partition.hpp',
     'device_partition_properties.hpp',
     'device_partition_property.hpp',
     'devices.hpp',
+    'event.hpp',
+    'event_fwd.hpp',
+    'events.hpp',
     'functions.hpp',
     'kernel.hpp',
+    'kernel_exec.hpp',
+    'kernel_fwd.hpp',
     'kernels.hpp',
+    'mem.hpp',
+    'mem_fcn.hpp',
+    'mem_fwd.hpp',
+    'ndrange.hpp',
     'platform.hpp',
+    'platform_fwd.hpp',
     'platform_layer.hpp',
     'platforms.hpp',
     'program.hpp',
     'program_binaries.hpp',
     'program_binary.hpp',
+    'program_fwd.hpp',
     'program_observer.hpp',
     'program_source.hpp',
     'program_sources.hpp',
+]
+
+headers += [
+    'cl.hpp'
 ]
 
 env['CLXX_PACKAGES']['libclxx_cl'] = {

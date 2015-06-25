@@ -22,6 +22,7 @@ env.Program('platform_info1.cpp', LIBS = CLVar('clxx_info clxx_io'))
 env.Program('query_platform_info1.cpp', LIBS = CLVar('clxx_info clxx_io clxx_cl'))
 env.Program('query_device_info1.cpp', LIBS = CLVar('clxx_info clxx_io clxx_cl'))
 env.Program('query_platform_layer_info1.cpp', LIBS = CLVar('clxx_info clxx_io clxx_cl'))
+env.Program('mem1.cpp', LIBS = CLVar('clxx_cl clxx_io'))
 
 # Local Variables:
 # # tab-width:4

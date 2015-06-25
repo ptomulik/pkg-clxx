@@ -6,6 +6,8 @@
  * \brief Implements the \ref clxx::command_queue "command_queue" class
  */ // }}}
 #include <clxx/command_queue.hpp>
+#include <clxx/context.hpp>
+#include <clxx/device.hpp>
 #include <clxx/functions.hpp>
 #include <clxx/exceptions.hpp>
 #include <vector>
@@ -39,7 +41,14 @@ _set_id(cl_command_queue id, bool retain_new, bool release_old)
 }
 /* ------------------------------------------------------------------------ */
 command_queue::
+command_queue() noexcept
+  : _id((cl_command_queue)NULL)
+{
+}
+/* ------------------------------------------------------------------------ */
+command_queue::
 command_queue(cl_command_queue id)
+  : _id((cl_command_queue)NULL) // because it's read by _set_id()
 {
   this->_set_id(id, true, false);
 }
@@ -63,6 +72,7 @@ command_queue(context const& ctx, device const& dev, command_queue_properties_t 
 /* ------------------------------------------------------------------------ */
 command_queue::
 command_queue(const command_queue& rhs)
+  : _id((cl_command_queue)NULL) // because it's read by _set_id()
 {
   this->_set_id(rhs.get_valid_id(), true, false);
 }
@@ -123,6 +133,18 @@ get_properties() const
   return static_cast<command_queue_properties_t>(
     _get_pod_info<cl_command_queue_properties>(*this,command_queue_info_t::properties)
   );
+}
+/* ------------------------------------------------------------------------ */
+void command_queue::
+flush() const
+{
+  clxx::flush(get_valid_id());
+}
+/* ------------------------------------------------------------------------ */
+void command_queue::
+finish() const
+{
+  clxx::finish(get_valid_id());
 }
 /* ------------------------------------------------------------------------ */
 

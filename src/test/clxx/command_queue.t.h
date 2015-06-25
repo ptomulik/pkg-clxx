@@ -12,21 +12,36 @@
 
 #include <cxxtest/TestSuite.h>
 #include <clxx/command_queue.hpp>
+#include <clxx/context.hpp>
+#include <clxx/device.hpp>
 #include <clxx/exceptions.hpp>
 #include <clxx/cl/mock.hpp>
 
-namespace clxx { class command_queue_test_suite; }
+namespace clxx { class command_queue_test__suite; }
 
-/** // doc: class clxx::command_queue_test_suite {{{
+/** // doc: class clxx::command_queue_test__suite {{{
  * \todo Write documentation
  */ // }}}
-class clxx::command_queue_test_suite : public CxxTest::TestSuite
+class clxx::command_queue_test__suite : public CxxTest::TestSuite
 {
 public:
-  /** // doc: test_ctor_1() {{{
+  /** // doc: test__default_ctor() {{{
    * \todo Write documentation
    */ // }}}
-  void test_ctor_1( )
+  void test__default_ctor( )
+  {
+    T::Dummy_clRetainCommandQueue mock1(CL_SUCCESS);
+    T::Dummy_clReleaseCommandQueue mock2(CL_SUCCESS);
+    command_queue q;
+    TS_ASSERT(!q.is_initialized());
+    TS_ASSERT_EQUALS(q.id(), (cl_command_queue)NULL);
+    TS_ASSERT(mock1.never_called());
+    TS_ASSERT(mock2.never_called());
+  }
+  /** // doc: test__ctor_1() {{{
+   * \todo Write documentation
+   */ // }}}
+  void test__ctor_1( )
   {
     T::Dummy_clRetainCommandQueue mock1(CL_SUCCESS);
     T::Dummy_clReleaseCommandQueue mock2(CL_SUCCESS);
@@ -35,10 +50,10 @@ public:
     TS_ASSERT(mock1.called_once_with((cl_command_queue)0x1234));
     TS_ASSERT(mock2.never_called());
   }
-  /** // doc: test_ctor_2() {{{
+  /** // doc: test__ctor_2() {{{
    * \todo Write documentation
    */ // }}}
-  void test_ctor_2( )
+  void test__ctor_2( )
   {
 #if CLXX_OPENCL_ALLOWED(clCreateCommandQueue)
     T::Dummy_clCreateCommandQueue mock1((cl_command_queue)0, CL_SUCCESS);
@@ -55,10 +70,10 @@ public:
     TS_ASSERT(mock2.never_called());
     TS_ASSERT(mock3.never_called());
   }
-  /** // doc: test_ctor_2__uninitialized_context() {{{
+  /** // doc: test__ctor_2__uninitialized_context() {{{
    * \todo Write documentation
    */ // }}}
-  void test_ctor_2__uninitialized_context( )
+  void test__ctor_2__uninitialized_context( )
   {
 #if CLXX_OPENCL_ALLOWED(clCreateCommandQueue)
     T::Dummy_clCreateCommandQueue mock1((cl_command_queue)0, CL_SUCCESS);
@@ -71,10 +86,10 @@ public:
     T::Dummy_clReleaseContext mock5(CL_SUCCESS);
     TS_ASSERT_THROWS(command_queue(context((cl_context)NULL), device((cl_device_id)0x5678), command_queue_properties_t::none), uninitialized_context_error);
   }
-  /** // doc: test_ctor_2__uninitialized_device() {{{
+  /** // doc: test__ctor_2__uninitialized_device() {{{
    * \todo Write documentation
    */ // }}}
-  void test_ctor_2__uninitialized_device( )
+  void test__ctor_2__uninitialized_device( )
   {
 #if CLXX_OPENCL_ALLOWED(clCreateCommandQueue)
     T::Dummy_clCreateCommandQueue mock1((cl_command_queue)0, CL_SUCCESS);
@@ -87,10 +102,10 @@ public:
     T::Dummy_clReleaseContext mock5(CL_SUCCESS);
     TS_ASSERT_THROWS(command_queue(context((cl_context)0x1234), device((cl_device_id)NULL), command_queue_properties_t::none), uninitialized_device_error);
   }
-  /** // doc: test_copy_ctor() {{{
+  /** // doc: test__copy_ctor() {{{
    * \todo Write documentation
    */ // }}}
-  void test_copy_ctor( )
+  void test__copy_ctor( )
   {
 #if CLXX_OPENCL_ALLOWED(clCreateCommandQueue)
     T::Dummy_clCreateCommandQueue mock1((cl_command_queue)0x123, CL_SUCCESS);
@@ -109,10 +124,10 @@ public:
     TS_ASSERT(mock3.never_called());
     TS_ASSERT_EQUALS(c2, command_queue((cl_command_queue)0x123));
   }
-  /** // doc: test_dtor() {{{
+  /** // doc: test__dtor() {{{
    * \todo Write documentation
    */ // }}}
-  void test_dtor( )
+  void test__dtor( )
   {
     T::Dummy_clRetainCommandQueue mock1(CL_SUCCESS);
     T::Dummy_clReleaseCommandQueue mock2(CL_SUCCESS);
@@ -123,10 +138,10 @@ public:
     }
     TS_ASSERT(mock2.called_once_with((cl_command_queue)0x1234));
   }
-  /** // doc: test_op_assign() {{{
+  /** // doc: test__op_assign() {{{
    * \todo Write documentation
    */ // }}}
-  void test_op_assign( )
+  void test__op_assign( )
   {
     T::Dummy_clRetainCommandQueue mock1(CL_SUCCESS);
     T::Dummy_clReleaseCommandQueue mock2(CL_SUCCESS);
@@ -139,10 +154,10 @@ public:
     TS_ASSERT(mock2.called_once_with((cl_command_queue)0x5678));
     TS_ASSERT_EQUALS(c1,c2);
   }
-  /** // doc: test_op_eq() {{{
+  /** // doc: test__op_eq() {{{
    * \todo Write documentation
    */ // }}}
-  void test_op_eq( )
+  void test__op_eq( )
   {
     T::Dummy_clRetainCommandQueue mock1(CL_SUCCESS);
     T::Dummy_clReleaseCommandQueue mock2(CL_SUCCESS);
@@ -157,10 +172,10 @@ public:
     TS_ASSERT(c1 == c3);
     TS_ASSERT(c3 == c1);
   }
-  /** // doc: test_op_neq() {{{
+  /** // doc: test__op_neq() {{{
    * \todo Write documentation
    */ // }}}
-  void test_op_neq( )
+  void test__op_neq( )
   {
     T::Dummy_clRetainCommandQueue mock1(CL_SUCCESS);
     T::Dummy_clReleaseCommandQueue mock2(CL_SUCCESS);
@@ -175,10 +190,10 @@ public:
     TS_ASSERT(!(c1 != c3));
     TS_ASSERT(!(c3 != c1));
   }
-  /** // doc: test_assign() {{{
+  /** // doc: test__assign() {{{
    * \todo Write documentation
    */ // }}}
-  void test_assign( )
+  void test__assign( )
   {
     T::Dummy_clRetainCommandQueue mock1(CL_SUCCESS);
     T::Dummy_clReleaseCommandQueue mock2(CL_SUCCESS);
@@ -191,10 +206,10 @@ public:
     TS_ASSERT(mock2.called_once_with((cl_command_queue)0x5678));
     TS_ASSERT_EQUALS(c1,c2);
   }
-  /** // doc: test_assign__uninitialized_command_queue_error() {{{
+  /** // doc: test__assign__uninitialized_command_queue_error() {{{
    * \todo Write documentation
    */ // }}}
-  void test_assign__uninitialized_command_queue_error( )
+  void test__assign__uninitialized_command_queue_error( )
   {
     T::Dummy_clRetainCommandQueue mock1(CL_SUCCESS);
     T::Dummy_clReleaseCommandQueue mock2(CL_SUCCESS);
@@ -202,17 +217,17 @@ public:
     command_queue c2((cl_command_queue)0x5678);
     TS_ASSERT_THROWS(c2.assign(c1), uninitialized_command_queue_error);
   }
-  /** // doc: test_is_initialized() {{{
+  /** // doc: test__is_initialized() {{{
    * \todo Write documentation
    */ // }}}
-  void test_is_initialized( )
+  void test__is_initialized( )
   {
     TS_ASSERT(true); // we've actually tested it with constructors...
   }
-  /** // doc: test_get_info() {{{
+  /** // doc: test__get_info() {{{
    * \todo Write documentation
    */ // }}}
-  void test_get_info( )
+  void test__get_info( )
   {
     T::Dummy_clRetainCommandQueue mock1(CL_SUCCESS);
     T::Dummy_clReleaseCommandQueue mock2(CL_SUCCESS);
@@ -225,10 +240,10 @@ public:
 
     TS_ASSERT(mock3.called_once_with((cl_command_queue)0x1234, CL_QUEUE_CONTEXT, 1, (void*)&value, &value_size_ret));
   }
-  /** // doc: test_get_context() {{{
+  /** // doc: test__get_context() {{{
    * \todo Write documentation
    */ // }}}
-  void test_get_context( )
+  void test__get_context( )
   {
     T::Dummy_clRetainCommandQueue mock1(CL_SUCCESS);
     T::Dummy_clReleaseCommandQueue mock2(CL_SUCCESS);
@@ -243,10 +258,10 @@ public:
     TS_ASSERT_EQUALS(std::get<0>(mock3.calls().back()), (cl_command_queue)0x1234);
     TS_ASSERT_EQUALS(std::get<1>(mock3.calls().back()), CL_QUEUE_CONTEXT);
   }
-  /** // doc: test_get_device() {{{
+  /** // doc: test__get_device() {{{
    * \todo Write documentation
    */ // }}}
-  void test_get_device( )
+  void test__get_device( )
   {
     T::Dummy_clRetainCommandQueue mock1(CL_SUCCESS);
     T::Dummy_clReleaseCommandQueue mock2(CL_SUCCESS);
@@ -259,10 +274,10 @@ public:
     TS_ASSERT_EQUALS(std::get<0>(mock3.calls().back()), (cl_command_queue)0x1234);
     TS_ASSERT_EQUALS(std::get<1>(mock3.calls().back()), CL_QUEUE_DEVICE);
   }
-  /** // doc: test_get_reference_count() {{{
+  /** // doc: test__get_reference_count() {{{
    * \todo Write documentation
    */ // }}}
-  void test_get_reference_count( )
+  void test__get_reference_count( )
   {
     T::Dummy_clRetainCommandQueue mock1(CL_SUCCESS);
     T::Dummy_clReleaseCommandQueue mock2(CL_SUCCESS);
@@ -275,10 +290,10 @@ public:
     TS_ASSERT_EQUALS(std::get<0>(mock3.calls().back()), (cl_command_queue)0x1234);
     TS_ASSERT_EQUALS(std::get<1>(mock3.calls().back()), CL_QUEUE_REFERENCE_COUNT);
   }
-  /** // doc: test_get_properties() {{{
+  /** // doc: test__get_properties() {{{
    * \todo Write documentation
    */ // }}}
-  void test_get_properties( )
+  void test__get_properties( )
   {
     T::Dummy_clRetainCommandQueue mock1(CL_SUCCESS);
     T::Dummy_clReleaseCommandQueue mock2(CL_SUCCESS);
@@ -291,9 +306,27 @@ public:
     TS_ASSERT_EQUALS(std::get<0>(mock3.calls().back()), (cl_command_queue)0x1234);
     TS_ASSERT_EQUALS(std::get<1>(mock3.calls().back()), CL_QUEUE_PROPERTIES);
   }
-  void test_foo( )
+  void test__flush( )
   {
-    TS_ASSERT(true);
+    T::Dummy_clRetainCommandQueue mock1(CL_SUCCESS);
+    T::Dummy_clReleaseCommandQueue mock2(CL_SUCCESS);
+    T::Dummy_clFlush mock3(CL_SUCCESS);
+
+    command_queue q((cl_command_queue)0x1234);
+    q.flush();
+
+    TS_ASSERT(mock3.called_once_with((cl_command_queue)0x1234));
+  }
+  void test__finish( )
+  {
+    T::Dummy_clRetainCommandQueue mock1(CL_SUCCESS);
+    T::Dummy_clReleaseCommandQueue mock2(CL_SUCCESS);
+    T::Dummy_clFinish mock3(CL_SUCCESS);
+
+    command_queue q((cl_command_queue)0x1234);
+    q.finish();
+
+    TS_ASSERT(mock3.called_once_with((cl_command_queue)0x1234));
   }
 };
 

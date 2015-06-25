@@ -13,6 +13,7 @@
 #ifndef CLXX_DEVICE_HPP_INCLUDED
 #define CLXX_DEVICE_HPP_INCLUDED
 
+#include <clxx/device_fwd.hpp>
 #include <clxx/types.hpp>
 #include <vector>
 #include <string>
@@ -125,7 +126,7 @@ namespace clxx {
  * | get_image_pitch_alignment()             | CL_DEVICE_IMAGE_PITCH_ALIGNMENT         |         |         |  \check |
  * | get_image_base_address_alignment()      | CL_DEVICE_IMAGE_BASE_ADDRESS_ALIGNMENT  |         |         |  \check |
  */ // }}}
-class device
+class alignas(cl_device_id) device
 {
 private:
   cl_device_id _device_id;
@@ -587,14 +588,14 @@ public:
    * \return ID of the platform associated with this device.
    */ // }}}
   cl_platform_id get_platform_id() const;
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
   /** // {{{
    * \brief Get \c CL_DEVICE_PLATFORM information.
    * \return ID of the platform associated with this device.
    */ // }}}
   device_fp_config_t get_double_fp_config() const;
 #endif
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
   /** // {{{
    * \brief Get \c CL_DEVICE_PREFERRED_VECTOR_WIDTH_HALF information.
    * \return Preferred native vector width size for built-in \c half scalar
@@ -662,7 +663,7 @@ public:
    */ // }}}
   std::string get_opencl_c_version() const;
 #endif
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
   /** // {{{
    * \brief Get \c CL_DEVICE_LINKER_AVAILABLE information.
    * \return \c CL_FALSE if the implementation does not have a linker available.

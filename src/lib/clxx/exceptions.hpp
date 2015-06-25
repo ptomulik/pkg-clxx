@@ -263,6 +263,37 @@ struct uninitialized_command_queue_error
       : Base(what_arg)
     { }
   };
+/** // doc: uninitialized_mem_error {{{
+ * \ingroup clxx_exceptions
+ * \brief An exception being thrown when a user tries to operate on an
+ *        uninitialized \ref clxx::mem "mem" object
+ */ // }}}
+struct uninitialized_mem_error
+    : public exception_base<clxx::exception, std::logic_error>
+  {
+    /** // doc: Base {{{
+     * \brief Typedef for base class
+     */ // }}}
+    typedef clxx::exception_base<clxx::exception, std::logic_error> Base;
+    /** // doc: uninitialized_mem_error() {{{
+     * \brief Default constructor
+     */ // }}}
+    uninitialized_mem_error() noexcept
+      : Base("attempted to use uninitialized clxx::mem object")
+    { }
+    /** // doc: uninitialized_mem_error() {{{
+     * \brief Constructor
+     */ // }}}
+    uninitialized_mem_error(std::string const& what_arg) noexcept
+      : Base(what_arg)
+    { }
+    /** // doc: uninitialized_mem_error() {{{
+     * \brief Constructor
+     */ // }}}
+    uninitialized_mem_error(char const* what_arg) noexcept
+      : Base(what_arg)
+    { }
+  };
 /** // doc: uninitialized_program_error {{{
  * \ingroup clxx_exceptions
  * \brief An exception being thrown when a user tries to operate on an
@@ -322,6 +353,37 @@ struct uninitialized_kernel_error
      * \brief Constructor
      */ // }}}
     uninitialized_kernel_error(char const* what_arg) noexcept
+      : Base(what_arg)
+    { }
+  };
+/** // doc: uninitialized_event_error {{{
+ * \ingroup clxx_exceptions
+ * \brief An exception being thrown when a user tries to operate on an
+ *        uninitialized \ref clxx::event "event" object
+ */ // }}}
+struct uninitialized_event_error
+    : public exception_base<clxx::exception, std::logic_error>
+  {
+    /** // doc: Base {{{
+     * \brief Typedef for base class
+     */ // }}}
+    typedef clxx::exception_base<clxx::exception, std::logic_error> Base;
+    /** // doc: uninitialized_event_error() {{{
+     * \brief Default constructor
+     */ // }}}
+    uninitialized_event_error() noexcept
+      : Base("attempted to use uninitialized clxx::event object")
+    { }
+    /** // doc: uninitialized_event_error() {{{
+     * \brief Constructor
+     */ // }}}
+    uninitialized_event_error(std::string const& what_arg) noexcept
+      : Base(what_arg)
+    { }
+    /** // doc: uninitialized_event_error() {{{
+     * \brief Constructor
+     */ // }}}
+    uninitialized_event_error(char const* what_arg) noexcept
       : Base(what_arg)
     { }
   };
@@ -393,6 +455,36 @@ struct value_access_error
      * \brief Constructor
      */ // }}}
     value_access_error(char const* what_arg) noexcept
+      : Base(what_arg)
+    { }
+  };
+/** // doc: invalid_index_error {{{
+ * \ingroup clxx_exceptions
+ * \brief An exception being thrown when index to an array is out of range
+ */ // }}}
+struct invalid_index_error
+    : public exception_base<clxx::exception, std::out_of_range>
+  {
+    /** // doc: Base {{{
+     * \brief Typedef for base class
+     */ // }}}
+    typedef clxx::exception_base<clxx::exception, std::out_of_range> Base;
+    /** // doc: invalid_index_error() {{{
+     * \brief Default constructor
+     */ // }}}
+    invalid_index_error() noexcept
+      : Base("invalid index")
+    { }
+    /** // doc: invalid_index_error() {{{
+     * \brief Constructor
+     */ // }}}
+    invalid_index_error(std::string const& what_arg) noexcept
+      : Base(what_arg)
+    { }
+    /** // doc: invalid_index_error() {{{
+     * \brief Constructor
+     */ // }}}
+    invalid_index_error(char const* what_arg) noexcept
       : Base(what_arg)
     { }
   };

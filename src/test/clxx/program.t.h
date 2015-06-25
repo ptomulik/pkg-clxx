@@ -12,6 +12,7 @@
 
 #include <cxxtest/TestSuite.h>
 #include <clxx/program.hpp>
+#include <clxx/context.hpp>
 #include <clxx/exceptions.hpp>
 #include <clxx/cl/mock.hpp>
 
@@ -23,6 +24,19 @@ namespace clxx { class program_test_suite; }
 class clxx::program_test_suite : public CxxTest::TestSuite
 {
 public:
+  /** // doc: test__default_ctor() {{{
+   * \todo Write documentation
+   */ // }}}
+  void test__default_ctor( )
+  {
+    T::Dummy_clRetainProgram mock1(CL_SUCCESS);
+    T::Dummy_clReleaseProgram mock2(CL_SUCCESS);
+    program p;
+    TS_ASSERT(!p.is_initialized());
+    TS_ASSERT_EQUALS(p.id(), (cl_program)NULL);
+    TS_ASSERT(mock1.never_called());
+    TS_ASSERT(mock2.never_called());
+  }
   /** // doc: test_ctor_1() {{{
    * \todo Write documentation
    */ // }}}
@@ -713,7 +727,7 @@ public:
     TS_ASSERT_EQUALS(std::get<2>(mock3.calls().back()), nullptr);
     TS_ASSERT(std::get<3>(mock3.calls().back()) != nullptr);
     TS_ASSERT_EQUALS(std::get<4>(mock3.calls().back()), 0ul);
-    TS_ASSERT(std::get<5>(mock3.calls().back()) != nullptr);
+    TS_ASSERT(std::get<5>(mock3.calls().back()) == nullptr);
     TS_ASSERT(std::get<6>(mock3.calls().back()) != nullptr);
     TS_ASSERT_EQUALS(std::get<7>(mock3.calls().back()), nullptr);
     TS_ASSERT_EQUALS(std::get<8>(mock3.calls().back()), nullptr);
@@ -744,7 +758,7 @@ public:
     TS_ASSERT_EQUALS(std::get<2>(mock3.calls().back()), nullptr);
     TS_ASSERT(std::get<3>(mock3.calls().back()) != nullptr);
     TS_ASSERT_EQUALS(std::get<4>(mock3.calls().back()), 0ul);
-    TS_ASSERT(std::get<5>(mock3.calls().back()) != nullptr);
+    TS_ASSERT(std::get<5>(mock3.calls().back()) == nullptr);
     TS_ASSERT(std::get<6>(mock3.calls().back()) != nullptr);
     TS_ASSERT(std::get<7>(mock3.calls().back()) != nullptr);
     TS_ASSERT_EQUALS(std::get<8>(mock3.calls().back()), (void*)&po);
@@ -772,7 +786,7 @@ public:
     TS_ASSERT(std::get<2>(mock3.calls().back()) != nullptr);
     TS_ASSERT(std::get<3>(mock3.calls().back()) != nullptr);
     TS_ASSERT_EQUALS(std::get<4>(mock3.calls().back()), 0ul);
-    TS_ASSERT(std::get<5>(mock3.calls().back()) != nullptr);
+    TS_ASSERT(std::get<5>(mock3.calls().back()) == nullptr);
     TS_ASSERT(std::get<6>(mock3.calls().back()) != nullptr);
     TS_ASSERT_EQUALS(std::get<7>(mock3.calls().back()), nullptr);
     TS_ASSERT_EQUALS(std::get<8>(mock3.calls().back()), nullptr);
@@ -804,7 +818,7 @@ public:
     TS_ASSERT(std::get<2>(mock3.calls().back()) != nullptr);
     TS_ASSERT(std::get<3>(mock3.calls().back()) != nullptr);
     TS_ASSERT_EQUALS(std::get<4>(mock3.calls().back()), 0ul);
-    TS_ASSERT(std::get<5>(mock3.calls().back()) != nullptr);
+    TS_ASSERT(std::get<5>(mock3.calls().back()) == nullptr);
     TS_ASSERT(std::get<6>(mock3.calls().back()) != nullptr);
     TS_ASSERT(std::get<7>(mock3.calls().back()) != nullptr);
     TS_ASSERT_EQUALS(std::get<8>(mock3.calls().back()), (void*)&po);

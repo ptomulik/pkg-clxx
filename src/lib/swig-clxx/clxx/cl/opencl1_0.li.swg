@@ -13,7 +13,7 @@
 %import <clxx/config.h>
 %import <clxx/config.hpp>
 
-#if HAVE_OPENCL_CL_H_VERSION_1_0
+#if CLXX_CL_H_VERSION_1_0
 %{
 #include <CL/cl_platform.h>
 #include <CL/cl.h>

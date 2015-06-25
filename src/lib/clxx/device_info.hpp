@@ -412,7 +412,7 @@ std::string const& extensions() const;
  * \throws uninitialized_value_error if the attribute \c platform_id is uninitialized
  */ // }}}
 unsigned long platform_id() const;
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
 /** // doc: double_fp_config() {{{
  * \brief Double precision floating-point capability
  * \returns Bit-field that describes double precision floating-point
@@ -422,7 +422,7 @@ unsigned long platform_id() const;
  */ // }}}
 device_fp_config_t double_fp_config() const;
 #endif
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
 /** // doc: preferred_vector_width_half() {{{
  * \brief Preferred native vector width size for char type
  * \returns Preferred native vector width size for char type
@@ -503,7 +503,7 @@ cl_uint native_vector_width_half() const;
  */ // }}}
 std::string const& opencl_c_version() const;
 #endif
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
 /** // doc: linker_available() {{{
  * \brief Whether the OpenCL implementation has a linker available
  * \returns \c CL_FALSE if the implementation does not have a linker
@@ -934,7 +934,7 @@ cl_uint image_base_address_alignment() const;
    * \returns Reference to the modified \ref device_info object
    */ // }}}
   device_info& set_platform_id(unsigned long val) noexcept;
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
   /** // doc: set_double_fp_config(val) {{{
    * \brief Set the #double_fp_config attribute
    * \param val The value to be set to the attribute
@@ -943,7 +943,7 @@ cl_uint image_base_address_alignment() const;
    */ // }}}
   device_info& set_double_fp_config(device_fp_config_t val) noexcept;
 #endif
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
   /** // doc: set_preferred_vector_width_half(val) {{{
    * \brief Set the #preferred_vector_width_half attribute
    * \param val The value to be set to the attribute
@@ -1015,7 +1015,7 @@ cl_uint image_base_address_alignment() const;
    */ // }}}
   device_info& set_opencl_c_version(std::string const& val);
 #endif
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
   /** // doc: set_linker_available(val) {{{
    * \brief Set the #linker_available attribute
    * \param val The value to be set to the attribute
@@ -1372,7 +1372,7 @@ cl_uint image_base_address_alignment() const;
    * \returns Reference to the modified \ref device_info object
    */ // }}}
   device_info& clear_platform_id() noexcept;
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
   /** // doc: clear_double_fp_config() {{{
    * \brief Clears the #double_fp_config attribute
    * \returns Reference to the modified \ref device_info object
@@ -1380,7 +1380,7 @@ cl_uint image_base_address_alignment() const;
    */ // }}}
   device_info& clear_double_fp_config() noexcept;
 #endif
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
   /** // doc: clear_preferred_vector_width_half() {{{
    * \brief Clears the #preferred_vector_width_half attribute
    * \returns Reference to the modified \ref device_info object
@@ -1442,7 +1442,7 @@ cl_uint image_base_address_alignment() const;
    */ // }}}
   device_info& clear_opencl_c_version() noexcept;
 #endif
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
   /** // doc: clear_linker_available() {{{
    * \brief Clears the #linker_available attribute
    * \returns Reference to the modified \ref device_info object
@@ -1772,7 +1772,7 @@ cl_uint image_base_address_alignment() const;
    * \returns \c true if #platform_id is initialized or \c false otherwise
    */ // }}}
   bool has_platform_id() const noexcept;
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
   /** // doc: has_double_fp_config(val) {{{
    * \brief Check if the #double_fp_config attribute is initialized
    * \returns \c true if #double_fp_config is initialized or \c false otherwise
@@ -1780,7 +1780,7 @@ cl_uint image_base_address_alignment() const;
    */ // }}}
   bool has_double_fp_config() const noexcept;
 #endif
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
   /** // doc: has_preferred_vector_width_half(val) {{{
    * \brief Check if the #preferred_vector_width_half attribute is initialized
    * \returns \c true if #preferred_vector_width_half is initialized or \c false otherwise
@@ -1842,7 +1842,7 @@ cl_uint image_base_address_alignment() const;
    */ // }}}
   bool has_opencl_c_version() const noexcept;
 #endif
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
   /** // doc: has_linker_available(val) {{{
    * \brief Check if the #linker_available attribute is initialized
    * \returns \c true if #linker_available is initialized or \c false otherwise
@@ -1971,10 +1971,10 @@ private:
   boost::optional<std::string>  _version;
   boost::optional<std::string>  _extensions;
   boost::optional<unsigned long> _platform_id;
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
   boost::optional<device_fp_config_t> _double_fp_config;
 #endif
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
   boost::optional<cl_uint> _preferred_vector_width_half;
   boost::optional<cl_bool> _host_unified_memory;
   boost::optional<cl_uint> _native_vector_width_char;
@@ -1986,7 +1986,7 @@ private:
   boost::optional<cl_uint> _native_vector_width_half;
   boost::optional<std::string>  _opencl_c_version;
 #endif
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
   boost::optional<cl_bool> _linker_available;
   boost::optional<std::string>  _built_in_kernels;
   boost::optional<size_t> _image_max_buffer_size;

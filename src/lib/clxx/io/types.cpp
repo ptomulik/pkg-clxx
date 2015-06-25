@@ -46,11 +46,11 @@ template std::basic_ostream<char>&
 operator<< (std::basic_ostream<char>&, clxx::context_info_t);
 template std::basic_ostream<char>&
 operator<< (std::basic_ostream<char>&, clxx::context_properties_t);
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
 template std::basic_ostream<char>&
 operator<< (std::basic_ostream<char>&, clxx::device_partition_property_t);
 #endif
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
 template std::basic_ostream<char>&
 operator<< (std::basic_ostream<char>&, clxx::device_affinity_domain_t);
 #endif
@@ -58,7 +58,7 @@ template std::basic_ostream<char>&
 operator<< (std::basic_ostream<char>&, clxx::command_queue_info_t);
 template std::basic_ostream<char>&
 operator<< (std::basic_ostream<char>&, clxx::mem_flags_t);
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
 template std::basic_ostream<char>&
 operator<< (std::basic_ostream<char>&, clxx::mem_migration_flags_t);
 #endif
@@ -84,7 +84,7 @@ template std::basic_ostream<char>&
 operator<< (std::basic_ostream<char>&, clxx::program_info_t);
 template std::basic_ostream<char>&
 operator<< (std::basic_ostream<char>&, clxx::program_build_info_t);
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
 template std::basic_ostream<char>&
 operator<< (std::basic_ostream<char>&, clxx::program_binary_type_t);
 #endif
@@ -92,19 +92,19 @@ template std::basic_ostream<char>&
 operator<< (std::basic_ostream<char>&, clxx::build_status_t);
 template std::basic_ostream<char>&
 operator<< (std::basic_ostream<char>&, clxx::kernel_info_t);
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
 template std::basic_ostream<char>&
 operator<< (std::basic_ostream<char>&, clxx::kernel_arg_info_t);
 #endif
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
 template std::basic_ostream<char>&
 operator<< (std::basic_ostream<char>&, clxx::kernel_arg_address_qualifier_t);
 #endif
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
 template std::basic_ostream<char>&
 operator<< (std::basic_ostream<char>&, clxx::kernel_arg_access_qualifier_t);
 #endif
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
 template std::basic_ostream<char>&
 operator<< (std::basic_ostream<char>&, clxx::kernel_arg_type_qualifier_t);
 #endif
@@ -116,7 +116,7 @@ template std::basic_ostream<char>&
 operator<< (std::basic_ostream<char>&, clxx::command_type_t);
 template std::basic_ostream<char>&
 operator<< (std::basic_ostream<char>&, clxx::command_exec_status_t);
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
 template std::basic_ostream<char>&
 operator<< (std::basic_ostream<char>&, clxx::buffer_create_type_t);
 #endif
@@ -148,11 +148,11 @@ template std::basic_ostream<wchar_t>&
 operator<< (std::basic_ostream<wchar_t>&, clxx::context_info_t);
 template std::basic_ostream<wchar_t>&
 operator<< (std::basic_ostream<wchar_t>&, clxx::context_properties_t);
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
 template std::basic_ostream<wchar_t>&
 operator<< (std::basic_ostream<wchar_t>&, clxx::device_partition_property_t);
 #endif
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
 template std::basic_ostream<wchar_t>&
 operator<< (std::basic_ostream<wchar_t>&, clxx::device_affinity_domain_t);
 #endif
@@ -160,7 +160,7 @@ template std::basic_ostream<wchar_t>&
 operator<< (std::basic_ostream<wchar_t>&, clxx::command_queue_info_t);
 template std::basic_ostream<wchar_t>&
 operator<< (std::basic_ostream<wchar_t>&, clxx::mem_flags_t);
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
 template std::basic_ostream<wchar_t>&
 operator<< (std::basic_ostream<wchar_t>&, clxx::mem_migration_flags_t);
 #endif
@@ -186,7 +186,7 @@ template std::basic_ostream<wchar_t>&
 operator<< (std::basic_ostream<wchar_t>&, clxx::program_info_t);
 template std::basic_ostream<wchar_t>&
 operator<< (std::basic_ostream<wchar_t>&, clxx::program_build_info_t);
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
 template std::basic_ostream<wchar_t>&
 operator<< (std::basic_ostream<wchar_t>&, clxx::program_binary_type_t);
 #endif
@@ -194,19 +194,19 @@ template std::basic_ostream<wchar_t>&
 operator<< (std::basic_ostream<wchar_t>&, clxx::build_status_t);
 template std::basic_ostream<wchar_t>&
 operator<< (std::basic_ostream<wchar_t>&, clxx::kernel_info_t);
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
 template std::basic_ostream<wchar_t>&
 operator<< (std::basic_ostream<wchar_t>&, clxx::kernel_arg_info_t);
 #endif
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
 template std::basic_ostream<wchar_t>&
 operator<< (std::basic_ostream<wchar_t>&, clxx::kernel_arg_address_qualifier_t);
 #endif
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
 template std::basic_ostream<wchar_t>&
 operator<< (std::basic_ostream<wchar_t>&, clxx::kernel_arg_access_qualifier_t);
 #endif
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
 template std::basic_ostream<wchar_t>&
 operator<< (std::basic_ostream<wchar_t>&, clxx::kernel_arg_type_qualifier_t);
 #endif
@@ -218,7 +218,7 @@ template std::basic_ostream<wchar_t>&
 operator<< (std::basic_ostream<wchar_t>&, clxx::command_type_t);
 template std::basic_ostream<wchar_t>&
 operator<< (std::basic_ostream<wchar_t>&, clxx::command_exec_status_t);
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
 template std::basic_ostream<wchar_t>&
 operator<< (std::basic_ostream<wchar_t>&, clxx::buffer_create_type_t);
 #endif

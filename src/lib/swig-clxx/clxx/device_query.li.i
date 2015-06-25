@@ -6,6 +6,7 @@
  * \todo Write documentation
  */ // }}}
 
+%import <clxx/wknd.swg>
 %include <clxx/exception_support.swg>
 %include <clxx/device_query.swg>
 

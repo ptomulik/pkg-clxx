@@ -37,11 +37,11 @@ enum2cstr(status_t x, char const* dflt = nullptr) noexcept
           (x == status_t::image_format_not_supported) ? "image format not supported" :
           (x == status_t::build_program_failure) ? "build program failure" :
           (x == status_t::map_failure) ? "map failure" :
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
           (x == status_t::misaligned_sub_buffer_offset) ? "misaligned sub buffer offset" :
           (x == status_t::exec_status_error_for_events_in_wait_list) ? "execution status error for events in wait list" :
 #endif
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
           (x == status_t::compile_program_failure) ? "compile program failure" :
           (x == status_t::linker_not_available) ? "linker not available" :
           (x == status_t::link_program_failure) ? "link program failure" :
@@ -82,16 +82,16 @@ enum2cstr(status_t x, char const* dflt = nullptr) noexcept
           (x == status_t::invalid_buffer_size) ? "invalid buffer size" :
           (x == status_t::invalid_mip_level) ? "invalid mip level" :
           (x == status_t::invalid_global_work_size) ? "invalid global work size" :
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
           (x == status_t::invalid_property) ? "invalid property" :
 #endif
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
           (x == status_t::invalid_image_descriptor) ? "invalid image descriptor" :
           (x == status_t::invalid_compiler_options) ? "invalid compiler options" :
           (x == status_t::invalid_linker_options) ? "invalid linker options" :
           (x == status_t::invalid_device_partition_count) ? "invalid device partition count" :
 #endif
-#if CL_VERSION_2_0
+#if CLXX_CL_H_VERSION_2_0
           (x == status_t::invalid_pipe_size) ? "invalid pipe size" :
           (x == status_t::invalid_device_queue) ? "invalid device queue" :
 #endif
@@ -156,7 +156,7 @@ enum2cstr(device_type_t x, char const* dflt = nullptr) noexcept
           (x == device_type_t::cpu) ? "cpu" :
           (x == device_type_t::gpu) ? "gpu" :
           (x == device_type_t::accelerator) ? "accelerator" :
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
           (x == device_type_t::custom) ? "custom" :
 #endif
           (x == device_type_t::all) ? "all" :
@@ -221,10 +221,10 @@ enum2cstr(device_info_t x, char const* dflt = nullptr) noexcept
           (x == device_info_t::version) ? "version" :
           (x == device_info_t::extensions) ? "extensions" :
           (x == device_info_t::platform) ? "platform" :
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
           (x == device_info_t::double_fp_config) ? "double fp config" :
 #endif
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
           (x == device_info_t::preferred_vector_width_half) ? "preferred vector width half" :
           (x == device_info_t::host_unified_memory) ? "host unified memory" :
           (x == device_info_t::native_vector_width_char) ? "native vector width char" :
@@ -236,7 +236,7 @@ enum2cstr(device_info_t x, char const* dflt = nullptr) noexcept
           (x == device_info_t::native_vector_width_half) ? "native vector width half" :
           (x == device_info_t::opencl_c_version) ? "opencl c version" :
 #endif
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
           (x == device_info_t::linker_available) ? "linker available" :
           (x == device_info_t::built_in_kernels) ? "built in kernels" :
           (x == device_info_t::image_max_buffer_size) ? "image max buffer size" :
@@ -270,10 +270,10 @@ enum2cstr(device_fp_config_t x, char const* dflt = nullptr) noexcept
           (x == device_fp_config_t::round_to_zero) ? "round to zero" :
           (x == device_fp_config_t::round_to_inf) ? "round to inf" :
           (x == device_fp_config_t::fma) ? "fma" :
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
           (x == device_fp_config_t::soft_float) ? "soft float" :
 #endif
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
           (x == device_fp_config_t::correctly_rounded_divide_sqrt) ? "correctly rounded divide sqrt" :
 #endif
           dflt;
@@ -345,7 +345,7 @@ enum2cstr(context_info_t x, char const* dflt = nullptr) noexcept
   return  (x == context_info_t::reference_count) ? "reference count" :
           (x == context_info_t::devices) ? "devices" :
           (x == context_info_t::properties) ? "properties" :
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
           (x == context_info_t::num_devices) ? "num devices" :
 #endif
           dflt;
@@ -360,7 +360,7 @@ constexpr char const*
 enum2cstr(context_properties_t x, char const* dflt = nullptr) noexcept
 {
   return  (x == context_properties_t::platform) ? "platform" :
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
           (x == context_properties_t::interop_user_sync) ? "interop user sync" :
 #endif
 #if cl_khr_gl_sharing
@@ -383,7 +383,7 @@ enum2cstr(context_properties_t x, char const* dflt = nullptr) noexcept
 #endif
           dflt;
 }
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
 /** // doc: enum2cstr(device_partition_property_t, char const*) {{{
  * \brief Convert #device_partition_property_t to C string (human-readable message)
  * \param x The enum value to be converted
@@ -400,7 +400,7 @@ enum2cstr(device_partition_property_t x, char const* dflt = nullptr) noexcept
           dflt;
 }
 #endif
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
 /** // doc: enum2cstr(device_affinity_domain_t, char const*) {{{
  * \brief Convert #device_affinity_domain_t to C string (human-readable message)
  * \param x The enum value to be converted
@@ -451,14 +451,14 @@ enum2cstr(mem_flags_t x, char const* dflt = nullptr) noexcept
           (x == mem_flags_t::use_host_ptr) ? "use host ptr" :
           (x == mem_flags_t::alloc_host_ptr) ? "alloc host ptr" :
           (x == mem_flags_t::copy_host_ptr) ? "copy host ptr" :
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
           (x == mem_flags_t::host_write_only) ? "host write only" :
           (x == mem_flags_t::host_read_only) ? "host read only" :
           (x == mem_flags_t::host_no_access) ? "host no access" :
 #endif
           dflt;
 }
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
 /** // doc: enum2cstr(mem_migration_flags_t, char const*) {{{
  * \brief Convert #mem_migration_flags_t to C string (human-readable message)
  * \param x The enum value to be converted
@@ -493,12 +493,12 @@ enum2cstr(channel_order_t x, char const* dflt = nullptr) noexcept
           (x == channel_order_t::argb) ? "ARGB" :
           (x == channel_order_t::intensity) ? "intensity" :
           (x == channel_order_t::luminance) ? "luminance" :
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
           (x == channel_order_t::rx) ? "Rx" :
           (x == channel_order_t::rgx) ? "RGx" :
           (x == channel_order_t::rgbx) ? "RGBx" :
 #endif
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
           (x == channel_order_t::depth) ? "depth" :
           (x == channel_order_t::depth_stencil) ? "depth stencil" :
 #endif
@@ -528,7 +528,7 @@ enum2cstr(channel_type_t x, char const* dflt = nullptr) noexcept
           (x == channel_type_t::unsigned_int32) ? "unsigned_int32" :
           (x == channel_type_t::half_float) ? "half_float" :
           (x == channel_type_t::float_) ? "float" :
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
           (x == channel_type_t::unorm_int24) ? "unorm_int24" :
 #endif
           dflt;
@@ -545,7 +545,7 @@ enum2cstr(mem_object_type_t x, char const* dflt = nullptr) noexcept
   return  (x == mem_object_type_t::buffer) ? "buffer" :
           (x == mem_object_type_t::image2d) ? "image2d" :
           (x == mem_object_type_t::image3d) ? "image3d" :
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
           (x == mem_object_type_t::image2d_array) ? "image2d array" :
           (x == mem_object_type_t::image1d) ? "image1d" :
           (x == mem_object_type_t::image1d_array) ? "image1d array" :
@@ -569,7 +569,7 @@ enum2cstr(mem_info_t x, char const* dflt = nullptr) noexcept
           (x == mem_info_t::map_count) ? "map count" :
           (x == mem_info_t::reference_count) ? "reference count" :
           (x == mem_info_t::context) ? "context" :
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
           (x == mem_info_t::associated_memobject) ? "associated memobject" :
           (x == mem_info_t::offset) ? "offset" :
 #endif
@@ -591,7 +591,7 @@ enum2cstr(image_info_t x, char const* dflt = nullptr) noexcept
           (x == image_info_t::width) ? "width" :
           (x == image_info_t::height) ? "height" :
           (x == image_info_t::depth) ? "depth" :
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
           (x == image_info_t::array_size) ? "array size" :
           (x == image_info_t::buffer) ? "buffer" :
           (x == image_info_t::num_mip_levels) ? "num mip levels" :
@@ -612,7 +612,7 @@ enum2cstr(addressing_mode_t x, char const* dflt = nullptr) noexcept
           (x == addressing_mode_t::clamp_to_edge) ? "clamp to edge" :
           (x == addressing_mode_t::clamp) ? "clamp" :
           (x == addressing_mode_t::repeat) ? "repeat" :
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
           (x == addressing_mode_t::mirrored_repeat) ? "mirrored repeat" :
 #endif
           dflt;
@@ -658,7 +658,7 @@ enum2cstr(map_flags_t x, char const* dflt = nullptr) noexcept
   return  (x == map_flags_t::none) ? "none" :
           (x == map_flags_t::read) ? "read" :
           (x == map_flags_t::write) ? "write" :
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
           (x == map_flags_t::write_invalidate_region) ? "write invalidate region" :
 #endif
           dflt;
@@ -679,7 +679,7 @@ enum2cstr(program_info_t x, char const* dflt = nullptr) noexcept
           (x == program_info_t::source) ? "source" :
           (x == program_info_t::binary_sizes) ? "binary sizes" :
           (x == program_info_t::binaries) ? "binaries" :
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
           (x == program_info_t::num_kernels) ? "num kernels" :
           (x == program_info_t::kernel_names) ? "kernel names" :
 #endif
@@ -697,7 +697,7 @@ enum2cstr(program_build_info_t x, char const* dflt = nullptr) noexcept
   return  (x == program_build_info_t::status) ? "status" :
           (x == program_build_info_t::options) ? "options" :
           (x == program_build_info_t::log) ? "log" :
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
           (x == program_build_info_t::binary_type) ? "binary type" :
 #endif
           dflt;
@@ -708,7 +708,7 @@ enum2cstr(program_build_info_t x, char const* dflt = nullptr) noexcept
  * \param dflt Default string to be returned if \em x is not recognized by #enum2cstr()
  * \returns Pointer to a null-terminated C string representing the enum value \em x as a human-readable message
  */ // }}}
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
 constexpr char const*
 enum2cstr(program_binary_type_t x, char const* dflt = nullptr) noexcept
 {
@@ -748,12 +748,12 @@ enum2cstr(kernel_info_t x, char const* dflt = nullptr) noexcept
           (x == kernel_info_t::reference_count) ? "reference count" :
           (x == kernel_info_t::context) ? "context" :
           (x == kernel_info_t::program) ? "program" :
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
           (x == kernel_info_t::attributes) ? "attributes" :
 #endif
           dflt;
 }
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
 /** // doc: enum2cstr(kernel_arg_info_t, char const*) {{{
  * \brief Convert #kernel_arg_info_t to C string (human-readable message)
  * \param x The enum value to be converted
@@ -771,7 +771,7 @@ enum2cstr(kernel_arg_info_t x, char const* dflt = nullptr) noexcept
           dflt;
 }
 #endif
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
 /** // doc: enum2cstr(kernel_arg_address_qualifier_t, char const*) {{{
  * \brief Convert #kernel_arg_address_qualifier_t to C string (human-readable message)
  * \param x The enum value to be converted
@@ -788,7 +788,7 @@ enum2cstr(kernel_arg_address_qualifier_t x, char const* dflt = nullptr) noexcept
           dflt;
 }
 #endif
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
 /** // doc: enum2cstr(kernel_arg_access_qualifier_t, char const*) {{{
  * \brief Convert #kernel_arg_access_qualifier_t to C string (human-readable message)
  * \param x The enum value to be converted
@@ -805,7 +805,7 @@ enum2cstr(kernel_arg_access_qualifier_t x, char const* dflt = nullptr) noexcept
           dflt;
 }
 #endif
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
 /** // doc: enum2cstr(kernel_arg_type_qualifier_t, char const*) {{{
  * \brief Convert #kernel_arg_type_qualifier_t to C string (human-readable message)
  * \param x The enum value to be converted
@@ -834,11 +834,11 @@ enum2cstr(kernel_work_group_info_t x, char const* dflt = nullptr) noexcept
   return  (x == kernel_work_group_info_t::work_group_size) ? "work group size" :
           (x == kernel_work_group_info_t::compile_work_group_size) ? "compile work group size" :
           (x == kernel_work_group_info_t::local_mem_size) ? "local mem size" :
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
           (x == kernel_work_group_info_t::preferred_work_group_size_multiple) ? "preferred work group size multiple" :
           (x == kernel_work_group_info_t::private_mem_size) ? "private mem size" :
 #endif
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
           (x == kernel_work_group_info_t::global_work_size) ? "global work size" :
 #endif
           dflt;
@@ -856,7 +856,7 @@ enum2cstr(event_info_t x, char const* dflt = nullptr) noexcept
           (x == event_info_t::command_type) ? "command type" :
           (x == event_info_t::reference_count) ? "reference count" :
           (x == event_info_t::command_execution_status) ? "command execution status" :
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
           (x == event_info_t::context) ? "context" :
 #endif
           dflt;
@@ -887,13 +887,13 @@ enum2cstr(command_type_t x, char const* dflt = nullptr) noexcept
           (x == command_type_t::marker) ? "marker" :
           (x == command_type_t::acquire_gl_objects) ? "acquire GL objects" :
           (x == command_type_t::release_gl_objects) ? "release GL objects" :
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
           (x == command_type_t::read_buffer_rect) ? "read buffer rect" :
           (x == command_type_t::write_buffer_rect) ? "write buffer rect" :
           (x == command_type_t::copy_buffer_rect) ? "copy buffer rect" :
           (x == command_type_t::user) ? "user" :
 #endif
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
           (x == command_type_t::barrier) ? "barrier" :
           (x == command_type_t::migrate_mem_objects) ? "migrate mem objects" :
           (x == command_type_t::fill_buffer) ? "fill buffer" :
@@ -917,7 +917,7 @@ enum2cstr(command_exec_status_t x, char const* dflt = nullptr) noexcept
          is_error(x) ?  enum2cstr(static_cast<status_t>(x), dflt) :
          dflt;
 }
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
 /** // doc: enum2cstr(buffer_create_type_t, char const*) {{{
  * \brief Convert #buffer_create_type_t to C string (human-readable message)
  * \param x The enum value to be converted

@@ -355,7 +355,7 @@ device_partition_by_counts(device_partition_counts const& x)
   {
     return make_device_partition_property<device_partition_property_t::by_counts>(x);
   }
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
 /** // doc: device_partition_by_affinity_domain() {{{
  * \brief Type-safe constructor for \ref device_partition_property
  *

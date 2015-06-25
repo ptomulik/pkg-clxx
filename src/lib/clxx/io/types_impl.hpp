@@ -90,7 +90,7 @@ operator<< (std::basic_ostream<_CharT, _Traits>& os, clxx::context_properties_t 
   os << std::to_string(x);
   return os;
 }
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
 template <typename _CharT, typename _Traits>
 std::basic_ostream<_CharT, _Traits>&
 operator<< (std::basic_ostream<_CharT, _Traits>& os, clxx::device_partition_property_t x)
@@ -99,7 +99,7 @@ operator<< (std::basic_ostream<_CharT, _Traits>& os, clxx::device_partition_prop
   return os;
 }
 #endif
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
 template <typename _CharT, typename _Traits>
 std::basic_ostream<_CharT, _Traits>&
 operator<< (std::basic_ostream<_CharT, _Traits>& os, clxx::device_affinity_domain_t x)
@@ -122,7 +122,7 @@ operator<< (std::basic_ostream<_CharT, _Traits>& os, clxx::mem_flags_t x)
   os << std::to_string(x);
   return os;
 }
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
 template <typename _CharT, typename _Traits>
 std::basic_ostream<_CharT, _Traits>&
 operator<< (std::basic_ostream<_CharT, _Traits>& os, clxx::mem_migration_flags_t x)
@@ -208,7 +208,7 @@ operator<< (std::basic_ostream<_CharT, _Traits>& os, clxx::program_build_info_t 
   os << std::to_string(x);
   return os;
 }
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
 template <typename _CharT, typename _Traits>
 std::basic_ostream<_CharT, _Traits>&
 operator<< (std::basic_ostream<_CharT, _Traits>& os, clxx::program_binary_type_t x)
@@ -231,7 +231,7 @@ operator<< (std::basic_ostream<_CharT, _Traits>& os, clxx::kernel_info_t x)
   os << std::to_string(x);
   return os;
 }
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
 template <typename _CharT, typename _Traits>
 std::basic_ostream<_CharT, _Traits>&
 operator<< (std::basic_ostream<_CharT, _Traits>& os, clxx::kernel_arg_info_t x)
@@ -240,7 +240,7 @@ operator<< (std::basic_ostream<_CharT, _Traits>& os, clxx::kernel_arg_info_t x)
   return os;
 }
 #endif
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
 template <typename _CharT, typename _Traits>
 std::basic_ostream<_CharT, _Traits>&
 operator<< (std::basic_ostream<_CharT, _Traits>& os, clxx::kernel_arg_address_qualifier_t x)
@@ -249,7 +249,7 @@ operator<< (std::basic_ostream<_CharT, _Traits>& os, clxx::kernel_arg_address_qu
   return os;
 }
 #endif
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
 template <typename _CharT, typename _Traits>
 std::basic_ostream<_CharT, _Traits>&
 operator<< (std::basic_ostream<_CharT, _Traits>& os, clxx::kernel_arg_access_qualifier_t x)
@@ -258,7 +258,7 @@ operator<< (std::basic_ostream<_CharT, _Traits>& os, clxx::kernel_arg_access_qua
   return os;
 }
 #endif
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
 template <typename _CharT, typename _Traits>
 std::basic_ostream<_CharT, _Traits>&
 operator<< (std::basic_ostream<_CharT, _Traits>& os, clxx::kernel_arg_type_qualifier_t x)
@@ -295,7 +295,7 @@ operator<< (std::basic_ostream<_CharT, _Traits>& os, clxx::command_exec_status_t
   os << std::to_string(x);
   return os;
 }
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
 template <typename _CharT, typename _Traits>
 std::basic_ostream<_CharT, _Traits>&
 operator<< (std::basic_ostream<_CharT, _Traits>& os, clxx::buffer_create_type_t x)

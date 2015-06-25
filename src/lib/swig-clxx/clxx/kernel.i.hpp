@@ -18,6 +18,7 @@
 #include <clxx/std/string.i.hpp>
 
 // stuff included by this module
+#include <clxx/ndrange.hpp>
 #include <clxx/kernel.hpp>
 
 #endif /* CLXX_KERNEL_I_HPP_INCLUDED */

@@ -44,7 +44,7 @@ To compile API documentation, go to the top level source directory and type::
     scons api-doc
 
 This creates HTML docs in several places, for example under
-``build/lib/clxx/doc``.
+``build/doc/clxx/``.
 
 HOWTO: Clean API documentation
 ``````````````````````````````

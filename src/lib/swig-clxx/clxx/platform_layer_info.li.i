@@ -7,6 +7,7 @@
  */ // }}}
 
 %include <std_vector.i>
+%import <clxx/wknd.swg>
 %include <clxx/shared_ptr.swg>
 %include <clxx/exception_support.swg>
 

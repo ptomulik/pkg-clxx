@@ -1978,6 +1978,11 @@ enum class profiling_info_t : cl_profiling_info {
   start   = CL_PROFILING_COMMAND_START,
   /// Corresponds to \c CL_PROFILING_COMMAND_END
   end     = CL_PROFILING_COMMAND_END
+#if CLXX_CL_H_VERSION_2_0
+  ,
+  /// Corresponds to \c CL_PROFILING_COMMAND_COMPLETE
+  complete     = CL_PROFILING_COMMAND_COMPLETE
+#endif
 };
 
 CLXX_MAKE_INTEGER_ENUM(profiling_info_t, cl_profiling_info)

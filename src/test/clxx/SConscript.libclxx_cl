@@ -53,6 +53,7 @@ tests = [
     'functions/get_device_ids.t.h',
     'functions/get_device_info.t.h',
     'functions/get_event_info.t.h',
+    'functions/get_event_profiling_info.t.h',
     'functions/get_image_info.t.h',
     'functions/get_kernel_arg_info.t.h',
     'functions/get_kernel_info.t.h',

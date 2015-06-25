@@ -2908,6 +2908,57 @@ retain_event(cl_event event);
  */ // }}}
 void
 release_event(cl_event event);
+/** // doc: get_event_profiling_info() {{{
+ * \brief Returns profiling information for the command associated with event
+ *        if profiling is enabled
+ *
+ * This function is a wrapper around \c clGetEventProfilingInfo(). The call to
+ * this function has same effect as
+ * - \c clGetEventProfilingInfo(event, static_cast<cl_profiling_info>(param_name), param_value_size, param_value, param_value_size_ret).
+ *
+ * The main difference between #get_event_profiling_info() and
+ * \c clGetEventProfilingInfo() is that it throws %clxx exceptions instead of
+ * returning OpenCL error codes.
+ *
+ * \param event
+ *    Specifies the event object.
+ * \param param_name
+ *    Specifies the profiling data to query.
+ * \param param_value_size
+ *    Used to specify the size in bytes of memory pointed to by \em param_value.
+ *    This size must be \c >= size of return type.
+ * \param param_value
+ *    A pointer to memory where the appropriate result being queried is
+ *    returned. If \em param_value is \c NULL, it is ignored.
+ * \param param_value_size_ret
+ *    The actual size in bytes of data copied to \em param_value. If
+ *    \em param_value_size_ret is \c NULL, it is ignored.
+ *
+ * \throw clerror_no<status_t::profiling_info_not_available>
+ *    When the \c clGetEventProfilingInfo() returns CL_PROFILING_INFO_NOT_AVAILABLE
+ * \throw clerror_no<status_t::invalid_value>
+ *    When the \c clGetEventProfilingInfo() returns CL_INVALID_VALUE
+ * \throw clerror_no<status_t::invalid_event>
+ *    When the \c clGetEventProfilingInfo() returns CL_INVALID_KERNEL
+ * \throw clerror_no<status_t::out_of_resources>
+ *    When the \c clGetEventProfilingInfo() returns CL_OUT_OF_RESOURCES
+ * \throw clerror_no<status_t::out_of_host_memory>
+ *    When the \c clGetEventProfilingInfo() returns CL_OUT_OF_HOST_MEMORY
+ * \throw unexpected_clerror
+ *    When \c clGetEventProfilingInfo() returns other error code.
+ *
+ * \par Available in OpenCL versions
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |   \check  |   \check  |   \check  |   \check  |    ???    |
+ *
+ * \sa <a href="https://www.khronos.org/registry/cl/sdk/2.0/docs/man/xhtml/clGetEventProfilingInfo.html">clGetEventProfilingInfo()</a>
+ */ // }}}
+void
+get_event_profiling_info(cl_event event,
+                         profiling_info_t param_name,
+                         size_t param_value_size, void* param_value,
+                         size_t* param_value_size_ret);
 /** // doc: flush() {{{
  * \todo Write documentation
  */ // }}}

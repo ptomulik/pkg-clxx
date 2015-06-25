@@ -1538,6 +1538,27 @@ release_event(cl_event event)
 }
 /* ------------------------------------------------------------------------ */
 void
+get_event_profiling_info(cl_event event,
+                         profiling_info_t param_name,
+                         size_t param_value_size, void* param_value,
+                         size_t* param_value_size_ret)
+{
+  status_t s = static_cast<status_t>(
+      T::clGetEventProfilingInfo(
+        event,
+        static_cast<cl_profiling_info>(param_name),
+        param_value_size,
+        param_value,
+        param_value_size_ret
+     )
+  );
+  if(is_error(s))
+    {
+      _throw_clerror_no(s);
+    }
+}
+/* ------------------------------------------------------------------------ */
+void
 flush(cl_command_queue command_queue)
 {
   status_t s = static_cast<status_t>(T::clFlush(command_queue));

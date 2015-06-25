@@ -267,6 +267,35 @@ public:
    */ // }}}
   void get_info(event_info_t name, size_t value_size, void* value,
                 size_t* value_size_ret) const;
+  /** // doc: get_info(...) {{{
+   * \brief Get profiling information for the command associated with event if
+   *        profiling is enabled
+   *
+   * This function calls internally \ref clxx::get_event_profiling_info()
+   * "get_event_profiling_info()".
+   *
+   * \param name
+   *     An enumeration constant that specifies the information to query.
+   *     See documentation of \ref profiling_info_t for possible values.
+   * \param value_size
+   *    Specifies the size in bytes of memory pointed to by \e value. This size
+   *    must be greater than or equal to the size of return type as described
+   *    in appropriate table in the OpenCL specification (see documentation of
+   *    \ref clxx::get_event_profiling_info() "get_event_profiling_info()").
+   * \param value
+   *    A pointer to memory where the appropriate result being queried is
+   *    returned. If \e value is \c NULL, it is ignored.
+   * \param value_size_ret
+   *    Returns the actual size in bytes of data being queried by \e value. If
+   *    \e value_size_ret is \c NULL, it is ignored.
+   *
+   * \throws uninitialized_event_error if the object was not initialized
+   *      properly (see \ref is_initialized()).
+   *
+   * It also throws exceptions originating from \ref get_event_profiling_info().
+   */ // }}}
+  void get_profiling_info(profiling_info_t name, size_t value_size, void* value,
+                          size_t* value_size_ret) const;
   /** // doc: get_command_queue() {{{
    * \brief Return the command-queue associated with this \ref clxx::event "event"
    *
@@ -322,6 +351,28 @@ public:
    * It also throws exceptions originating fro \ref get_event_info().
    */ // }}}
   cl_uint get_reference_count() const;
+  /** // doc: get_profiling_command_queued() {{{
+   * \todo Write documentation
+   */ // }}}
+  cl_ulong get_profiling_command_queued() const;
+  /** // doc: get_profiling_command_submit() {{{
+   * \todo Write documentation
+   */ // }}}
+  cl_ulong get_profiling_command_submit() const;
+  /** // doc: get_profiling_command_start() {{{
+   * \todo Write documentation
+   */ // }}}
+  cl_ulong get_profiling_command_start() const;
+  /** // doc: get_profiling_command_end() {{{
+   * \todo Write documentation
+   */ // }}}
+  cl_ulong get_profiling_command_end() const;
+#if CLXX_CL_H_VERSION_2_0
+  /** // doc: get_profiling_command_complete() {{{
+   * \todo Write documentation
+   */ // }}}
+  cl_ulong get_profiling_command_complete() const;
+#endif
   /** // doc: assign() {{{
    * \brief Assignment
    *

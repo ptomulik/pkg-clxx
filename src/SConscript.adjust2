@@ -12,8 +12,6 @@ from distutils import sysconfig
 #############################################################################
 libdir = '%s' % env.Dir('lib').path
 env.AppendUnique(CPPPATH = [ '#%s' % libdir ])
-if env.subst('${WITH_YAUL_TML}'):
-    env.AppendUnique(CPPPATH = [ env.subst('${WITH_YAUL_TML}') ])
 env.AppendUnique(LINKFLAGS = ['-Wl,-rpath-link=%s' % libdir])
 env.AppendUnique(LIBPATH = ['#%s' % libdir])
 #############################################################################
@@ -62,7 +60,6 @@ env.Append(SWIGPY_SWIGFLAGS = swigflags + ['-enumclass'])
 # SWIGPY_CPPPATH
 env.Append(SWIGPY_CPPPATH = [ '#%s' % env.Dir('lib').path ])
 env.Append(SWIGPY_CPPPATH = [ '#%s' % env.Dir('lib/swig-clxx').path ])
-env.Append(SWIGPY_CPPPATH = [ '#%s' % libdir, '#lib/yaul-tml/include' ])
 env.Append(SWIGPY_CPPPATH = sysconfig.get_python_inc())
 
 # CFLAGS and SWIGPY_CXXFLAGS

@@ -15,32 +15,33 @@
 #include <clxx/cl/mock.hpp>
 #include <clxx/exceptions.hpp>
 
-namespace clxx { class platform_layer_test_suite; }
+namespace clxx { class platform_layer_test__suite; }
 
-/** // doc: class clxx::platform_layer_test_suite {{{
+/** // doc: class clxx::platform_layer_test__suite {{{
  * \todo Write documentation
  */ // }}}
-class clxx::platform_layer_test_suite : public CxxTest::TestSuite
+class clxx::platform_layer_test__suite : public CxxTest::TestSuite
 {
 public:
-  /** // doc: test_ctor_0() {{{
+  /** // doc: test__ctor_0() {{{
    * \todo Write documentation
    */ // }}}
-  void test_ctor_0( )
+  void test__ctor_0( )
   {
-    T::Newton_clGetPlatformIDs mock1;
-    T::Newton_clGetPlatformInfo mock2;
-    T::Newton_clGetDeviceIDs mock3;
-    T::Newton_clGetDeviceInfo mock4;
-
     TS_ASSERT_EQUALS(platform_layer().get_platforms().size(), 0);
     TS_ASSERT_EQUALS(platform_layer().get_devices().size(), 0);
   }
-  /** // doc: test_ctor_1() {{{
+  /** // doc: test__ctor_1() {{{
    * \todo Write documentation
    */ // }}}
-  void test_ctor_1( )
+  void test__ctor_1( )
   {
+#if CLXX_OPENCL_ALLOWED(clRetainDevice)
+    T::Dummy_clRetainDevice mockRetainDevice(CL_SUCCESS);
+#endif
+#if CLXX_OPENCL_ALLOWED(clReleaseDevice)
+    T::Dummy_clReleaseDevice mockReleaseDevice(CL_SUCCESS);
+#endif
     T::Newton_clGetPlatformIDs mock1;
     T::Newton_clGetPlatformInfo mock2;
     T::Newton_clGetDeviceIDs mock3;
@@ -58,11 +59,17 @@ public:
     TS_ASSERT_EQUALS(platform_layer(true, device_type_t::cpu).get_platforms().size(), 1);
     TS_ASSERT_EQUALS(platform_layer(true, device_type_t::cpu).get_devices().size(), 1);
   }
-  /** // doc: test_ctor_2() {{{
+  /** // doc: test__ctor_2() {{{
    * \todo Write documentation
    */ // }}}
-  void test_ctor_2( )
+  void test__ctor_2( )
   {
+#if CLXX_OPENCL_ALLOWED(clRetainDevice)
+    T::Dummy_clRetainDevice mockRetainDevice(CL_SUCCESS);
+#endif
+#if CLXX_OPENCL_ALLOWED(clReleaseDevice)
+    T::Dummy_clReleaseDevice mockReleaseDevice(CL_SUCCESS);
+#endif
     T::Newton_clGetPlatformIDs mock1;
     T::Newton_clGetPlatformInfo mock2;
     T::Newton_clGetDeviceIDs mock3;
@@ -74,11 +81,17 @@ public:
     TS_ASSERT_EQUALS(platform_layer(device_type_t::cpu).get_platforms().size(), 1);
     TS_ASSERT_EQUALS(platform_layer(device_type_t::cpu).get_devices().size(), 1);
   }
-  /** // doc: test_get_platforms_1() {{{
+  /** // doc: test__get_platforms_1() {{{
    * \todo Write documentation
    */ // }}}
-  void test_get_platforms_1( )
+  void test__get_platforms_1( )
   {
+#if CLXX_OPENCL_ALLOWED(clRetainDevice)
+    T::Dummy_clRetainDevice mockRetainDevice(CL_SUCCESS);
+#endif
+#if CLXX_OPENCL_ALLOWED(clReleaseDevice)
+    T::Dummy_clReleaseDevice mockReleaseDevice(CL_SUCCESS);
+#endif
     T::Newton_clGetPlatformIDs mock1;
     T::Newton_clGetPlatformInfo mock2;
     T::Newton_clGetDeviceIDs mock3;
@@ -86,18 +99,24 @@ public:
     platform_layer pl(true);
     platform p = pl.get_platforms()[0];
 
-    TS_ASSERT_EQUALS(p.id(), T::Newton_clGetPlatformIDs::platforms[0]);
+    TS_ASSERT_EQUALS(p.handle(), T::Newton_clGetPlatformIDs::platforms[0]);
     TS_ASSERT_EQUALS(p.get_profile(), "FULL_PROFILE");
     TS_ASSERT_EQUALS(p.get_version(), "OpenCL 1.2 AMD-APP (1348.4)");
     TS_ASSERT_EQUALS(p.get_name(), "AMD Accelerated Parallel Processing");
     TS_ASSERT_EQUALS(p.get_vendor(), "Advanced Micro Devices, Inc.");
     TS_ASSERT_EQUALS(p.get_extensions(), "cl_khr_icd cl_amd_event_callback cl_amd_offline_devices");
   }
-  /** // doc: test_get_platforms_2() {{{
+  /** // doc: test__get_platforms_2() {{{
    * \todo Write documentation
    */ // }}}
-  void test_get_platforms_2( )
+  void test__get_platforms_2( )
   {
+#if CLXX_OPENCL_ALLOWED(clRetainDevice)
+    T::Dummy_clRetainDevice mockRetainDevice(CL_SUCCESS);
+#endif
+#if CLXX_OPENCL_ALLOWED(clReleaseDevice)
+    T::Dummy_clReleaseDevice mockReleaseDevice(CL_SUCCESS);
+#endif
     T::Newton_clGetPlatformIDs mock1;
     T::Newton_clGetPlatformInfo mock2;
     T::Newton_clGetDeviceIDs mock3;
@@ -105,18 +124,24 @@ public:
     platform_layer pl(true);
     platform p = pl.get_platforms()[1];
 
-    TS_ASSERT_EQUALS(p.id(), T::Newton_clGetPlatformIDs::platforms[1]);
+    TS_ASSERT_EQUALS(p.handle(), T::Newton_clGetPlatformIDs::platforms[1]);
     TS_ASSERT_EQUALS(p.get_profile(), "FULL_PROFILE");
     TS_ASSERT_EQUALS(p.get_version(), "OpenCL 1.1 CUDA 4.2.1");
     TS_ASSERT_EQUALS(p.get_name(), "NVIDIA CUDA");
     TS_ASSERT_EQUALS(p.get_vendor(), "NVIDIA Corporation");
     TS_ASSERT_EQUALS(p.get_extensions(), "cl_khr_byte_addressable_store cl_khr_icd cl_khr_gl_sharing cl_nv_compiler_options cl_nv_device_attribute_query cl_nv_pragma_unroll");
   }
-  /** // doc: test_get_platform_1() {{{
+  /** // doc: test__get_platform_1() {{{
    * \todo Write documentation
    */ // }}}
-  void test_get_platform_1( )
+  void test__get_platform_1( )
   {
+#if CLXX_OPENCL_ALLOWED(clRetainDevice)
+    T::Dummy_clRetainDevice mockRetainDevice(CL_SUCCESS);
+#endif
+#if CLXX_OPENCL_ALLOWED(clReleaseDevice)
+    T::Dummy_clReleaseDevice mockReleaseDevice(CL_SUCCESS);
+#endif
     T::Newton_clGetPlatformIDs mock1;
     T::Newton_clGetPlatformInfo mock2;
     T::Newton_clGetDeviceIDs mock3;
@@ -125,15 +150,21 @@ public:
     devices d = pl.get_devices();
 
     TS_ASSERT_EQUALS(pl.get_devices().size(), 3);
-    TS_ASSERT_EQUALS(pl.get_platform(d[0]).id(), T::Newton_clGetPlatformIDs::platforms[0]);
-    TS_ASSERT_EQUALS(pl.get_platform(d[1]).id(), T::Newton_clGetPlatformIDs::platforms[1]);
-    TS_ASSERT_EQUALS(pl.get_platform(d[2]).id(), T::Newton_clGetPlatformIDs::platforms[1]);
+    TS_ASSERT_EQUALS(pl.get_platform(d[0]).handle(), T::Newton_clGetPlatformIDs::platforms[0]);
+    TS_ASSERT_EQUALS(pl.get_platform(d[1]).handle(), T::Newton_clGetPlatformIDs::platforms[1]);
+    TS_ASSERT_EQUALS(pl.get_platform(d[2]).handle(), T::Newton_clGetPlatformIDs::platforms[1]);
   }
-  /** // doc: test_get_devices_1() {{{
+  /** // doc: test__get_devices_1() {{{
    * \todo Write documentation
    */ // }}}
-  void test_get_devices_1( )
+  void test__get_devices_1( )
   {
+#if CLXX_OPENCL_ALLOWED(clRetainDevice)
+    T::Dummy_clRetainDevice mockRetainDevice(CL_SUCCESS);
+#endif
+#if CLXX_OPENCL_ALLOWED(clReleaseDevice)
+    T::Dummy_clReleaseDevice mockReleaseDevice(CL_SUCCESS);
+#endif
     T::Newton_clGetPlatformIDs mock1;
     T::Newton_clGetPlatformInfo mock2;
     T::Newton_clGetDeviceIDs mock3;
@@ -141,18 +172,24 @@ public:
     platform_layer pl(true);
     device d = pl.get_devices()[0];
 
-    TS_ASSERT_EQUALS(d.id(), T::Newton_clGetDeviceIDs::devices[0]);
+    TS_ASSERT_EQUALS(d.handle(), T::Newton_clGetDeviceIDs::devices[0]);
     TS_ASSERT_EQUALS(d.get_name(), "Intel(R) Xeon(R) CPU           E5620  @ 2.40GHz");
     TS_ASSERT_EQUALS(d.get_vendor(), "GenuineIntel");
     TS_ASSERT_EQUALS(d.get_driver_version(), "1348.4 (sse2)");
     TS_ASSERT_EQUALS(d.get_profile(), "FULL_PROFILE");
     TS_ASSERT_EQUALS(d.get_version(), "OpenCL 1.2 AMD-APP (1348.4)");
   }
-  /** // doc: test_get_devices_2() {{{
+  /** // doc: test__get_devices_2() {{{
    * \todo Write documentation
    */ // }}}
-  void test_get_devices_2( )
+  void test__get_devices_2( )
   {
+#if CLXX_OPENCL_ALLOWED(clRetainDevice)
+    T::Dummy_clRetainDevice mockRetainDevice(CL_SUCCESS);
+#endif
+#if CLXX_OPENCL_ALLOWED(clReleaseDevice)
+    T::Dummy_clReleaseDevice mockReleaseDevice(CL_SUCCESS);
+#endif
     T::Newton_clGetPlatformIDs mock1;
     T::Newton_clGetPlatformInfo mock2;
     T::Newton_clGetDeviceIDs mock3;
@@ -160,18 +197,24 @@ public:
     platform_layer pl(true);
     device d = pl.get_devices()[1];
 
-    TS_ASSERT_EQUALS(d.id(), T::Newton_clGetDeviceIDs::devices[1]);
+    TS_ASSERT_EQUALS(d.handle(), T::Newton_clGetDeviceIDs::devices[1]);
     TS_ASSERT_EQUALS(d.get_name(), "Tesla C1060");
     TS_ASSERT_EQUALS(d.get_vendor(), "NVIDIA Corporation");
     TS_ASSERT_EQUALS(d.get_driver_version(), "319.76");
     TS_ASSERT_EQUALS(d.get_profile(), "FULL_PROFILE");
     TS_ASSERT_EQUALS(d.get_version(), "OpenCL 1.0 CUDA");
   }
-  /** // doc: test_get_devices_3() {{{
+  /** // doc: test__get_devices_3() {{{
    * \todo Write documentation
    */ // }}}
-  void test_get_devices_3( )
+  void test__get_devices_3( )
   {
+#if CLXX_OPENCL_ALLOWED(clRetainDevice)
+    T::Dummy_clRetainDevice mockRetainDevice(CL_SUCCESS);
+#endif
+#if CLXX_OPENCL_ALLOWED(clReleaseDevice)
+    T::Dummy_clReleaseDevice mockReleaseDevice(CL_SUCCESS);
+#endif
     T::Newton_clGetPlatformIDs mock1;
     T::Newton_clGetPlatformInfo mock2;
     T::Newton_clGetDeviceIDs mock3;
@@ -179,18 +222,24 @@ public:
     platform_layer pl(true);
     device d = pl.get_devices()[2];
 
-    TS_ASSERT_EQUALS(d.id(), T::Newton_clGetDeviceIDs::devices[2]);
+    TS_ASSERT_EQUALS(d.handle(), T::Newton_clGetDeviceIDs::devices[2]);
     TS_ASSERT_EQUALS(d.get_name(), "Tesla C1060");
     TS_ASSERT_EQUALS(d.get_vendor(), "NVIDIA Corporation");
     TS_ASSERT_EQUALS(d.get_driver_version(), "319.76");
     TS_ASSERT_EQUALS(d.get_profile(), "FULL_PROFILE");
     TS_ASSERT_EQUALS(d.get_version(), "OpenCL 1.0 CUDA");
   }
-  /** // doc: test_get_devices_4() {{{
+  /** // doc: test__get_devices_4() {{{
    * \todo Write documentation
    */ // }}}
-  void test_get_devices_4( )
+  void test__get_devices_4( )
   {
+#if CLXX_OPENCL_ALLOWED(clRetainDevice)
+    T::Dummy_clRetainDevice mockRetainDevice(CL_SUCCESS);
+#endif
+#if CLXX_OPENCL_ALLOWED(clReleaseDevice)
+    T::Dummy_clReleaseDevice mockReleaseDevice(CL_SUCCESS);
+#endif
     T::Newton_clGetPlatformIDs mock1;
     T::Newton_clGetPlatformInfo mock2;
     T::Newton_clGetDeviceIDs mock3;
@@ -203,13 +252,19 @@ public:
 
     device d = ds[0];
 
-    TS_ASSERT_EQUALS(d.id(), T::Newton_clGetDeviceIDs::devices[0]);
+    TS_ASSERT_EQUALS(d.handle(), T::Newton_clGetDeviceIDs::devices[0]);
   }
-  /** // doc: test_get_devices_5() {{{
+  /** // doc: test__get_devices_5() {{{
    * \todo Write documentation
    */ // }}}
-  void test_get_devices_5( )
+  void test__get_devices_5( )
   {
+#if CLXX_OPENCL_ALLOWED(clRetainDevice)
+    T::Dummy_clRetainDevice mockRetainDevice(CL_SUCCESS);
+#endif
+#if CLXX_OPENCL_ALLOWED(clReleaseDevice)
+    T::Dummy_clReleaseDevice mockReleaseDevice(CL_SUCCESS);
+#endif
     T::Newton_clGetPlatformIDs mock1;
     T::Newton_clGetPlatformInfo mock2;
     T::Newton_clGetDeviceIDs mock3;
@@ -222,13 +277,19 @@ public:
 
     device d = ds[0];
 
-    TS_ASSERT_EQUALS(d.id(), T::Newton_clGetDeviceIDs::devices[1]);
+    TS_ASSERT_EQUALS(d.handle(), T::Newton_clGetDeviceIDs::devices[1]);
   }
-  /** // doc: test_get_devices_6() {{{
+  /** // doc: test__get_devices_6() {{{
    * \todo Write documentation
    */ // }}}
-  void test_get_devices_6( )
+  void test__get_devices_6( )
   {
+#if CLXX_OPENCL_ALLOWED(clRetainDevice)
+    T::Dummy_clRetainDevice mockRetainDevice(CL_SUCCESS);
+#endif
+#if CLXX_OPENCL_ALLOWED(clReleaseDevice)
+    T::Dummy_clReleaseDevice mockReleaseDevice(CL_SUCCESS);
+#endif
     T::Newton_clGetPlatformIDs mock1;
     T::Newton_clGetPlatformInfo mock2;
     T::Newton_clGetDeviceIDs mock3;
@@ -241,44 +302,68 @@ public:
 
     device d = ds[1];
 
-    TS_ASSERT_EQUALS(d.id(), T::Newton_clGetDeviceIDs::devices[2]);
+    TS_ASSERT_EQUALS(d.handle(), T::Newton_clGetDeviceIDs::devices[2]);
   }
-  /** // doc: test_get_devices__invalid_key_error() {{{
+  /** // doc: test__get_devices__invalid_key_error() {{{
    * \todo Write documentation
    */ // }}}
-  void test_get_devices__invalid_key_error( )
+  void test__get_devices__invalid_key_error( )
   {
+#if CLXX_OPENCL_ALLOWED(clRetainDevice)
+    T::Dummy_clRetainDevice mockRetainDevice(CL_SUCCESS);
+#endif
+#if CLXX_OPENCL_ALLOWED(clReleaseDevice)
+    T::Dummy_clReleaseDevice mockReleaseDevice(CL_SUCCESS);
+#endif
     platform_layer pl;
     TS_ASSERT_THROWS(pl.get_devices(platform((cl_platform_id)0x1234)), invalid_key_error);
     pl.add({device((cl_device_id)0x1000), device((cl_device_id)0x2000)}, platform((cl_platform_id)0x1234));
     TS_ASSERT_THROWS_NOTHING(pl.get_devices(platform((cl_platform_id)0x1234)));
     TS_ASSERT_THROWS(pl.get_devices(platform((cl_platform_id)0x5678)), invalid_key_error);
   }
-  /** // doc: test_has_platform_1() {{{
+  /** // doc: test__has_platform_1() {{{
    * \todo Write documentation
    */ // }}}
-  void test_has_platform_1( )
+  void test__has_platform_1( )
   {
+#if CLXX_OPENCL_ALLOWED(clRetainDevice)
+    T::Dummy_clRetainDevice mockRetainDevice(CL_SUCCESS);
+#endif
+#if CLXX_OPENCL_ALLOWED(clReleaseDevice)
+    T::Dummy_clReleaseDevice mockReleaseDevice(CL_SUCCESS);
+#endif
     platform_layer pl;
     TS_ASSERT(!pl.has_platform(platform((cl_platform_id)0x1234)));
     pl.add(device((cl_device_id)0x5678), platform((cl_platform_id)0x1234));
     TS_ASSERT(pl.has_platform(platform((cl_platform_id)0x1234)));
   }
-  /** // doc: test_has_device_1() {{{
+  /** // doc: test__has_device_1() {{{
    * \todo Write documentation
    */ // }}}
-  void test_has_device_1( )
+  void test__has_device_1( )
   {
+#if CLXX_OPENCL_ALLOWED(clRetainDevice)
+    T::Dummy_clRetainDevice mockRetainDevice(CL_SUCCESS);
+#endif
+#if CLXX_OPENCL_ALLOWED(clReleaseDevice)
+    T::Dummy_clReleaseDevice mockReleaseDevice(CL_SUCCESS);
+#endif
     platform_layer pl;
     TS_ASSERT(!pl.has_device(device((cl_device_id)0x5678)));
     pl.add(device((cl_device_id)0x5678), platform((cl_platform_id)0x1234));
     TS_ASSERT(pl.has_device(device((cl_device_id)0x5678)));
   }
-  /** // doc: test_add_1() {{{
+  /** // doc: test__add_1() {{{
    * \todo Write documentation
    */ // }}}
-  void test_add_1( )
+  void test__add_1( )
   {
+#if CLXX_OPENCL_ALLOWED(clRetainDevice)
+    T::Dummy_clRetainDevice mockRetainDevice(CL_SUCCESS);
+#endif
+#if CLXX_OPENCL_ALLOWED(clReleaseDevice)
+    T::Dummy_clReleaseDevice mockReleaseDevice(CL_SUCCESS);
+#endif
     platform_layer pl;
 
     TS_ASSERT(pl.add(device((cl_device_id)0x1000), platform((cl_platform_id)0x1234)));
@@ -306,11 +391,17 @@ public:
     TS_ASSERT_EQUALS(pl.get_platform(device((cl_device_id)0x2000)), platform((cl_platform_id)0x1234));
     TS_ASSERT_EQUALS(pl.get_platform(device((cl_device_id)0x3000)), platform((cl_platform_id)0x1234));
   }
-  /** // doc: test_add_2() {{{
+  /** // doc: test__add_2() {{{
    * \todo Write documentation
    */ // }}}
-  void test_add_2( )
+  void test__add_2( )
   {
+#if CLXX_OPENCL_ALLOWED(clRetainDevice)
+    T::Dummy_clRetainDevice mockRetainDevice(CL_SUCCESS);
+#endif
+#if CLXX_OPENCL_ALLOWED(clReleaseDevice)
+    T::Dummy_clReleaseDevice mockReleaseDevice(CL_SUCCESS);
+#endif
     platform_layer pl;
 
     TS_ASSERT_EQUALS(pl.add(make_devices({ (cl_device_id)0x1000, (cl_device_id)0x2000, (cl_device_id)0x3000 }), platform((cl_platform_id)0x1234)), 3);
@@ -329,11 +420,17 @@ public:
     TS_ASSERT_EQUALS(pl.get_platform(device((cl_device_id)0x4000)), platform((cl_platform_id)0x5678));
     TS_ASSERT_EQUALS(pl.get_platform(device((cl_device_id)0x5000)), platform((cl_platform_id)0x5678));
   }
-  /** // doc: test_erase_1() {{{
+  /** // doc: test__erase_1() {{{
    * \todo Write documentation
    */ // }}}
-  void test_erase_1( )
+  void test__erase_1( )
   {
+#if CLXX_OPENCL_ALLOWED(clRetainDevice)
+    T::Dummy_clRetainDevice mockRetainDevice(CL_SUCCESS);
+#endif
+#if CLXX_OPENCL_ALLOWED(clReleaseDevice)
+    T::Dummy_clReleaseDevice mockReleaseDevice(CL_SUCCESS);
+#endif
     platform_layer pl;
     TS_ASSERT_EQUALS(pl.add(make_devices({ (cl_device_id)0x1000, (cl_device_id)0x2000, (cl_device_id)0x3000 }), platform((cl_platform_id)0x1234)), 3);
     TS_ASSERT_EQUALS(pl.add(make_devices({ (cl_device_id)0x4000, (cl_device_id)0x5000 }), platform((cl_platform_id)0x5678)), 2);
@@ -360,11 +457,17 @@ public:
 
     TS_ASSERT_THROWS(pl.erase(device((cl_device_id)0x1234)), invalid_key_error);
   }
-  /** // doc: test_erase_2() {{{
+  /** // doc: test__erase_2() {{{
    * \todo Write documentation
    */ // }}}
-  void test_erase_2( )
+  void test__erase_2( )
   {
+#if CLXX_OPENCL_ALLOWED(clRetainDevice)
+    T::Dummy_clRetainDevice mockRetainDevice(CL_SUCCESS);
+#endif
+#if CLXX_OPENCL_ALLOWED(clReleaseDevice)
+    T::Dummy_clReleaseDevice mockReleaseDevice(CL_SUCCESS);
+#endif
     platform_layer pl;
     TS_ASSERT_EQUALS(pl.add(make_devices({ (cl_device_id)0x1000, (cl_device_id)0x2000, (cl_device_id)0x3000 }), platform((cl_platform_id)0x1234)), 3);
     TS_ASSERT_EQUALS(pl.add(make_devices({ (cl_device_id)0x4000, (cl_device_id)0x5000 }), platform((cl_platform_id)0x5678)), 2);
@@ -378,11 +481,17 @@ public:
     TS_ASSERT_EQUALS(pl.get_platforms().size(),0);
     TS_ASSERT_THROWS(pl.erase(platform((cl_platform_id)0x1234)), invalid_key_error);
   }
-  /** // doc: test_clear_1() {{{
+  /** // doc: test__clear_1() {{{
    * \todo Write documentation
    */ // }}}
-  void test_clear_1( )
+  void test__clear_1( )
   {
+#if CLXX_OPENCL_ALLOWED(clRetainDevice)
+    T::Dummy_clRetainDevice mockRetainDevice(CL_SUCCESS);
+#endif
+#if CLXX_OPENCL_ALLOWED(clReleaseDevice)
+    T::Dummy_clReleaseDevice mockReleaseDevice(CL_SUCCESS);
+#endif
     T::Newton_clGetPlatformIDs mock1;
     T::Newton_clGetPlatformInfo mock2;
     T::Newton_clGetDeviceIDs mock3;
@@ -393,11 +502,17 @@ public:
     TS_ASSERT_EQUALS(pl.get_platforms().size(), 0);
     TS_ASSERT_EQUALS(pl.get_devices().size(), 0);
   }
-  /** // doc: test_query_platform_layer_info_1() {{{
+  /** // doc: test__query_platform_layer_info_1() {{{
    * \brief Test the get_platforms() method.
    */ // }}}
-  void test_query_platform_layer_info_1( )
+  void test__query_platform_layer_info_1( )
   {
+#if CLXX_OPENCL_ALLOWED(clRetainDevice)
+    T::Dummy_clRetainDevice mockRetainDevice(CL_SUCCESS);
+#endif
+#if CLXX_OPENCL_ALLOWED(clReleaseDevice)
+    T::Dummy_clReleaseDevice mockReleaseDevice(CL_SUCCESS);
+#endif
     T::Newton_clGetPlatformIDs mock1;
     T::Newton_clGetPlatformInfo mock2;
     T::Newton_clGetDeviceIDs mock3;
@@ -423,11 +538,17 @@ public:
     TS_ASSERT_EQUALS(infos[1]->vendor(), "NVIDIA Corporation");
     TS_ASSERT_EQUALS(infos[1]->extensions(), "cl_khr_byte_addressable_store cl_khr_icd cl_khr_gl_sharing cl_nv_compiler_options cl_nv_device_attribute_query cl_nv_pragma_unroll");
   }
-  /** // doc: test_query_platform_layer_info_2() {{{
+  /** // doc: test__query_platform_layer_info_2() {{{
    * \brief Test the get_devices() method.
    */ // }}}
-  void test_query_platform_layer_info_2( )
+  void test__query_platform_layer_info_2( )
   {
+#if CLXX_OPENCL_ALLOWED(clRetainDevice)
+    T::Dummy_clRetainDevice mockRetainDevice(CL_SUCCESS);
+#endif
+#if CLXX_OPENCL_ALLOWED(clReleaseDevice)
+    T::Dummy_clReleaseDevice mockReleaseDevice(CL_SUCCESS);
+#endif
     T::Newton_clGetPlatformIDs mock1;
     T::Newton_clGetPlatformInfo mock2;
     T::Newton_clGetDeviceIDs mock3;
@@ -461,11 +582,17 @@ public:
     TS_ASSERT_EQUALS(infos[2]->profile(), "FULL_PROFILE");
     TS_ASSERT_EQUALS(infos[2]->version(), "OpenCL 1.0 CUDA");
   }
-  /** // doc: test_query_platform_layer_info_2() {{{
+  /** // doc: test__query_platform_layer_info_2() {{{
    * \brief Test the query_platform_layer_info(get_platforms()[0]) invocation.
    */ // }}}
-  void test_query_platform_layer_info_3( )
+  void test__query_platform_layer_info_3( )
   {
+#if CLXX_OPENCL_ALLOWED(clRetainDevice)
+    T::Dummy_clRetainDevice mockRetainDevice(CL_SUCCESS);
+#endif
+#if CLXX_OPENCL_ALLOWED(clReleaseDevice)
+    T::Dummy_clReleaseDevice mockReleaseDevice(CL_SUCCESS);
+#endif
     T::Newton_clGetPlatformIDs mock1;
     T::Newton_clGetPlatformInfo mock2;
     T::Newton_clGetDeviceIDs mock3;
@@ -485,11 +612,17 @@ public:
     TS_ASSERT_EQUALS(infos[0]->profile(), "FULL_PROFILE");
     TS_ASSERT_EQUALS(infos[0]->version(), "OpenCL 1.2 AMD-APP (1348.4)");
   }
-  /** // doc: test_query_platform_layer_info_2() {{{
+  /** // doc: test__query_platform_layer_info_2() {{{
    * \brief Test the query_platform_layer_info(get_platforms()[0]) invocation.
    */ // }}}
-  void test_query_platform_layer_info_4( )
+  void test__query_platform_layer_info_4( )
   {
+#if CLXX_OPENCL_ALLOWED(clRetainDevice)
+    T::Dummy_clRetainDevice mockRetainDevice(CL_SUCCESS);
+#endif
+#if CLXX_OPENCL_ALLOWED(clReleaseDevice)
+    T::Dummy_clReleaseDevice mockReleaseDevice(CL_SUCCESS);
+#endif
     T::Newton_clGetPlatformIDs mock1;
     T::Newton_clGetPlatformInfo mock2;
     T::Newton_clGetDeviceIDs mock3;
@@ -516,11 +649,17 @@ public:
     TS_ASSERT_EQUALS(infos[1]->profile(), "FULL_PROFILE");
     TS_ASSERT_EQUALS(infos[1]->version(), "OpenCL 1.0 CUDA");
   }
-  /** // doc: test_query_platform_layer_info_5() {{{
+  /** // doc: test__query_platform_layer_info_5() {{{
    * \brief Test the get_devices(unknown_platform) invocation.
    */ // }}}
-  void test_query_platform_layer_info_5( )
+  void test__query_platform_layer_info_5( )
   {
+#if CLXX_OPENCL_ALLOWED(clRetainDevice)
+    T::Dummy_clRetainDevice mockRetainDevice(CL_SUCCESS);
+#endif
+#if CLXX_OPENCL_ALLOWED(clReleaseDevice)
+    T::Dummy_clReleaseDevice mockReleaseDevice(CL_SUCCESS);
+#endif
     T::Newton_clGetPlatformIDs mock1;
     T::Newton_clGetPlatformInfo mock2;
     T::Newton_clGetDeviceIDs mock3;

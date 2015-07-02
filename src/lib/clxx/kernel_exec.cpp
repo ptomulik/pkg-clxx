@@ -21,8 +21,8 @@ enqueue_ndrange_kernel(clxx::command_queue const& command_queue,
                        clxx::event& event)
 {
   clxx::event tmp;
-  enqueue_ndrange_kernel(command_queue.get_valid_id(),
-                         kernel.get_valid_id(),
+  enqueue_ndrange_kernel(command_queue.get_valid_handle(),
+                         kernel.get_valid_handle(),
                          static_cast<cl_uint>(ndrange.dimension()),
                          ndrange.global_offset_ptr(),
                          ndrange.global_size_ptr(),
@@ -40,8 +40,8 @@ enqueue_ndrange_kernel(clxx::command_queue const& command_queue,
                        clxx::event& event)
 {
   clxx::event tmp;
-  enqueue_ndrange_kernel(command_queue.get_valid_id(),
-                         kernel.get_valid_id(),
+  enqueue_ndrange_kernel(command_queue.get_valid_handle(),
+                         kernel.get_valid_handle(),
                          static_cast<cl_uint>(ndrange.dimension()),
                          ndrange.global_offset_ptr(),
                          ndrange.global_size_ptr(),
@@ -58,8 +58,8 @@ enqueue_ndrange_kernel(clxx::command_queue const& command_queue,
                        clxx::ndrange const& ndrange,
                        clxx::events const& event_wait_list)
 {
-  enqueue_ndrange_kernel(command_queue.get_valid_id(),
-                         kernel.get_valid_id(),
+  enqueue_ndrange_kernel(command_queue.get_valid_handle(),
+                         kernel.get_valid_handle(),
                          static_cast<cl_uint>(ndrange.dimension()),
                          ndrange.global_offset_ptr(),
                          ndrange.global_size_ptr(),
@@ -74,8 +74,8 @@ enqueue_ndrange_kernel(clxx::command_queue const& command_queue,
                        clxx::kernel const& kernel,
                        clxx::ndrange const& ndrange)
 {
-  enqueue_ndrange_kernel(command_queue.get_valid_id(),
-                         kernel.get_valid_id(),
+  enqueue_ndrange_kernel(command_queue.get_valid_handle(),
+                         kernel.get_valid_handle(),
                          static_cast<cl_uint>(ndrange.dimension()),
                          ndrange.global_offset_ptr(),
                          ndrange.global_size_ptr(),

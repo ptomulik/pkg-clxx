@@ -1,8 +1,8 @@
 // @COPYRIGHT@
 // Licensed under MIT license (LICENSE.txt)
 
-/** // doc: clxx/context.li.i {{{
- * \file clxx/context.li.i
+/** // doc: clxx/clobj.li.i {{{
+ * \file clxx/clobj.li.i
  * \todo Write documentation
  */ // }}}
 
@@ -12,18 +12,12 @@
 %include <clxx/exception_support.swg>
 
 %import <clxx/types.i>
-%import <clxx/clobj.i>
-%import <clxx/devices.i>
-%import <clxx/context_properties.i>
 
 %{
 #include <clxx/types.i.hpp>
-#include <clxx/clobj.i.hpp>
-#include <clxx/devices.i.hpp>
-#include <clxx/context_properties.i.hpp>
 %}
 
-%include <clxx/context.swg>
+%include <clxx/clobj.swg>
 
 // vim: set expandtab tabstop=2 shiftwidth=2:
 // vim: set foldmethod=marker foldcolumn=4:

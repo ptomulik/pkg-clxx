@@ -33,7 +33,7 @@ public:
     T::Dummy_clReleaseProgram mock2(CL_SUCCESS);
     program p;
     TS_ASSERT(!p.is_initialized());
-    TS_ASSERT_EQUALS(p.id(), (cl_program)NULL);
+    TS_ASSERT_EQUALS(p.handle(), (cl_program)NULL);
     TS_ASSERT(mock1.never_called());
     TS_ASSERT(mock2.never_called());
   }
@@ -46,7 +46,7 @@ public:
     T::Dummy_clReleaseProgram mock2(CL_SUCCESS);
     program p((cl_program)0x1234);
     TS_ASSERT(p.is_initialized());
-    TS_ASSERT_EQUALS(p.id(), (cl_program)0x1234);
+    TS_ASSERT_EQUALS(p.handle(), (cl_program)0x1234);
     TS_ASSERT(mock1.called_once_with((cl_program)0x1234));
     TS_ASSERT(mock2.never_called());
   }
@@ -78,7 +78,7 @@ public:
     program p(ctx, srcs);
 
     TS_ASSERT(p.is_initialized());
-    TS_ASSERT_EQUALS(p.id(), (cl_program)0x5678);
+    TS_ASSERT_EQUALS(p.handle(), (cl_program)0x5678);
     TS_ASSERT(mock3.called_once());
     // mock1 not called because the class assumes the implicit retain performed
     // by clCreateProgramWithSource()
@@ -90,6 +90,12 @@ public:
    */ // }}}
   void test_ctor_3( )
   {
+#if CLXX_OPENCL_ALLOWED(clRetainDevice)
+    T::Dummy_clRetainDevice mockRetainDevice(CL_SUCCESS);
+#endif
+#if CLXX_OPENCL_ALLOWED(clReleaseDevice)
+    T::Dummy_clReleaseDevice mockReleaseDevice(CL_SUCCESS);
+#endif
     T::Dummy_clRetainProgram mock1(CL_SUCCESS);
     T::Dummy_clReleaseProgram mock2(CL_SUCCESS);
     T::Dummy_clCreateProgramWithBinary mock3((cl_program)0x5678, CL_SUCCESS);
@@ -104,7 +110,7 @@ public:
     program p(ctx, devs, bins, stats);
 
     TS_ASSERT(p.is_initialized());
-    TS_ASSERT_EQUALS(p.id(), (cl_program)0x5678);
+    TS_ASSERT_EQUALS(p.handle(), (cl_program)0x5678);
     TS_ASSERT(mock3.called_once());
     // mock1 not called because the class assumes the implicit retain performed
     // by clCreateProgramWithSource()
@@ -117,6 +123,12 @@ public:
    */ // }}}
   void test_ctor_4( )
   {
+#if CLXX_OPENCL_ALLOWED(clRetainDevice)
+    T::Dummy_clRetainDevice mockRetainDevice(CL_SUCCESS);
+#endif
+#if CLXX_OPENCL_ALLOWED(clReleaseDevice)
+    T::Dummy_clReleaseDevice mockReleaseDevice(CL_SUCCESS);
+#endif
     T::Dummy_clRetainProgram mock1(CL_SUCCESS);
     T::Dummy_clReleaseProgram mock2(CL_SUCCESS);
     T::Dummy_clCreateProgramWithBinary mock3((cl_program)0x5678, CL_SUCCESS);
@@ -130,7 +142,7 @@ public:
     program p(ctx, devs, bins);
 
     TS_ASSERT(p.is_initialized());
-    TS_ASSERT_EQUALS(p.id(), (cl_program)0x5678);
+    TS_ASSERT_EQUALS(p.handle(), (cl_program)0x5678);
     TS_ASSERT(mock3.called_once());
     // mock1 not called because the class assumes the implicit retain performed
     // by clCreateProgramWithBinary()
@@ -143,6 +155,12 @@ public:
   void test_ctor_5( )
   {
 #if CLXX_OPENCL_ALLOWED(clCreateProgramWithBuiltInKernels)
+#if CLXX_OPENCL_ALLOWED(clRetainDevice)
+    T::Dummy_clRetainDevice mockRetainDevice(CL_SUCCESS);
+#endif
+#if CLXX_OPENCL_ALLOWED(clReleaseDevice)
+    T::Dummy_clReleaseDevice mockReleaseDevice(CL_SUCCESS);
+#endif
     T::Dummy_clRetainProgram mock1(CL_SUCCESS);
     T::Dummy_clReleaseProgram mock2(CL_SUCCESS);
     T::Dummy_clCreateProgramWithBuiltInKernels mock3((cl_program)0x5678, CL_SUCCESS);
@@ -156,7 +174,7 @@ public:
     program p(ctx, devs, kerns);
 
     TS_ASSERT(p.is_initialized());
-    TS_ASSERT_EQUALS(p.id(), (cl_program)0x5678);
+    TS_ASSERT_EQUALS(p.handle(), (cl_program)0x5678);
     TS_ASSERT(mock3.called_once());
     // mock1 not called because the class assumes the implicit retain performed
     // by clCreateProgramWithBuiltinKernels()
@@ -210,19 +228,19 @@ public:
     T::Dummy_clRetainProgram mock1(CL_SUCCESS);
     T::Dummy_clReleaseProgram mock2(CL_SUCCESS);
 
-    TS_ASSERT_EQUALS(program((cl_program)0x1234).id(), (cl_program)0x1234);
-    TS_ASSERT_EQUALS(program((cl_program)NULL).id(), (cl_program)NULL);
+    TS_ASSERT_EQUALS(program((cl_program)0x1234).handle(), (cl_program)0x1234);
+    TS_ASSERT_EQUALS(program((cl_program)NULL).handle(), (cl_program)NULL);
   }
-  /** // doc: test_get_valid_id() {{{
+  /** // doc: test_get_valid_handle() {{{
    * \todo Write documentation
    */ // }}}
-  void test_get_valid_id( )
+  void test_get_valid_handle( )
   {
     T::Dummy_clRetainProgram mock1(CL_SUCCESS);
     T::Dummy_clReleaseProgram mock2(CL_SUCCESS);
 
-    TS_ASSERT_EQUALS(program((cl_program)0x1234).get_valid_id(), (cl_program)0x1234);
-    TS_ASSERT_THROWS(program((cl_program)NULL).get_valid_id(), uninitialized_program_error);
+    TS_ASSERT_EQUALS(program((cl_program)0x1234).get_valid_handle(), (cl_program)0x1234);
+    TS_ASSERT_THROWS(program((cl_program)NULL).get_valid_handle(), uninitialized_program_error);
   }
   /** // doc: test_op_assign() {{{
    * \todo Write documentation
@@ -234,7 +252,7 @@ public:
     program p1((cl_program)0x1234);
     program p2((cl_program)0x5678);
     p1 = p2;
-    TS_ASSERT_EQUALS(p1.id(), (cl_program)0x5678);
+    TS_ASSERT_EQUALS(p1.handle(), (cl_program)0x5678);
   }
   /** // doc: test_op_eq() {{{
    * \todo Write documentation
@@ -356,6 +374,12 @@ public:
    */ // }}}
   void test_get_build_info( )
   {
+#if CLXX_OPENCL_ALLOWED(clRetainDevice)
+    T::Dummy_clRetainDevice mockRetainDevice(CL_SUCCESS);
+#endif
+#if CLXX_OPENCL_ALLOWED(clReleaseDevice)
+    T::Dummy_clReleaseDevice mockReleaseDevice(CL_SUCCESS);
+#endif
     T::Dummy_clRetainProgram mock1(CL_SUCCESS);
     T::Dummy_clReleaseProgram mock2(CL_SUCCESS);
     T::Dummy_clGetProgramBuildInfo mock3(CL_SUCCESS);
@@ -435,6 +459,12 @@ public:
    */ // }}}
   void test_get_devices( )
   {
+#if CLXX_OPENCL_ALLOWED(clRetainDevice)
+    T::Dummy_clRetainDevice mockRetainDevice(CL_SUCCESS);
+#endif
+#if CLXX_OPENCL_ALLOWED(clReleaseDevice)
+    T::Dummy_clReleaseDevice mockReleaseDevice(CL_SUCCESS);
+#endif
     T::Dummy_clRetainProgram mock1(CL_SUCCESS);
     T::Dummy_clReleaseProgram mock2(CL_SUCCESS);
 
@@ -449,9 +479,9 @@ public:
     TS_ASSERT(mock3.called_twice());
     TS_ASSERT_EQUALS(std::get<1>(mock3.calls().back()), (cl_uint)CL_PROGRAM_DEVICES);
     TS_ASSERT_EQUALS(ds.size(), 3);
-    TS_ASSERT_EQUALS(ds[0].id(), (cl_device_id)0x123);
-    TS_ASSERT_EQUALS(ds[1].id(), (cl_device_id)0x456);
-    TS_ASSERT_EQUALS(ds[2].id(), (cl_device_id)0x789);
+    TS_ASSERT_EQUALS(ds[0].handle(), (cl_device_id)0x123);
+    TS_ASSERT_EQUALS(ds[1].handle(), (cl_device_id)0x456);
+    TS_ASSERT_EQUALS(ds[2].handle(), (cl_device_id)0x789);
   }
   /** // doc: test_get_source() {{{
    * \todo Write documentation
@@ -548,6 +578,12 @@ public:
    */ // }}}
   void test_get_build_status( )
   {
+#if CLXX_OPENCL_ALLOWED(clRetainDevice)
+    T::Dummy_clRetainDevice mockRetainDevice(CL_SUCCESS);
+#endif
+#if CLXX_OPENCL_ALLOWED(clReleaseDevice)
+    T::Dummy_clReleaseDevice mockReleaseDevice(CL_SUCCESS);
+#endif
     T::Dummy_clRetainProgram mock1(CL_SUCCESS);
     T::Dummy_clReleaseProgram mock2(CL_SUCCESS);
 
@@ -567,6 +603,12 @@ public:
    */ // }}}
   void test_get_build_options( )
   {
+#if CLXX_OPENCL_ALLOWED(clRetainDevice)
+    T::Dummy_clRetainDevice mockRetainDevice(CL_SUCCESS);
+#endif
+#if CLXX_OPENCL_ALLOWED(clReleaseDevice)
+    T::Dummy_clReleaseDevice mockReleaseDevice(CL_SUCCESS);
+#endif
     T::Dummy_clRetainProgram mock1(CL_SUCCESS);
     T::Dummy_clReleaseProgram mock2(CL_SUCCESS);
 
@@ -586,6 +628,12 @@ public:
    */ // }}}
   void test_get_build_log( )
   {
+#if CLXX_OPENCL_ALLOWED(clRetainDevice)
+    T::Dummy_clRetainDevice mockRetainDevice(CL_SUCCESS);
+#endif
+#if CLXX_OPENCL_ALLOWED(clReleaseDevice)
+    T::Dummy_clReleaseDevice mockReleaseDevice(CL_SUCCESS);
+#endif
     T::Dummy_clRetainProgram mock1(CL_SUCCESS);
     T::Dummy_clReleaseProgram mock2(CL_SUCCESS);
 
@@ -605,6 +653,12 @@ public:
    */ // }}}
   void test_get_binary_type( )
   {
+#if CLXX_OPENCL_ALLOWED(clRetainDevice)
+    T::Dummy_clRetainDevice mockRetainDevice(CL_SUCCESS);
+#endif
+#if CLXX_OPENCL_ALLOWED(clReleaseDevice)
+    T::Dummy_clReleaseDevice mockReleaseDevice(CL_SUCCESS);
+#endif
     T::Dummy_clRetainProgram mock1(CL_SUCCESS);
     T::Dummy_clReleaseProgram mock2(CL_SUCCESS);
 
@@ -624,6 +678,12 @@ public:
    */ // }}}
   void test_build_program_1( )
   {
+#if CLXX_OPENCL_ALLOWED(clRetainDevice)
+    T::Dummy_clRetainDevice mockRetainDevice(CL_SUCCESS);
+#endif
+#if CLXX_OPENCL_ALLOWED(clReleaseDevice)
+    T::Dummy_clReleaseDevice mockReleaseDevice(CL_SUCCESS);
+#endif
     T::Dummy_clRetainProgram mock1(CL_SUCCESS);
     T::Dummy_clReleaseProgram mock2(CL_SUCCESS);
     T::Dummy_clBuildProgram mock3(CL_SUCCESS);
@@ -643,6 +703,12 @@ public:
    */ // }}}
   void test_build_program_2( )
   {
+#if CLXX_OPENCL_ALLOWED(clRetainDevice)
+    T::Dummy_clRetainDevice mockRetainDevice(CL_SUCCESS);
+#endif
+#if CLXX_OPENCL_ALLOWED(clReleaseDevice)
+    T::Dummy_clReleaseDevice mockReleaseDevice(CL_SUCCESS);
+#endif
     T::Dummy_clRetainProgram mock1(CL_SUCCESS);
     T::Dummy_clReleaseProgram mock2(CL_SUCCESS);
     T::Dummy_clBuildProgram mock3(CL_SUCCESS);
@@ -686,6 +752,12 @@ public:
    */ // }}}
   void test_build_program_4( )
   {
+#if CLXX_OPENCL_ALLOWED(clRetainDevice)
+    T::Dummy_clRetainDevice mockRetainDevice(CL_SUCCESS);
+#endif
+#if CLXX_OPENCL_ALLOWED(clReleaseDevice)
+    T::Dummy_clReleaseDevice mockReleaseDevice(CL_SUCCESS);
+#endif
     T::Dummy_clRetainProgram mock1(CL_SUCCESS);
     T::Dummy_clReleaseProgram mock2(CL_SUCCESS);
     T::Dummy_clBuildProgram mock3(CL_SUCCESS);
@@ -770,6 +842,12 @@ public:
   void test_compile_program_3( )
   {
 #if CLXX_OPENCL_ALLOWED(clCompileProgram)
+#if CLXX_OPENCL_ALLOWED(clRetainDevice)
+    T::Dummy_clRetainDevice mockRetainDevice(CL_SUCCESS);
+#endif
+#if CLXX_OPENCL_ALLOWED(clReleaseDevice)
+    T::Dummy_clReleaseDevice mockReleaseDevice(CL_SUCCESS);
+#endif
     T::Dummy_clRetainProgram mock1(CL_SUCCESS);
     T::Dummy_clReleaseProgram mock2(CL_SUCCESS);
     T::Dummy_clCompileProgram mock3(CL_SUCCESS);
@@ -798,6 +876,12 @@ public:
   void test_compile_program_4( )
   {
 #if CLXX_OPENCL_ALLOWED(clCompileProgram)
+#if CLXX_OPENCL_ALLOWED(clRetainDevice)
+    T::Dummy_clRetainDevice mockRetainDevice(CL_SUCCESS);
+#endif
+#if CLXX_OPENCL_ALLOWED(clReleaseDevice)
+    T::Dummy_clReleaseDevice mockReleaseDevice(CL_SUCCESS);
+#endif
     T::Dummy_clRetainProgram mock1(CL_SUCCESS);
     T::Dummy_clReleaseProgram mock2(CL_SUCCESS);
     T::Dummy_clCompileProgram mock3(CL_SUCCESS);
@@ -830,6 +914,12 @@ public:
   void test_link_program_1( )
   {
 #if CLXX_OPENCL_ALLOWED(clLinkProgram)
+#if CLXX_OPENCL_ALLOWED(clRetainDevice)
+    T::Dummy_clRetainDevice mockRetainDevice(CL_SUCCESS);
+#endif
+#if CLXX_OPENCL_ALLOWED(clReleaseDevice)
+    T::Dummy_clReleaseDevice mockReleaseDevice(CL_SUCCESS);
+#endif
     T::Dummy_clRetainProgram mock1(CL_SUCCESS);
     T::Dummy_clReleaseProgram mock2(CL_SUCCESS);
     T::Dummy_clLinkProgram mock3((cl_program)0x1234,CL_SUCCESS);
@@ -861,6 +951,12 @@ public:
   void test_link_program_2( )
   {
 #if CLXX_OPENCL_ALLOWED(clLinkProgram)
+#if CLXX_OPENCL_ALLOWED(clRetainDevice)
+    T::Dummy_clRetainDevice mockRetainDevice(CL_SUCCESS);
+#endif
+#if CLXX_OPENCL_ALLOWED(clReleaseDevice)
+    T::Dummy_clReleaseDevice mockReleaseDevice(CL_SUCCESS);
+#endif
     T::Dummy_clRetainProgram mock1(CL_SUCCESS);
     T::Dummy_clReleaseProgram mock2(CL_SUCCESS);
     T::Dummy_clLinkProgram mock3((cl_program)0x1234,CL_SUCCESS);

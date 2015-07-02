@@ -16,6 +16,7 @@
 
 #include <clxx/platform_fwd.hpp>
 #include <clxx/types.hpp>
+#include <clxx/clobj.hpp>
 #include <string>
 
 namespace clxx {
@@ -44,130 +45,22 @@ namespace clxx {
  *
  */ // }}}
 class alignas(cl_platform_id) platform
+  : public clobj<cl_platform_id>
 {
-private:
-  cl_platform_id _platform_id;
 public:
-  /** // {{{
-   * \brief Defalt constructor
-   *
-   * Sets underlying platform ID to NULL, so the proxy object is regarder
-   * uninitialized (is_initialized() returns \c false).
+  /** // doc: Base {{{
+   * \brief Typedef for the base class type
    */ // }}}
-  constexpr platform() noexcept
-    : _platform_id(nullptr)
-  { }
-  /** // {{{
-   * \brief Copy constructor
-   *
-   * Initializes this object with the platform ID of another one (\c rhs).
+  typedef clobj<cl_platform_id> Base;
+  using Base::Base;
+  /** // doc: platform() {{{
+   * \brief Default constructor, see \ref clobj::clobj()
    */ // }}}
-  constexpr platform(platform const& rhs) noexcept
-    : _platform_id(rhs.id())
-  { }
-  /** // {{{
-   * \brief Constructor with explicit conversion.
-   *
-   * Initializes this object with platform ID provided by caller.
+  platform() = default;
+  /** // doc: platform(platform const&) {{{
+   * \brief Copy constructor, see \ref clobj::clobj(clobj const&)
    */ // }}}
-  explicit
-#ifndef SWIG // workaround for swig issue #284
-  constexpr
-#endif
-  platform(cl_platform_id id) noexcept
-    : _platform_id(id)
-  { }
-  /** // {{{
-   * \brief Assignment operator.
-   * \return Reference to this object.
-   */ // }}}
-  platform& operator=(platform const& rhs) noexcept
-  {
-    this->assign(rhs);
-    return *this;
-  }
-  /** // {{{
-   * \brief Conversion operator.
-   * \return %platform ID keept by this proxy object.
-   *
-   * Casts platform object to \c cl_platform_id.
-   */ // }}}
-  explicit
-#ifndef SWIG // workaround for swig issue #284
-  constexpr
-#endif
-  operator cl_platform_id () const noexcept
-  {
-    return this->id();
-  }
-  /** // {{{
-   * \brief Assignment
-   *
-   * Assign new platform ID to this proxy object (start proxying to another
-   * OpenCL platform).
-   */ // }}}
-  void assign(platform const& rhs) noexcept
-  {
-    if(&rhs != this)
-      {
-        this->_platform_id = rhs.id();
-      }
-  }
-  /** // {{{
-   * \brief Tell whether this object is initialized or not
-   * \return \c true if object is initialized or \c false otherwise
-   */ // }}}
-  constexpr bool is_initialized() const noexcept
-  {
-    return (this->_platform_id != NULL);
-  }
-  /** // {{{
-   * \brief Get the OpenCL platform ID of this platform.
-   * \return The platform ID of this platform
-   */ // }}}
-  constexpr cl_platform_id id() const noexcept
-  {
-    return this->_platform_id;
-  }
-  /** // {{{
-   * \brief Get the OpenCL platform ID of this platform
-   * \return The platform ID of this platform
-   *
-   * This function also checks, if the platform ID is not NULL (proxy
-   * initialized). If it is NULL, then the exception
-   * CLXX_EXCEPTION(Uninitialized_Platform) is thrown.
-   */ // }}}
-  cl_platform_id get_valid_id() const;
-  /** // {{{
-   * \brief Query OpenCL platform for certain information.
-   *
-   * \param name
-   *    An enumeration constant that identifies the platform information being
-   *    queried. It may be \c CL_PLATFORM_PROFILE, \c CL_PLATFORM_VERSION, and
-   *    so on. See OpenCL specification (\c clGetPlatformInfo()) for details.
-   * \param value_size
-   *    Specifies the size in bytes of memory pointed to by param_value. This
-   *    size in bytes must be ≥ size of return type specified in the OpenCL
-   *    specification (\c clGetPlatformInfo()).
-   * \param value
-   *    A pointer to memory location where appropriate values for a given
-   *    param_value will be returned. Possible param_value values returned are
-   *    described in the OpenCL specification (\c clGetPlatformInfo()). If
-   *    param_value is NULL, it is ignored.
-   * \param value_size_ret
-   *    Returns the actual size in bytes of data being queried by param_value.
-   *    If param_value_size_ret is NULL, it is ignored.
-   *
-   * This function maps directly to \c clGetGetPlatformInfo(). The platform ID
-   * encapsulated by this proxy object is used as first argument to \c
-   * clGetPlatformInfo().
-   *
-   * If this object holds uninitialized platform ID, then the method throws
-   * exception CLXX_EXCEPTION(Uninitialized_Platform).
-   *
-   */ // }}}
-  void get_info(platform_info_t name, size_t value_size, void* value,
-                size_t* value_size_ret) const;
+  platform(platform const&) = default;
   /** // {{{
    * \brief Query the OpenCL for platform profile string.
    *
@@ -192,7 +85,7 @@ public:
    *
    * This method returns the OpenCL version supported by the implementation.
    * The returned string is same as that returned by
-   * \c clGetPlatformInfo(this->id(),CL_PLATFORM_VERSION,...)
+   * \c clGetPlatformInfo(this->handle(),CL_PLATFORM_VERSION,...)
    * According to OpenCL specification, this version string has the
    * following format:
      \verbatim OpenCL<space><major_version.minor_version><space><platform-specific information> \endverbatim
@@ -210,7 +103,7 @@ public:
    *
    * This method returns the name of this OpenCL platform.
    * The returned string is same as that returned by
-   * \c clGetPlatformInfo(this->id(),CL_PLATFORM_NAME,...)
+   * \c clGetPlatformInfo(this->handle(),CL_PLATFORM_NAME,...)
    *
    * In case of error, this method throws one of the exceptions mentioned in
    * CLXX_PLATFORM_GET_INFO_EXCEPTIONS, or the
@@ -223,7 +116,7 @@ public:
    *
    * This method returns vendor string shown by this OpenCL platform.
    * The returned string is same as that returned by
-   * \c clGetPlatformInfo(this->id(),CL_PLATFORM_VENDOR,...)
+   * \c clGetPlatformInfo(this->handle(),CL_PLATFORM_VENDOR,...)
    *
    * In case of error, this method throws one of the exceptions mentioned in
    * CLXX_PLATFORM_GET_INFO_EXCEPTIONS, or the
@@ -240,55 +133,13 @@ public:
    * associated with this platform.
    *
    * The returned string is same as that returned by
-   * \c clGetPlatformInfo(this->id(),CL_PLATFORM_EXTENSIONS,...)
+   * \c clGetPlatformInfo(this->handle(),CL_PLATFORM_EXTENSIONS,...)
    *
    * In case of error, this method throws one of the exceptions mentioned in
    * CLXX_PLATFORM_GET_INFO_EXCEPTIONS, or the
    * CLXX_EXCEPTION(Bad_Alloc).
    */ // }}}
   std::string get_extensions() const;
-  /** // {{{
-   * \brief Equal-to overloaded operator.
-   * Compares identifiers of two \ref platform objects.
-   */ // }}}
-  bool operator == (platform const& x) const
-  { return this->id() == x.id(); }
-  /** // {{{
-   * \brief Not equal-to overloaded operator.
-   * Compares identifiers of two \ref platform objects.
-   */ // }}}
-  bool operator != (platform const& x) const
-  { return this->id() != x.id(); }
-  /** // {{{
-   * \brief Less-than overloaded operator.
-   * Compares identifiers of two \ref platform objects.
-   */ // }}}
-  bool operator < (platform const& x) const
-  { return this->id() < x.id(); }
-  /** // {{{
-   * \brief Greater-than overloaded operator.
-   * Compares identifiers of two \ref platform objects.
-   */ // }}}
-  bool operator > (platform const& x) const
-  { return this->id() > x.id(); }
-  /** // {{{
-   * \brief Less-or-equal-to overloaded operator.
-   * Compares identifiers of two \ref platform objects.
-   */ // }}}
-  bool operator <= (platform const& x) const
-  { return this->id() <= x.id(); }
-  /** // {{{
-   * \brief Greater-or-equal-to overloaded operator.
-   * Compares identifiers of two \ref platform objects.
-   */ // }}}
-  bool operator >= (platform const& x) const
-  { return this->id() >= x.id(); }
-  /** // {{{
-   * \brief Conversion to bool
-   * \returns true if the object is initialized or false otherwise
-   */ // }}}
-  operator bool() const
-  { return this->is_initialized(); }
 };
 
 } // end namespace clxx

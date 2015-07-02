@@ -5,7 +5,7 @@
 
 /** // doc: clxx/program_binaries.hpp {{{
  * \file clxx/program_binaries.hpp
- * \todo Write documentation
+ * \brief Declares the \ref clxx::program_binaries "program_binaries" type
  */ // }}}
 #ifndef CLXX_PROGRAM_BINARIES_HPP_INCLUDED
 #define CLXX_PROGRAM_BINARIES_HPP_INCLUDED

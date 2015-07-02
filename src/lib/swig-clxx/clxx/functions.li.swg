@@ -35,6 +35,7 @@
 %throws_clerror(clxx::enqueue_write_buffer(cl_command_queue, cl_mem, cl_bool, size_t, size_t, const void*, cl_uint, const cl_event*, cl_event*))
 %throws_clerror(clxx::enqueue_copy_buffer(cl_command_queue, cl_mem, cl_mem, size_t, size_t, size_t, cl_uint, const cl_event*, cl_event*))
 %throws_clerror(clxx::enqueue_map_buffer(cl_command_queue, cl_mem, cl_bool, map_flags_t, size_t, size_t, cl_uint, const cl_event*, cl_event*))
+%throws_clerror(clxx::create_image(cl_context, mem_flags_t, const cl_image_format*, const cl_image_desc*, void*))
 %throws_clerror(clxx::get_supported_image_formats(cl_context, mem_flags_t, mem_object_type_t, cl_uint, cl_image_format*, cl_uint*))
 %throws_clerror(clxx::enqueue_read_image(cl_command_queue, cl_mem, cl_bool, const size_t*, const size_t*, size_t, size_t, void*, cl_uint, const cl_event*, cl_event*))
 %throws_clerror(clxx::enqueue_write_image(cl_command_queue, cl_mem, cl_bool, const size_t*, const size_t*, size_t, size_t, const void*, cl_uint, const cl_event*, cl_event*))

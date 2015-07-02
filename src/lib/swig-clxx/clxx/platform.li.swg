@@ -22,7 +22,7 @@
 }
 %enddef
 
-%exception clxx::platform::get_valid_id() const {
+%exception clxx::platform::get_valid_handle() const {
   try { $action }
   %catch_uninitialized_platform_error
   %catch_exception
@@ -43,6 +43,8 @@
 
 // TODO: specify exceptions for the following function
 //clxx::get_platform_info(clxx::platform, const& p, clxx::platform_query const&)
+
+%template(clobj_platform) clxx::clobj<cl_platform_id>;
 
 %include <clxx/platform.hpp>
 

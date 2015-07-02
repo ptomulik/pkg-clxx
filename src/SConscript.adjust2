@@ -82,6 +82,8 @@ if cc == 'gcc':
         env.AppendUnique(SWIGPY_CFLAGS = [ '-Wno-unused-label' ])
         env.AppendUnique(SWIGPY_CFLAGS = [ '-Wno-deprecated-declarations' ])
         env.AppendUnique(SWIGPY_CFLAGS = [ '-Wno-pedantic' ])
+        env.AppendUnique(SWIGPY_SWIGFLAGS = [ '-D__GNUC__' ])
+        env.AppendUnique(SWIGPY_SWIGFLAGS = [ '-D__STRICT_ANSI__' ])
 elif cc  == 'clang':
     if '-Werror' in env['SWIGPY_CFLAGS']:
         env.AppendUnique(SWIGPY_CFLAGS = [ '-Wno-unused-label' ])
@@ -101,6 +103,8 @@ if cxx == 'g++':
         env.AppendUnique(SWIGPY_CXXFLAGS = [ '-Wno-unused-label' ])
         env.AppendUnique(SWIGPY_CXXFLAGS = [ '-Wno-deprecated-declarations' ])
         env.AppendUnique(SWIGPY_CXXFLAGS = [ '-Wno-pedantic' ])
+        env.AppendUnique(SWIGPY_SWIGFLAGS = [ '-D__GNUC__' ])
+        env.AppendUnique(SWIGPY_SWIGFLAGS = [ '-D__STRICT_ANSI__' ])
 elif cxx == 'clang++':
     if '-Werror' in env['SWIGPY_CXXFLAGS']:
         env.AppendUnique(SWIGPY_CXXFLAGS = [ '-Wno-unused-label' ])

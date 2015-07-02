@@ -10,10 +10,18 @@
 #include <clxx/functions.hpp>
 #include <clxx/exceptions.hpp>
 #include <clxx/util/obj2cl.hpp>
+#include <clxx/clobj_impl.hpp>
 #include <boost/shared_array.hpp>
 #include <algorithm>
 
 namespace clxx {
+/* ------------------------------------------------------------------------ */
+// Instantiate the base class
+template class clobj<cl_program>;
+static_assert(
+    sizeof(clobj<cl_program>) == sizeof(cl_program),
+    "sizeof(clobj<cl_program>) differs from sizeof(cl_program)"
+);
 /* ------------------------------------------------------------------------ */
 template<class X>
 static boost::shared_array<size_t>
@@ -66,36 +74,6 @@ _cstrings(program_sources const& sources)
 }
 /* ------------------------------------------------------------------------ */
 template<typename T> static T
-_get_pod_info(program const& p, program_info_t name)
-{
-  T value;
-  p.get_info(name,sizeof(value),&value,NULL);
-  return value;
-}
-/* ------------------------------------------------------------------------ */
-template<typename T> static std::vector<T>
-_get_vec_info(program const& p, program_info_t name)
-{
-  size_t size;
-  p.get_info(name,0,NULL,&size);
-  std::vector<T> values(size/sizeof(T));
-  p.get_info(name,values.size()*sizeof(T),&values.front(),NULL);
-  return values;
-}
-/* ------------------------------------------------------------------------ */
-static std::string
-_get_str_info(program const& p, program_info_t name)
-{
-  size_t size;
-  p.get_info(name,0,NULL,&size);
-
-  boost::shared_array<char> str(new char[size]);
-  // FIXME: is(str == nullptr) { throw clxx::bad_alloc() }
-  p.get_info(name,size,str.get(),&size);
-  return std::string(str.get());
-}
-/* ------------------------------------------------------------------------ */
-template<typename T> static T
 _get_pod_build_info(program const& p, device const& d, program_build_info_t name)
 {
   T value;
@@ -115,73 +93,36 @@ _get_str_build_info(program const& p, device const& d, program_build_info_t name
   return std::string(str.get());
 }
 /* ----------------------------------------------------------------------- */
-void program::
-_set_id(cl_program p, bool retain_new, bool release_old)
-{
-  if(p != this->_id) // Avoid unintended deletion by clReleaseProgram()
-    {
-      if(release_old && this->is_initialized())
-        {
-          release_program(this->_id);
-        }
-      this->_id = p;
-      if(retain_new)
-        {
-          retain_program(this->_id);
-        }
-    }
-}
-/* ----------------------------------------------------------------------- */
-program::
-program() noexcept
-  :_id((cl_program)NULL)
-{
-}
-/* ----------------------------------------------------------------------- */
-program::
-program(cl_program id)
-  :_id((cl_program)NULL) // because it's read by _set_id()
-{
-  this->_set_id(id, true, false);
-}
-/* ----------------------------------------------------------------------- */
-program::
-program(program const& p)
-  :_id((cl_program)NULL) // because it's read by _set_id()
-{
-  this->_set_id(p.id(), true, false);
-}
-/* ----------------------------------------------------------------------- */
 program::
 program(context const& ctx, program_sources const& sources)
-  :_id((cl_program)NULL) // because it's read by _set_id()
+  :Base((cl_program)NULL) // because it's read by _set_handle()
 {
   if(sources.size() == 0ul)
       throw invalid_argument_error();
 
   cl_program id = create_program_with_source(
-      ctx.get_valid_id(),
+      ctx.get_valid_handle(),
       sources.size(),
       _cstrings(sources).get(),
       NULL
   );
   // create_program_with_source() performs implicit retain, so we don't
   // have to retain it again here (thus 2 x false below)
-  this->_set_id(id, false, false);
+  this->_set_handle(id, false, false);
 }
 /* ----------------------------------------------------------------------- */
 program::
 program(context const& ctx, devices const& device_list,
         program_binaries const& binaries,
         std::vector<status_t>& binary_status)
-  :_id((cl_program)NULL) // because it's read by _set_id()
+  : Base()
 {
   if(device_list.size() == 0ul || device_list.size() != binaries.size())
       throw invalid_argument_error();
 
   binary_status.resize(device_list.size());
   cl_program id = create_program_with_binary(
-      ctx.get_valid_id(),
+      ctx.get_valid_handle(),
       device_list.size(),
       obj2cl(device_list),
       _lengths(binaries).get(),
@@ -190,19 +131,19 @@ program(context const& ctx, devices const& device_list,
   );
   // create_program_with_binary() performs implicit retain, so we don't
   // have to retain it again here (thus 2 x false below)
-  this->_set_id(id, false, false);
+  this->_set_handle(id, false, false);
 }
 /* ----------------------------------------------------------------------- */
 program::
 program(context const& ctx, devices const& device_list,
         program_binaries const& binaries)
-  :_id((cl_program)NULL) // because it's read by _set_id()
+  : Base()
 {
   if(device_list.size() == 0ul || device_list.size() != binaries.size())
       throw invalid_argument_error();
 
   cl_program id = create_program_with_binary(
-      ctx.get_valid_id(),
+      ctx.get_valid_handle(),
       device_list.size(),
       obj2cl(device_list),
       _lengths(binaries).get(),
@@ -211,76 +152,39 @@ program(context const& ctx, devices const& device_list,
   );
   // create_program_with_binary() performs implicit retain, so we don't
   // have to retain it again here (thus 2 x false below)
-  this->_set_id(id, false, false);
+  this->_set_handle(id, false, false);
 }
 /* ----------------------------------------------------------------------- */
 #if CLXX_OPENCL_ALLOWED(clCreateProgramWithBuiltInKernels)
 program::
 program(context const& ctx, devices const& device_list,
         std::string const& kernel_names)
-  :_id((cl_program)NULL) // because it's read by _set_id()
+  : Base()
 {
   cl_program id = create_program_with_built_in_kernels(
-      ctx.get_valid_id(),
+      ctx.get_valid_handle(),
       device_list.size(),
       obj2cl(device_list),
       kernel_names.data()
   );
   // create_program_with_built_in_kernels() performs implicit retain, so we
   // don't have to retain it again here (thus 2 x false below)
-  this->_set_id(id, false, false);
+  this->_set_handle(id, false, false);
 }
 #endif
-/* ----------------------------------------------------------------------- */
-program::
-~program()
-{
-  if(this->is_initialized())
-    {
-      try { this->_set_id(NULL, false, true); }
-      catch(clerror_no<status_t::invalid_program> const&) { }
-    }
-}
-/* ------------------------------------------------------------------------ */
-void program::
-get_info(program_info_t name, size_t value_size, void* value,
-         size_t* value_size_ret) const
-{
-  get_program_info(
-      this->get_valid_id(),
-      name,
-      value_size,
-      value,
-      value_size_ret
-  );
-}
 /* ----------------------------------------------------------------------- */
 void program::
 get_build_info(device const& dev, program_build_info_t name,
                size_t value_size, void* value, size_t* value_size_ret) const
 {
   get_program_build_info(
-      this->get_valid_id(),
-      dev.get_valid_id(),
+      this->get_valid_handle(),
+      dev.get_valid_handle(),
       name,
       value_size,
       value,
       value_size_ret
   );
-}
-/* ----------------------------------------------------------------------- */
-cl_program program::
-get_valid_id() const
-{
-  if(!this->is_initialized())
-    throw uninitialized_program_error();
-  return this->_id;
-}
-/* ----------------------------------------------------------------------- */
-cl_uint program::
-get_reference_count() const
-{
-  return _get_pod_info<cl_uint>(*this, program_info_t::reference_count);
 }
 /* ----------------------------------------------------------------------- */
 context program::
@@ -323,7 +227,7 @@ get_binaries() const
     bins[i].resize(sizes[i]);
 
   get_program_info(
-      this->get_valid_id(),
+      this->get_valid_handle(),
       program_info_t::binaries,
       bins.size(),
       _pointers(bins).get(),
@@ -380,7 +284,7 @@ void
 build_program(program const& prog, std::string const& options)
 {
   build_program(
-      prog.get_valid_id(),
+      prog.get_valid_handle(),
       0ul,
       NULL,
       options.data(),
@@ -394,7 +298,7 @@ build_program(program const& prog, devices const& devs,
               std::string const& options)
 {
   build_program(
-      prog.get_valid_id(),
+      prog.get_valid_handle(),
       devs.size(),
       obj2cl(devs),
       options.data(),
@@ -408,7 +312,7 @@ build_program(program const& prog, std::string const& options,
               program_observer& observer)
 {
   build_program(
-      prog.get_valid_id(),
+      prog.get_valid_handle(),
       0ul,
       NULL,
       options.data(),
@@ -422,7 +326,7 @@ build_program(program const& prog, devices const& devs, std::string const& optio
               program_observer& observer)
 {
   build_program(
-      prog.get_valid_id(),
+      prog.get_valid_handle(),
       devs.size(),
       obj2cl(devs),
       options.data(),
@@ -441,7 +345,7 @@ compile_program(program const& prog, std::string const& options,
     throw invalid_argument_error();
 
   compile_program(
-      prog.get_valid_id(),
+      prog.get_valid_handle(),
       0ul,
       NULL,
       options.data(),
@@ -463,7 +367,7 @@ compile_program(program const& prog, std::string const& options,
     throw invalid_argument_error();
 
   compile_program(
-      prog.get_valid_id(),
+      prog.get_valid_handle(),
       0ul,
       NULL,
       options.data(),
@@ -484,7 +388,7 @@ compile_program(program const& prog, devices const& devs,
     throw invalid_argument_error();
 
   compile_program(
-      prog.get_valid_id(),
+      prog.get_valid_handle(),
       devs.size(),
       obj2cl(devs),
       options.data(),
@@ -506,7 +410,7 @@ compile_program(program const& prog, devices const& devs,
     throw invalid_argument_error();
 
   compile_program(
-      prog.get_valid_id(),
+      prog.get_valid_handle(),
       devs.size(),
       obj2cl(devs),
       options.data(),
@@ -527,7 +431,7 @@ link_program(context const& ctx, devices const& device_list,
 {
   return program(
     link_program(
-      ctx.get_valid_id(),
+      ctx.get_valid_handle(),
       device_list.size(),
       obj2cl(device_list),
       options.data(),
@@ -546,7 +450,7 @@ link_program(context const& ctx, devices const& device_list,
 {
   return program(
     link_program(
-      ctx.get_valid_id(),
+      ctx.get_valid_handle(),
       device_list.size(),
       obj2cl(device_list),
       options.data(),

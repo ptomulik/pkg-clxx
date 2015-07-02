@@ -9,32 +9,18 @@
 #include <clxx/program.hpp>
 #include <clxx/context.hpp>
 #include <clxx/device.hpp>
-#include <clxx/functions.hpp>
-#include <clxx/exceptions.hpp>
 #include <clxx/util/obj2cl.hpp>
-#include <boost/shared_array.hpp>
+#include <clxx/clobj_impl.hpp>
+#include <memory>
 
 namespace clxx {
 /* ------------------------------------------------------------------------ */
-template<typename T> static T
-_get_pod_info(kernel const& p, kernel_info_t name)
-{
-  T value;
-  p.get_info(name,sizeof(value),&value,NULL);
-  return value;
-}
-/* ------------------------------------------------------------------------ */
-static std::string
-_get_str_info(kernel const& p, kernel_info_t name)
-{
-  size_t size;
-  p.get_info(name,0,NULL,&size);
-
-  boost::shared_array<char> str(new char[size]);
-  // FIXME: is(str == nullptr) { throw clxx::bad_alloc() }
-  p.get_info(name,size,str.get(),&size);
-  return std::string(str.get());
-}
+// Instantiate the base class
+template class clobj<cl_kernel>;
+static_assert(
+    sizeof(clobj<cl_kernel>) == sizeof(cl_kernel),
+    "sizeof(clobj<cl_kernel>) differs from sizeof(cl_kernel)"
+);
 /* ------------------------------------------------------------------------ */
 template<typename T> static T
 _get_arg_pod_info(kernel const& p, cl_uint arg_index, kernel_arg_info_t name)
@@ -50,7 +36,7 @@ _get_arg_str_info(kernel const& p, cl_uint arg_index, kernel_arg_info_t name)
   size_t size;
   p.get_arg_info(arg_index, name, 0, NULL, &size);
 
-  boost::shared_array<char> str(new char[size]);
+  std::unique_ptr<char[]> str(new char[size]);
   // FIXME: is(str == nullptr) { throw clxx::bad_alloc() }
   p.get_arg_info(arg_index, name, size, str.get(), &size);
   return std::string(str.get());
@@ -64,88 +50,14 @@ _get_work_group_pod_info(kernel const& p, device const& dev, kernel_work_group_i
   return value;
 }
 /* ----------------------------------------------------------------------- */
-void kernel::
-_set_id(cl_kernel k, bool retain_new, bool release_old)
-{
-  if(k != this->_id) // Avoid unintended deletion by clReleaseKernel()
-    {
-      if(release_old && this->is_initialized())
-        {
-          release_kernel(this->_id);
-        }
-      this->_id = k;
-      if(retain_new)
-        {
-          retain_kernel(this->_id);
-        }
-    }
-}
-/* ----------------------------------------------------------------------- */
-kernel::
-kernel() noexcept
-  :_id((cl_kernel)NULL)
-{
-}
-/* ----------------------------------------------------------------------- */
-kernel::
-kernel(cl_kernel id)
-  :_id((cl_kernel)NULL) // because it's read by _set_id()
-{
-  this->_set_id(id, true, false);
-}
-/* ----------------------------------------------------------------------- */
-kernel::
-kernel(kernel const& k)
-  :_id((cl_kernel)NULL) // because it's read by _set_id()
-{
-  this->_set_id(k.id(), true, false);
-}
-/* ----------------------------------------------------------------------- */
 kernel::
 kernel(program const& prog, std::string const& name)
-  :_id((cl_kernel)NULL) // because it's readby _set_id()
+  :Base((cl_kernel)NULL) // because it's readby _set_handle()
 {
-  cl_kernel id = create_kernel(prog.get_valid_id(), name.data());
+  cl_kernel id = create_kernel(prog.get_valid_handle(), name.data());
   // create_kernel() performs implicit retain, so we
   // don't have to retain it again here (thus 2 x false below)
-  this->_set_id(id, false, false);
-}
-/* ----------------------------------------------------------------------- */
-kernel::
-~kernel()
-{
-  if(this->is_initialized())
-    {
-      try { this->_set_id(NULL, false, true); }
-      catch(clerror_no<status_t::invalid_kernel> const&) { }
-    }
-}
-/* ------------------------------------------------------------------------ */
-void kernel::
-get_info(kernel_info_t name, size_t value_size, void* value,
-         size_t* value_size_ret) const
-{
-  get_kernel_info(
-      this->get_valid_id(),
-      name,
-      value_size,
-      value,
-      value_size_ret
-  );
-}
-/* ----------------------------------------------------------------------- */
-cl_kernel kernel::
-get_valid_id() const
-{
-  if(!this->is_initialized())
-    throw uninitialized_kernel_error();
-  return this->_id;
-}
-/* ----------------------------------------------------------------------- */
-cl_uint kernel::
-get_reference_count() const
-{
-  return _get_pod_info<cl_uint>(*this, kernel_info_t::reference_count);
+  this->_set_handle(id, false, false);
 }
 /* ----------------------------------------------------------------------- */
 std::string kernel::
@@ -185,7 +97,7 @@ void kernel::
 get_arg_info(cl_uint arg_index, kernel_arg_info_t name, size_t value_size,
              void* value, size_t* value_size_ret) const
 {
-  get_kernel_arg_info(this->get_valid_id(),
+  get_kernel_arg_info(this->get_valid_handle(),
                       arg_index,
                       name,
                       value_size,
@@ -242,8 +154,8 @@ get_work_group_info(device const& dev, kernel_work_group_info_t name,
 {
   // note: NULL is allowed for device ID, see clGetKernelWorkGroupInfo()
   get_kernel_work_group_info(
-      this->get_valid_id(),
-      dev.id(),
+      this->get_valid_handle(),
+      dev.handle(),
       name,
       value_size,
       value,
@@ -306,20 +218,20 @@ get_global_work_size(size_t* result, device const& dev) const
 void kernel::
 set_arg(cl_uint arg_index, size_t size, const void* arg_value) const
 {
-  set_kernel_arg(this->get_valid_id(), arg_index, size, arg_value);
+  set_kernel_arg(this->get_valid_handle(), arg_index, size, arg_value);
 }
 /* ----------------------------------------------------------------------- */
 void kernel::
 set_arg(cl_uint arg_index, clxx::mem const& mem) const
 {
-  set_kernel_arg(this->get_valid_id(), arg_index, sizeof(cl_mem), obj2cl(&mem));
+  set_kernel_arg(this->get_valid_handle(), arg_index, sizeof(cl_mem), obj2cl(&mem));
 }
 /* ----------------------------------------------------------------------- */
 #if CLXX_OPENCL_ALLOWED(clSetKernelArgSVMPointer)
 void kernel::
 set_arg_svm_pointer(cl_uint arg_index, const void* arg_value) const
 {
-  set_kernel_arg_svm_pointer(this->get_valid_id(), arg_index, arg_value);
+  set_kernel_arg_svm_pointer(this->get_valid_handle(), arg_index, arg_value);
 }
 #endif
 /* ----------------------------------------------------------------------- */
@@ -328,7 +240,7 @@ void kernel::
 set_exec_info(kernel_exec_info_t name, size_t value_size, const void* value) const
 {
   set_kernel_exec_info(
-      this->get_valid_id(),
+      this->get_valid_handle(),
       name,
       value_size,
       value

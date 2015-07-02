@@ -34,7 +34,7 @@ public:
     T::Dummy_clReleaseCommandQueue mock2(CL_SUCCESS);
     command_queue q;
     TS_ASSERT(!q.is_initialized());
-    TS_ASSERT_EQUALS(q.id(), (cl_command_queue)NULL);
+    TS_ASSERT_EQUALS(q.handle(), (cl_command_queue)NULL);
     TS_ASSERT(mock1.never_called());
     TS_ASSERT(mock2.never_called());
   }
@@ -64,6 +64,12 @@ public:
     T::Dummy_clReleaseCommandQueue mock3(CL_SUCCESS);
     T::Dummy_clRetainContext mock4(CL_SUCCESS);
     T::Dummy_clReleaseContext mock5(CL_SUCCESS);
+#if CLXX_OPENCL_ALLOWED(clRetainDevice)
+    T::Dummy_clRetainDevice mockRetainDevice(CL_SUCCESS);
+#endif
+#if CLXX_OPENCL_ALLOWED(clReleaseDevice)
+    T::Dummy_clReleaseDevice mockReleaseDevice(CL_SUCCESS);
+#endif
     command_queue c(context((cl_context)0x1234), device((cl_device_id)0x5678), command_queue_properties_t::none);
     TS_ASSERT(!c.is_initialized());
     TS_ASSERT(mock1.called_once());
@@ -84,6 +90,12 @@ public:
     T::Dummy_clReleaseCommandQueue mock3(CL_SUCCESS);
     T::Dummy_clRetainContext mock4(CL_SUCCESS);
     T::Dummy_clReleaseContext mock5(CL_SUCCESS);
+#if CLXX_OPENCL_ALLOWED(clRetainDevice)
+    T::Dummy_clRetainDevice mockRetainDevice(CL_SUCCESS);
+#endif
+#if CLXX_OPENCL_ALLOWED(clReleaseDevice)
+    T::Dummy_clReleaseDevice mockReleaseDevice(CL_SUCCESS);
+#endif
     TS_ASSERT_THROWS(command_queue(context((cl_context)NULL), device((cl_device_id)0x5678), command_queue_properties_t::none), uninitialized_context_error);
   }
   /** // doc: test__ctor_2__uninitialized_device() {{{
@@ -100,6 +112,12 @@ public:
     T::Dummy_clReleaseCommandQueue mock3(CL_SUCCESS);
     T::Dummy_clRetainContext mock4(CL_SUCCESS);
     T::Dummy_clReleaseContext mock5(CL_SUCCESS);
+#if CLXX_OPENCL_ALLOWED(clRetainDevice)
+    T::Dummy_clRetainDevice mockRetainDevice(CL_SUCCESS);
+#endif
+#if CLXX_OPENCL_ALLOWED(clReleaseDevice)
+    T::Dummy_clReleaseDevice mockReleaseDevice(CL_SUCCESS);
+#endif
     TS_ASSERT_THROWS(command_queue(context((cl_context)0x1234), device((cl_device_id)NULL), command_queue_properties_t::none), uninitialized_device_error);
   }
   /** // doc: test__copy_ctor() {{{
@@ -116,6 +134,12 @@ public:
     T::Dummy_clReleaseCommandQueue mock3(CL_SUCCESS);
     T::Dummy_clRetainContext mock4(CL_SUCCESS);
     T::Dummy_clReleaseContext mock5(CL_SUCCESS);
+#if CLXX_OPENCL_ALLOWED(clRetainDevice)
+    T::Dummy_clRetainDevice mockRetainDevice(CL_SUCCESS);
+#endif
+#if CLXX_OPENCL_ALLOWED(clReleaseDevice)
+    T::Dummy_clReleaseDevice mockReleaseDevice(CL_SUCCESS);
+#endif
     command_queue c1(context((cl_context)0x8765), device((cl_device_id)0x4321), command_queue_properties_t::none);
     command_queue c2(c1);
     TS_ASSERT(c2.is_initialized());
@@ -266,6 +290,12 @@ public:
     T::Dummy_clRetainCommandQueue mock1(CL_SUCCESS);
     T::Dummy_clReleaseCommandQueue mock2(CL_SUCCESS);
     T::Dummy_clGetCommandQueueInfo mock3(CL_SUCCESS);
+#if CLXX_OPENCL_ALLOWED(clRetainDevice)
+    T::Dummy_clRetainDevice mockRetainDevice(CL_SUCCESS);
+#endif
+#if CLXX_OPENCL_ALLOWED(clReleaseDevice)
+    T::Dummy_clReleaseDevice mockReleaseDevice(CL_SUCCESS);
+#endif
     command_queue c((cl_command_queue)0x1234);
 
     c.get_device();

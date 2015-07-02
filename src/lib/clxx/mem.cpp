@@ -3,96 +3,26 @@
 
 /** // doc: clxx/mem.cpp {{{
  * \file clxx/mem.cpp
- * \todo Write documentation
+ * \brief Implements the \ref clxx::mem "mem" class
  */ // }}}
 #include <clxx/mem.hpp>
 #include <clxx/context.hpp>
-#include <clxx/functions.hpp>
-#include <clxx/exceptions.hpp>
+#include <clxx/clobj_impl.hpp>
 
 namespace clxx {
 /* ------------------------------------------------------------------------ */
-template<typename T> static T
-_get_pod_info(mem const& p, mem_info_t name)
-{
-  T value;
-  p.get_info(name,sizeof(value),&value,NULL);
-  return value;
-}
-/* ----------------------------------------------------------------------- */
-void mem::
-_set_id(cl_mem p, bool retain_new, bool release_old)
-{
-  if(p != this->_id) // Avoid unintended deletion by clReleaseEvent()
-    {
-      if(release_old && this->is_initialized())
-        {
-          release_mem_object(this->_id);
-        }
-      this->_id = p;
-      if(retain_new)
-        {
-          retain_mem_object(this->_id);
-        }
-    }
-}
-/* ----------------------------------------------------------------------- */
-mem::
-mem() noexcept
-  :_id((cl_mem)NULL)
-{
-}
-/* ----------------------------------------------------------------------- */
-mem::
-mem(cl_mem id)
-  :_id((cl_mem)NULL) // because it's read by _set_id()
-{
-  this->_set_id(id, true, false);
-}
-/* ----------------------------------------------------------------------- */
-mem::
-mem(mem const& p)
-  :_id((cl_mem)NULL) // because it's read by _set_id()
-{
-  this->_set_id(p.id(), true, false);
-}
+// Instantiate the base class
+template class clobj<cl_mem>;
+static_assert(
+    sizeof(clobj<cl_mem>) == sizeof(cl_mem),
+    "sizeof(clobj<cl_mem>) differs from sizeof(cl_mem)"
+);
 /* ----------------------------------------------------------------------- */
 mem::
 mem(context const& ctx, mem_flags_t flags, size_t size, void* host_ptr)
-  :_id((cl_mem)NULL) // because it's read by _set_id()
+  :Base((cl_mem)NULL)
 {
-  this->_set_id(create_buffer(ctx.get_valid_id(), flags, size, host_ptr), false, false);
-}
-/* ----------------------------------------------------------------------- */
-mem::
-~mem()
-{
-  if(this->is_initialized())
-    {
-      try { this->_set_id(NULL, false, true); }
-      catch(clerror_no<status_t::invalid_event> const&) { }
-    }
-}
-/* ------------------------------------------------------------------------ */
-void mem::
-get_info(mem_info_t name, size_t value_size, void* value,
-         size_t* value_size_ret) const
-{
-  get_mem_object_info(
-      this->get_valid_id(),
-      name,
-      value_size,
-      value,
-      value_size_ret
-  );
-}
-/* ----------------------------------------------------------------------- */
-cl_mem mem::
-get_valid_id() const
-{
-  if(!this->is_initialized())
-    throw uninitialized_mem_error();
-  return this->_id;
+  this->_set_handle(create_buffer(ctx.get_valid_handle(), flags, size, host_ptr), false, false);
 }
 /* ----------------------------------------------------------------------- */
 mem_object_type_t mem::
@@ -123,12 +53,6 @@ cl_uint mem::
 get_map_count() const
 {
   return _get_pod_info<cl_uint>(*this, mem_info_t::map_count);
-}
-/* ----------------------------------------------------------------------- */
-cl_uint mem::
-get_reference_count() const
-{
-  return _get_pod_info<cl_uint>(*this, mem_info_t::reference_count);
 }
 /* ----------------------------------------------------------------------- */
 context mem::

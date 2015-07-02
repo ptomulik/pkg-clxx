@@ -62,7 +62,7 @@
 %throws_as_context_ctor1(clxx::context::context(context_properties const&, device_type_t, void(*)(const char *, const void*, size_t, void *), void *));
 %throws_uninitialized_context(clxx::context::context(context const&));
 %throws_as_context_get_pod_info(clxx::context::get_info(context_info_t, size_t, void *, size_t *) const);
-%throws_uninitialized_context(clxx::context::get_valid_id() const);
+%throws_uninitialized_context(clxx::context::get_valid_handle() const);
 %throws_uninitialized_context_clerror(clxx::context::operator=(context const&));
 %throws_uninitialized_context_clerror(clxx::context::assign(context const&));
 %throws_as_context_get_pod_info(clxx::context::get_reference_count() const);
@@ -70,6 +70,7 @@
 %throws_as_context_get_vec_info(clxx::context::get_devices() const);
 %throws_as_context_get_vec_info(clxx::context::get_properties() const);
 
+%template (clobj_context) clxx::clobj<cl_context>;
 
 %include <clxx/context.hpp>
 

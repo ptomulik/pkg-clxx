@@ -8,39 +8,30 @@
  * \brief Implements the \ref clxx::platform "platform" class
  */ // }}}
 #include <clxx/platform.hpp>
-#include <clxx/functions.hpp>
-#include <clxx/exceptions.hpp>
-#include <boost/shared_array.hpp>
+#include <clxx/clobj_impl.hpp>
 
 namespace clxx {
+/* ----------------------------------------------------------------------- */
+/** \cond SHOW_IGNORED_COMPOUNDS */
+template<>
+cl_uint clobj<cl_platform_id>::
+get_reference_count() const
+{
+  // FIXME: elaborate how to generate a compile-time error here.
+  return 0u;
+}
+/** \endcond */
+/* ----------------------------------------------------------------------- */
+}
 
+namespace clxx {
 /* ------------------------------------------------------------------------ */
-static std::string
-_get_str_info(platform const& p, platform_info_t name)
-{
-  size_t size;
-  p.get_info(name, 0, NULL, &size);
-
-  boost::shared_array<char> str(new char[size]);
-  // FIXME: if(str == nullptr) { throw clxx::bad_alloc() }
-  p.get_info(name, size, str.get(), &size);
-  return std::string(str.get());
-}
-/* ------------------------------------------------------------------------ */
-cl_platform_id platform::
-get_valid_id() const
-{
-  if(!this->is_initialized())
-    throw uninitialized_platform_error();
-  return this->_platform_id;
-}
-/* ------------------------------------------------------------------------ */
-void platform::
-get_info( platform_info_t name, size_t value_size, void* value,
-          size_t* value_size_ret) const
-{
-  get_platform_info(this->get_valid_id(),name,value_size,value,value_size_ret);
-}
+// Instantiate the base class
+template class clobj<cl_platform_id>;
+static_assert(
+    sizeof(clobj<cl_platform_id>) == sizeof(cl_platform_id),
+    "sizeof(clobj<cl_platform_id>) differs from sizeof(cl_platform_id)"
+);
 /* ------------------------------------------------------------------------ */
 std::string platform::
 get_profile() const
@@ -80,7 +71,7 @@ query_platform_info(platform const& p, platform_query const& query)
 {
   platform_info info;
   if(query.id_selected())
-    info.set_id(reinterpret_cast<unsigned long>(p.id()));
+    info.set_id(reinterpret_cast<unsigned long>(p.handle()));
   if(query.profile_selected())
     info.set_profile(p.get_profile());
   if(query.version_selected())

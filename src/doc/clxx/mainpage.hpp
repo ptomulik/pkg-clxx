@@ -68,7 +68,7 @@
  * \code
  *  clxx::platform const p;
  *  // ...
- *  std::cout << "  Id ........ : " << p.id() << std::endl;
+ *  std::cout << "  Id ........ : " << p.handle() << std::endl;
  *  std::cout << "  Name ...... : " << p.get_name() << std::endl;
  *  std::cout << "  Vendor .... : " << p.get_vendor() << std::endl;
  *  std::cout << "  Version ... : " << p.get_version() << std::endl;

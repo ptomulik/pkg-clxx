@@ -469,7 +469,7 @@ release_context(cl_context context);
  *
  * This is a wrapper for \c clGetContextInfo(). The call to \ref
  * get_context_info() has same effect as a call to
- *    - \c clGetContextinfo(context,static_cast<cl_context_info>(param_name),param_value_size,param_value,param_value_size_ret)
+ *    - \c clGetContextInfo(context,static_cast<cl_context_info>(param_name),param_value_size,param_value,param_value_size_ret)
  *
  *  The main difference between get_context_info() and \c clGetContextInfo() is
  *  that it throws %clxx exceptions instead of returning OpenCL error codes.
@@ -869,7 +869,7 @@ release_command_queue(cl_command_queue command_queue);
  *
  * This is a wrapper for \c clGetCommandQueueInfo(). The call to \ref
  * get_command_queue_info() has same effect as a call to
- *    - \c clGetCommandQueueinfo(command_queue,static_cast<cl_command_queue_info>(param_name),param_value_size,param_value,param_value_size_ret)
+ *    - \c clGetCommandQueueInfo(command_queue,static_cast<cl_command_queue_info>(param_name),param_value_size,param_value,param_value_size_ret)
  *
  *  The main difference between get_command_queue_info() and
  *  \c clGetCommandQueueInfo() is that it throws %clxx exceptions instead of
@@ -916,7 +916,56 @@ get_command_queue_info(cl_command_queue command_queue,
                        void* param_value,
                        size_t* param_value_size_ret);
 /** // doc: create_buffer() {{{
- * \todo Write documentation
+ * \brief Creates a buffer object
+ *
+ * This is a wrapper for \c clCreateBuffer(). The call to \ref
+ * create_buffer() has same effect as a call to
+ *    - \c clCreateBuffer(context, static_cast<cl_mem_flags>(flags), size, host_ptr, &errcode)
+ *
+ * with \c errcode being internally defined by #create_buffer().
+ *
+ * The main difference between create_buffer() and \c clCreateBuffer() is that
+ * it throws %clxx exceptions instead of returning OpenCL error codes.
+ *
+ * \param context
+ *    A valid OpenCL context used to create the buffer object.
+ * \param flags
+ *    A bit-field that is used to specify allocation and usage information such
+ *    as the memory arena that should be used to allocate the buffer object and
+ *    how it will be used. See the documentation of #mem_flags_t for defined
+ *    bit values.
+ * \param size
+ *    The size in bytes of the buffer memory object to be allocated.
+ * \param host_ptr
+ *    A pointer to the buffer data that may already be allocated by the
+ *    application. The size of the buffer that \p host_ptr points to must be
+ *    greater than or equal to the size bytes. 
+ *
+ * \returns The newly created OpenCL memory object
+ *
+ * \throw clerror_no<status_t::invalid_context>
+ *    When \c clCreateBuffer() returns \c CL_INVALID_CONTEXT.
+ * \throw clerror_no<status_t::invalid_value>
+ *    When \c clCreateBuffer() returns \c CL_INVALID_VALUE.
+ * \throw clerror_no<status_t::invalid_buffer_size>
+ *    When \c clCreateBuffer() returns \c CL_INVALID_BUFFER_SIZE.
+ * \throw clerror_no<status_t::invalid_host_ptr>
+ *    When \c clCreateBuffer() returns \c CL_INVALID_HOST_PTR.
+ * \throw clerror_no<status_t::mem_object_allocation_failure>
+ *    When \c clCreateBuffer() returns \c CL_MEM_OBJECT_ALLOCATION_FAILURE.
+ * \throw clerror_no<status_t::out_of_resources>
+ *    When \c clCreateBuffer() returns \c CL_OUT_OF_RESOURCES.
+ * \throw clerror_no<status_t::out_of_host_memory>
+ *    When \c clCreateBuffer() returns \c CL_OUT_OF_HOST_MEMORY.
+ * \throw unexpected_clerror
+ *    When \c clCreateBuffer() returns other error code.
+ *
+ * \par Available in OpenCL versions
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |   \check  |   \check  |   \check  |   \check  |    ???    |
+ *
+ * \sa <a href="https://www.khronos.org/registry/cl/sdk/2.0/docs/man/xhtml/clCreateBuffer.html">clCreateBuffer()</a>
  */ // }}}
 cl_mem
 create_buffer(cl_context context,
@@ -925,7 +974,53 @@ create_buffer(cl_context context,
               void* host_ptr);
 #if CLXX_OPENCL_ALLOWED(clCreateSubBuffer)
 /** // doc: create_sub_buffer() {{{
- * \todo Write documentation
+ * \brief Creates a buffer object (referred to as a sub-buffer object) from an
+ *        existing buffer object
+ *
+ * This is a wrapper for \c clCreateSubBuffer(). The call to
+ * #create_sub_buffer() has same effect as a call to
+ *    - \c clCreateSubBuffer(buffer, static_cast<cl_mem_flags>(flags), static_cast<cl_buffer_create_type>(buffer_create_type), buffer_create_info, &errcode)
+ *
+ * with \c errcode being internally defined by #create_sub_buffer().
+ *
+ * The main difference between #create_sub_buffer() and \c clCreateSubBuffer()
+ * is that it throws %clxx exceptions instead of returning OpenCL error codes.
+ *
+ * \param buffer
+ *    A valid OpenCL memory object. Cannot be a sub-buffer object.
+ * \param flags
+ *    A bit-field that is used to specify allocation and usage information
+ *    about the image memory object being created. See the documentation of
+ *    #mem_flags_t for defined bit values.
+ * \param buffer_create_type
+ *    The type of buffer object to be created. See documentation of
+ *    #buffer_create_type_t for possible values.
+ * \param buffer_create_info
+ *    A pointer to the \c _cl_buffer_region structure, which defines the offset
+ *    and size in bytes in \p buffer. For details consult the
+ *    <a href="https://www.khronos.org/registry/cl/sdk/2.0/docs/man/xhtml/clCreateSubBuffer.html">clCreateSubBuffer()</a>
+ *    documentation.
+ *
+ * \returns The newly created OpenCL sub buffer
+ *
+ * \throw clerror_no<status_t::invalid_mem_object>
+ *    When \c clCreateSubBuffer() returns \c CL_INVALID_MEM_OBJECT.
+ * \throw clerror_no<status_t::invalid_value>
+ *    When \c clCreateSubBuffer() returns \c CL_INVALID_VALUE.
+ * \throw clerror_no<status_t::out_of_resources>
+ *    When \c clCreateSubBuffer() returns \c CL_OUT_OF_RESOURCES.
+ * \throw clerror_no<status_t::out_of_host_memory>
+ *    When \c clCreateSubBuffer() returns \c CL_OUT_OF_HOST_MEMORY.
+ * \throw unexpected_clerror
+ *    When \c clCreateSubBuffer() returns other error code.
+ *
+ *
+ * \par Available in OpenCL versions
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |           |   \check  |   \check  |   \check  |    ???    |
+ *
+ * \sa <a href="https://www.khronos.org/registry/cl/sdk/2.0/docs/man/xhtml/clCreateSubBuffer.html">clCreateSubBuffer()</a>
  */ // }}}
 cl_mem
 create_sub_buffer(cl_mem buffer,
@@ -934,7 +1029,96 @@ create_sub_buffer(cl_mem buffer,
                   const void* buffer_create_info);
 #endif
 /** // doc: enqueue_read_buffer() {{{
- * \todo Write documentation
+ * \brief Enqueue commands to read from a buffer object to host memory
+ *
+ * This is a wrapper for \c clEnqueueReadBuffer(). The call to
+ * #enqueue_read_buffer() has same effect as a call to
+ *    - \c clEnqueueReadBuffer(command_queue, buffer, blocking_read, offset, size, ptr, num_events_in_wait_list, event_wait_list, event)
+ *
+ * The main difference between #enqueue_read_buffer() and \c clEnqueueReadBuffer()
+ * is that it throws %clxx exceptions instead of returning OpenCL error codes.
+ * 
+ * \param command_queue
+ *    Is a valid host command-queue in which the read command will be queued.
+ *    \p command_queue and buffer must be created with the same OpenCL context.
+ * \param buffer
+ *    Refers to a valid buffer object.
+ * \param blocking_read
+ *    Indicates if the read operations are blocking or non-blocking.
+ *    If \p blocking_read is \c CL_TRUE i.e. the read command is blocking,
+ *    #enqueue_read_buffer() does not return until the buffer data has been
+ *    read and copied into memory pointed to by \p ptr.
+ *    If \p blocking_read is \c CL_FALSE i.e. the read command is non-blocking,
+ *    #enqueue_read_buffer() queues a non-blocking read command and returns.
+ *    The contents of the buffer that \p ptr points to cannot be used until the
+ *    read command has completed. The \p event argument returns an event object
+ *    which can be used to query the execution status of the read command. When
+ *    the read command has completed, the contents of the buffer that \p ptr
+ *    points to can be used by the application. 
+ * \param offset
+ *    The offset in bytes in the buffer object to read from.
+ * \param size
+ *    The size in bytes of data being read.
+ * \param ptr
+ *    The pointer to buffer in host memory where data is to be read into.
+ * \param num_events_in_wait_list
+ *    Number of events in the \p event_wait_list.
+ *    If \p event_wait_list is \c NULL, \p num_events_in_wait_list must be 0.
+ *    If \p event_wait_list is not \c NULL, the list of events pointed to by
+ *    \p event_wait_list must be valid and \p num_events_in_wait_list must be
+ *    greater than \c 0.
+ * \param event_wait_list
+ *    \p event_wait_list and \p num_events_in_wait_list specify events that
+ *    need to complete before this particular command can be executed. If
+ *    \p event_wait_list is \c NULL, then this particular command does not wait
+ *    on any event to complete. The events specified in \p event_wait_list act
+ *    as synchronization points. The context associated with events in
+ *    \p event_wait_list and \p command_queue must be the same. The memory
+ *    associated with \p event_wait_list can be reused or freed after the
+ *    function returns. 
+ * \param event
+ *    Returns an event object that identifies this particular read command and
+ *    can be used to query or queue a wait for this particular command to
+ *    complete.\p event can be \c NULL in which case it will not be possible
+ *    for the application to query the status of this command or queue a wait
+ *    for this command to complete. If the \p event_wait_list and the \p event
+ *    arguments are not \c NULL, the event argument should not refer to an
+ *    element of the \p event_wait_list array
+ *
+ *
+ * \throw clerror_no<status_t::invalid_command_queue>
+ *    When \c clEnqueueReadBuffer() returns \c CL_INVALID_COMMAND_QUEUE.
+ * \throw clerror_no<status_t::invalid_context>
+ *    When \c clEnqueueReadBuffer() returns \c CL_INVALID_CONTEXT.
+ * \throw clerror_no<status_t::invalid_mem_object>
+ *    When \c clEnqueueReadBuffer() returns \c CL_INVALID_MEM_OBJECT.
+ * \throw clerror_no<status_t::invalid_value>
+ *    When \c clEnqueueReadBuffer() returns \c CL_INVALID_VALUE.
+ * \throw clerror_no<status_t::invalid_event_wait_list>
+ *    When \c clEnqueueReadBuffer() returns \c CL_INVALID_EVENT_WAIT_LIST.
+ * \throw clerror_no<status_t::misaligned_sub_buffer_offset>
+ *    When \c clEnqueueReadBuffer() returns \c CL_MISALIGNED_SUB_BUFFER_OFFSET.
+ * \throw clerror_no<status_t::exec_status_error_for_events_in_wait_list>
+ *    When \c clEnqueueReadBuffer() returns \c CL_EXEC_STATUS_ERROR_FOR_EVENTS_IN_WAIT_LIST.
+ * \throw clerror_no<status_t::mem_object_allocation_failure>
+ *    When \c clEnqueueReadBuffer() returns \c CL_MEM_OBJECT_ALLOCATION_FAILURE.
+ * \throw clerror_no<status_t::invalid_operation>
+ *    When \c clEnqueueReadBuffer() returns \c CL_INVALID_OPERATION.
+ * \throw clerror_no<status_t::out_of_resources>
+ *    When \c clEnqueueReadBuffer() returns \c CL_OUT_OF_RESOURCES.
+ * \throw clerror_no<status_t::out_of_host_memory>
+ *    When \c clEnqueueReadBuffer() returns \c CL_OUT_OF_HOST_MEMORY.
+ * \throw unexpected_clerror
+ *    When \c clEnqueueReadBuffer() returns other error code.
+ *
+ *
+ * \par Available in OpenCL versions
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |   \check  |   \check  |   \check  |   \check  |    ???    |
+ *
+ * \sa <a href="https://www.khronos.org/registry/cl/sdk/2.0/docs/man/xhtml/clEnqueueReadBuffer.html">clEnqueueReadBuffer()</a>
+ *
  */ // }}}
 void
 enqueue_read_buffer(cl_command_queue command_queue,
@@ -947,7 +1131,98 @@ enqueue_read_buffer(cl_command_queue command_queue,
                     const cl_event* event_wait_list,
                     cl_event* event);
 /** // doc: enqueue_write_buffer() {{{
- * \todo Write documentation
+ * \brief Enqueue commands to write to a buffer object from host memory
+ *
+ * This is a wrapper for \c clEnqueueWriteBuffer(). The call to
+ * #enqueue_write_buffer() has same effect as a call to
+ *    - \c clEnqueueWriteBuffer(command_queue, buffer, blocking_write, offset, size, ptr, num_events_in_wait_list, event_wait_list, event)
+ *
+ * The main difference between #enqueue_write_buffer() and \c clEnqueueWriteBuffer()
+ * is that it throws %clxx exceptions instead of returning OpenCL error codes.
+ * 
+ * \param command_queue
+ *    Is a valid host command-queue in which the write command will be queued.
+ *    \p command_queue and buffer must be created with the same OpenCL context.
+ * \param buffer
+ *    Refers to a valid buffer object.
+ * \param blocking_write
+ *    Indicates if the write operations are blocking or non-blocking.
+ *    If \p blocking_write is \c CL_TRUE, the OpenCL implementation copies the
+ *    data referred to by \p ptr and enqueues the write operation in the
+ *    command-queue. The memory pointed to by \p ptr can be reused by the
+ *    application after the \c clEnqueueWriteBuffer call returns.
+ *    If \p blocking_write is \c CL_FALSE, the OpenCL implementation will use
+ *    \p ptr to perform a nonblocking write. As the write is non-blocking the
+ *    implementation can return immediately. The memory pointed to by ptr
+ *    cannot be reused by the application after the call returns. The event
+ *    argument returns an \p event object which can be used to query the
+ *    execution status of the write command. When the write command has
+ *    completed, the memory pointed to by \p ptr can then be reused by the
+ *    application. 
+ * \param offset
+ *    The offset in bytes in the buffer object to write to.
+ * \param size
+ *    The size in bytes of data being written.
+ * \param ptr
+ *    The pointer to buffer in host memory where data is to be write from.
+ * \param num_events_in_wait_list
+ *    Number of events in the \p event_wait_list.
+ *    If \p event_wait_list is \c NULL, \p num_events_in_wait_list must be 0.
+ *    If \p event_wait_list is not \c NULL, the list of events pointed to by
+ *    \p event_wait_list must be valid and \p num_events_in_wait_list must be
+ *    greater than \c 0.
+ * \param event_wait_list
+ *    \p event_wait_list and \p num_events_in_wait_list specify events that
+ *    need to complete before this particular command can be executed. If
+ *    \p event_wait_list is \c NULL, then this particular command does not wait
+ *    on any event to complete. The events specified in \p event_wait_list act
+ *    as synchronization points. The context associated with events in
+ *    \p event_wait_list and \p command_queue must be the same. The memory
+ *    associated with \p event_wait_list can be reused or freed after the
+ *    function returns. 
+ * \param event
+ *    Returns an event object that identifies this particular write command and
+ *    can be used to query or queue a wait for this particular command to
+ *    complete.\p event can be \c NULL in which case it will not be possible
+ *    for the application to query the status of this command or queue a wait
+ *    for this command to complete. If the \p event_wait_list and the \p event
+ *    arguments are not \c NULL, the event argument should not refer to an
+ *    element of the \p event_wait_list array
+ *
+ *
+ * \throw clerror_no<status_t::invalid_command_queue>
+ *    When \c clEnqueueWriteBuffer() returns \c CL_INVALID_COMMAND_QUEUE.
+ * \throw clerror_no<status_t::invalid_context>
+ *    When \c clEnqueueWriteBuffer() returns \c CL_INVALID_CONTEXT.
+ * \throw clerror_no<status_t::invalid_mem_object>
+ *    When \c clEnqueueWriteBuffer() returns \c CL_INVALID_MEM_OBJECT.
+ * \throw clerror_no<status_t::invalid_value>
+ *    When \c clEnqueueWriteBuffer() returns \c CL_INVALID_VALUE.
+ * \throw clerror_no<status_t::invalid_event_wait_list>
+ *    When \c clEnqueueWriteBuffer() returns \c CL_INVALID_EVENT_WAIT_LIST.
+ * \throw clerror_no<status_t::misaligned_sub_buffer_offset>
+ *    When \c clEnqueueWriteBuffer() returns \c CL_MISALIGNED_SUB_BUFFER_OFFSET.
+ * \throw clerror_no<status_t::exec_status_error_for_events_in_wait_list>
+ *    When \c clEnqueueWriteBuffer() returns \c CL_EXEC_STATUS_ERROR_FOR_EVENTS_IN_WAIT_LIST.
+ * \throw clerror_no<status_t::mem_object_allocation_failure>
+ *    When \c clEnqueueWriteBuffer() returns \c CL_MEM_OBJECT_ALLOCATION_FAILURE.
+ * \throw clerror_no<status_t::invalid_operation>
+ *    When \c clEnqueueWriteBuffer() returns \c CL_INVALID_OPERATION.
+ * \throw clerror_no<status_t::out_of_resources>
+ *    When \c clEnqueueWriteBuffer() returns \c CL_OUT_OF_RESOURCES.
+ * \throw clerror_no<status_t::out_of_host_memory>
+ *    When \c clEnqueueWriteBuffer() returns \c CL_OUT_OF_HOST_MEMORY.
+ * \throw unexpected_clerror
+ *    When \c clEnqueueWriteBuffer() returns other error code.
+ *
+ *
+ * \par Available in OpenCL versions
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |   \check  |   \check  |   \check  |   \check  |    ???    |
+ *
+ * \sa <a href="https://www.khronos.org/registry/cl/sdk/2.0/docs/man/xhtml/clEnqueueWriteBuffer.html">clEnqueueWriteBuffer()</a>
+ *
  */ // }}}
 void
 enqueue_write_buffer(cl_command_queue command_queue,
@@ -960,7 +1235,87 @@ enqueue_write_buffer(cl_command_queue command_queue,
                      const cl_event* event_wait_list,
                      cl_event* event);
 /** // doc: enqueue_copy_buffer() {{{
- * \todo Write documentation
+ * \brief Enqueues a command to copy from one buffer object to another
+ *
+ * This is a wrapper for \c clEnqueueCopyBuffer(). The call to
+ * #enqueue_copy_buffer() has same effect as a call to
+ *    - \c clEnqueueCopyBuffer(command_queue, src_buffer, dst_buffer, src_offset, dst_offset, size, num_events_in_wait_list, event_wait_list, event)
+ *
+ * The main difference between #enqueue_copy_buffer() and \c clEnqueueCopyBuffer()
+ * is that it throws %clxx exceptions instead of returning OpenCL error codes.
+ *
+ * \param command_queue
+ *    The host command-queue in which the copy command will be queued. The
+ *    OpenCL context associated with \p command_queue, \p src_buffer, and
+ *    \p dst_buffer must be the same.
+ * \param src_buffer
+ *    Source buffer, where the data is to be copied from.
+ * \param dst_buffer
+ *    Destination buffer, where the data is to be copied into.
+ * \param src_offset
+ *    The offset where to begin copying data from \p src_buffer.
+ * \param dst_offset
+ *    The offset where to begin copying data into \p dst_buffer.
+ * \param size
+ *    Refers to the size in bytes to copy.
+ * \param num_events_in_wait_list
+ *    Number of events in the \p event_wait_list.
+ *    If \p event_wait_list is \c NULL, \p num_events_in_wait_list must be 0.
+ *    If \p event_wait_list is not \c NULL, the list of events pointed to by
+ *    \p event_wait_list must be valid and \p num_events_in_wait_list must be
+ *    greater than \c 0.
+ * \param event_wait_list
+ *    \p event_wait_list and \p num_events_in_wait_list specify events that
+ *    need to complete before this particular command can be executed. If
+ *    \p event_wait_list is \c NULL, then this particular command does not wait
+ *    on any event to complete.The events specified in \p event_wait_list act
+ *    as synchronization points. The context associated with events in
+ *    \p event_wait_list and \p command_queue must be the same. The memory
+ *    associated with \p event_wait_list can be reused or freed after the
+ *    function returns. 
+ * \param event
+ *    Returns an event object that identifies this particular copy command and
+ *    can be used to query or queue a wait for this particular command to
+ *    complete.\p event can be \c NULL in which case it will not be possible
+ *    for the application to query the status of this command or queue a wait
+ *    for this command to complete. If the \p event_wait_list and the \p event
+ *    arguments are not \c NULL, the event argument should not refer to an
+ *    element of the \p event_wait_list array
+ *
+ *
+ * \throw clerror_no<status_t::invalid_command_queue>
+ *    When \c clEnqueueCopyBuffer() returns \c CL_INVALID_COMMAND_QUEUE.
+ * \throw clerror_no<status_t::invalid_context>
+ *    When \c clEnqueueCopyBuffer() returns \c CL_INVALID_CONTEXT.
+ * \throw clerror_no<status_t::invalid_mem_object>
+ *    When \c clEnqueueCopyBuffer() returns \c CL_INVALID_MEM_OBJECT.
+ * \throw clerror_no<status_t::invalid_value>
+ *    When \c clEnqueueCopyBuffer() returns \c CL_INVALID_VALUE.
+ * \throw clerror_no<status_t::invalid_event_wait_list>
+ *    When \c clEnqueueCopyBuffer() returns \c CL_INVALID_EVENT_WAIT_LIST.
+ * \throw clerror_no<status_t::misaligned_sub_buffer_offset>
+ *    When \c clEnqueueCopyBuffer() returns \c CL_MISALIGNED_SUB_BUFFER_OFFSET.
+ * \throw clerror_no<status_t::exec_status_error_for_events_in_wait_list>
+ *    When \c clEnqueueCopyBuffer() returns \c CL_EXEC_STATUS_ERROR_FOR_EVENTS_IN_WAIT_LIST.
+ * \throw clerror_no<status_t::mem_copy_overlap>
+ *    When \c clEnqueueCopyBuffer() returns \c CL_MEM_COPY_OVERLAP.
+ * \throw clerror_no<status_t::mem_object_allocation_failure>
+ *    When \c clEnqueueCopyBuffer() returns \c CL_MEM_OBJECT_ALLOCATION_FAILURE.
+ * \throw clerror_no<status_t::out_of_resources>
+ *    When \c clEnqueueCopyBuffer() returns \c CL_OUT_OF_RESOURCES.
+ * \throw clerror_no<status_t::out_of_host_memory>
+ *    When \c clEnqueueCopyBuffer() returns \c CL_OUT_OF_HOST_MEMORY.
+ * \throw unexpected_clerror
+ *    When \c clEnqueueCopyBuffer() returns other error code.
+ *
+ *
+ * \par Available in OpenCL versions
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |   \check  |   \check  |   \check  |   \check  |    ???    |
+ *
+ * \sa <a href="https://www.khronos.org/registry/cl/sdk/2.0/docs/man/xhtml/clEnqueueCopyBuffer.html">clEnqueueCopyBuffer()</a>
+ *
  */ // }}}
 void
 enqueue_copy_buffer(cl_command_queue command_queue,
@@ -973,7 +1328,106 @@ enqueue_copy_buffer(cl_command_queue command_queue,
                     const cl_event* event_wait_list,
                     cl_event* event);
 /** // doc: enqueue_map_buffer() {{{
- * \todo Write documentation
+ * \brief Enqueues a command to map a region of the buffer object given by \p
+ *        buffer into the host address space and returns a pointer to this
+ *        mapped region.
+ *
+ * This is a wrapper for \c clEnqueueMapBuffer(). The call to
+ * #enqueue_map_buffer() has same effect as a call to
+ *    - \c clEnqueueMapBuffer(command_queue, buffer, blocking_map, static_cast<cl_map_flags>(map_flags), offset, size, num_events_in_wait_list, event_wait_list, event, &errcode)
+ *
+ * with \c errcode being defined internally by #enqueue_map_buffer().
+ *
+ * The main difference between #enqueue_map_buffer() and \c clEnqueueMapBuffer()
+ * is that it throws %clxx exceptions instead of returning OpenCL error codes.
+ *
+ * \param command_queue
+ *    Must be a valid host command-queue.
+ * \param buffer
+ *    The buffer object to be mapped.
+ * \param blocking_map
+ *    Indicates if the map operation is blocking or non-blocking.
+ *    If \p blocking_map is \c CL_TRUE, #enqueue_map_buffer() does not return
+ *    until the specified region in buffer is mapped into the host address
+ *    space and the application can access the contents of the mapped region
+ *    using the pointer returned by enqueue_map_buffer().
+ *    If \p blocking_map is \c CL_FALSE i.e. map operation is non-blocking, the
+ *    pointer to the mapped region returned by enqueue_map_buffer() cannot be
+ *    used until the map command has completed. The \p event argument returns
+ *    an event object which can be used to query the execution status of the
+ *    map command. When the map command is completed, the application can
+ *    access the contents of the mapped region using the pointer returned by
+ *    enqueue_map_buffer().
+ * \param map_flags
+ *    A bit-field with mapping options. See the documentation of #map_flags_t
+ *    for the predefined bit values.
+ * \param offset
+ *    The offset in bytes of the region in the buffer object that is being
+ *    mapped.
+ * \param size
+ *    The size in bytes of the region in the buffer object that is being
+ *    mapped.
+ * \param num_events_in_wait_list
+ *    Number of events in the \p event_wait_list.
+ *    If \p event_wait_list is \c NULL, \p num_events_in_wait_list must be 0.
+ *    If \p event_wait_list is not \c NULL, the list of events pointed to by
+ *    \p event_wait_list must be valid and \p num_events_in_wait_list must be
+ *    greater than \c 0.
+ * \param event_wait_list
+ *    \p event_wait_list and \p num_events_in_wait_list specify events that
+ *    need to complete before this particular command can be executed. If
+ *    \p event_wait_list is \c NULL, then this particular command does not wait
+ *    on any event to complete. The events specified in \p event_wait_list act
+ *    as synchronization points. The context associated with events in
+ *    \p event_wait_list and \p command_queue must be the same. The memory
+ *    associated with \p event_wait_list can be reused or freed after the
+ *    function returns. 
+ * \param event
+ *    Returns an event object that identifies this particular map command and
+ *    can be used to query or queue a wait for this particular command to
+ *    complete.\p event can be \c NULL in which case it will not be possible
+ *    for the application to query the status of this command or queue a wait
+ *    for this command to complete. If the \p event_wait_list and the \p event
+ *    arguments are not \c NULL, the event argument should not refer to an
+ *    element of the \p event_wait_list array
+ *
+ * \returns A pointer to mapped buffer.
+ *
+ * \throw clerror_no<status_t::invalid_command_queue>
+ *    When \c clEnqueueCopyBuffer() returns \c CL_INVALID_COMMAND_QUEUE.
+ * \throw clerror_no<status_t::invalid_context>
+ *    When \c clEnqueueCopyBuffer() returns \c CL_INVALID_CONTEXT.
+ * \throw clerror_no<status_t::invalid_mem_object>
+ *    When \c clEnqueueCopyBuffer() returns \c CL_INVALID_MEM_OBJECT.
+ * \throw clerror_no<status_t::invalid_value>
+ *    When \c clEnqueueCopyBuffer() returns \c CL_INVALID_VALUE.
+ * \throw clerror_no<status_t::invalid_event_wait_list>
+ *    When \c clEnqueueCopyBuffer() returns \c CL_INVALID_EVENT_WAIT_LIST.
+ * \throw clerror_no<status_t::misaligned_sub_buffer_offset>
+ *    When \c clEnqueueCopyBuffer() returns \c CL_MISALIGNED_SUB_BUFFER_OFFSET.
+ * \throw clerror_no<status_t::map_failure>
+ *    When \c clEnqueueCopyBuffer() returns \c CL_MAP_FAILURE.
+ * \throw clerror_no<status_t::exec_status_error_for_events_in_wait_list>
+ *    When \c clEnqueueCopyBuffer() returns \c CL_EXEC_STATUS_ERROR_FOR_EVENTS_IN_WAIT_LIST.
+ * \throw clerror_no<status_t::mem_object_allocation_failure>
+ *    When \c clEnqueueCopyBuffer() returns \c CL_MEM_OBJECT_ALLOCATION_FAILURE.
+ * \throw clerror_no<status_t::invalid_operation>
+ *    When \c clEnqueueCopyBuffer() returns \c CL_INVALID_OPERATION.
+ * \throw clerror_no<status_t::out_of_resources>
+ *    When \c clEnqueueCopyBuffer() returns \c CL_OUT_OF_RESOURCES.
+ * \throw clerror_no<status_t::out_of_host_memory>
+ *    When \c clEnqueueCopyBuffer() returns \c CL_OUT_OF_HOST_MEMORY.
+ * \throw unexpected_clerror
+ *    When \c clEnqueueCopyBuffer() returns other error code.
+ *
+ *
+ * \par Available in OpenCL versions
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |   \check  |   \check  |   \check  |   \check  |    ???    |
+ *
+ * \sa <a href="https://www.khronos.org/registry/cl/sdk/2.0/docs/man/xhtml/clEnqueueCopyBuffer.html">clEnqueueCopyBuffer()</a>
+ *
  */ // }}}
 void*
 enqueue_map_buffer(cl_command_queue command_queue,
@@ -985,8 +1439,133 @@ enqueue_map_buffer(cl_command_queue command_queue,
                    cl_uint num_events_in_wait_list,
                    const cl_event* event_wait_list,
                    cl_event* event);
+#if CLXX_OPENCL_ALLOWED(clCreateImage)
+/** // doc: create_image() {{{
+ * \brief Creates a 1D image, 1D image buffer, 1D image array, 2D image, 2D
+ *        image array or 3D image object
+ *
+ * This is a wrapper for \c clCreateImage(). The call to
+ * #create_image() has same effect as a call to
+ *    - \c clCreateImage(context, static_cast<cl_mem_flags>(flags), image_format, image_desc, host_ptr, &errcode)
+ *
+ * with \c errcode being defined internally by #create_image().
+ *
+ * The main difference between #create_image() and \c clCreateImage()
+ * is that it throws %clxx exceptions instead of returning OpenCL error codes.
+ *
+ * \param context
+ *    A valid OpenCL context on which the image object is to be created.
+ * \param flags
+ *    A bit-field that is used to specify allocation and usage information
+ *    about the image memory object being created. See the documentation
+ *    of #mem_flags_t for the list of predefined bit values.
+ * \param image_format
+ *    A pointer to a structure that describes format properties of the image to
+ *    be allocated.
+ *    See <a href="https://www.khronos.org/registry/cl/sdk/2.0/docs/man/xhtml/cl_image_format.html">cl_image_format</a>
+ *    for a detailed description of the image format descriptor.
+ * \param image_desc
+ *    A pointer to a structure that describes type and dimensions of the image
+ *    to be allocated. See <a href="https://www.khronos.org/registry/cl/sdk/2.0/docs/man/xhtml/cl_image_desc.html">imageDescriptor</a> for more information
+ * \param host_ptr
+ *    A pointer to the image data that may already be allocated by the
+ *    application.
+ *
+ * \returns A handle to the newly created OpenCL image object
+ *
+ * \throw clerror_no<status_t::invalid_context>
+ *    When \c clCreateImage() returns \c CL_INVALID_CONTEXT.
+ * \throw clerror_no<status_t::invalid_value>
+ *    When \c clCreateImage() returns \c CL_INVALID_VALUE.
+ * \throw clerror_no<status_t::invalid_image_format_descriptor>
+ *    When \c clCreateImage() returns \c CL_INVALID_IMAGE_FORMAT_DESCRIPTOR.
+ * \throw clerror_no<status_t::invalid_image_descriptor>
+ *    When \c clCreateImage() returns \c CL_INVALID_IMAGE_DESCRIPTOR.
+ * \throw clerror_no<status_t::invalid_image_size>
+ *    When \c clCreateImage() returns \c CL_INVALID_IMAGE_SIZE.
+ * \throw clerror_no<status_t::invalid_host_ptr>
+ *    When \c clCreateImage() returns \c CL_INVALID_HOST_PTR.
+ * \throw clerror_no<status_t::image_format_not_supported>
+ *    When \c clCreateImage() returns \c CL_IMAGE_FORMAT_NOT_SUPPORTED.
+ * \throw clerror_no<status_t::mem_object_allocation_failure>
+ *    When \c clCreateImage() returns \c CL_MEM_OBJECT_ALLOCATION_FAILURE.
+ * \throw clerror_no<status_t::invalid_operation>
+ *    When \c clCreateImage() returns \c CL_INVALID_OPERATION.
+ * \throw clerror_no<status_t::out_of_resources>
+ *    When \c clCreateImage() returns \c CL_OUT_OF_RESOURCES.
+ * \throw clerror_no<status_t::out_of_host_memory>
+ *    When \c clCreateImage() returns \c CL_OUT_OF_HOST_MEMORY.
+ * \throw unexpected_clerror
+ *    When \c clCreateImage() returns other error code.
+ *
+ *
+ * \par Available in OpenCL versions
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |           |           |   \check  |   \check  |    ???    |
+ *
+ * \sa <a href="https://www.khronos.org/registry/cl/sdk/2.0/docs/man/xhtml/clCreateImage.html">clCreateImage()</a>
+ *
+ */ // }}}
+cl_mem
+create_image(cl_context context,
+             mem_flags_t flags,
+             const cl_image_format *image_format,
+             const cl_image_desc *image_desc,
+             void *host_ptr);
+#endif
 /** // doc: get_supported_image_formats() {{{
- * \todo Write documentation
+ * \brief Get the list of image formats supported by an OpenCL implementation
+ *
+ * This is a wrapper for \c clGetSupportedImageFormats(). The call to
+ * #get_supported_image_formats() has same effect as a call to
+ *    - \c clGetSupportedImageFormats(context, static_cast<cl_mem_flags>(flags), static_cast<cl_mem_object_type>(image_type), num_entries, image_formats, num_image_formats)
+ *
+ * The main difference between #get_supported_image_formats() and \c clGetSupportedImageFormats()
+ * is that it throws %clxx exceptions instead of returning OpenCL error codes.
+ *
+ * \param context
+ *    A valid OpenCL context on which the image object(s) will be created.
+ * \param flags
+ *    A bit-field that is used to specify allocation and usage information
+ *    about the image memory object being queried. See the documentation of
+ *    #mem_flags_t for a list of predefined bit values.
+ * \param image_type
+ *    Describes the image type. See the documentation of #mem_object_type_t
+ *    for a list of predefined values.
+ * \param num_entries
+ *    Specifies the number of entries that can be returned in the memory
+ *    location given by \p image_formats.
+ * \param image_formats
+ *    A pointer to a memory location where the list of supported image formats
+ *    are returned. Each entry describes a \c cl_image_format structure
+ *    supported by the OpenCL implementation. If \p image_formats is \c NULL,
+ *    it is ignored.
+ * \param num_image_formats
+ *    The actual number of supported image formats for a specific context and
+ *    values specified by \p flags. If \p num_image_formats is \c NULL, it is
+ *    ignored.
+ *
+ *
+ * \throw clerror_no<status_t::invalid_context>
+ *    When \c clGetSupportedImageFormats() returns \c CL_INVALID_CONTEXT.
+ * \throw clerror_no<status_t::invalid_value>
+ *    When \c clGetSupportedImageFormats() returns \c CL_INVALID_VALUE.
+ * \throw clerror_no<status_t::out_of_resources>
+ *    When \c clGetSupportedImageFormats() returns \c CL_OUT_OF_RESOURCES.
+ * \throw clerror_no<status_t::out_of_host_memory>
+ *    When \c clGetSupportedImageFormats() returns \c CL_OUT_OF_HOST_MEMORY.
+ * \throw unexpected_clerror
+ *    When \c clGetSupportedImageFormats() returns other error code.
+ *
+ *
+ * \par Available in OpenCL versions
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |   \check  |   \check  |   \check  |   \check  |    ???    |
+ *
+ * \sa <a href="https://www.khronos.org/registry/cl/sdk/2.0/docs/man/xhtml/clGetSupportedImageFormats.html">clGetSupportedImageFormats()</a>
+ *
  */ // }}}
 void
 get_supported_image_formats(cl_context context,
@@ -996,7 +1575,127 @@ get_supported_image_formats(cl_context context,
                             cl_image_format* image_formats,
                             cl_uint* num_image_formats);
 /** // doc: enqueue_read_image() {{{
- * \todo Write documentation
+ * \brief Enqueue commands to read from an image or image array object to host memory. 
+ *
+ * This is a wrapper for \c clEnqueueReadImage(). The call to
+ * #enqueue_read_image() has same effect as a call to
+ *    - \c clEnqueueReadImage(command_queue, image, blocking_read, origin, region, row_pitch, slice_pitch, ptr, num_events_in_wait_list, event_wait_list, event)
+ *
+ * The main difference between #enqueue_read_image() and \c clEnqueueReadImage()
+ * is that it throws %clxx exceptions instead of returning OpenCL error codes.
+ *
+ *
+ * \param command_queue
+ *    Refers to the host command-queue in which the read command will be
+ *    queued. \p command_queue and \p image must be created with the same
+ *    OpenCL context.
+ * \param image
+ *    Refers to a valid image or image array object.
+ * \param blocking_read
+ *    Indicates if the read operations are blocking or non-blocking.
+ *    If \p blocking_read is \c CL_TRUE i.e. the read command is blocking,
+ *    #enqueue_read_image() does not return until the buffer data has been read
+ *    and copied into memory pointed to by \p ptr.
+ *    If \p blocking_read is \c CL_FALSE i.e. map operation is non-blocking,
+ *    #enqueue_read_image() queues a non-blocking read command and returns. The
+ *    contents of the buffer that \p ptr points to cannot be used until the
+ *    read command has completed. The \p event argument returns an event object
+ *    which can be used to query the execution status of the read command. When
+ *    the read command has completed, the contents of the buffer that \p ptr
+ *    points to can be used by the application
+ * \param origin
+ *    Defines the (x, y, z) offset in pixels in the 1D, 2D, or 3D image, the
+ *    (x, y) offset and the image index in the \p image array or the (x) offset
+ *    and the image index in the 1D \p image array. If \p image is a 2D image
+ *    object, \p origin[2] must be 0. If \p image is a 1D image or 1D image
+ *    buffer object, \p origin[1] and \p origin[2] must be 0. If \p image is a
+ *    1D image array object, \p origin[2] must be 0. If image is a 1D image
+ *    array object, \p origin[1] describes the image index in the 1D image
+ *    array. If \p image is a 2D image array object, \p origin[2] describes the
+ *    image index in the 2D image array
+ * \param region
+ *    Defines the (width, height, depth) in pixels of the 1D, 2D or 3D
+ *    rectangle, the (width, height) in pixels of the 2D rectangle and the
+ *    number of images of a 2D image array or the (width) in pixels of the 1D
+ *    rectangle and the number of images of a 1D image array. If \p image is a
+ *    2D image object, \p region[2] must be 1. If \p image is a 1D image or 1D
+ *    image buffer object, \p region[1] and \p region[2] must be 1. If \p image
+ *    is a 1D image array object, \p region[2] must be 1. The values in region
+ *    cannot be 0.
+ * \param row_pitch
+ *    The length of each row in bytes. This value must be greater than or equal
+ *    to the element size in bytes * width. If \p row_pitch is set to 0, the
+ *    appropriate row pitch is calculated based on the size of each element in
+ *    bytes multiplied by width.
+ * \param slice_pitch
+ *    Size in bytes of the 2D slice of the 3D region of a 3D image or each
+ *    image of a 1D or 2D image array being read. This must be 0 if \p image is
+ *    a 1D or 2D image. Otherwise this value must be greater than or equal to
+ *    \p row_pitch * \c height. If \p slice_pitch is set to 0, the appropriate
+ *    slice pitch is calculated based on the \p row_pitch * \c height.
+ * \param ptr
+ *    The pointer to a buffer in host memory where image data is to be read
+ *    from.
+ * \param num_events_in_wait_list
+ *    Number of events in the \p event_wait_list.
+ *    If \p event_wait_list is \c NULL, \p num_events_in_wait_list must be 0.
+ *    If \p event_wait_list is not \c NULL, the list of events pointed to by
+ *    \p event_wait_list must be valid and \p num_events_in_wait_list must be
+ *    greater than \c 0.
+ * \param event_wait_list
+ *    \p event_wait_list and \p num_events_in_wait_list specify events that
+ *    need to complete before this particular command can be executed. If
+ *    \p event_wait_list is \c NULL, then this particular command does not wait
+ *    on any event to complete. The events specified in \p event_wait_list act
+ *    as synchronization points. The context associated with events in
+ *    \p event_wait_list and \p command_queue must be the same. The memory
+ *    associated with \p event_wait_list can be reused or freed after the
+ *    function returns. 
+ * \param event
+ *    Returns an event object that identifies this particular read command and
+ *    can be used to query or queue a wait for this particular command to
+ *    complete.\p event can be \c NULL in which case it will not be possible
+ *    for the application to query the status of this command or queue a wait
+ *    for this command to complete. If the \p event_wait_list and the \p event
+ *    arguments are not \c NULL, the event argument should not refer to an
+ *    element of the \p event_wait_list array
+ *
+ *
+ * \throw clerror_no<status_t::invalid_command_queue>
+ *    When \c clEnqueueReadBuffer() returns \c CL_INVALID_COMMAND_QUEUE.
+ * \throw clerror_no<status_t::invalid_context>
+ *    When \c clEnqueueReadBuffer() returns \c CL_INVALID_CONTEXT.
+ * \throw clerror_no<status_t::invalid_mem_object>
+ *    When \c clEnqueueReadBuffer() returns \c CL_INVALID_MEM_OBJECT.
+ * \throw clerror_no<status_t::invalid_value>
+ *    When \c clEnqueueReadBuffer() returns \c CL_INVALID_VALUE.
+ * \throw clerror_no<status_t::invalid_event_wait_list>
+ *    When \c clEnqueueReadBuffer() returns \c CL_INVALID_EVENT_WAIT_LIST.
+ * \throw clerror_no<status_t::invalid_image_size>
+ *    When \c clEnqueueReadBuffer() returns \c CL_INVALID_IMAGE_SIZE.
+ * \throw clerror_no<status_t::image_format_not_supported>
+ *    When \c clEnqueueReadBuffer() returns \c CL_IMAGE_FORMAT_NOT_SUPPORTED.
+ * \throw clerror_no<status_t::exec_status_error_for_events_in_wait_list>
+ *    When \c clEnqueueReadBuffer() returns \c CL_EXEC_STATUS_ERROR_FOR_EVENTS_IN_WAIT_LIST.
+ * \throw clerror_no<status_t::mem_object_allocation_failure>
+ *    When \c clEnqueueReadBuffer() returns \c CL_MEM_OBJECT_ALLOCATION_FAILURE.
+ * \throw clerror_no<status_t::invalid_operation>
+ *    When \c clEnqueueReadBuffer() returns \c CL_INVALID_OPERATION.
+ * \throw clerror_no<status_t::out_of_resources>
+ *    When \c clEnqueueReadBuffer() returns \c CL_OUT_OF_RESOURCES.
+ * \throw clerror_no<status_t::out_of_host_memory>
+ *    When \c clEnqueueReadBuffer() returns \c CL_OUT_OF_HOST_MEMORY.
+ * \throw unexpected_clerror
+ *    When \c clEnqueueReadBuffer() returns other error code.
+ *
+ *
+ * \par Available in OpenCL versions
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |   \check  |   \check  |   \check  |   \check  |    ???    |
+ *
+ * \sa <a href="https://www.khronos.org/registry/cl/sdk/2.0/docs/man/xhtml/clEnqueueReadBuffer.html">clEnqueueReadBuffer()</a>
+ *
  */ // }}}
 void
 enqueue_read_image(cl_command_queue command_queue,
@@ -1011,7 +1710,129 @@ enqueue_read_image(cl_command_queue command_queue,
                    const cl_event* event_wait_list,
                    cl_event* event);
 /** // doc: enqueue_write_image() {{{
- * \todo Write documentation
+ * \brief Enqueue commands to write to an image or image array object from host memory. 
+ *
+ * This is a wrapper for \c clEnqueueWriteImage(). The call to
+ * #enqueue_write_image() has same effect as a call to
+ *    - \c clEnqueueWriteImage(command_queue, image, blocking_write, origin, region, input_row_pitch, input_slice_pitch, ptr, num_events_in_wait_list, event_wait_list, event)
+ *
+ * The main difference between #enqueue_write_image() and \c clEnqueueWriteImage()
+ * is that it throws %clxx exceptions instead of returning OpenCL error codes.
+ *
+ *
+ * \param command_queue
+ *    Refers to the host command-queue in which the write command will be
+ *    queued. \p command_queue and \p image must be created with the same
+ *    OpenCL context.
+ * \param image
+ *    Refers to a valid image or image array object.
+ * \param blocking_write
+ *    Indicates if the write operations are blocking or non-blocking.
+ *    If \p blocking_write is \c CL_TRUE the OpenCL implementation copies the
+ *    data referred to by \p ptr and enqueues the write command in the
+ *    command-queue. The memory pointed to by \p ptr can be reused by the
+ *    application after the #enqueue_write_image() call returns.
+ *    If \p blocking_write is \c CL_FALSE the OpenCL implementation will use
+ *    \p ptr to perform a nonblocking write. As the write is non-blocking the
+ *    implementation can return immediately. The memory pointed to by \p ptr
+ *    cannot be reused by the application after the call returns. The event
+ *    argument returns an event object which can be used to query the
+ *    execution status of the write command. When the write command has
+ *    completed, the memory pointed to by \p ptr can then be reused by the
+ *    application.
+ * \param origin
+ *    Defines the (x, y, z) offset in pixels in the 1D, 2D, or 3D image, the
+ *    (x, y) offset and the image index in the \p image array or the (x) offset
+ *    and the image index in the 1D \p image array. If \p image is a 2D image
+ *    object, \p origin[2] must be 0. If \p image is a 1D image or 1D image
+ *    buffer object, \p origin[1] and \p origin[2] must be 0. If \p image is a
+ *    1D image array object, \p origin[2] must be 0. If image is a 1D image
+ *    array object, \p origin[1] describes the image index in the 1D image
+ *    array. If \p image is a 2D image array object, \p origin[2] describes the
+ *    image index in the 2D image array
+ * \param region
+ *    Defines the (width, height, depth) in pixels of the 1D, 2D or 3D
+ *    rectangle, the (width, height) in pixels of the 2D rectangle and the
+ *    number of images of a 2D image array or the (width) in pixels of the 1D
+ *    rectangle and the number of images of a 1D image array. If \p image is a
+ *    2D image object, \p region[2] must be 1. If \p image is a 1D image or 1D
+ *    image buffer object, \p region[1] and \p region[2] must be 1. If \p image
+ *    is a 1D image array object, \p region[2] must be 1. The values in region
+ *    cannot be 0.
+ * \param input_row_pitch
+ *    The length of each row in bytes. This value must be greater than or equal
+ *    to the element size in bytes * width. If \p input_row_pitch is set to 0, the
+ *    appropriate row pitch is calculated based on the size of each element in
+ *    bytes multiplied by width.
+ * \param input_slice_pitch
+ *    Size in bytes of the 2D slice of the 3D region of a 3D image or each
+ *    image of a 1D or 2D image array being write. This must be 0 if \p image is
+ *    a 1D or 2D image. Otherwise this value must be greater than or equal to
+ *    \p input_row_pitch * \c height. If \p input_slice_pitch is set to 0, the appropriate
+ *    slice pitch is calculated based on the \p input_row_pitch * \c height.
+ * \param ptr
+ *    The pointer to a buffer in host memory where image data is to be write
+ *    from.
+ * \param num_events_in_wait_list
+ *    Number of events in the \p event_wait_list.
+ *    If \p event_wait_list is \c NULL, \p num_events_in_wait_list must be 0.
+ *    If \p event_wait_list is not \c NULL, the list of events pointed to by
+ *    \p event_wait_list must be valid and \p num_events_in_wait_list must be
+ *    greater than \c 0.
+ * \param event_wait_list
+ *    \p event_wait_list and \p num_events_in_wait_list specify events that
+ *    need to complete before this particular command can be executed. If
+ *    \p event_wait_list is \c NULL, then this particular command does not wait
+ *    on any event to complete. The events specified in \p event_wait_list act
+ *    as synchronization points. The context associated with events in
+ *    \p event_wait_list and \p command_queue must be the same. The memory
+ *    associated with \p event_wait_list can be reused or freed after the
+ *    function returns. 
+ * \param event
+ *    Returns an event object that identifies this particular write command and
+ *    can be used to query or queue a wait for this particular command to
+ *    complete.\p event can be \c NULL in which case it will not be possible
+ *    for the application to query the status of this command or queue a wait
+ *    for this command to complete. If the \p event_wait_list and the \p event
+ *    arguments are not \c NULL, the event argument should not refer to an
+ *    element of the \p event_wait_list array
+ *
+ *
+ * \throw clerror_no<status_t::invalid_command_queue>
+ *    When \c clEnqueueWriteImage() returns \c CL_INVALID_COMMAND_QUEUE.
+ * \throw clerror_no<status_t::invalid_context>
+ *    When \c clEnqueueWriteImage() returns \c CL_INVALID_CONTEXT.
+ * \throw clerror_no<status_t::invalid_mem_object>
+ *    When \c clEnqueueWriteImage() returns \c CL_INVALID_MEM_OBJECT.
+ * \throw clerror_no<status_t::invalid_value>
+ *    When \c clEnqueueWriteImage() returns \c CL_INVALID_VALUE.
+ * \throw clerror_no<status_t::invalid_event_wait_list>
+ *    When \c clEnqueueWriteImage() returns \c CL_INVALID_EVENT_WAIT_LIST.
+ * \throw clerror_no<status_t::invalid_image_size>
+ *    When \c clEnqueueWriteImage() returns \c CL_INVALID_IMAGE_SIZE.
+ * \throw clerror_no<status_t::image_format_not_supported>
+ *    When \c clEnqueueWriteImage() returns \c CL_IMAGE_FORMAT_NOT_SUPPORTED.
+ * \throw clerror_no<status_t::exec_status_error_for_events_in_wait_list>
+ *    When \c clEnqueueWriteImage() returns \c CL_EXEC_STATUS_ERROR_FOR_EVENTS_IN_WAIT_LIST.
+ * \throw clerror_no<status_t::mem_object_allocation_failure>
+ *    When \c clEnqueueWriteImage() returns \c CL_MEM_OBJECT_ALLOCATION_FAILURE.
+ * \throw clerror_no<status_t::invalid_operation>
+ *    When \c clEnqueueWriteImage() returns \c CL_INVALID_OPERATION.
+ * \throw clerror_no<status_t::out_of_resources>
+ *    When \c clEnqueueWriteImage() returns \c CL_OUT_OF_RESOURCES.
+ * \throw clerror_no<status_t::out_of_host_memory>
+ *    When \c clEnqueueWriteImage() returns \c CL_OUT_OF_HOST_MEMORY.
+ * \throw unexpected_clerror
+ *    When \c clEnqueueWriteImage() returns other error code.
+ *
+ *
+ * \par Available in OpenCL versions
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |   \check  |   \check  |   \check  |   \check  |    ???    |
+ *
+ * \sa <a href="https://www.khronos.org/registry/cl/sdk/2.0/docs/man/xhtml/clEnqueueWriteImage.html">clEnqueueWriteImage()</a>
+ *
  */ // }}}
 void
 enqueue_write_image(cl_command_queue command_queue,
@@ -1026,7 +1847,119 @@ enqueue_write_image(cl_command_queue command_queue,
                     const cl_event* event_wait_list,
                     cl_event* event);
 /** // doc: enqueue_copy_image() {{{
- * \todo Write documentation
+ * \brief Enqueues a command to copy image objects
+ *
+ * This is a wrapper for \c clEnqueueCopyImage(). The call to
+ * #enqueue_copy_image() has same effect as a call to
+ *    - \c clEnqueueCopyImage(command_queue, src_image, dst_image, src_origin, dst_origin, region, num_events_in_wait_list, event_wait_list, event)
+ *
+ * The main difference between #enqueue_copy_image() and \c clEnqueueCopyImage()
+ * is that it throws %clxx exceptions instead of returning OpenCL error codes.
+ *
+ * \param command_queue
+ *    Refers to the host command-queue in which the copy command will be
+ *    queued. The OpenCL context associated with \p command_queue, \p src_image
+ *    and \p dst_image must be the same.
+ * \param src_image
+ * \param dst_image
+ *    Can be 1D, 2D, 3D image or a 1D, 2D image array objects. It is possible
+ *    to copy subregions between any combinations of source and destination
+ *    types, provided that the dimensions of the subregions are the same e.g.,
+ *    one can copy a rectangular region from a 2D image to a slice of a 3D
+ *    image.
+ * \param src_origin
+ *    Defines the (x, y, z) offset in pixels in the 1D, 2D or 3D image, the (x,
+ *    y) offset and the image index in the 2D image array or the (x) offset and
+ *    the image index in the 1D image array. If \p src_image is a 2D image
+ *    object, \p src_origin[2] must be 0. If \p src_image is a 1D image object,
+ *    \p src_origin[1] and \p src_origin[2] must be 0. If src_image is a 1D
+ *    image array object, \p src_origin[2] must be 0. If \p src_image is a 1D
+ *    image array object, \p src_origin[1] describes the image index in the 1D
+ *    image array. If \p src_image is a 2D image array object, \p src_origin[2]
+ *    describes the image index in the 2D image array.
+ * \param dst_origin
+ *    Defines the (x, y, z) offset in pixels in the 1D, 2D or 3D image, the (x,
+ *    y) offset and the image index in the 2D image array or the (x) offset and
+ *    the image index in the 1D image array. If \p dst_image is a 2D image
+ *    object, \p dst_origin[2] must be 0. If \p dst_image is a 1D image or 1D
+ *    image buffer object, \p dst_origin[1] and \p dst_origin[2] must be 0. If
+ *    \p dst_image is a 1D image array object, \p dst_origin[2] must be 0. If
+ *    \p dst_image is a 1D image array object, \p dst_origin[1] describes the
+ *    image index in the 1D image array. If \p dst_image is a 2D image array
+ *    object, \p dst_origin[2] describes the image index in the 2D image array.
+ * \param region
+ *    Defines the (width, height, depth) in pixels of the 1D, 2D or 3D
+ *    rectangle, the (width, height) in pixels of the 2D rectangle and the
+ *    number of images of a 2D image array or the (width) in pixels of the 1D
+ *    rectangle and the number of images of a 1D image array. If \p src_image
+ *    or \p dst_image is a 2D image object, \p region[2] must be 1. If
+ *    \p src_image or \p dst_image is a 1D image or 1D image buffer object,
+ *    \p region[1] and \p region[2] must be 1. If \p src_image or dst_image is
+ *    a 1D image array object, \p region[2] must be 1. The values in region
+ *    cannot be 0.
+ * \param num_events_in_wait_list
+ *    Number of events in the \p event_wait_list.
+ *    If \p event_wait_list is \c NULL, \p num_events_in_wait_list must be 0.
+ *    If \p event_wait_list is not \c NULL, the list of events pointed to by
+ *    \p event_wait_list must be valid and \p num_events_in_wait_list must be
+ *    greater than \c 0.
+ * \param event_wait_list
+ *    \p event_wait_list and \p num_events_in_wait_list specify events that
+ *    need to complete before this particular command can be executed. If
+ *    \p event_wait_list is \c NULL, then this particular command does not wait
+ *    on any event to complete. The events specified in \p event_wait_list act
+ *    as synchronization points. The context associated with events in
+ *    \p event_wait_list and \p command_queue must be the same. The memory
+ *    associated with \p event_wait_list can be reused or freed after the
+ *    function returns. 
+ * \param event
+ *    Returns an event object that identifies this particular copy command and
+ *    can be used to query or queue a wait for this particular command to
+ *    complete.\p event can be \c NULL in which case it will not be possible
+ *    for the application to query the status of this command or queue a wait
+ *    for this command to complete. If the \p event_wait_list and the \p event
+ *    arguments are not \c NULL, the event argument should not refer to an
+ *    element of the \p event_wait_list array
+ *
+ * \throw clerror_no<status_t::invalid_command_queue>
+ *    When \c clEnqueueCopyImage() returns \c CL_INVALID_COMMAND_QUEUE.
+ * \throw clerror_no<status_t::invalid_context>
+ *    When \c clEnqueueCopyImage() returns \c CL_INVALID_CONTEXT.
+ * \throw clerror_no<status_t::invalid_mem_object>
+ *    When \c clEnqueueCopyImage() returns \c CL_INVALID_MEM_OBJECT.
+ * \throw clerror_no<status_t::image_format_mismatch>
+ *    When \c clEnqueueCopyImage() returns \c CL_IMAGE_FORMAT_MISMATCH.
+ * \throw clerror_no<status_t::invalid_value>
+ *    When \c clEnqueueCopyImage() returns \c CL_INVALID_VALUE.
+ * \throw clerror_no<status_t::invalid_event_wait_list>
+ *    When \c clEnqueueCopyImage() returns \c CL_INVALID_EVENT_WAIT_LIST.
+ * \throw clerror_no<status_t::invalid_image_size>
+ *    When \c clEnqueueCopyImage() returns \c CL_INVALID_IMAGE_SIZE.
+ * \throw clerror_no<status_t::image_format_not_supported>
+ *    When \c clEnqueueCopyImage() returns \c CL_IMAGE_FORMAT_NOT_SUPPORTED.
+ * \throw clerror_no<status_t::exec_status_error_for_events_in_wait_list>
+ *    When \c clEnqueueCopyImage() returns \c CL_EXEC_STATUS_ERROR_FOR_EVENTS_IN_WAIT_LIST.
+ * \throw clerror_no<status_t::mem_object_allocation_failure>
+ *    When \c clEnqueueCopyImage() returns \c CL_MEM_OBJECT_ALLOCATION_FAILURE.
+ * \throw clerror_no<status_t::invalid_operation>
+ *    When \c clEnqueueCopyImage() returns \c CL_INVALID_OPERATION.
+ * \throw clerror_no<status_t::out_of_resources>
+ *    When \c clEnqueueCopyImage() returns \c CL_OUT_OF_RESOURCES.
+ * \throw clerror_no<status_t::out_of_host_memory>
+ *    When \c clEnqueueCopyImage() returns \c CL_OUT_OF_HOST_MEMORY.
+ * \throw clerror_no<status_t::mem_copy_overlap>
+ *    When \c clEnqueueCopyImage() returns \c CL_MEM_COPY_OVERLAP.
+ * \throw unexpected_clerror
+ *    When \c clEnqueueCopyImage() returns other error code.
+ *
+ *
+ * \par Available in OpenCL versions
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |   \check  |   \check  |   \check  |   \check  |    ???    |
+ *
+ * \sa <a href="https://www.khronos.org/registry/cl/sdk/2.0/docs/man/xhtml/clEnqueueCopyImage.html">clEnqueueCopyImage()</a>
+ *
  */ // }}}
 void
 enqueue_copy_image(cl_command_queue command_queue,
@@ -1039,7 +1972,112 @@ enqueue_copy_image(cl_command_queue command_queue,
                    const cl_event* event_wait_list,
                    cl_event* event);
 /** // doc: enqueue_copy_image_to_buffer() {{{
- * \todo Write documentation
+ * \brief Enqueues a command to copy an image object to a buffer object
+ *
+ * This is a wrapper for \c clEnqueueCopyImageToBuffer(). The call to
+ * #enqueue_copy_image_to_buffer() has same effect as a call to
+ *    - \c clEnqueueCopyImageToBuffer(command_queue, src_image, dst_buffer, src_origin, region, dst_offset, num_events_in_wait_list, event_wait_list, event)
+ *
+ * The main difference between #enqueue_copy_image_to_buffer() and \c clEnqueueCopyImageToBuffer()
+ * is that it throws %clxx exceptions instead of returning OpenCL error codes.
+ *
+ * \param command_queue
+ *    Must be a valid host command-queue. The OpenCL context associated with
+ *    \p command_queue, \p src_image, and \p dst_buffer must be the same.
+ * \param src_image
+ *    A valid image object.
+ * \param dst_buffer
+ *    A valid buffer object.
+ * \param src_origin
+ *    Defines the (x, y, z) offset in pixels in the 1D, 2D or 3D image, the (x,
+ *    y) offset and the image index in the 2D image array or the (x) offset and
+ *    the image index in the 1D image array. If \p src_image is a 2D image
+ *    object, \p src_origin[2] must be 0. If \p src_image is a 1D image or 1D
+ *    image buffer object, \p src_origin[1] and \p src_origin[2] must be 0. If
+ *    \p src_image is a 1D image array object, \p src_origin[2] must be 0. If
+ *    \p src_image is a 1D image array object, \p src_origin[1] describes the
+ *    image index in the 1D image array. If \p src_image is a 2D image array
+ *    object, \p src_origin[2] describes the image index in the 2D image array.
+ * \param region
+ *    Defines the (width, height, depth) in pixels of the 1D, 2D or 3D
+ *    rectangle, the (width, height) in pixels of the 2D rectangle and the
+ *    number of images of a 2D image array or the (width) in pixels of the 1D
+ *    rectangle and the number of images of a 1D image array. If \p src_image
+ *    is a 2D image object, \p region[2] must be 1. If \p src_image is a 1D
+ *    image or 1D image buffer object, \p region[1] and \p region[2] must be 1.
+ *    If \p src_image is a 1D image array object, \p region[2] must be 1. The
+ *    values in region cannot be 0.
+ * \param dst_offset
+ *    Refers to the offset where to begin copying data into \p dst_buffer. The
+ *    size in bytes of the region to be copied referred to as \e dst_cb is
+ *    computed as width * height * depth * bytes/image element if \p src_image
+ *    is a 3D image object, is computed as width * height * bytes/image element
+ *    if \p src_image is a 2D image, is computed as width * height * arraysize
+ *    * bytes/image element if \p src_image is a 2D image array object, is
+ *    computed as width * bytes/image element if \p src_image is a 1D image or
+ *    1D image buffer object and is computed as width * arraysize * bytes/image
+ *    element if \p src_image is a 1D image array object.
+ * \param num_events_in_wait_list
+ *    Number of events in the \p event_wait_list.
+ *    If \p event_wait_list is \c NULL, \p num_events_in_wait_list must be 0.
+ *    If \p event_wait_list is not \c NULL, the list of events pointed to by
+ *    \p event_wait_list must be valid and \p num_events_in_wait_list must be
+ *    greater than \c 0.
+ * \param event_wait_list
+ *    \p event_wait_list and \p num_events_in_wait_list specify events that
+ *    need to complete before this particular command can be executed. If
+ *    \p event_wait_list is \c NULL, then this particular command does not wait
+ *    on any event to complete. The events specified in \p event_wait_list act
+ *    as synchronization points. The context associated with events in
+ *    \p event_wait_list and \p command_queue must be the same. The memory
+ *    associated with \p event_wait_list can be reused or freed after the
+ *    function returns. 
+ * \param event
+ *    Returns an event object that identifies this particular copy command and
+ *    can be used to query or queue a wait for this particular command to
+ *    complete.\p event can be \c NULL in which case it will not be possible
+ *    for the application to query the status of this command or queue a wait
+ *    for this command to complete. If the \p event_wait_list and the \p event
+ *    arguments are not \c NULL, the event argument should not refer to an
+ *    element of the \p event_wait_list array
+ *
+ * \throw clerror_no<status_t::invalid_command_queue>
+ *    When \c clEnqueueCopyImageToBuffer() returns \c CL_INVALID_COMMAND_QUEUE.
+ * \throw clerror_no<status_t::invalid_context>
+ *    When \c clEnqueueCopyImageToBuffer() returns \c CL_INVALID_CONTEXT.
+ * \throw clerror_no<status_t::invalid_mem_object>
+ *    When \c clEnqueueCopyImageToBuffer() returns \c CL_INVALID_MEM_OBJECT.
+ * \throw clerror_no<status_t::invalid_value>
+ *    When \c clEnqueueCopyImageToBuffer() returns \c CL_INVALID_VALUE.
+ * \throw clerror_no<status_t::invalid_event_wait_list>
+ *    When \c clEnqueueCopyImageToBuffer() returns \c CL_INVALID_EVENT_WAIT_LIST.
+ * \throw clerror_no<status_t::misaligned_sub_buffer_offset>
+ *    When \c clEnqueueCopyImageToBuffer() returns \c CL_MISALIGNED_SUB_BUFFER_OFFSET.
+ * \throw clerror_no<status_t::invalid_image_size>
+ *    When \c clEnqueueCopyImageToBuffer() returns \c CL_INVALID_IMAGE_SIZE.
+ * \throw clerror_no<status_t::image_format_not_supported>
+ *    When \c clEnqueueCopyImageToBuffer() returns \c CL_IMAGE_FORMAT_NOT_SUPPORTED.
+ * \throw clerror_no<status_t::exec_status_error_for_events_in_wait_list>
+ *    When \c clEnqueueCopyImageToBuffer() returns \c CL_EXEC_STATUS_ERROR_FOR_EVENTS_IN_WAIT_LIST.
+ * \throw clerror_no<status_t::mem_object_allocation_failure>
+ *    When \c clEnqueueCopyImageToBuffer() returns \c CL_MEM_OBJECT_ALLOCATION_FAILURE.
+ * \throw clerror_no<status_t::invalid_operation>
+ *    When \c clEnqueueCopyImageToBuffer() returns \c CL_INVALID_OPERATION.
+ * \throw clerror_no<status_t::out_of_resources>
+ *    When \c clEnqueueCopyImageToBuffer() returns \c CL_OUT_OF_RESOURCES.
+ * \throw clerror_no<status_t::out_of_host_memory>
+ *    When \c clEnqueueCopyImageToBuffer() returns \c CL_OUT_OF_HOST_MEMORY.
+ * \throw unexpected_clerror
+ *    When \c clEnqueueCopyImageToBuffer() returns other error code.
+ *
+ *
+ * \par Available in OpenCL versions
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |   \check  |   \check  |   \check  |   \check  |    ???    |
+ *
+ * \sa <a href="https://www.khronos.org/registry/cl/sdk/2.0/docs/man/xhtml/clEnqueueCopyImageToBuffer.html">clEnqueueCopyImageToBuffer()</a>
+ *
  */ // }}}
 void
 enqueue_copy_image_to_buffer(cl_command_queue command_queue,
@@ -1052,7 +2090,112 @@ enqueue_copy_image_to_buffer(cl_command_queue command_queue,
                              const cl_event* event_wait_list,
                              cl_event* event);
 /** // doc: enqueue_copy_buffer_to_image() {{{
- * \todo Write documentation
+ * \brief Enqueues a command to copy an image object to a buffer object
+ *
+ * This is a wrapper for \c clEnqueueCopyBufferToImage(). The call to
+ * #enqueue_copy_buffer_to_image() has same effect as a call to
+ *    - \c clEnqueueCopyBufferToImage(command_queue, src_buffer, dst_image, src_offset, dst_origin, region, num_events_in_wait_list, event_wait_list, event)
+ *
+ * The main difference between #enqueue_copy_buffer_to_image() and \c clEnqueueCopyBufferToImage()
+ * is that it throws %clxx exceptions instead of returning OpenCL error codes.
+ *
+ * \param command_queue
+ *    Must be a valid host command-queue. The OpenCL context associated with
+ *    \p command_queue, \p src_buffer, and \p dst_image must be the same.
+ * \param src_buffer
+ *    A valid buffer object.
+ * \param dst_image
+ *    A valid image object.
+ * \param src_offset
+ *    The offset where to begin copying data from \p src_buffer
+ * \param dst_origin
+ *    Defines the (x, y, z) offset in pixels in the 1D, 2D or 3D image, the (x,
+ *    y) offset and the image index in the 2D image array or the (x) offset and
+ *    the image index in the 1D image array. If \p dst_image is a 2D image
+ *    object, \p dst_origin[2] must be 0. If \p dst_image is a 1D image or 1D
+ *    image buffer object, \p dst_origin[1] and \p dst_origin[2] must be 0. If
+ *    \p dst_image is a 1D image array object, \p dst_origin[2] must be 0. If
+ *    \p dst_image is a 1D image array object, \p dst_origin[1] describes the
+ *    image index in the 1D image array. If \p dst_image is a 2D image array
+ *    object, \p dst_origin[2] describes the image index in the 2D image array.
+ * \param region
+ *    Defines the (width, height, depth) in pixels of the 1D, 2D or 3D
+ *    rectangle, the (width, height) in pixels of the 2D rectangle and the
+ *    number of images of a 2D image array or the (width) in pixels of the 1D
+ *    rectangle and the number of images of a 1D image array. If \p dst_image
+ *    is a 2D image object, \p region[2] must be 1. If \p dst_image is a 1D
+ *    image or 1D image buffer object, \p region[1] and \p region[2] must be 1.
+ *    If \p dst_image is a 1D image array object, \p region[2] must be 1. The
+ *    values in region cannot be 0.
+ *    The size in bytes of the region to be copied from \p src_buffer referred
+ *    to as \e src_cb is computed as width * height * depth * bytes/image_element
+ *    if \p dst_image is a 3D image object, is computed as width * height * bytes/image_element
+ *    if \p dst_image is a 2D image, is computed as width height * arraysize * bytes/image_element
+ *    if \p dst_image is a 2D image array object, is computed as width * bytes/image_element
+ *    if \p dst_image is a 1D image or 1D image buffer object and is computed
+ *    as width * arraysize * bytes/image_element if \p dst_image is a 1D image
+ *    array object.
+ * \param num_events_in_wait_list
+ *    Number of events in the \p event_wait_list.
+ *    If \p event_wait_list is \c NULL, \p num_events_in_wait_list must be 0.
+ *    If \p event_wait_list is not \c NULL, the list of events pointed to by
+ *    \p event_wait_list must be valid and \p num_events_in_wait_list must be
+ *    greater than \c 0.
+ * \param event_wait_list
+ *    \p event_wait_list and \p num_events_in_wait_list specify events that
+ *    need to complete before this particular command can be executed. If
+ *    \p event_wait_list is \c NULL, then this particular command does not wait
+ *    on any event to complete. The events specified in \p event_wait_list act
+ *    as synchronization points. The context associated with events in
+ *    \p event_wait_list and \p command_queue must be the same. The memory
+ *    associated with \p event_wait_list can be reused or freed after the
+ *    function returns. 
+ * \param event
+ *    Returns an event object that identifies this particular copy command and
+ *    can be used to query or queue a wait for this particular command to
+ *    complete.\p event can be \c NULL in which case it will not be possible
+ *    for the application to query the status of this command or queue a wait
+ *    for this command to complete. If the \p event_wait_list and the \p event
+ *    arguments are not \c NULL, the event argument should not refer to an
+ *    element of the \p event_wait_list array
+ *
+ * \throw clerror_no<status_t::invalid_command_queue>
+ *    When \c clEnqueueCopyBufferToImage() returns \c CL_INVALID_COMMAND_QUEUE.
+ * \throw clerror_no<status_t::invalid_context>
+ *    When \c clEnqueueCopyBufferToImage() returns \c CL_INVALID_CONTEXT.
+ * \throw clerror_no<status_t::invalid_mem_object>
+ *    When \c clEnqueueCopyBufferToImage() returns \c CL_INVALID_MEM_OBJECT.
+ * \throw clerror_no<status_t::invalid_value>
+ *    When \c clEnqueueCopyBufferToImage() returns \c CL_INVALID_VALUE.
+ * \throw clerror_no<status_t::invalid_event_wait_list>
+ *    When \c clEnqueueCopyBufferToImage() returns \c CL_INVALID_EVENT_WAIT_LIST.
+ * \throw clerror_no<status_t::misaligned_sub_buffer_offset>
+ *    When \c clEnqueueCopyBufferToImage() returns \c CL_MISALIGNED_SUB_BUFFER_OFFSET.
+ * \throw clerror_no<status_t::invalid_image_size>
+ *    When \c clEnqueueCopyBufferToImage() returns \c CL_INVALID_IMAGE_SIZE.
+ * \throw clerror_no<status_t::image_format_not_supported>
+ *    When \c clEnqueueCopyBufferToImage() returns \c CL_IMAGE_FORMAT_NOT_SUPPORTED.
+ * \throw clerror_no<status_t::exec_status_error_for_events_in_wait_list>
+ *    When \c clEnqueueCopyBufferToImage() returns \c CL_EXEC_STATUS_ERROR_FOR_EVENTS_IN_WAIT_LIST.
+ * \throw clerror_no<status_t::mem_object_allocation_failure>
+ *    When \c clEnqueueCopyBufferToImage() returns \c CL_MEM_OBJECT_ALLOCATION_FAILURE.
+ * \throw clerror_no<status_t::invalid_operation>
+ *    When \c clEnqueueCopyBufferToImage() returns \c CL_INVALID_OPERATION.
+ * \throw clerror_no<status_t::out_of_resources>
+ *    When \c clEnqueueCopyBufferToImage() returns \c CL_OUT_OF_RESOURCES.
+ * \throw clerror_no<status_t::out_of_host_memory>
+ *    When \c clEnqueueCopyBufferToImage() returns \c CL_OUT_OF_HOST_MEMORY.
+ * \throw unexpected_clerror
+ *    When \c clEnqueueCopyBufferToImage() returns other error code.
+ *
+ *
+ * \par Available in OpenCL versions
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |   \check  |   \check  |   \check  |   \check  |    ???    |
+ *
+ * \sa <a href="https://www.khronos.org/registry/cl/sdk/2.0/docs/man/xhtml/clEnqueueCopyBufferToImage.html">clEnqueueCopyBufferToImage()</a>
+ *
  */ // }}}
 void
 enqueue_copy_buffer_to_image(cl_command_queue command_queue,
@@ -1065,7 +2208,130 @@ enqueue_copy_buffer_to_image(cl_command_queue command_queue,
                              const cl_event* event_wait_list,
                              cl_event* event);
 /** // doc: enqueue_map_image() {{{
- * \todo Write documentation
+ * \brief Enqueues a command to map a region of an image object into the host
+ *        address space and returns a pointer to this mapped region
+ *  
+ * This is a wrapper for \c clEnqueueMapImage(). The call to
+ * #enqueue_map_image() has same effect as a call to
+ *    - \c clEnqueueMapImage(command_queue, image, blocking_map, static_cast<cl_map_flags>(map_flags), origin, region, image_row_pitch, image_slice_pitch, num_events_in_wait_list, event_wait_list, event, &errcode)
+ *
+ * with \c errcode being internally defined by #enqueue_map_image().
+ *
+ * The main difference between #enqueue_map_image() and \c clEnqueueMapImage()
+ * is that it throws %clxx exceptions instead of returning OpenCL error codes.
+ *
+ * \param command_queue
+ *    Must be a valid host command-queue.
+ * \param image
+ *    A valid image object. The OpenCL context associated with \p command_queue
+ *    and \p image must be the same.
+ * \param blocking_map
+ *    Indicates if the map operation is blocking or non-blocking.
+ *    If \p blocking_map is \c CL_TRUE, #enqueue_map_image() does not return
+ *    until the specified region in image is mapped into the host address space
+ *    and the application can access the contents of the mapped region using
+ *    the pointer returned by #enqueue_map_image().
+ *    If \p blocking_map is \c CL_FALSE i.e. map operation is non-blocking, the
+ *    pointer to the mapped region returned by #enqueue_map_image() cannot be
+ *    used until the map command has completed. The \p event argument returns
+ *    an event object which can be used to query the execution status of the
+ *    map command. When the map command is completed, the application can
+ *    access the contents of the mapped region using the pointer returned by
+ *    #enqueue_map_image()
+ * \param map_flags
+ *    A bit-field with map options. See the documentation of #map_flags_t
+ *    for the list of predefined bit values.
+ * \param origin
+ *    Defines the (x, y, z) offset in pixels in the 1D, 2D or 3D image, the (x,
+ *    y) offset and the image index in the 2D image array or the (x) offset and
+ *    the image index in the 1D image array. If \p image is a 2D image object,
+ *    \p origin[2] must be 0. If \p image is a 1D image or 1D image buffer
+ *    object, \p origin[1] and \p origin[2] must be 0. If \p image is a 1D
+ *    image array object, \p origin[2] must be 0. If image is a 1D image array
+ *    object, \p origin[1] describes the image index in the 1D image array. If
+ *    \p image is a 2D image array object, \p origin[2] describes the image
+ *    index in the 2D image array.
+ * \param region
+ *    Defines the (width, height, depth) in pixels of the 1D, 2D or 3D
+ *    rectangle, the (width, height) in pixels of the 2D rectangle and the
+ *    number of images of a 2D image array or the (width) in pixels of the 1D
+ *    rectangle and the number of images of a 1D image array. If \p image is a
+ *    2D image object, \p region[2] must be 1. If \p image is a 1D image or 1D
+ *    image buffer object, \p region[1] and \p region[2] must be 1. If image is
+ *    a 1D image array object, \p region[2] must be 1. The values in region
+ *    cannot be 0.
+ * \param image_row_pitch
+ *    Returns the scan-line pitch in bytes for the mapped region. This must be
+ *    a non-NULL value.
+ * \param image_slice_pitch
+ *    Returns the size in bytes of each 2D slice of a 3D image or the size of
+ *    each 1D or 2D image in a 1D or 2D image array for the mapped region. For
+ *    a 1D and 2D image, zero is returned if this argument is not \c NULL. For
+ *    a 3D image, 1D, and 2D image array, \p image_slice_pitch must be a
+ *    non-NULL value. 
+ * \param num_events_in_wait_list
+ *    Number of events in the \p event_wait_list.
+ *    If \p event_wait_list is \c NULL, \p num_events_in_wait_list must be 0.
+ *    If \p event_wait_list is not \c NULL, the list of events pointed to by
+ *    \p event_wait_list must be valid and \p num_events_in_wait_list must be
+ *    greater than \c 0.
+ * \param event_wait_list
+ *    \p event_wait_list and \p num_events_in_wait_list specify events that
+ *    need to complete before this particular command can be executed. If
+ *    \p event_wait_list is \c NULL, then this particular command does not wait
+ *    on any event to complete. The events specified in \p event_wait_list act
+ *    as synchronization points. The context associated with events in
+ *    \p event_wait_list and \p command_queue must be the same. The memory
+ *    associated with \p event_wait_list can be reused or freed after the
+ *    function returns. 
+ * \param event
+ *    Returns an event object that identifies this particular map command and
+ *    can be used to query or queue a wait for this particular command to
+ *    complete.\p event can be \c NULL in which case it will not be possible
+ *    for the application to query the status of this command or queue a wait
+ *    for this command to complete. If the \p event_wait_list and the \p event
+ *    arguments are not \c NULL, the event argument should not refer to an
+ *    element of the \p event_wait_list array
+ *
+ * \returns A pointer to mapped buffer.
+ *
+ * \throw clerror_no<status_t::invalid_command_queue>
+ *    When \c clEnqueueMapImage() returns \c CL_INVALID_COMMAND_QUEUE.
+ * \throw clerror_no<status_t::invalid_context>
+ *    When \c clEnqueueMapImage() returns \c CL_INVALID_CONTEXT.
+ * \throw clerror_no<status_t::invalid_mem_object>
+ *    When \c clEnqueueMapImage() returns \c CL_INVALID_MEM_OBJECT.
+ * \throw clerror_no<status_t::invalid_value>
+ *    When \c clEnqueueMapImage() returns \c CL_INVALID_VALUE.
+ * \throw clerror_no<status_t::invalid_event_wait_list>
+ *    When \c clEnqueueMapImage() returns \c CL_INVALID_EVENT_WAIT_LIST.
+ * \throw clerror_no<status_t::misaligned_sub_buffer_offset>
+ *    When \c clEnqueueMapImage() returns \c CL_MISALIGNED_SUB_BUFFER_OFFSET.
+ * \throw clerror_no<status_t::invalid_image_size>
+ *    When \c clEnqueueMapImage() returns \c CL_INVALID_IMAGE_SIZE.
+ * \throw clerror_no<status_t::map_failure>
+ *    When \c clEnqueueMapImage() returns \c CL_MAP_FAILURE.
+ * \throw clerror_no<status_t::exec_status_error_for_events_in_wait_list>
+ *    When \c clEnqueueMapImage() returns \c CL_EXEC_STATUS_ERROR_FOR_EVENTS_IN_WAIT_LIST.
+ * \throw clerror_no<status_t::mem_object_allocation_failure>
+ *    When \c clEnqueueMapImage() returns \c CL_MEM_OBJECT_ALLOCATION_FAILURE.
+ * \throw clerror_no<status_t::invalid_operation>
+ *    When \c clEnqueueMapImage() returns \c CL_INVALID_OPERATION.
+ * \throw clerror_no<status_t::out_of_resources>
+ *    When \c clEnqueueMapImage() returns \c CL_OUT_OF_RESOURCES.
+ * \throw clerror_no<status_t::out_of_host_memory>
+ *    When \c clEnqueueMapImage() returns \c CL_OUT_OF_HOST_MEMORY.
+ * \throw unexpected_clerror
+ *    When \c clEnqueueMapImage() returns other error code.
+ *
+ *
+ * \par Available in OpenCL versions
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |   \check  |   \check  |   \check  |   \check  |    ???    |
+ *
+ * \sa <a href="https://www.khronos.org/registry/cl/sdk/2.0/docs/man/xhtml/clEnqueueMapImage.html">clEnqueueMapImage()</a>
+ *
  */ // }}}
 void*
 enqueue_map_image(cl_command_queue command_queue,
@@ -1080,7 +2346,73 @@ enqueue_map_image(cl_command_queue command_queue,
                   const cl_event* event_wait_list,
                   cl_event* event);
 /** // doc: enqueue_unmap_mem_object() {{{
- * \todo Write documentation
+ * \brief Enqueues a command to unmap a previously mapped region of a memory object
+ *
+ * This is a wrapper for \c clEnqueueUnmapMemObject(). The call to
+ * #enqueue_unmap_mem_object() has same effect as a call to
+ *    - \c clEnqueueUnmapMemObject(command_queue, memobj, mapped_ptr, num_events_in_wait_list, event_wait_list, event)
+ *
+ * The main difference between #enqueue_unmap_mem_object() and \c clEnqueueUnmapMemObject()
+ * is that it throws %clxx exceptions instead of returning OpenCL error codes.
+ *
+ * \param command_queue
+ *    Must be a valid host command-queue. 
+ * \param memobj
+ *    A valid memory (buffer or image) object. The OpenCL context associated
+ *    with \p command_queue and \p memobj must be the same.
+ * \param mapped_ptr
+ *    The host address returned by a previous call to #enqueue_map_buffer() or
+ *    #enqueue_map_image() for \p memobj.
+ * \param num_events_in_wait_list
+ *    Number of events in the \p event_wait_list.
+ *    If \p event_wait_list is \c NULL, \p num_events_in_wait_list must be 0.
+ *    If \p event_wait_list is not \c NULL, the list of events pointed to by
+ *    \p event_wait_list must be valid and \p num_events_in_wait_list must be
+ *    greater than \c 0.
+ * \param event_wait_list
+ *    \p event_wait_list and \p num_events_in_wait_list specify events that
+ *    need to complete before this particular command can be executed. If
+ *    \p event_wait_list is \c NULL, then this particular command does not wait
+ *    on any event to complete. The events specified in \p event_wait_list act
+ *    as synchronization points. The context associated with events in
+ *    \p event_wait_list and \p command_queue must be the same. The memory
+ *    associated with \p event_wait_list can be reused or freed after the
+ *    function returns. 
+ * \param event
+ *    Returns an event object that identifies this particular unmap command and
+ *    can be used to query or queue a wait for this particular command to
+ *    complete.\p event can be \c NULL in which case it will not be possible
+ *    for the application to query the status of this command or queue a wait
+ *    for this command to complete. If the \p event_wait_list and the \p event
+ *    arguments are not \c NULL, the event argument should not refer to an
+ *    element of the \p event_wait_list array
+ *
+ * \throw clerror_no<status_t::invalid_command_queue>
+ *    When \c clEnqueueUnmapMemObject() returns \c CL_INVALID_COMMAND_QUEUE.
+ * \throw clerror_no<status_t::invalid_context>
+ *    When \c clEnqueueUnmapMemObject() returns \c CL_INVALID_CONTEXT.
+ * \throw clerror_no<status_t::invalid_mem_object>
+ *    When \c clEnqueueUnmapMemObject() returns \c CL_INVALID_MEM_OBJECT.
+ * \throw clerror_no<status_t::invalid_value>
+ *    When \c clEnqueueUnmapMemObject() returns \c CL_INVALID_VALUE.
+ * \throw clerror_no<status_t::invalid_event_wait_list>
+ *    When \c clEnqueueUnmapMemObject() returns \c CL_INVALID_EVENT_WAIT_LIST.
+ * \throw clerror_no<status_t::exec_status_error_for_events_in_wait_list>
+ *    When \c clEnqueueUnmapMemObject() returns \c CL_EXEC_STATUS_ERROR_FOR_EVENTS_IN_WAIT_LIST.
+ * \throw clerror_no<status_t::out_of_resources>
+ *    When \c clEnqueueUnmapMemObject() returns \c CL_OUT_OF_RESOURCES.
+ * \throw clerror_no<status_t::out_of_host_memory>
+ *    When \c clEnqueueUnmapMemObject() returns \c CL_OUT_OF_HOST_MEMORY.
+ * \throw unexpected_clerror
+ *    When \c clEnqueueUnmapMemObject() returns other error code.
+ *
+ * \par Available in OpenCL versions
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |   \check  |   \check  |   \check  |   \check  |    ???    |
+ *
+ * \sa <a href="https://www.khronos.org/registry/cl/sdk/2.0/docs/man/xhtml/clEnqueueUnmapMemObject.html">clEnqueueUnmapMemObject()</a>
+ *
  */ // }}}
 void
 enqueue_unmap_mem_object(cl_command_queue command_queue,
@@ -1090,7 +2422,81 @@ enqueue_unmap_mem_object(cl_command_queue command_queue,
                          const cl_event* event_wait_list,
                          cl_event* event);
 /** // doc: enqueue_migrate_mem_objects() {{{
- * \todo Write documentation
+ * \brief Enqueues a command to indicate which device a set of memory objects
+ *        should be associated with
+ *
+ * This is a wrapper for \c clEnqueueMigrateMemObjects(). The call to
+ * #enqueue_migrate_mem_objects() has same effect as a call to
+ *    - \c clEnqueueMigrateMemObjects(command_queue, num_mem_objects, mem_objects, static_cast<cl_mem_migration_flags>(flags), num_events_in_wait_list, event_wait_list, event)
+ *
+ * The main difference between #enqueue_migrate_mem_objects() and \c clEnqueueMigrateMemObjects()
+ * is that it throws %clxx exceptions instead of returning OpenCL error codes.
+ *
+ * \param command_queue
+ *    A valid host command-queue. The specified set of memory objects in
+ *    \p mem_objects will be migrated to the OpenCL device associated with
+ *    \p command_queue or to the host if the mem_migration_flags_t::mem_object_host
+ *    has been specified in \p flags.
+ * \param num_mem_objects
+ *    The number of memory objects specified in \p mem_objects.
+ * \param mem_objects
+ *    A pointer to a list of memory objects.
+ * \param flags
+ *    A bit-field that is used to specify migration options. See the
+ *    documentation of #mem_migration_flags_t for the list of predefined bit
+ *    values.
+ * \param num_events_in_wait_list
+ *    Number of events in the \p event_wait_list.
+ *    If \p event_wait_list is \c NULL, \p num_events_in_wait_list must be 0.
+ *    If \p event_wait_list is not \c NULL, the list of events pointed to by
+ *    \p event_wait_list must be valid and \p num_events_in_wait_list must be
+ *    greater than \c 0.
+ * \param event_wait_list
+ *    \p event_wait_list and \p num_events_in_wait_list specify events that
+ *    need to complete before this particular command can be executed. If
+ *    \p event_wait_list is \c NULL, then this particular command does not wait
+ *    on any event to complete. The events specified in \p event_wait_list act
+ *    as synchronization points. The context associated with events in
+ *    \p event_wait_list and \p command_queue must be the same. The memory
+ *    associated with \p event_wait_list can be reused or freed after the
+ *    function returns. 
+ * \param event
+ *    Returns an event object that identifies this particular command and
+ *    can be used to query or queue a wait for this particular command to
+ *    complete.\p event can be \c NULL in which case it will not be possible
+ *    for the application to query the status of this command or queue a wait
+ *    for this command to complete. If the \p event_wait_list and the \p event
+ *    arguments are not \c NULL, the event argument should not refer to an
+ *    element of the \p event_wait_list array
+ *
+ * \throw clerror_no<status_t::invalid_command_queue>
+ *    When \c clEnqueueMigrateMemObjects() returns \c CL_INVALID_COMMAND_QUEUE.
+ * \throw clerror_no<status_t::invalid_context>
+ *    When \c clEnqueueMigrateMemObjects() returns \c CL_INVALID_CONTEXT.
+ * \throw clerror_no<status_t::invalid_mem_object>
+ *    When \c clEnqueueMigrateMemObjects() returns \c CL_INVALID_MEM_OBJECT.
+ * \throw clerror_no<status_t::invalid_value>
+ *    When \c clEnqueueMigrateMemObjects() returns \c CL_INVALID_VALUE.
+ * \throw clerror_no<status_t::invalid_event_wait_list>
+ *    When \c clEnqueueMigrateMemObjects() returns \c CL_INVALID_EVENT_WAIT_LIST.
+ * \throw clerror_no<status_t::exec_status_error_for_events_in_wait_list>
+ *    When \c clEnqueueMigrateMemObjects() returns \c CL_EXEC_STATUS_ERROR_FOR_EVENTS_IN_WAIT_LIST.
+ * \throw clerror_no<status_t::mem_object_allocation_failure>
+ *    When \c clEnqueueMigrateMemObjects() returns \c CL_MEM_OBJECT_ALLOCATION_FAILURE.
+ * \throw clerror_no<status_t::out_of_resources>
+ *    When \c clEnqueueMigrateMemObjects() returns \c CL_OUT_OF_RESOURCES.
+ * \throw clerror_no<status_t::out_of_host_memory>
+ *    When \c clEnqueueMigrateMemObjects() returns \c CL_OUT_OF_HOST_MEMORY.
+ * \throw unexpected_clerror
+ *    When \c clEnqueueMigrateMemObjects() returns other error code.
+ *
+ * \par Available in OpenCL versions
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |   \check  |   \check  |   \check  |   \check  |    ???    |
+ *
+ * \sa <a href="https://www.khronos.org/registry/cl/sdk/2.0/docs/man/xhtml/clEnqueueMigrateMemObjects.html">clEnqueueMigrateMemObjects()</a>
+ *
  */ // }}}
 void
 enqueue_migrate_mem_objects(cl_command_queue command_queue,
@@ -1101,28 +2507,166 @@ enqueue_migrate_mem_objects(cl_command_queue command_queue,
                             const cl_event* event_wait_list,
                             cl_event* event);
 /** // doc: get_image_info() {{{
- * \todo Write documentation
+ * \brief Get information specific to an image object created with #create_image()
+ *
+ * This is a wrapper for \c clGetImageInfo(). The call to
+ * #get_image_info() has same effect as a call to
+ *    - \c clGetImageInfo(image, static_cast<cl_image_info>(param_name), param_value_size, param_value, param_value_size_ret)
+ *
+ * The main difference between #get_image_info() and \c clGetImageInfo()
+ * is that it throws %clxx exceptions instead of returning OpenCL error codes.
+ *
+ * \param image
+ *    Specifies the image object being queried. 
+ * \param param_name
+ *    Specifies the information to query. See the documentation of
+ *    #image_info_t for the list of predefined names.
+ * \param param_value_size
+ *    Used to specify the size in bytes of memory pointed to by \p param_value.
+ *    This size must be >= size of return type.
+ * \param param_value
+ *    A pointer to memory where the appropriate result being queried is
+ *    returned. If \p param_value is \c NULL, it is ignored.
+ * \param param_value_size_ret
+ *    Returns the actual size in bytes of data being queried by \p param_value.
+ *    If \p param_value_size_ret is \c NULL, it is ignored
+ *
+ * \throw clerror_no<status_t::invalid_mem_object>
+ *    When \c clGetImageInfo() returns \c CL_INVALID_MEM_OBJECT.
+ * \throw clerror_no<status_t::invalid_value>
+ *    When \c clGetImageInfo() returns \c CL_INVALID_VALUE.
+ * \throw clerror_no<status_t::out_of_resources>
+ *    When \c clGetImageInfo() returns \c CL_OUT_OF_RESOURCES.
+ * \throw clerror_no<status_t::out_of_host_memory>
+ *    When \c clGetImageInfo() returns \c CL_OUT_OF_HOST_MEMORY.
+ * \throw unexpected_clerror
+ *    When \c clGetImageInfo() returns other error code.
+ *
+ * \par Available in OpenCL versions
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |   \check  |   \check  |   \check  |   \check  |    ???    |
+ *
+ * \sa <a href="https://www.khronos.org/registry/cl/sdk/2.0/docs/man/xhtml/clGetImageInfo.html">clGetImageInfo()</a>
  */ // }}}
 void
 get_image_info(cl_mem image,
                image_info_t param_name,
-               size_t param_value_size, void* param_value,
+               size_t param_value_size,
+               void* param_value,
                size_t* param_value_size_ret);
 /** // doc: get_mem_object_info() {{{
- * \todo Write documentation
+ * \brief Get information that is common to all memory objects (buffer and
+ *        image objects). 
+ *
+ * This is a wrapper for \c clGetMemObjectInfo(). The call to
+ * #get_mem_object_info() has same effect as a call to
+ *    - \c clGetMemObjectInfo(memobj, static_cast<cl_mem_info>(param_name), param_value_size, param_value, param_value_size_ret)
+ *
+ * The main difference between #get_mem_object_info() and \c clGetMemObjectInfo()
+ * is that it throws %clxx exceptions instead of returning OpenCL error codes.
+ *
+ * \param memobj
+ *    Specifies the memory object being queried.
+ * \param param_name
+ *    Specifies the information to query. See the documentation of
+ *    #mem_info_t for the list of predefined names.
+ * \param param_value_size
+ *    Used to specify the size in bytes of memory pointed to by \p param_value.
+ *    This size must be >= size of return type.
+ * \param param_value
+ *    A pointer to memory where the appropriate result being queried is
+ *    returned. If \p param_value is \c NULL, it is ignored.
+ * \param param_value_size_ret
+ *    Returns the actual size in bytes of data being queried by \p param_value.
+ *    If \p param_value_size_ret is \c NULL, it is ignored
+ *
+ * \throw clerror_no<status_t::invalid_mem_object>
+ *    When \c clGetMemObjectInfo() returns \c CL_INVALID_MEM_OBJECT.
+ * \throw clerror_no<status_t::invalid_value>
+ *    When \c clGetMemObjectInfo() returns \c CL_INVALID_VALUE.
+ * \throw clerror_no<status_t::out_of_resources>
+ *    When \c clGetMemObjectInfo() returns \c CL_OUT_OF_RESOURCES.
+ * \throw clerror_no<status_t::out_of_host_memory>
+ *    When \c clGetMemObjectInfo() returns \c CL_OUT_OF_HOST_MEMORY.
+ * \throw unexpected_clerror
+ *    When \c clGetMemObjectInfo() returns other error code.
+ *
+ * \par Available in OpenCL versions
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |   \check  |   \check  |   \check  |   \check  |    ???    |
+ *
+ * \sa <a href="https://www.khronos.org/registry/cl/sdk/2.0/docs/man/xhtml/clGetMemObjectInfo.html">clGetMemObjectInfo()</a>
+ *
  */ // }}}
 void
 get_mem_object_info(cl_mem memobj,
                     mem_info_t param_name,
-                    size_t param_value_size, void* param_value,
+                    size_t param_value_size,
+                    void* param_value,
                     size_t* param_value_size_ret);
 /** // doc: retain_mem_object() {{{
- * \todo Write documentation
+ * \brief Increments the memory object reference count
+ *
+ * This is a wrapper for \c clRetainMemObject(). The call to
+ * #retain_mem_object() has same effect as a call to
+ *    - \c clRetainMemObject(memobj)
+ *
+ * The main difference between #retain_mem_object() and \c clRetainMemObject()
+ * is that it throws %clxx exceptions instead of returning OpenCL error codes.
+ *
+ * \param memobj
+ *    A valid memory object
+ *
+ * \throw clerror_no<status_t::invalid_mem_object>
+ *    When \c clRetainMemObject() returns \c CL_INVALID_MEM_OBJECT.
+ * \throw clerror_no<status_t::out_of_resources>
+ *    When \c clRetainMemObject() returns \c CL_OUT_OF_RESOURCES.
+ * \throw clerror_no<status_t::out_of_host_memory>
+ *    When \c clRetainMemObject() returns \c CL_OUT_OF_HOST_MEMORY.
+ * \throw unexpected_clerror
+ *    When \c clRetainMemObject() returns other error code.
+ *
+ * \par Available in OpenCL versions
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |   \check  |   \check  |   \check  |   \check  |    ???    |
+ *
+ * \sa <a href="https://www.khronos.org/registry/cl/sdk/2.0/docs/man/xhtml/clRetainMemObject.html">clRetainMemObject()</a>
+ *
  */ // }}}
 void
 retain_mem_object(cl_mem memobj);
 /** // doc: release_mem_object() {{{
- * \todo Write documentation
+ * \brief Decrements the memory object reference count
+ *
+ * This is a wrapper for \c clReleaseMemObject(). The call to
+ * #release_mem_object() has same effect as a call to
+ *    - \c clReleaseMemObject(memobj)
+ *
+ * The main difference between #release_mem_object() and \c clReleaseMemObject()
+ * is that it throws %clxx exceptions instead of returning OpenCL error codes.
+ *
+ * \param memobj
+ *    A valid memory object
+ *
+ * \throw clerror_no<status_t::invalid_mem_object>
+ *    When \c clReleaseMemObject() returns \c CL_INVALID_MEM_OBJECT.
+ * \throw clerror_no<status_t::out_of_resources>
+ *    When \c clReleaseMemObject() returns \c CL_OUT_OF_RESOURCES.
+ * \throw clerror_no<status_t::out_of_host_memory>
+ *    When \c clReleaseMemObject() returns \c CL_OUT_OF_HOST_MEMORY.
+ * \throw unexpected_clerror
+ *    When \c clReleaseMemObject() returns other error code.
+ *
+ * \par Available in OpenCL versions
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |   \check  |   \check  |   \check  |   \check  |    ???    |
+ *
+ * \sa <a href="https://www.khronos.org/registry/cl/sdk/2.0/docs/man/xhtml/clReleaseMemObject.html">clReleaseMemObject()</a>
+ *
  */ // }}}
 void
 release_mem_object(cl_mem memobj);
@@ -2504,7 +4048,7 @@ set_kernel_exec_info(cl_kernel kernel,
  * \throw clerror_no<status_t::invalid_work_item_size>
  *    When the \c clEnqueueNDRangeKernel() returns CL_INVALID_WORK_ITEM_SIZE
  * \throw clerror_no<status_t::misaligned_sub_buffer_offset>
- *    When the \c clEnqueueNDRangeKernel() returns CL_MISALIGNED_SUB_BUSSER_OFFSET
+ *    When the \c clEnqueueNDRangeKernel() returns CL_MISALIGNED_SUB_BUFFER_OFFSET
  * \throw clerror_no<status_t::invalid_image_size>
  *    When the \c clEnqueueNDRangeKernel() returns CL_INVALID_IMAGE_SIZE
  * \throw clerror_no<status_t::image_format_not_supported>
@@ -2960,12 +4504,66 @@ get_event_profiling_info(cl_event event,
                          size_t param_value_size, void* param_value,
                          size_t* param_value_size_ret);
 /** // doc: flush() {{{
- * \todo Write documentation
+ * \brief Issues all previously queued OpenCL commands in a command-queue to
+ *        the device associated with the command-queue
+ *
+ * This function is a wrapper around \c clFlush(). The call to this function
+ * has same effect as
+ * - \c clFlush(command_queue)
+ *
+ * The main difference between #flush() and \c clFlush() is that it throws
+ * %clxx exceptions instead of returning OpenCL error codes.
+ *
+ * \param command_queue
+ *    The command queue whose commands are to be issued.
+ *
+ * \throw clerror_no<status_t::invalid_command_queue>
+ *    When the \c clFlush() returns CL_INVALID_COMMAND_QUEUE
+ * \throw clerror_no<status_t::out_of_resources>
+ *    When the \c clFlush() returns CL_OUT_OF_RESOURCES
+ * \throw clerror_no<status_t::out_of_host_memory>
+ *    When the \c clFlush() returns CL_OUT_OF_HOST_MEMORY
+ * \throw unexpected_clerror
+ *    When \c clFlush() returns other error code.
+ *
+ * \par Available in OpenCL versions
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |   \check  |   \check  |   \check  |   \check  |    ???    |
+ *
+ * \sa <a href="https://www.khronos.org/registry/cl/sdk/2.0/docs/man/xhtml/clFlush.html">clFlush()</a>
  */ // }}}
 void
 flush(cl_command_queue command_queue);
 /** // doc: finish() {{{
- * \todo Write documentation
+ * \brief Blocks until all previously queued OpenCL commands in a command-queue
+ *        are issued to the associated device and have completed
+ *
+ * This function is a wrapper around \c clFinish(). The call to this function
+ * has same effect as
+ * - \c clFinish(command_queue)
+ *
+ * The main difference between #finish() and \c clFinish() is that it throws
+ * %clxx exceptions instead of returning OpenCL error codes.
+ *
+ * \param command_queue
+ *    The command queue whose commands are to be finished.
+ *
+ * \throw clerror_no<status_t::invalid_command_queue>
+ *    When the \c clFinish() returns CL_INVALID_COMMAND_QUEUE
+ * \throw clerror_no<status_t::out_of_resources>
+ *    When the \c clFinish() returns CL_OUT_OF_RESOURCES
+ * \throw clerror_no<status_t::out_of_host_memory>
+ *    When the \c clFinish() returns CL_OUT_OF_HOST_MEMORY
+ * \throw unexpected_clerror
+ *    When \c clFinish() returns other error code.
+ *
+ * \par Available in OpenCL versions
+ * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
+ * | --------- | --------- | --------- | --------- | --------- |
+ * |   \check  |   \check  |   \check  |   \check  |    ???    |
+ *
+ * \sa <a href="https://www.khronos.org/registry/cl/sdk/2.0/docs/man/xhtml/clFinish.html">clFinish()</a>
  */ // }}}
 void
 finish(cl_command_queue command_queue);

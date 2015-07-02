@@ -24,45 +24,67 @@ class clxx::Platforms_TestSuite : public CxxTest::TestSuite
 {
 public:
   /** // doc: test_get_num_platforms_1() {{{
-   * \brief Test get_num_platforms() on Newton.
+   * \brief Test get_num_platforms()
    */ // }}}
-  void test_get_num_platforms_1( )
+  void test_get_num_platforms( )
   {
-    T::Newton_clGetPlatformIDs mock;
+    cl_platform_id _platforms[] = { (cl_platform_id)0x1234, (cl_platform_id)0x5678 };
+    cl_uint _num_platforms = 2;
+    T::Dummy_clGetPlatformIDs mock(CL_SUCCESS, _platforms, &_num_platforms);
+
     TS_ASSERT_EQUALS(get_num_platforms(), 2);
+
+    TS_ASSERT(mock.called_once());
+    TS_ASSERT_EQUALS(std::get<0>(mock.calls().back()), 0u);
+    TS_ASSERT(std::get<1>(mock.calls().back()) == nullptr);
+    TS_ASSERT(std::get<2>(mock.calls().back()) != nullptr);
   }
-  /** // doc: test_get_platform_ids_2() {{{
-   * \brief Test get_platform_ids() - std::vector version.
+  /** // doc: test_get_platform_ids() {{{
+   * \brief Test get_platform_ids()
    */ // }}}
-  void test_get_platform_ids_2( )
+  void test_get_platform_ids( )
   {
-    T::Newton_clGetPlatformIDs mock;
+    cl_platform_id _platforms[] = { (cl_platform_id)0x1234, (cl_platform_id)0x5678 };
+    cl_uint _num_platforms = 2;
+    T::Dummy_clGetPlatformIDs mock(CL_SUCCESS, _platforms, &_num_platforms);
+
     std::vector<cl_platform_id> ids(get_platform_ids());
     TS_ASSERT_EQUALS(ids.size(), 2);
-    TS_ASSERT_EQUALS(ids[0], T::Newton_clGetPlatformIDs::platforms[0]);
-    TS_ASSERT_EQUALS(ids[1], T::Newton_clGetPlatformIDs::platforms[1]);
+    TS_ASSERT_EQUALS(ids[0], _platforms[0]);
+    TS_ASSERT_EQUALS(ids[1], _platforms[1]);
+
+    TS_ASSERT(mock.called_twice());
+    TS_ASSERT_EQUALS(std::get<0>(mock.calls().front()), 0u);
+    TS_ASSERT(std::get<1>(mock.calls().front()) == nullptr);
+    TS_ASSERT(std::get<2>(mock.calls().front()) != nullptr);
+    //
+    TS_ASSERT_EQUALS(std::get<0>(mock.calls().back()), 2u);
+    TS_ASSERT(std::get<1>(mock.calls().back()) != nullptr);
+    TS_ASSERT(std::get<2>(mock.calls().back()) == nullptr);
   }
-//  /** // doc: test_get_platforms_1() {{{
-//   * \brief Test get_platforms() - std::vector version.
+//  /** // doc: test_get_platforms() {{{
+//   * \brief Test get_platforms()
 //   */ // }}}
-  void test_get_platforms_1( )
+  void test_get_platforms( )
   {
-    T::Newton_clGetPlatformIDs mock;
+    cl_platform_id _platforms[] = { (cl_platform_id)0x1234, (cl_platform_id)0x5678 };
+    cl_uint _num_platforms = 2;
+    T::Dummy_clGetPlatformIDs mock(CL_SUCCESS, _platforms, &_num_platforms);
+
     platforms p(get_platforms());
     TS_ASSERT_EQUALS(p.size(), 2);
-    TS_ASSERT_EQUALS(static_cast<platform>(p[0]).id(), T::Newton_clGetPlatformIDs::platforms[0]);
-    TS_ASSERT_EQUALS(static_cast<platform>(p[1]).id(), T::Newton_clGetPlatformIDs::platforms[1]);
+    TS_ASSERT_EQUALS(p[0].handle(), _platforms[0]);
+    TS_ASSERT_EQUALS(p[1].handle(), _platforms[1]);
+
+    TS_ASSERT(mock.called_twice());
+    TS_ASSERT_EQUALS(std::get<0>(mock.calls().front()), 0u);
+    TS_ASSERT(std::get<1>(mock.calls().front()) == nullptr);
+    TS_ASSERT(std::get<2>(mock.calls().front()) != nullptr);
+    //
+    TS_ASSERT_EQUALS(std::get<0>(mock.calls().back()), 2u);
+    TS_ASSERT(std::get<1>(mock.calls().back()) != nullptr);
+    TS_ASSERT(std::get<2>(mock.calls().back()) == nullptr);
   }
-// sorry, but this may irritate OOM instead of throw bad_alloc
-//  /** // doc: test_get_platform_ids_negsize() {{{
-//   * \brief Test get_platform_ids() in a situation when clGetPlatformIDs()
-//   *        returns negative num_platforms.
-//   */ // }}}
-//  void test_get_platform_ids_negsize( )
-//  {
-//    T::SizeRet_clGetPlatformIDs mock(-32);
-//    TS_ASSERT_THROWS(get_platform_ids(), CLXX_EXCEPTION(Bad_Alloc));
-//  }
   /** // doc: test_invalid_value() {{{
    * \brief Test get_xxx() in a situation when clGetPlatformIDs() returns
    *        status_t::invalid_value.

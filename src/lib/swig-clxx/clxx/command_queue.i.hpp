@@ -14,6 +14,7 @@
 #include <clxx/types.i.hpp>
 #include <clxx/context.i.hpp>
 #include <clxx/devices.i.hpp>
+#include <clxx/clobj.i.hpp>
 
 // stuff included by this module
 #include <clxx/command_queue.hpp>

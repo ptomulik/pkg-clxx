@@ -17,6 +17,7 @@
 #include <clxx/program_binaries.hpp>
 #include <clxx/program_observer.hpp>
 #include <clxx/types.hpp>
+#include <clxx/clobj.hpp>
 #include <vector>
 #include <string>
 
@@ -46,7 +47,7 @@ namespace clxx {
  *
  * Although \ref clxx::program "program" maintains internally reference count
  * for its \c cl_program handle, it doesn't prevent one from stealing the \c
- * cl_program handle (\ref id(), \ref get_valid_id()). This gives rise to
+ * cl_program handle (\ref handle(), \ref get_valid_handle()). This gives rise to
  * manipulate the reference count outside of the \ref clxx::program object for
  * the given OpenCL program object. If you need to steal, use the retrieved
  * handle with care. If you retrieve the handle from \ref clxx::program
@@ -73,61 +74,22 @@ namespace clxx {
  * #assign() method).
  */ // }}}
 class alignas(cl_program) program
+  : public clobj<cl_program>
 {
-private:
-  cl_program _id;
-protected:
-  /** // doc: _set_id(cl_program, bool, bool) {{{
-   * \brief Set the \c cl_program handle to this object
-   *
-   * \param prog the \c cl_program handle (OpenCL program),
-   * \param retain_new whether to invoke \ref retain_program() on *prog*,
-   * \param release_old whether to invoke \ref release_program() on the handle
-   *        held up to this moment by this object.
-   *
-   * \par Exceptions
-   *
-   * Throws exceptions originating from \ref retain_program().
-   */ // }}}
-  void _set_id(cl_program prog, bool retain_new, bool release_old);
 public:
+  /** // doc: Base {{{
+   * \brief Typedef for the base class type
+   */ // }}}
+  typedef clobj<cl_program> Base;
+  using Base::Base;
   /** // doc: program() {{{
-   * \brief Default constructor
-   *
-   * Sets the internal \c cl_program handle to \c NULL. A default-constructed
-   * \ref clxx::program "program" object is considered to be uninitialized (see
-   * #is_initialized()).
+   * \brief Default constructor, see \ref clobj::clobj()
    */ // }}}
-  program() noexcept;
-  /** // doc: program(cl_program) {{{
-   * \brief Creates \ref clxx::program "program" object from explicitly given
-   *        OpenCL \c cl_program handle.
-   *
-   * The constructor internally retains the provided OpenCL program identified
-   * by *id* (\ref clxx::retain_program()).
-   *
-   * \param id handle (identifier) to an OpenCL program that has to be
-   *           encapsulated by the newly created \ref clxx::program "program"
-   *           object.
-   *
-   * \par Exceptions
-   *
-   * Throws exceptions originating from \ref retain_program().
+  program() = default;
+  /** // doc: program() {{{
+   * \brief Copy constructor, see \ref clobj::clobj(clobj const&)
    */ // }}}
-  explicit program(cl_program id);
-  /** // doc: program(program const&) {{{
-   * \brief Copy constructor
-   *
-   * The constructor internally retains the provided OpenCL program identified
-   * by *id* (\ref clxx::retain_program()).
-   *
-   * \param p a \ref clxx::program "program" object to be copied.
-   *
-   * \par Exceptions
-   *
-   * Throws exceptions originating from \ref retain_program().
-   */ // }}}
-  program(program const& p);
+  program(program const&) = default;
   /** // doc: program(context const&, program_sources const&) {{{
    * \brief Create program with sources
    *
@@ -220,150 +182,6 @@ public:
   program(context const& ctx, devices const& device_list,
           std::string const& kernel_names);
 #endif
-  /** // doc: ~program() {{{
-   * \brief Destructor
-   *
-   * If the program was initialized properly, then it internally releases the
-   * program by \ref release_program().
-   */ // }}}
-  ~program();
-  /** // doc: id() {{{
-   * \brief Get the \c cl_program handle held by this object
-   *
-   * \returns the OpenCL program handle of type \c cl_program held by this
-   *          object
-   */ // }}}
-  cl_program id() const noexcept
-  { return this->_id; }
-  /** // doc: get_valid_id() {{{
-   * \brief Check if \c this object is initialized and return \c cl_program
-   *        handle held by this object.
-   *
-   * \returns The \c cl_program handle to OpenCL program encapsulated within
-   *          this object.
-   *
-   * \throws uninitialized_program_error when the object was not properly
-   *        initialized (see is_initialized()).
-   */ // }}}
-  cl_program get_valid_id() const;
-  /** // doc: operator= {{{
-   * \brief Assignment operator
-   *
-   * \param rhs Another program object to be assigned to this object
-   *
-   *  This operation copies the \c cl_program handle held by \e rhs
-   *  to \c this object and maintains reference counts appropriately. The
-   *  reference count for handle originating from \e rhs gets increased by
-   *  one, as it acquires new user (\c this object). The reference count for
-   *  identifier held up to now by \c this object is decreased by one, as it is
-   *  forgotten by one user (namely, by \c this object).
-   *
-   * \return Reference to this object
-   *
-   * \throws uninitialized_program_error
-   *    when the \e rhs object is in uninitialized state
-   * \throws clerror_no<status_t::invalid_program>
-   *    when the \e rhs holds invalid \c cl_program handle
-   * \throws unexpected_clerror
-   */ // }}}
-  program& operator=(program const& rhs)
-  { this->assign(rhs); return *this; }
-  /** // doc: operator== {{{
-   * \brief Compare this program with another one
-   *
-   * \param rhs
-   *    Another program object to be compared to \c this object.
-   *
-   * \return
-   *    Returns <tt>this->id() == rhs.id()</tt>
-   */ // }}}
-  bool operator == (program const& rhs) const noexcept
-  { return this->id() == rhs.id(); }
-  /** // doc: operator!= {{{
-   * \brief Compare this program with another one
-   *
-   * \param rhs
-   *    Another program object to be compared to \c this object.
-   *
-   * \returns <tt>this->id() != rhs.id()</tt>
-   */ // }}}
-  bool operator != (program const& rhs) const noexcept
-  { return this->id() != rhs.id(); }
-  /** // doc: operator< {{{
-   * \brief Compare this program with another one
-   *
-   * \param rhs
-   *    Another program object to be compared to \c this object.
-   *
-   * \return <tt>this->id() < rhs.id())</tt>
-   */ // }}}
-  bool operator < (program const& rhs) const noexcept
-  { return this->id() < rhs.id(); }
-  /** // doc: operator> {{{
-   * \brief Compare this program with another one
-   *
-   * \param rhs
-   *    Another program object to be compared to \c this object.
-   *
-   * \return <tt>this->id() > rhs.id()</tt>
-   */ // }}}
-  bool operator > (program const& rhs) const noexcept
-  { return this->id() > rhs.id(); }
-  /** // doc: operator<= {{{
-   * \brief Compare this program with another one
-   *
-   * \param rhs
-   *    Another program object to be compared to \c this object.
-   *
-   * \return <tt>this->id() <= rhs.id()</tt>
-   */ // }}}
-  bool operator <= (program const& rhs) const noexcept
-  { return this->id() <= rhs.id(); }
-  /** // doc: operator>= {{{
-   * \brief Compare this program with another one
-   *
-   * \param rhs
-   *    Another program object to be compared to \c this object.
-   *
-   * \return <tt>this->id() >= rhs.id()</tt>
-   */ // }}}
-  bool operator >= (program const& rhs) const noexcept
-  { return this->id() >= rhs.id(); }
-  /** // doc: is_initialized() {{{
-   * \brief Is this object properly initialized?
-   *
-   * \return Returns \c true if \c this object is initialized or \c false
-   *         otherwise.
-   */ // }}}
-  bool is_initialized() const noexcept
-  { return this->_id != NULL; }
-  /** // doc: get_info(...) {{{
-   * \brief Get certain program information from OpenCL
-   *
-   * This function calls internally \ref clxx::get_program_info() "get_program_info()".
-   *
-   * \param name
-   *     An enumeration constant that specifies the information to query.
-   *     See documentation of \ref program_info_t for possible values.
-   * \param value_size
-   *    Specifies the size in bytes of memory pointed to by \e value. This size
-   *    must be greater than or equal to the size of return type as described
-   *    in appropriate table in the OpenCL specification (see documentation of
-   *    \ref clxx::get_program_info() "get_program_info()").
-   * \param value
-   *    A pointer to memory where the appropriate result being queried is
-   *    returned. If \e value is \c NULL, it is ignored.
-   * \param value_size_ret
-   *    Returns the actual size in bytes of data being queried by \e value. If
-   *    \e value_size_ret is \c NULL, it is ignored.
-   *
-   * \throws uninitialized_program_error if the object was not initialized
-   *      properly (see \ref is_initialized()).
-   *
-   * It also throws exceptions originating from \ref get_program_info().
-   */ // }}}
-  void get_info(program_info_t name, size_t value_size, void* value,
-                size_t* value_size_ret) const;
   /** // doc: get_build_info(...) {{{
    * \brief Returns build information for each device in the program object
    *
@@ -391,17 +209,6 @@ public:
   void get_build_info(device const& dev, program_build_info_t name,
                       size_t value_size, void* value,
                       size_t* value_size_ret) const;
-  /** // doc: get_reference_count() {{{
-   * \brief Get reference count for the program
-   *
-   * \returns reference count for the program.
-   *
-   * \throws uninitialized_program_error if the object was not initialized
-   *      properly (see \ref is_initialized()).
-   *
-   * It also throws exceptions originating fro \ref get_program_info().
-   */ // }}}
-  cl_uint get_reference_count() const;
   /** // doc: get_context() {{{
    * \brief Get context associated with this program
    *
@@ -594,24 +401,6 @@ public:
    * It also throws exceptions originating from \ref get_program_build_info().
    */ // }}}
   program_binary_type_t get_binary_type(device const& dev) const;
-  /** // doc: assign() {{{
-   * \brief Assignment
-   *
-   * This operation copies the \c cl_program handle held by \e rhs to \c this
-   * object and maintains reference count appropriately. The reference count
-   * for handle originating from \e rhs gets increased by one, as it acquires
-   * new user (\c this object). The reference count for handle held up to now
-   * by \c this object is decreased by one, as it is forgotten by one user
-   * (namely, by \c this object).
-   *
-   * \throws uninitialized_program_error
-   *    when \e rhs is an uninitialized program object.
-   * \throws clerror_no<status_t::invalid_program>
-   *    when \e rhs holds a \c cl_program handle that is invalid.
-   * \throws unexpected_clerror
-   */ // }}}
-  void assign(program const& rhs)
-  { this->_set_id(rhs.get_valid_id(), true, true); }
 };
 } // end namespace clxx
 

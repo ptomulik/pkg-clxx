@@ -32,7 +32,7 @@ public:
     T::Dummy_clReleaseContext mock2(CL_SUCCESS);
     context c;
     TS_ASSERT(!c.is_initialized());
-    TS_ASSERT_EQUALS(c.id(), (cl_context)NULL);
+    TS_ASSERT_EQUALS(c.handle(), (cl_context)NULL);
     TS_ASSERT(mock1.never_called());
     TS_ASSERT(mock2.never_called());
   }
@@ -262,9 +262,16 @@ public:
   void test_get_devices( )
   {
     cl_device_id array[2] = { (cl_device_id)0x1234, (cl_device_id)0x5678 };
+    size_t size = sizeof(array);
     T::Dummy_clRetainContext mock1(CL_SUCCESS);
     T::Dummy_clReleaseContext mock2(CL_SUCCESS);
-    T::Dummy_clGetContextInfo mock3(CL_SUCCESS, array, sizeof(array));
+    T::Dummy_clGetContextInfo mock3(CL_SUCCESS, array, &size);
+#if CLXX_OPENCL_ALLOWED(clRetainDevice)
+    T::Dummy_clRetainDevice mockRetainDevice(CL_SUCCESS);
+#endif
+#if CLXX_OPENCL_ALLOWED(clReleaseDevice)
+    T::Dummy_clReleaseDevice mockReleaseDevice(CL_SUCCESS);
+#endif
     context c((cl_context)0x1234);
 
     // the exception here is quite normal, as we don't set
@@ -277,8 +284,8 @@ public:
     TS_ASSERT_EQUALS(std::get<1>(mock3.calls().back()), CL_CONTEXT_DEVICES);
 
     TS_ASSERT_EQUALS(devs.size(), 2);
-    TS_ASSERT_EQUALS(devs[0].id(), (cl_device_id)0x1234);
-    TS_ASSERT_EQUALS(devs[1].id(), (cl_device_id)0x5678);
+    TS_ASSERT_EQUALS(devs[0].handle(), (cl_device_id)0x1234);
+    TS_ASSERT_EQUALS(devs[1].handle(), (cl_device_id)0x5678);
   }
   /** // doc: test_get_properties() {{{
    * \todo Write documentation
@@ -290,9 +297,10 @@ public:
         (cl_context_properties)CL_TRUE,
         (cl_context_properties)0ul
     };
+    size_t size = sizeof(array);
     T::Dummy_clRetainContext mock1(CL_SUCCESS);
     T::Dummy_clReleaseContext mock2(CL_SUCCESS);
-    T::Dummy_clGetContextInfo mock3(CL_SUCCESS, array, sizeof(array));
+    T::Dummy_clGetContextInfo mock3(CL_SUCCESS, array, &size);
     context c((cl_context)0x1234);
 
     // the exception here is quite normal, as we don't set

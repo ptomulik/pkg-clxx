@@ -17,6 +17,7 @@
 #include <clxx/device.hpp>
 #include <clxx/types.hpp>
 #include <clxx/config.hpp>
+#include <clxx/clobj.hpp>
 #include <string>
 
 namespace clxx {
@@ -42,7 +43,7 @@ namespace clxx {
  *
  * Although \ref clxx::kernel "kernel" maintains internally reference count
  * for its \c cl_kernel handle, it doesn't prevent one from stealing the \c
- * cl_kernel handle (#id(), #get_valid_id()). This gives rise to
+ * cl_kernel handle (#handle(), #get_valid_handle()). This gives rise to
  * manipulate the reference count outside of the \ref clxx::kernel "kernel"
  * object for the given OpenCL kernel object. If you need to steal, use the
  * retrieved handle with care. If you retrieve the handle from
@@ -69,61 +70,22 @@ namespace clxx {
  * #assign() method).
  */ // }}}
 class alignas(cl_kernel) kernel
+  : public clobj<cl_kernel>
 {
-private:
-  cl_kernel _id;
-protected:
-  /** // doc: _set_id(cl_kernel, bool, bool) {{{
-   * \brief Set the \c cl_kernel handle to this object
-   *
-   * \param kern the \c cl_kernel handle (OpenCL kernel),
-   * \param retain_new whether to invoke \ref retain_kernel() on *kern*,
-   * \param release_old whether to invoke \ref release_kernel() on the handle
-   *        held up to this moment by this object.
-   *
-   * \par Exceptions
-   *
-   * Throws exceptions originating from \ref retain_kernel().
-   */ // }}}
-  void _set_id(cl_kernel kern, bool retain_new, bool release_old);
 public:
+  /** // doc: Base {{{
+   * \brief Typedef for the base class type
+   */ // }}}
+  typedef clobj<cl_kernel> Base;
+  using Base::Base;
   /** // doc: kernel() {{{
-   * \brief Default constructor
-   *
-   * Sets the internal \c cl_kernel handle to NULL. A default-constructed
-   * \ref clxx::kernel "kernel" object is considered to be uninitialized (see
-   * #is_initialized()).
+   * \brief Default constructor, see \ref clobj::clobj()
    */ // }}}
-  kernel() noexcept;
-  /** // doc: kernel(cl_kernel) {{{
-   * \brief Creates \ref clxx::kernel "kernel" object from explicitly given
-   *        OpenCL \c cl_kernel handle.
-   *
-   * The constructor internally retains the provided OpenCL kernel identified
-   * by *id* (\ref clxx::retain_kernel()).
-   *
-   * \param id handle (identifier) to an OpenCL kernel that has to be
-   *           encapsulated by the newly created \ref clxx::kernel "kernel"
-   *           object.
-   *
-   * \par Exceptions
-   *
-   * Throws exceptions originating from \ref retain_kernel().
+  kernel() = default;
+  /** // doc: kernel() {{{
+   * \brief Copy constructor, see \ref clobj::clobj(clobj const&)
    */ // }}}
-  explicit kernel(cl_kernel id);
-  /** // doc: kernel(kernel const&) {{{
-   * \brief Copy constructor
-   *
-   * The constructor internally retains the provided OpenCL kernel identified
-   * by *id* (\ref clxx::retain_kernel()).
-   *
-   * \param k a \ref clxx::kernel "kernel" object to be copied.
-   *
-   * \par Exceptions
-   *
-   * Throws exceptions originating from \ref retain_kernel().
-   */ // }}}
-  kernel(kernel const& k);
+  kernel(kernel const&) = default;
   /** // doc: kernel(prog, name) {{{
    * \brief Constructor
    *
@@ -138,179 +100,6 @@ public:
    * Also throws exceptions originating from #create_kernel().
    */ // }}}
   kernel(program const& prog, std::string const& name);
-  /** // doc: ~kernel() {{{
-   * \brief Destructor
-   *
-   * If the kernel was initialized properly, then it internally releases the
-   * kernel by \ref release_kernel().
-   */ // }}}
-  ~kernel();
-  /** // doc: id() {{{
-   * \brief Get the \c cl_kernel handle held by this object
-   *
-   * \returns the OpenCL kernel handle of type \c cl_kernel held by this
-   *          object
-   */ // }}}
-  cl_kernel id() const noexcept
-  { return this->_id; }
-  /** // doc: get_valid_id() {{{
-   * \brief Check if \c this object is initialized and return \c cl_kernel
-   *        handle held by this object.
-   *
-   * \returns The \c cl_kernel handle to OpenCL kernel encapsulated within
-   *          this object.
-   *
-   * \throws uninitialized_kernel_error when the object was not properly
-   *        initialized (see is_initialized()).
-   */ // }}}
-  cl_kernel get_valid_id() const;
-  /** // doc: operator= {{{
-   * \brief Assignment operator
-   *
-   * \param rhs Another kernel object to be assigned to this object
-   *
-   *  This operation copies the \c cl_kernel handle held by \e rhs
-   *  to \c this object and maintains reference counts appropriately. The
-   *  reference count for handle originating from \e rhs gets increased by
-   *  one, as it acquires new user (\c this object). The reference count for
-   *  identifier held up to now by \c this object is decreased by one, as it is
-   *  forgotten by one user (namely, by \c this object).
-   *
-   * \return Reference to this object
-   *
-   * \throws uninitialized_kernel_error
-   *    when the \e rhs object is in uninitialized state
-   * \throws clerror_no<status_t::invalid_kernel>
-   *    when the \e rhs holds invalid \c cl_kernel handle
-   * \throws unexpected_clerror
-   */ // }}}
-  kernel& operator=(kernel const& rhs)
-  { this->assign(rhs); return *this; }
-  /** // doc: operator== {{{
-   * \brief Compare this kernel with another one
-   *
-   * \param rhs
-   *    Another kernel object to be compared to \c this object.
-   *
-   * \return
-   *    Returns <tt>this->id() == rhs.id()</tt>
-   */ // }}}
-  bool operator == (kernel const& rhs) const noexcept
-  { return this->id() == rhs.id(); }
-  /** // doc: operator!= {{{
-   * \brief Compare this kernel with another one
-   *
-   * \param rhs
-   *    Another kernel object to be compared to \c this object.
-   *
-   * \returns <tt>this->id() != rhs.id()</tt>
-   */ // }}}
-  bool operator != (kernel const& rhs) const noexcept
-  { return this->id() != rhs.id(); }
-  /** // doc: operator< {{{
-   * \brief Compare this kernel with another one
-   *
-   * \param rhs
-   *    Another kernel object to be compared to \c this object.
-   *
-   * \return <tt>this->id() < rhs.id())</tt>
-   */ // }}}
-  bool operator < (kernel const& rhs) const noexcept
-  { return this->id() < rhs.id(); }
-  /** // doc: operator> {{{
-   * \brief Compare this kernel with another one
-   *
-   * \param rhs
-   *    Another kernel object to be compared to \c this object.
-   *
-   * \return <tt>this->id() > rhs.id()</tt>
-   */ // }}}
-  bool operator > (kernel const& rhs) const noexcept
-  { return this->id() > rhs.id(); }
-  /** // doc: operator<= {{{
-   * \brief Compare this kernel with another one
-   *
-   * \param rhs
-   *    Another kernel object to be compared to \c this object.
-   *
-   * \return <tt>this->id() <= rhs.id()</tt>
-   */ // }}}
-  bool operator <= (kernel const& rhs) const noexcept
-  { return this->id() <= rhs.id(); }
-  /** // doc: operator>= {{{
-   * \brief Compare this kernel with another one
-   *
-   * \param rhs
-   *    Another kernel object to be compared to \c this object.
-   *
-   * \return <tt>this->id() >= rhs.id()</tt>
-   */ // }}}
-  bool operator >= (kernel const& rhs) const noexcept
-  { return this->id() >= rhs.id(); }
-  /** // doc: is_initialized() {{{
-   * \brief Is this object properly initialized?
-   *
-   * \return Returns \c true if \c this object is initialized or \c false
-   *         otherwise.
-   */ // }}}
-  bool is_initialized() const noexcept
-  { return this->_id != NULL; }
-  /** // doc: assign() {{{
-   * \brief Assignment
-   *
-   * This operation copies the \c cl_kernel handle held by \e rhs to \c this
-   * object and maintains reference count appropriately. The reference count
-   * for handle originating from \e rhs gets increased by one, as it acquires
-   * new user (\c this object). The reference count for handle held up to now
-   * by \c this object is decreased by one, as it is forgotten by one user
-   * (namely, by \c this object).
-   *
-   * \throws uninitialized_kernel_error
-   *    when \e rhs is an uninitialized kernel object.
-   * \throws clerror_no<status_t::invalid_kernel>
-   *    when \e rhs holds a \c cl_kernel handle that is invalid.
-   * \throws unexpected_clerror
-   */ // }}}
-  void assign(kernel const& rhs)
-  { this->_set_id(rhs.get_valid_id(), true, true); }
-  /** // doc: get_info(...) {{{
-   * \brief Get certain kernel information from OpenCL
-   *
-   * This function calls internally \ref clxx::get_kernel_info() "get_kernel_info()".
-   *
-   * \param name
-   *     An enumeration constant that specifies the information to query.
-   *     See documentation of \ref kernel_info_t for possible values.
-   * \param value_size
-   *    Specifies the size in bytes of memory pointed to by \e value. This size
-   *    must be greater than or equal to the size of return type as described
-   *    in appropriate table in the OpenCL specification (see documentation of
-   *    \ref clxx::get_kernel_info() "get_kernel_info()").
-   * \param value
-   *    A pointer to memory where the appropriate result being queried is
-   *    returned. If \e value is \c NULL, it is ignored.
-   * \param value_size_ret
-   *    Returns the actual size in bytes of data being queried by \e value. If
-   *    \e value_size_ret is \c NULL, it is ignored.
-   *
-   * \throws uninitialized_kernel_error if the object was not initialized
-   *      properly (see \ref is_initialized()).
-   *
-   * It also throws exceptions originating from \ref get_kernel_info().
-   */ // }}}
-  void get_info(kernel_info_t name, size_t value_size, void* value,
-                size_t* value_size_ret) const;
-  /** // doc: get_reference_count() {{{
-   * \brief Get reference count for the kernel
-   *
-   * \returns reference count for the kernel.
-   *
-   * \throws uninitialized_kernel_error if the object was not initialized
-   *      properly (see \ref is_initialized()).
-   *
-   * It also throws exceptions originating fro \ref get_kernel_info().
-   */ // }}}
-  cl_uint get_reference_count() const;
   /** // doc: get_function_name() {{{
    * \brief Return the kernel function name
    * \returns A string with kernel function's name

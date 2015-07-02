@@ -10,6 +10,8 @@
 #ifndef CLXX_CL_HPP_INCLUDED
 #define CLXX_CL_HPP_INCLUDED
 
+#include <clxx/clobj.hpp>
+#include <clxx/clobj_fcn.hpp>
 #include <clxx/command_queue.hpp>
 #include <clxx/context.hpp>
 #include <clxx/context_properties.hpp>

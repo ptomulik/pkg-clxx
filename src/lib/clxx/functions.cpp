@@ -634,6 +634,31 @@ enqueue_map_buffer( cl_command_queue command_queue, cl_mem buffer,
     }
   return result;
 }
+#if CLXX_OPENCL_ALLOWED(clCreateImage)
+/* ------------------------------------------------------------------------ */
+cl_mem
+create_image(cl_context context,
+             mem_flags_t flags,
+             const cl_image_format *image_format,
+             const cl_image_desc *image_desc,
+             void *host_ptr)
+{
+  cl_int s = CL_SUCCESS;
+  cl_mem result = T::clCreateImage(
+      context,
+      static_cast<cl_mem_flags>(flags),
+      image_format,
+      image_desc,
+      host_ptr,
+      &s
+  );
+  if(is_error(static_cast<status_t>(s)))
+    {
+      _throw_clerror_no(static_cast<status_t>(s));
+    }
+  return result;
+}
+#endif
 /* ------------------------------------------------------------------------ */
 void
 get_supported_image_formats(cl_context context,

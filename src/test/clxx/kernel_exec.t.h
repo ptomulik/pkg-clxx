@@ -48,8 +48,8 @@ public:
 
     TS_ASSERT_THROWS_NOTHING(enqueue_ndrange_kernel(q,k,r,ews,e));
     TS_ASSERT(mock1.called_once());
-    TS_ASSERT(std::get<0>(mock1.calls().back()) == q.id());
-    TS_ASSERT(std::get<1>(mock1.calls().back()) == k.id());
+    TS_ASSERT(std::get<0>(mock1.calls().back()) == q.handle());
+    TS_ASSERT(std::get<1>(mock1.calls().back()) == k.handle());
     TS_ASSERT(std::get<2>(mock1.calls().back()) == r.dimension());
     TS_ASSERT(std::get<3>(mock1.calls().back()) == r.global_offset_ptr());
     TS_ASSERT(std::get<4>(mock1.calls().back()) == r.global_size_ptr());
@@ -80,8 +80,8 @@ public:
 
     TS_ASSERT_THROWS_NOTHING(enqueue_ndrange_kernel(q,k,r,e));
     TS_ASSERT(mock1.called_once());
-    TS_ASSERT(std::get<0>(mock1.calls().back()) == q.id());
-    TS_ASSERT(std::get<1>(mock1.calls().back()) == k.id());
+    TS_ASSERT(std::get<0>(mock1.calls().back()) == q.handle());
+    TS_ASSERT(std::get<1>(mock1.calls().back()) == k.handle());
     TS_ASSERT(std::get<2>(mock1.calls().back()) == r.dimension());
     TS_ASSERT(std::get<3>(mock1.calls().back()) == r.global_offset_ptr());
     TS_ASSERT(std::get<4>(mock1.calls().back()) == r.global_size_ptr());
@@ -112,8 +112,8 @@ public:
 
     TS_ASSERT_THROWS_NOTHING(enqueue_ndrange_kernel(q,k,r,ews));
     TS_ASSERT(mock1.called_once());
-    TS_ASSERT(std::get<0>(mock1.calls().back()) == q.id());
-    TS_ASSERT(std::get<1>(mock1.calls().back()) == k.id());
+    TS_ASSERT(std::get<0>(mock1.calls().back()) == q.handle());
+    TS_ASSERT(std::get<1>(mock1.calls().back()) == k.handle());
     TS_ASSERT(std::get<2>(mock1.calls().back()) == r.dimension());
     TS_ASSERT(std::get<3>(mock1.calls().back()) == r.global_offset_ptr());
     TS_ASSERT(std::get<4>(mock1.calls().back()) == r.global_size_ptr());
@@ -143,8 +143,8 @@ public:
 
     TS_ASSERT_THROWS_NOTHING(enqueue_ndrange_kernel(q,k,r));
     TS_ASSERT(mock1.called_once());
-    TS_ASSERT(std::get<0>(mock1.calls().back()) == q.id());
-    TS_ASSERT(std::get<1>(mock1.calls().back()) == k.id());
+    TS_ASSERT(std::get<0>(mock1.calls().back()) == q.handle());
+    TS_ASSERT(std::get<1>(mock1.calls().back()) == k.handle());
     TS_ASSERT(std::get<2>(mock1.calls().back()) == r.dimension());
     TS_ASSERT(std::get<3>(mock1.calls().back()) == r.global_offset_ptr());
     TS_ASSERT(std::get<4>(mock1.calls().back()) == r.global_size_ptr());

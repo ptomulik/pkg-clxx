@@ -33,7 +33,7 @@ public:
     T::Dummy_clReleaseMemObject mock2(CL_SUCCESS);
     mem m;
     TS_ASSERT(!m.is_initialized());
-    TS_ASSERT_EQUALS(m.id(), (cl_mem)NULL);
+    TS_ASSERT_EQUALS(m.handle(), (cl_mem)NULL);
     TS_ASSERT(mock1.never_called());
     TS_ASSERT(mock2.never_called());
   }
@@ -46,7 +46,7 @@ public:
     T::Dummy_clReleaseMemObject mock2(CL_SUCCESS);
     mem m((cl_mem)0x1234);
     TS_ASSERT(m.is_initialized());
-    TS_ASSERT_EQUALS(m.id(), (cl_mem)0x1234);
+    TS_ASSERT_EQUALS(m.handle(), (cl_mem)0x1234);
     TS_ASSERT(mock1.called_once_with((cl_mem)0x1234));
     TS_ASSERT(mock2.never_called());
   }
@@ -75,7 +75,7 @@ public:
     context ctx((cl_context)0x4321);
     mem m(ctx, mem_flags_t::read_write, 123ul, (void*)0x7654);
     TS_ASSERT(m.is_initialized());
-    TS_ASSERT_EQUALS(m.id(), (cl_mem)0x1234);
+    TS_ASSERT_EQUALS(m.handle(), (cl_mem)0x1234);
     TS_ASSERT(mock1.called_once());
     TS_ASSERT(std::get<0>(mock1.calls().back()) == (cl_context)0x4321);
     TS_ASSERT(std::get<1>(mock1.calls().back()) == (cl_mem_flags)CL_MEM_READ_WRITE);
@@ -130,19 +130,19 @@ public:
     T::Dummy_clRetainMemObject mock1(CL_SUCCESS);
     T::Dummy_clReleaseMemObject mock2(CL_SUCCESS);
 
-    TS_ASSERT_EQUALS(mem((cl_mem)0x1234).id(), (cl_mem)0x1234);
-    TS_ASSERT_EQUALS(mem((cl_mem)NULL).id(), (cl_mem)NULL);
+    TS_ASSERT_EQUALS(mem((cl_mem)0x1234).handle(), (cl_mem)0x1234);
+    TS_ASSERT_EQUALS(mem((cl_mem)NULL).handle(), (cl_mem)NULL);
   }
-  /** // doc: test__get_valid_id() {{{
+  /** // doc: test__get_valid_handle() {{{
    * \todo Write documentation
    */ // }}}
-  void test__get_valid_id( )
+  void test__get_valid_handle( )
   {
     T::Dummy_clRetainMemObject mock1(CL_SUCCESS);
     T::Dummy_clReleaseMemObject mock2(CL_SUCCESS);
 
-    TS_ASSERT_EQUALS(mem((cl_mem)0x1234).get_valid_id(), (cl_mem)0x1234);
-    TS_ASSERT_THROWS(mem((cl_mem)NULL).get_valid_id(), uninitialized_mem_error);
+    TS_ASSERT_EQUALS(mem((cl_mem)0x1234).get_valid_handle(), (cl_mem)0x1234);
+    TS_ASSERT_THROWS(mem((cl_mem)NULL).get_valid_handle(), uninitialized_mem_error);
   }
   /** // doc: test__op_assign() {{{
    * \todo Write documentation
@@ -154,7 +154,7 @@ public:
     mem p1((cl_mem)0x1234);
     mem p2((cl_mem)0x5678);
     p1 = p2;
-    TS_ASSERT_EQUALS(p1.id(), (cl_mem)0x5678);
+    TS_ASSERT_EQUALS(p1.handle(), (cl_mem)0x5678);
   }
   /** // doc: test__op_eq() {{{
    * \todo Write documentation

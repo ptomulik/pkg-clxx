@@ -36,7 +36,7 @@ public:
     T::Dummy_clReleaseKernel mock2(CL_SUCCESS);
     kernel k;
     TS_ASSERT(!k.is_initialized());
-    TS_ASSERT_EQUALS(k.id(), (cl_kernel)NULL);
+    TS_ASSERT_EQUALS(k.handle(), (cl_kernel)NULL);
     TS_ASSERT(mock1.never_called());
     TS_ASSERT(mock2.never_called());
   }
@@ -49,7 +49,7 @@ public:
     T::Dummy_clReleaseKernel mock2(CL_SUCCESS);
     kernel k((cl_kernel)0x1234);
     TS_ASSERT(k.is_initialized());
-    TS_ASSERT_EQUALS(k.id(), (cl_kernel)0x1234);
+    TS_ASSERT_EQUALS(k.handle(), (cl_kernel)0x1234);
     TS_ASSERT(mock1.called_once_with((cl_kernel)0x1234));
     TS_ASSERT(mock2.never_called());
   }
@@ -80,7 +80,7 @@ public:
     kernel k(prog, "foo");
 
     TS_ASSERT(k.is_initialized());
-    TS_ASSERT_EQUALS(k.id(), (cl_kernel)0x5678);
+    TS_ASSERT_EQUALS(k.handle(), (cl_kernel)0x5678);
     TS_ASSERT(mock3.called_once());
     // mock1 not called because the class assumes the implicit retain performed
     // by clCreateKernelWithSource()
@@ -133,19 +133,19 @@ public:
     T::Dummy_clRetainKernel mock1(CL_SUCCESS);
     T::Dummy_clReleaseKernel mock2(CL_SUCCESS);
 
-    TS_ASSERT_EQUALS(kernel((cl_kernel)0x1234).id(), (cl_kernel)0x1234);
-    TS_ASSERT_EQUALS(kernel((cl_kernel)NULL).id(), (cl_kernel)NULL);
+    TS_ASSERT_EQUALS(kernel((cl_kernel)0x1234).handle(), (cl_kernel)0x1234);
+    TS_ASSERT_EQUALS(kernel((cl_kernel)NULL).handle(), (cl_kernel)NULL);
   }
-  /** // doc: test__get_valid_id() {{{
+  /** // doc: test__get_valid_handle() {{{
    * \todo Write documentation
    */ // }}}
-  void test__get_valid_id( )
+  void test__get_valid_handle( )
   {
     T::Dummy_clRetainKernel mock1(CL_SUCCESS);
     T::Dummy_clReleaseKernel mock2(CL_SUCCESS);
 
-    TS_ASSERT_EQUALS(kernel((cl_kernel)0x1234).get_valid_id(), (cl_kernel)0x1234);
-    TS_ASSERT_THROWS(kernel((cl_kernel)NULL).get_valid_id(), uninitialized_kernel_error);
+    TS_ASSERT_EQUALS(kernel((cl_kernel)0x1234).get_valid_handle(), (cl_kernel)0x1234);
+    TS_ASSERT_THROWS(kernel((cl_kernel)NULL).get_valid_handle(), uninitialized_kernel_error);
   }
   /** // doc: test__op_assign() {{{
    * \todo Write documentation
@@ -157,7 +157,7 @@ public:
     kernel p1((cl_kernel)0x1234);
     kernel p2((cl_kernel)0x5678);
     p1 = p2;
-    TS_ASSERT_EQUALS(p1.id(), (cl_kernel)0x5678);
+    TS_ASSERT_EQUALS(p1.handle(), (cl_kernel)0x5678);
   }
   /** // doc: test__op_eq() {{{
    * \todo Write documentation
@@ -350,7 +350,7 @@ public:
 
     T::Dummy_clRetainContext mock4(CL_SUCCESS);
     T::Dummy_clReleaseContext mock5(CL_SUCCESS);
-    TS_ASSERT_EQUALS(k.get_context().id(), var);
+    TS_ASSERT_EQUALS(k.get_context().handle(), var);
 
     TS_ASSERT(mock3.called_once());
     TS_ASSERT_EQUALS(std::get<1>(mock3.calls().back()), (cl_uint)CL_KERNEL_CONTEXT);
@@ -372,7 +372,7 @@ public:
 
     T::Dummy_clRetainProgram mock4(CL_SUCCESS);
     T::Dummy_clReleaseProgram mock5(CL_SUCCESS);
-    TS_ASSERT_EQUALS(k.get_program().id(), var);
+    TS_ASSERT_EQUALS(k.get_program().handle(), var);
 
     TS_ASSERT(mock3.called_once());
     TS_ASSERT_EQUALS(std::get<1>(mock3.calls().back()), (cl_uint)CL_KERNEL_PROGRAM);

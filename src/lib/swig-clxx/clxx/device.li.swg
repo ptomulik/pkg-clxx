@@ -44,7 +44,7 @@
 }
 %enddef
 
-%exception clxx::device::get_valid_id() {
+%exception clxx::device::get_valid_handle() {
   try { $action }
   %catch_uninitialized_device_error
   %catch_exception
@@ -135,6 +135,8 @@
 
 // TODO: specify exceptions for this function
 //clxx::query_device_info(device const&, device_query const&)
+
+%template(clobj_device) clxx::clobj<cl_device_id>;
 
 %include <clxx/device.hpp>
 

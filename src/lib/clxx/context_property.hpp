@@ -68,7 +68,7 @@ struct context_property
    * \brief Conversion from \ref platform to \ref context_property
    *
    * Initializes the \ref context_property setting \ref name() to \ref
-   * context_properties_t::platform and \ref value() to **p.id()**.
+   * context_properties_t::platform and \ref value() to **p.handle()**.
    *
    * This constructor enables type promotion of \ref platform to \ref
    * context_property. It simplifies notation for \ref platform in several
@@ -85,7 +85,7 @@ struct context_property
    * \param p   platform used to initialize
    */ // }}}
   context_property(platform const& p) noexcept
-    : _name(context_properties_t::platform), _value((cl_context_properties)p.id())
+    : _name(context_properties_t::platform), _value((cl_context_properties)p.handle())
   {}
   /** // doc: name() const {{{
    * \brief Returns property's name
@@ -198,13 +198,13 @@ context_platform(cl_platform_id x) noexcept
  * is equivalent to
  *
  * \code
- *   y = context_platform(x.id());
+ *   y = context_platform(x.handle());
  * \endcode
  */ // }}}
 inline context_property
 context_platform(const platform& x) noexcept
   {
-    return context_platform(x.id());
+    return context_platform(x.handle());
   }
 /** // doc: context_interop_user_sync(bool) {{{
  * \brief Type-safe constructor for \ref clxx::context_property

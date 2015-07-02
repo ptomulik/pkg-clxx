@@ -45,7 +45,7 @@ public:
     ews.push_back(event((cl_event)0x4567));
 
     TS_ASSERT_THROWS_NOTHING(enqueue_read_buffer(q,m,true,123,456,(void*)0x7890,ews,e));
-    TS_ASSERT(e.id() == res);
+    TS_ASSERT(e.handle() == res);
 
     TS_ASSERT(mock1.called_once());
     TS_ASSERT(std::get<0>(mock1.calls().back()) == (cl_command_queue)0x5678);
@@ -77,7 +77,7 @@ public:
     event e;
 
     TS_ASSERT_THROWS_NOTHING(enqueue_read_buffer(q,m,true,123,456,(void*)0x7890,e));
-    TS_ASSERT(e.id() == res);
+    TS_ASSERT(e.handle() == res);
 
     TS_ASSERT(mock1.called_once());
     TS_ASSERT(std::get<0>(mock1.calls().back()) == (cl_command_queue)0x5678);
@@ -177,7 +177,7 @@ public:
     ews.push_back(event((cl_event)0x4567));
 
     TS_ASSERT_THROWS_NOTHING(enqueue_write_buffer(q,m,true,123,456,(const void*)0x7890,ews,e));
-    TS_ASSERT(e.id() == res);
+    TS_ASSERT(e.handle() == res);
 
     TS_ASSERT(mock1.called_once());
     TS_ASSERT(std::get<0>(mock1.calls().back()) == (cl_command_queue)0x5678);
@@ -209,7 +209,7 @@ public:
     event e;
 
     TS_ASSERT_THROWS_NOTHING(enqueue_write_buffer(q,m,true,123,456,(const void*)0x7890,e));
-    TS_ASSERT(e.id() == res);
+    TS_ASSERT(e.handle() == res);
 
     TS_ASSERT(mock1.called_once());
     TS_ASSERT(std::get<0>(mock1.calls().back()) == (cl_command_queue)0x5678);
@@ -310,7 +310,7 @@ public:
     ews.push_back(event((cl_event)0x4567));
 
     TS_ASSERT_THROWS_NOTHING(enqueue_copy_buffer(q,sm,dm,123,456,789,ews,e));
-    TS_ASSERT(e.id() == res);
+    TS_ASSERT(e.handle() == res);
 
     TS_ASSERT(mock1.called_once());
     TS_ASSERT(std::get<0>(mock1.calls().back()) == (cl_command_queue)0x5678);
@@ -343,7 +343,7 @@ public:
     event e;
 
     TS_ASSERT_THROWS_NOTHING(enqueue_copy_buffer(q,sm,dm,123,456,789,e));
-    TS_ASSERT(e.id() == res);
+    TS_ASSERT(e.handle() == res);
 
     TS_ASSERT(mock1.called_once());
     TS_ASSERT(std::get<0>(mock1.calls().back()) == (cl_command_queue)0x5678);
@@ -446,7 +446,7 @@ public:
     ews.push_back(event((cl_event)0x4567));
 
     TS_ASSERT(enqueue_map_buffer(q,m,true,map_flags_t::read,123,456,ews,e) == res);
-    TS_ASSERT(e.id() == var);
+    TS_ASSERT(e.handle() == var);
 
     TS_ASSERT(mock1.called_once());
     TS_ASSERT(std::get<0>(mock1.calls().back()) == (cl_command_queue)0x5678);
@@ -479,7 +479,7 @@ public:
     event e;
 
     TS_ASSERT(enqueue_map_buffer(q,m,true,map_flags_t::read,123,456,e) == res);
-    TS_ASSERT(e.id() == var);
+    TS_ASSERT(e.handle() == var);
 
     TS_ASSERT(mock1.called_once());
     TS_ASSERT(std::get<0>(mock1.calls().back()) == (cl_command_queue)0x5678);
@@ -581,7 +581,7 @@ public:
     ews.push_back(event((cl_event)0x4567));
 
     TS_ASSERT_THROWS_NOTHING(enqueue_unmap_mem_object(q,m,(void*)0x8901,ews,e));
-    TS_ASSERT(e.id() == res);
+    TS_ASSERT(e.handle() == res);
 
     TS_ASSERT(mock1.called_once());
     TS_ASSERT(std::get<0>(mock1.calls().back()) == (cl_command_queue)0x5678);
@@ -610,7 +610,7 @@ public:
     event e;
 
     TS_ASSERT_THROWS_NOTHING(enqueue_unmap_mem_object(q,m,(void*)0x8901,e));
-    TS_ASSERT(e.id() == res);
+    TS_ASSERT(e.handle() == res);
 
     TS_ASSERT(mock1.called_once());
     TS_ASSERT(std::get<0>(mock1.calls().back()) == (cl_command_queue)0x5678);

@@ -51,7 +51,7 @@
 %throws_as_command_queue_ctor1(clxx::command_queue::command_queue(context const&, device const&, command_queue_properties_t));
 %throws_uninitialized_command_queue(clxx::command_queue::command_queue(clxx::command_queue const&));
 %throws_as_command_queue_get_pod_info(clxx::command_queue::get_info(command_queue_info_t, size_t, void *, size_t *) const);
-%throws_uninitialized_command_queue(clxx::command_queue::get_valid_id() const);
+%throws_uninitialized_command_queue(clxx::command_queue::get_valid_handle() const);
 %throws_uninitialized_command_queue_clerror(clxx::command_queue::operator=(command_queue const&));
 %throws_uninitialized_command_queue_clerror(clxx::command_queue::assign(command_queue const&));
 %throws_as_command_queue_get_pod_info(clxx::command_queue::get_reference_count() const);
@@ -59,6 +59,7 @@
 %throws_as_command_queue_get_pod_info(clxx::command_queue::get_devices() const);
 %throws_as_command_queue_get_pod_info(clxx::command_queue::get_properties() const);
 
+%template(clobj_command_queue) clxx::clobj<cl_command_queue>;
 
 %include <clxx/command_queue.hpp>
 

@@ -12,6 +12,7 @@
 
 // dependencies on other swig modules
 #include <clxx/types.i.hpp>
+#include <clxx/clobj.i.hpp>
 #include <clxx/context_properties.i.hpp>
 
 // stuff included by this module

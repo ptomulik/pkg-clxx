@@ -17,27 +17,34 @@
  * \brief Use the \c clCreateCommandQueue() even if it's marked as deprecated
  */ // }}}
 #define CLXX_USE_DEPRECATED_clCreateCommandQueue
-// #define CLXX_USE_DEPRECATED_clCreateCommandQueueWithProperties
-// #define CLXX_USE_DEPRECATED_clCreateProgramWithBuiltInKernels
-// #define CLXX_USE_DEPRECATED_clCreateSubDevices
-// #define CLXX_USE_DEPRECATED_clLinkProgram
-// #define CLXX_USE_DEPRECATED_clReleaseDevice
-// #define CLXX_USE_DEPRECATED_clRetainDevice
-// #define CLXX_USE_DEPRECATED_clUnloadPlatformCompiler
-// #define CLXX_USE_DEPRECATED_clGetKernelArgInfo
-// #define CLXX_USE_DEPRECATED_clSetKernelArgSVMPointer
-// #define CLXX_USE_DEPRECATED_clSetKernelExecInfo
 
 /** // doc: CLXX_OPENCL_PROVIDES {{{
- * \todo Write documentation
+ * \brief Whether OpenCL library provides function \p fun
+ *
+ * Evaluates to \c true if \p fun is declared in OpenCL headers and is present
+ * in OpenCL library (is linkable).
+ *
+ * This macro depends on the result of compile time checks performed by build
+ * scripts. It should be only used for functions which are checked with \e
+ * CharacterizeClFunction check in build script src/SConscript.conf.
+ *
+ * \param fun
+ *    A function to be examined.
  */ // }}}
 #define CLXX_OPENCL_PROVIDES(fun) (defined(CLXX_IS_DECLARED_ ## fun) \
                                 && defined(CLXX_IS_LINKABLE_ ## fun))
 /** // doc: CLXX_OPENCL_UNDEPRECATED {{{
  * \brief Whether the function \em fun is deprecated or not
  *
- * Evaluates to true if \em fun is marked as deprecated, and there is no
+ * Evaluates to true if \p fun is marked as deprecated, and there is no
  * preprocessor macro <tt>CLXX_USE_DEPRECATED_<fun></tt> defined.
+ *
+ * This macro depends on the result of compile time checks performed by build
+ * scripts. It should be only used for functions which are checked with \e
+ * CharacterizeClFunction check in build script src/SConscript.conf.
+ *
+ * \param fun
+ *    A function to be examined.
  */ // }}}
 #define CLXX_OPENCL_DEPRECATED(fun) (defined (CLXX_IS_DEPRECATED_ ## fun) \
                                  && !defined (CLXX_USE_DEPRECATED_ ## fun))
@@ -56,6 +63,13 @@
  * usage of the function in clxx (especially we can't try to use a function
  * that has gone away and is absent in the library). This macro returns what
  * was the decision that was made during the configuration phase.
+ *
+ * This macro depends on the result of compile time checks performed by build
+ * scripts. It should be only used for functions which are checked with \e
+ * CharacterizeClFunction check in build script src/SConscript.conf.
+ *
+ * \param fun
+ *    A function to be examined.
  */ // }}}
 #define CLXX_OPENCL_ALLOWED(fun) CLXX_OPENCL_PROVIDES(fun) && !CLXX_OPENCL_DEPRECATED(fun)
 

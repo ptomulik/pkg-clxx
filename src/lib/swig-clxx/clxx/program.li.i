@@ -12,6 +12,7 @@
 %include <clxx/exception_support.swg>
 
 %import <clxx/types.i>
+%import <clxx/clobj.i>
 %import <clxx/devices.i>
 %import <clxx/context.i>
 %import <clxx/program_sources.i>
@@ -20,6 +21,7 @@
 
 %{
 #include <clxx/types.i.hpp>
+#include <clxx/clobj.i.hpp>
 #include <clxx/devices.i.hpp>
 #include <clxx/context.i.hpp>
 #include <clxx/program_sources.i.hpp>

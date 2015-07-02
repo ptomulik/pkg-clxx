@@ -8,55 +8,35 @@
  * \brief Implements the \ref clxx::device "device" class
  */ // }}}
 #include <clxx/device.hpp>
-#include <clxx/functions.hpp>
-#include <clxx/exceptions.hpp>
-#include <boost/shared_array.hpp>
+#include <clxx/clobj_impl.hpp>
 #include <string>
 #include <cstdio>
 
+/* ----------------------------------------------------------------------- */
 namespace clxx {
+/** \cond SHOW_IGNORED_COMPOUNDS */
+template<>
+cl_uint clobj<cl_device_id>::
+get_reference_count() const
+{
+#if CLXX_CL_H_VERSION_1_2
+  return _get_pod_info<cl_uint>(*this, info_t::reference_count);
+#else
+  // FIXME: elaborate how to generate a compile-time error here.
+  return 0u;
+#endif
+}
+/** \endcond */
+} // end namespace clxx
 
-static std::string
-_get_str_info(device const& dev, device_info_t name)
-{
-  size_t size;
-  dev.get_info(name, 0, NULL, &size);
-
-  boost::shared_array<char> str(new char[size]);
-  dev.get_info(name, size, str.get(), &size);
-  return std::string(str.get());
-}
-template<typename T> static T
-_get_pod_info(device const& dev, device_info_t name)
-{
-  T value;
-  dev.get_info(name, sizeof(value), &value, NULL);
-  return value;
-}
-template<typename T> static std::vector<T>
-_get_vec_info(device const& dev, device_info_t name)
-{
-  size_t size;
-  dev.get_info(name, 0, NULL, &size);
-  std::vector<T> values(size/sizeof(T));
-  dev.get_info(name, values.size() * sizeof(T), &values.front(), NULL);
-  return values;
-}
+namespace clxx {
 /* ------------------------------------------------------------------------ */
-cl_device_id device::
-get_valid_id() const
-{
-  if(!this->is_initialized())
-    throw uninitialized_device_error();
-  return this->_device_id;
-}
-/* ------------------------------------------------------------------------ */
-void device::
-get_info( device_info_t name, size_t value_size, void* value,
-          size_t* value_size_ret) const
-{
-  get_device_info(this->get_valid_id(), name, value_size, value, value_size_ret);
-}
+// Instantiate the base class
+template class clobj<cl_device_id>;
+static_assert(
+    sizeof(clobj<cl_device_id>) == sizeof(cl_device_id),
+    "sizeof(clobj<cl_device_id>) differs from sizeof(cl_device_id)"
+);
 /* ------------------------------------------------------------------------ */
 device_type_t device::
 get_type() const
@@ -487,12 +467,6 @@ get_partition_type() const
   return _get_vec_info<device_partition_property_t>(*this, device_info_t::partition_type);
 }
 /* ------------------------------------------------------------------------ */
-cl_uint device::
-get_reference_count() const
-{
-  return _get_pod_info<cl_uint>(*this, device_info_t::reference_count);
-}
-/* ------------------------------------------------------------------------ */
 cl_bool device::
 get_preferred_interop_user_sync() const
 {
@@ -542,7 +516,7 @@ query_device_info(device const& dev, device_query const& query)
   device_info info;
 
   if(query2.id_selected()) {
-    info.set_id(reinterpret_cast<unsigned long>(dev.id()));
+    info.set_id(reinterpret_cast<unsigned long>(dev.handle()));
   }
   if(query2.type_selected()) {
     info.set_type(dev.get_type());

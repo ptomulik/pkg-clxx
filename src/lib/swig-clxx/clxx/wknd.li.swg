@@ -13,6 +13,10 @@
 # define alignas(expr)
 #endif
 
+//#ifndef constexpr
+//# define constexpr
+//#endif
+
 #endif /* CLXX_WKND_SWG_INCLUDED */
 
 // vim: set expandtab tabstop=2 shiftwidth=2:

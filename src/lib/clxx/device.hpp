@@ -14,6 +14,7 @@
 #define CLXX_DEVICE_HPP_INCLUDED
 
 #include <clxx/device_fwd.hpp>
+#include <clxx/clobj.hpp>
 #include <clxx/types.hpp>
 #include <vector>
 #include <string>
@@ -127,137 +128,22 @@ namespace clxx {
  * | get_image_base_address_alignment()      | CL_DEVICE_IMAGE_BASE_ADDRESS_ALIGNMENT  |         |         |  \check |
  */ // }}}
 class alignas(cl_device_id) device
+  : public clobj<cl_device_id>
 {
-private:
-  cl_device_id _device_id;
 public:
-  /** // {{{
-   * \brief Default constructor
-   *
-   * Sets internal device ID to NULL, so this proxy object is regarded as
-   * uninitialized (is_initialized() returns \c false).
+  /** // doc: Base {{{
+   * \brief Typedef for the base class type
    */ // }}}
-  device() noexcept
-    :_device_id(NULL)
-  { }
-  /** // {{{
-   * \brief Copy constructor
-   *
-   * Sets internal device ID to the device ID of the other proxy object (rhs).
+  typedef clobj<cl_device_id> Base;
+  using Base::Base;
+  /** // doc: device() {{{
+   * \brief Default constructor, see \ref clobj::clobj()
    */ // }}}
-  device(device const& rhs) noexcept
-    : _device_id(rhs.id())
-  { }
-  /** // {{{
-   * \brief Converting constructor.
-   *
-   * Sets internal device ID to the value provided by caller.
+  device() = default;
+  /** // doc: device() {{{
+   * \brief Copy constructor, see \ref clobj::clobj(clobj const&)
    */ // }}}
-  explicit device(cl_device_id devid) noexcept
-    : _device_id(devid)
-  { }
-  /** // {{{
-   * \brief Destructor
-   */ // }}}
-  ~device() noexcept
-  { }
-  /** // {{{
-   * \brief Assignment operator.
-   * \return Reference to this object.
-   */ // }}}
-  device& operator=(device const& rhs)
-  {
-    this->assign(rhs);
-    return *this;
-  }
-  /** // {{{
-   * \brief Explicit conversion to \c cl_device_id identifier.
-   * \return %device identifier of type \c cl_device_id.
-   */ // }}}
-  explicit operator cl_device_id () const
-  {
-    return this->_device_id;
-  }
-  /** // {{{
-   * \brief Assignment.
-   *
-   * Assigns device ID of other device proxy object to this object.
-   */ // }}}
-  void assign(device const& rhs) noexcept
-  {
-    if(&rhs != this)
-      {
-        this->_device_id = rhs.id();
-      }
-  }
-  /** // {{{
-   * \brief Checks if the proxy object is initialized.
-   * \return True if object is initialized (id is not NULL) or false otherwise.
-   */ // }}}
-  bool is_initialized() const noexcept
-  {
-    return (this->_device_id != NULL);
-  }
-  /** // {{{
-   * \brief Get device ID of the proxied OpenCL device.
-   * \return The ID of OpenCL device represented by this proxy object (or NULL
-   *         if the object is not iniatilized).
-   */ // }}}
-  cl_device_id id() const
-    noexcept
-  {
-    return this->_device_id;
-  }
-  /** // {{{
-   * \brief Verify and return the device ID.
-   * \return The ID of OpenCL device represented by this proxy object.
-   * \exception CLXX_EXCEPTION(Uninitialized_Device) In case the object is
-   *    not initialized (is_initialized() returned \c false).
-   */ // }}}
-  cl_device_id get_valid_id() const;
-  /** // {{{
-   * \brief Get certain information from device.
-   *
-   * This method is a wrapper around \c clGetDeviceInfo(). A call such as:
-   *   - <tt>dev->get_info(name, value_size, value, value_size_ret)</tt>
-   *
-   * yields same information as:
-   *   - <tt>clGetDeviceInfo(dev->id(),name,value_size,value,value_size_ret)</tt>.
-   *
-   * The main difference between get_info() and \c clGetDeviceInfo() is that it
-   * throws %clxx exceptions instead of returning OpenCL error codes.
-   *
-   * \param name
-   *    An enumeration constant that identifies the device information being
-   *    queried. It can be one of the values as specified in the OpenCL
-   *    specification (\c clGetDeviceInfo()).
-   * \param value_size
-   *    Specifies the size in bytes of memory pointed to by \c param_value.
-   *    This size in bytes must be greater than or equal to size of return type
-   *    specified in the OpenCL specification (\c clGetDeviceInfo()).
-   * \param value
-   *    A pointer to memory location where appropriate values for a given
-   *    \c param_name as specified in the OpenCL specification
-   *    (\c clGetDeviceInfo()) will be returned. If \c param_value is \c NULL,
-   *    it is ignored.
-   * \param value_size_ret
-   *    Returns the actual size in bytes of data being queried by \c
-   *    param_value. If \c param_value_size_ret is \c NULL, it is ignored
-   *
-   * \throws  clxx::clerror_no<clxx::status_t::invalid_device>
-   *    when \c clGetDeviceInfo() returns \c CL_INVALID_DEVICE,
-   * \throws  clxx::clerror_no<clxx::status_t::invalid_value>
-   *    when \c clGetDeviceInfo() returns \c CL_INVALID_VALUE,
-   * \throws  clxx::clerror_no<clxx::status_t::out_of_resources>
-   *    when \c clGetDeviceInfo() returns \c CL_OUT_OF_RESOURCES,
-   * \throws  clxx::clerror_no<clxx::status_t::out_of_host_memory>
-   *   when \c clGetDeviceInfo() returns \c CL_OUT_OF_HOST_MEMORY.
-   * \throws  clxx::unexpected_clerror
-   *   when \c clGetDeviceInfo() returns any other error code.
-   *
-   */ // }}}
-  void get_info( device_info_t name, size_t value_size, void* value,
-                 size_t* value_size_ret) const;
+  device(device const&) = default;
   /** // {{{
    *  \brief Get \c CL_DEVICE_TYPE information.
    *  \return The OpenCL device type, see clxx::device_type_t.
@@ -703,7 +589,7 @@ public:
    */ // }}}
   cl_device_id get_parent_device_id() const;
   /** // {{{
-   * \brief Get \c CL_DEVICE_PARTITION_MAX_SUBDEVICES information.
+   * \brief Get \c CL_DEVICE_PARTITION_MAX_SUB_DEVICES information.
    */ // }}}
   cl_uint get_partition_max_sub_devices() const;
   /** // {{{
@@ -751,14 +637,6 @@ public:
    */ // }}}
   std::vector<device_partition_property_t> get_partition_type() const;
   /** // {{{
-   * \brief Get \c CL_DEVICE_REFERENCE_COUNT information.
-   * \return The *device* reference count.
-   *
-   * If the device is a root-level device, a reference count of one is
-   * returned.
-   */ // }}}
-  cl_uint get_reference_count() const;
-  /** // {{{
    * \brief Get \c CL_DEVICE_PREFERRED_INTEROP_USER_SYNC information.
    * \return \c CL_TRUE if the device's preference is for the user to be
    *         responsible for synchronization, when sharing  memory objects
@@ -785,48 +663,6 @@ public:
    */ // }}}
   cl_uint get_image_base_address_alignment() const;
 #endif
-  /** // {{{
-   * \brief Equal-to overloaded operator.
-   * Compares identifiers of two \ref device objects.
-   */ // }}}
-  bool operator == (device const& x) const
-  { return this->id() == x.id(); }
-  /** // {{{
-   * \brief Not equal-to overloaded operator.
-   * Compares identifiers of two \ref device objects.
-   */ // }}}
-  bool operator != (device const& x) const
-  { return this->id() != x.id(); }
-  /** // {{{
-   * \brief Less-than overloaded operator.
-   * Compares identifiers of two \ref device objects.
-   */ // }}}
-  bool operator < (device const& x) const
-  { return this->id() < x.id(); }
-  /** // {{{
-   * \brief Greater-than overloaded operator.
-   * Compares identifiers of two \ref device objects.
-   */ // }}}
-  bool operator > (device const& x) const
-  { return this->id() > x.id(); }
-  /** // {{{
-   * \brief Less-or-equal-to overloaded operator.
-   * Compares identifiers of two \ref device objects.
-   */ // }}}
-  bool operator <= (device const& x) const
-  { return this->id() <= x.id(); }
-  /** // {{{
-   * \brief Greater-or-equal-to overloaded operator.
-   * Compares identifiers of two \ref device objects.
-   */ // }}}
-  bool operator >= (device const& x) const
-  { return this->id() >= x.id(); }
-  /** // {{{
-   * \brief Conversion to bool
-   * \returns true if the object is initialized or false otherwise
-   */ // }}}
-  operator bool() const
-  { return this->is_initialized(); }
 };
 
 } // end namespace clxx

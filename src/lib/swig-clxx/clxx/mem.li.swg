@@ -9,6 +9,9 @@
 %{
 #include <clxx/mem.hpp>
 %}
+
+%template(clobj_mem) clxx::clobj<cl_mem>;
+
 %include <clxx/mem.hpp>
 
 // vim: set expandtab tabstop=2 shiftwidth=2:

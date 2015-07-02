@@ -1,18 +1,15 @@
 // @COPYRIGHT@
 // Licensed under MIT license (LICENSE.txt)
 
-/** // doc: clxx/program.li.swg {{{
- * \file clxx/program.li.swg
+/** // doc: clxx/clobj.li.swg {{{
+ * \file clxx/clobj.li.swg
  * \todo Write documentation
  */ // }}}
 
 %{
-#include <clxx/program.hpp>
+#include <clxx/clobj.hpp>
 %}
-
-%template(clobj_program) clxx::clobj<cl_program>;
-
-%include <clxx/program.hpp>
+%include <clxx/clobj.hpp>
 
 // vim: set expandtab tabstop=2 shiftwidth=2:
 // vim: set foldmethod=marker foldcolumn=4:

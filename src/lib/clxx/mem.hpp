@@ -5,7 +5,7 @@
 
 /** // doc: clxx/mem.hpp {{{
  * \file clxx/mem.hpp
- * \todo Write documentation
+ * \brief Declares the \ref clxx::mem "mem" class
  */ // }}}
 #ifndef CLXX_MEM_HPP_INCLUDED
 #define CLXX_MEM_HPP_INCLUDED
@@ -14,6 +14,7 @@
 #include <clxx/context_fwd.hpp>
 #include <clxx/types.hpp>
 #include <clxx/cl/cl.h>
+#include <clxx/clobj.hpp>
 
 namespace clxx {
 /** // doc: mem {{{
@@ -32,7 +33,7 @@ namespace clxx {
  *
  * Although \ref clxx::mem "mem" maintains internally reference count
  * for its \c cl_mem handle, it doesn't prevent one from stealing the
- * \c cl_mem handle (#id(), #get_valid_id()). This gives rise to manipulate the
+ * \c cl_mem handle (#handle(), #get_valid_handle()). This gives rise to manipulate the
  * reference count outside of the \ref clxx::mem object for the given OpenCL
  * memory object. If you need to steal, use the retrieved handle with care. If
  * you retrieve the handle from \ref clxx::mem "mem" object, increase its
@@ -59,278 +60,177 @@ namespace clxx {
  * operator or the #assign() method).
  */ // }}}
 class alignas(cl_mem) mem
+  : public clobj<cl_mem>
 {
-private:
-  cl_mem _id;
-protected:
-  /** // doc: _set_id(cl_mem, bool, bool) {{{
-   * \brief Set the \c cl_mem handle to this object
-   *
-   * \param prog the \c cl_mem handle (OpenCL mem),
-   * \param retain_new whether to invoke \ref retain_mem_object() on *prog*,
-   * \param release_old whether to invoke \ref release_mem_object() on the handle
-   *        held up to this moment by this object.
-   *
-   * \par Exceptions
-   *
-   * Throws exceptions originating from \ref retain_mem_object().
-   */ // }}}
-  void _set_id(cl_mem prog, bool retain_new, bool release_old);
 public:
+  /** // doc: Base {{{
+   * \brief Typedef for the base class type
+   */ // }}}
+  typedef clobj<cl_mem> Base;
+  using Base::Base;
   /** // doc: mem() {{{
-   * \brief Default constructor
-   *
-   * Sets the internal \c cl_mem handle to \c NULL. A default-constructed
-   * \ref clxx::mem "mem" object is considered to be uninitialized (see
-   * #is_initialized()).
+   * \brief Default constructor, see \ref clobj::clobj()
    */ // }}}
-  mem() noexcept;
-  /** // doc: mem(cl_mem) {{{
-   * \brief Creates \ref clxx::mem "mem" object from explicitly given
-   *        OpenCL \c cl_mem handle.
-   *
-   * The constructor internally retains the provided OpenCL mem identified
-   * by *id* (\ref clxx::retain_mem_object()).
-   *
-   * \param id handle (identifier) to an OpenCL mem that has to be
-   *           encapsulated by the newly created \ref clxx::mem "mem"
-   *           object.
-   *
-   * \par Exceptions
-   *
-   * Throws exceptions originating from \ref retain_mem_object().
+  mem() = default;
+  /** // doc: mem() {{{
+   * \brief Copy constructor, see \ref clobj::clobj(clobj const&)
    */ // }}}
-  explicit mem(cl_mem id);
+  mem(mem const&) = default;
   /** // doc: mem(context const&, mem_flags_t, size_t, void*) {{{
-   * \todo Write documentation
+   * \brief Constructor
+   *
+   * Creates new OpenCL buffer via #create_buffer().
+   *
+   * \param ctx
+   *    A valid #context object used to create the buffer object. 
+   * \param flags
+   *    A bit-field that is used to specify allocation and usage information
+   *    such as the memory arena that should be used to allocate the buffer
+   *    object and how it will be used.
+   * \param size
+   *    The size in bytes of the buffer memory object to be allocated.
+   * \param host_ptr
+   *    A pointer to the buffer data that may already be allocated by the
+   *    application. The size of the buffer that \p host_ptr points to must be
+   *    >= \p size bytes.
+   *
+   * \throw uninitialized_context_error
+   *    If the \p ctx is uninitialized
+   *
+   * Also throws exceptions originating from #create_buffer().
    */ // }}}
   explicit mem(context const& ctx, mem_flags_t flags, size_t size, void* host_ptr);
-  /** // doc: mem(mem const&) {{{
-   * \brief Copy constructor
-   *
-   * The constructor internally retains the provided OpenCL mem identified
-   * by *id* (\ref clxx::retain_mem_object()).
-   *
-   * \param e a \ref clxx::mem "mem" object to be copied.
-   *
-   * \par Exceptions
-   *
-   * Throws exceptions originating from \ref retain_mem_object().
-   */ // }}}
-  mem(mem const& e);
-  /** // doc: ~mem() {{{
-   * \brief Destructor
-   *
-   * If the mem was initialized properly, then it internally releases the
-   * mem by \ref release_mem_object().
-   */ // }}}
-  ~mem();
-  /** // doc: id() {{{
-   * \brief Get the \c cl_mem handle held by this object
-   *
-   * \returns the OpenCL mem handle of type \c cl_mem held by this
-   *          object
-   */ // }}}
-  cl_mem id() const noexcept
-  { return this->_id; }
-  /** // doc: get_valid_id() {{{
-   * \brief Check if \c this object is initialized and return \c cl_mem
-   *        handle held by this object.
-   *
-   * \returns The \c cl_mem handle to OpenCL mem encapsulated within
-   *          this object.
-   *
-   * \throws uninitialized_mem_error when the object was not properly
-   *        initialized (see is_initialized()).
-   */ // }}}
-  cl_mem get_valid_id() const;
-  /** // doc: operator= {{{
-   * \brief Assignment operator
-   *
-   * \param rhs Another mem object to be assigned to this object
-   *
-   *  This operation copies the \c cl_mem handle held by \e rhs
-   *  to \c this object and maintains reference counts appropriately. The
-   *  reference count for handle originating from \e rhs gets increased by
-   *  one, as it acquires new user (\c this object). The reference count for
-   *  identifier held up to now by \c this object is decreased by one, as it is
-   *  forgotten by one user (namely, by \c this object).
-   *
-   * \return Reference to this object
-   *
-   * \throws uninitialized_mem_error
-   *    when the \e rhs object is in uninitialized state
-   * \throws clerror_no<status_t::invalid_mem>
-   *    when the \e rhs holds invalid \c cl_mem handle
-   * \throws unexpected_clerror
-   */ // }}}
-  mem& operator=(mem const& rhs)
-  { this->assign(rhs); return *this; }
-  /** // doc: operator== {{{
-   * \brief Compare this mem with another one
-   *
-   * \param rhs
-   *    Another mem object to be compared to \c this object.
-   *
-   * \return
-   *    Returns <tt>this->id() == rhs.id()</tt>
-   */ // }}}
-  bool operator == (mem const& rhs) const noexcept
-  { return this->id() == rhs.id(); }
-  /** // doc: operator!= {{{
-   * \brief Compare this mem with another one
-   *
-   * \param rhs
-   *    Another mem object to be compared to \c this object.
-   *
-   * \returns <tt>this->id() != rhs.id()</tt>
-   */ // }}}
-  bool operator != (mem const& rhs) const noexcept
-  { return this->id() != rhs.id(); }
-  /** // doc: operator< {{{
-   * \brief Compare this mem with another one
-   *
-   * \param rhs
-   *    Another mem object to be compared to \c this object.
-   *
-   * \return <tt>this->id() < rhs.id())</tt>
-   */ // }}}
-  bool operator < (mem const& rhs) const noexcept
-  { return this->id() < rhs.id(); }
-  /** // doc: operator> {{{
-   * \brief Compare this mem with another one
-   *
-   * \param rhs
-   *    Another mem object to be compared to \c this object.
-   *
-   * \return <tt>this->id() > rhs.id()</tt>
-   */ // }}}
-  bool operator > (mem const& rhs) const noexcept
-  { return this->id() > rhs.id(); }
-  /** // doc: operator<= {{{
-   * \brief Compare this mem with another one
-   *
-   * \param rhs
-   *    Another mem object to be compared to \c this object.
-   *
-   * \return <tt>this->id() <= rhs.id()</tt>
-   */ // }}}
-  bool operator <= (mem const& rhs) const noexcept
-  { return this->id() <= rhs.id(); }
-  /** // doc: operator>= {{{
-   * \brief Compare this mem with another one
-   *
-   * \param rhs
-   *    Another mem object to be compared to \c this object.
-   *
-   * \return <tt>this->id() >= rhs.id()</tt>
-   */ // }}}
-  bool operator >= (mem const& rhs) const noexcept
-  { return this->id() >= rhs.id(); }
-  /** // doc: is_initialized() {{{
-   * \brief Is this object properly initialized?
-   *
-   * \return Returns \c true if \c this object is initialized or \c false
-   *         otherwise.
-   */ // }}}
-  bool is_initialized() const noexcept
-  { return this->_id != NULL; }
-  /** // doc: get_info(...) {{{
-   * \brief Get certain mem information from OpenCL
-   *
-   * This function calls internally \ref clxx::get_mem_object_info() "get_mem_object_info()".
-   *
-   * \param name
-   *     An enumeration constant that specifies the information to query.
-   *     See documentation of \ref mem_info_t for possible values.
-   * \param value_size
-   *    Specifies the size in bytes of memory pointed to by \e value. This size
-   *    must be greater than or equal to the size of return type as described
-   *    in appropriate table in the OpenCL specification (see documentation of
-   *    \ref clxx::get_mem_object_info() "get_mem_object_info()").
-   * \param value
-   *    A pointer to memory where the appropriate result being queried is
-   *    returned. If \e value is \c NULL, it is ignored.
-   * \param value_size_ret
-   *    Returns the actual size in bytes of data being queried by \e value. If
-   *    \e value_size_ret is \c NULL, it is ignored.
-   *
-   * \throws uninitialized_mem_error if the object was not initialized
-   *      properly (see \ref is_initialized()).
-   *
-   * It also throws exceptions originating from \ref get_mem_object_info().
-   */ // }}}
-  void get_info(mem_info_t name, size_t value_size, void* value,
-                size_t* value_size_ret) const;
   /** // doc: get_type() {{{
-   * \todo Write documentation
+   * \brief Returns the memory object type
+   *
+   * \returns An enum value indicating the type of the memory object, may it
+   *          be, for example, mem_object_type_t::buffer or
+   *          mem_object_type_t::image2d.
+   *
+   * \throw uninitialized_mem_error
+   *    If the #mem object (this) is uninitialized
+   *
+   * Also throws exceptions originating from #get_mem_object_info()
    */ // }}}
   mem_object_type_t get_type() const;
   /** // doc: get_flags() {{{
-   * \todo Write documentation
+   * \brief Returns the \e flags argument value specified when this #mem object
+   *        is created
+   *
+   * \returns An bit-field indicating the flags used at creation time
+   *
+   * \throw uninitialized_mem_error
+   *    If the #mem object (this) is uninitialized
+   *
+   * Also throws exceptions originating from #get_mem_object_info()
    */ // }}}
   mem_flags_t get_flags() const;
   /** // doc: get_size() {{{
-   * \todo Write documentation
+   * \brief Return actual size of the data store associated with this memory
+   *        object in bytes
+   * \returns actual size of the data store associated with this memory object
+   *          in bytes
+   *
+   * \throw uninitialized_mem_error
+   *    If the #mem object (this) is uninitialized
+   *
+   * Also throws exceptions originating from #get_mem_object_info()
    */ // }}}
   size_t get_size() const;
   /** // doc: get_host_ptr() {{{
-   * \todo Write documentation
+   * \brief Return host pointer
+   *
+   *  If the underlying memory object is created with #create_buffer() or
+   *  #create_image() and \c mem_flags_t::use_host_ptr is specified in
+   *  \e mem_flags, return the \e host_ptr argument value specified when memobj
+   *  is created. Otherwise a \c NULL value is returned.
+   *
+   *  If memobj is created with #create_sub_buffer(), return the \e host_ptr +
+   *  \e origin value specified when memobj is created. \e host_ptr is the
+   *  argument value specified to #create_buffer() and
+   *  mem_flags_t::use_host_ptr is specified in \e mem_flags for memory object
+   *  from which memobj is created. Otherwise a \c NULL value is returned
+   *
+   * \throw uninitialized_mem_error
+   *    If the #mem object (this) is uninitialized
+   *
+   * Also throws exceptions originating from #get_mem_object_info()
    */ // }}}
   void* get_host_ptr() const;
   /** // doc: get_map_count() {{{
-   * \todo Write documentation
+   * \brief Returns map count
+   *
+   * The map count returned should be considered immediately stale. It is
+   * unsuitable for general use in applications. This feature is provided for
+   * debugging.
+   *
+   * \throw uninitialized_mem_error
+   *    If the #mem object (this) is uninitialized
+   *
+   * Also throws exceptions originating from #get_mem_object_info()
    */ // }}}
   cl_uint get_map_count() const;
-  /** // doc: get_reference_count() {{{
-   * \brief Get reference count for the memory object
-   *
-   * \returns reference count for the memory object.
-   *
-   * \throws uninitialized_mem_error if the object was not initialized
-   *      properly (see \ref is_initialized()).
-   *
-   * It also throws exceptions originating fro \ref get_mem_object_info().
-   */ // }}}
-  cl_uint get_reference_count() const;
   /** // doc: get_context() {{{
-   * \todo Write documentation
+   * \brief Return context specified when memory object is created
+   *
+   * If the #mem object is created with #create_sub_buffer(), the context
+   * associated with the memory object specified as the \e buffer argument to
+   * create_sub_buffer() is returned. 
+   *
+   * \throw uninitialized_mem_error
+   *    If the #mem object (this) is uninitialized
+   *
+   * Also throws exceptions originating from #get_mem_object_info()
    */ // }}}
   context get_context() const;
 #if CLXX_CL_H_VERSION_1_1
   /** // doc: get_associated_memobject() {{{
-   * \todo Write documentation
+   * \brief Return memory object from which this #mem object is created
+   *
+   * This returns the memory object specified as buffer argument to
+   * #create_buffer() if memobj is a sub-buffer object created using
+   * #create_sub_buffer().
+   *
+   * This returns the \e mem_object specified in \c cl_image_desc if #mem
+   * object is an image object.
+   *
+   * Otherwise a \c NULL value is returned
+   *
+   * \throw uninitialized_mem_error
+   *    If the #mem object (this) is uninitialized
+   *
+   * Also throws exceptions originating from #get_mem_object_info()
    */ // }}}
   mem get_associated_memobject() const;
   /** // doc: get_offset() {{{
-   * \todo Write documentation
+   * \brief Return offset if the #mem object is a sub-buffer created using #create_sub_buffer() 
+   *
+   * This returns 0 if memobj is not a subbuffer object
+   *
+   * \throw uninitialized_mem_error
+   *    If the #mem object (this) is uninitialized
+   *
+   * Also throws exceptions originating from #get_mem_object_info()
    */ // }}}
   size_t get_offset() const;
 #endif
 #if CLXX_CL_H_VERSION_2_0
   /** // doc: get_uses_svm_pointer() {{{
-   * \todo Write documentation
+   * \brief Whether the #mem object was created with mem_flags_t::use_host_ptr
+   *
+   * Return \c CL_TRUE if #mem object is a buffer object that was created with
+   * mem_flags_t::use_host_ptr or is a sub-buffer object of a buffer object
+   * that was created with mem_flags_t::use_host_ptr and the \e host_ptr
+   * specified when the \e buffer object was created is a SVM pointer;
+   * otherwise returns \c CL_FALSE. 
+   *
+   * \throw uninitialized_mem_error
+   *    If the #mem object (this) is uninitialized
+   *
+   * Also throws exceptions originating from #get_mem_object_info()
    */ // }}}
   cl_bool get_uses_svm_pointer() const;
 #endif
-  /** // doc: assign() {{{
-   * \brief Assignment
-   *
-   * This operation copies the \c cl_mem handle held by \e rhs to \c this
-   * object and maintains reference count appropriately. The reference count
-   * for handle originating from \e rhs gets increased by one, as it acquires
-   * new user (\c this object). The reference count for handle held up to now
-   * by \c this object is decreased by one, as it is forgotten by one user
-   * (namely, by \c this object).
-   *
-   * \throws uninitialized_mem_error
-   *    when \e rhs is an uninitialized mem object.
-   * \throws clerror_no<status_t::invalid_mem>
-   *    when \e rhs holds a \c cl_mem handle that is invalid.
-   * \throws unexpected_clerror
-   */ // }}}
-  void assign(mem const& rhs)
-  { this->_set_id(rhs.get_valid_id(), true, true); }
 };
 } // end namespace clxx
 

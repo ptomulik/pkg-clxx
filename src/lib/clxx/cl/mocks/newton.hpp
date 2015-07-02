@@ -6,9 +6,9 @@
 /** // doc: clxx/cl/mocks/newton.hpp {{{
  * \file clxx/cl/mocks/newton.hpp
  *
- * This file implements OpenCL mocks emulating one node of our OpenCL-based
- * cluster named newton. This note has two OpenCL platforms on it. Platform 0
- * is AMD CPU platform. Platform 1 contains 2 nVidia GPU C1060 devices.
+ * This file implements OpenCL mocks emulating a node that has two OpenCL
+ * platforms: platform 0 is AMD CPU platform, platform 1 contains 2 nVidia GPU
+ * C1060 devices.
  *
  * Platform IDs:
  *

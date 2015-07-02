@@ -14,444 +14,378 @@
 #include <clxx/platform.hpp>
 #include <clxx/exceptions.hpp>
 #include <clxx/cl/mock.hpp>
+#include <cstring>
 
-namespace clxx { class platform_test_suite; }
+namespace clxx { class platform_test__suite; }
 
-/** // doc: class clxx::platform_test_suite {{{
+/** // doc: class clxx::platform_test__suite {{{
  * \brief Unit tests for clxx::platform class
  */ // }}}
-class clxx::platform_test_suite : public CxxTest::TestSuite
+class clxx::platform_test__suite : public CxxTest::TestSuite
 {
 public:
-  /** // doc: test_ctor_default() {{{
+  /** // doc: test__ctor_default() {{{
    * \brief Ensure that id() == NULL by default.
    */ // }}}
-  void test_ctor_default( )
+  void test__ctor_default( )
   {
-    platform p;
-    TS_ASSERT_EQUALS(p.id(), reinterpret_cast<cl_platform_id>(NULL));
+    TS_ASSERT_EQUALS(platform().handle(), (cl_platform_id)NULL);
   }
-  /** // doc: test_ctor_assign() {{{
+  /** // doc: test__ctor_assign() {{{
    * \brief Ensure that assigining constructor works as expected.
    */ // }}}
-  void test_ctor_assign( )
+  void test__ctor_assign( )
   {
-    platform p1(reinterpret_cast<cl_platform_id>(0x1234ul));
-    TS_ASSERT_EQUALS(p1.id(), reinterpret_cast<cl_platform_id>(0x1234ul));
+    TS_ASSERT_EQUALS(platform((cl_platform_id)0x1234ul).handle(), (cl_platform_id)0x1234ul);
   }
-  /** // doc: test_ctor_copy() {{{
+  /** // doc: test__ctor_copy() {{{
    * \brief Ensure that copy constructor works as expected.
    */ // }}}
-  void test_ctor_copy( )
+  void test__ctor_copy( )
   {
-    platform p1(reinterpret_cast<cl_platform_id>(0x1234ul));
+    platform p1((cl_platform_id)0x1234ul);
     platform p2(p1);
-    TS_ASSERT_EQUALS(p2.id(), p1.id());
+    TS_ASSERT_EQUALS(p2.handle(), p1.handle());
   }
-  /** // doc: test_op_assign() {{{
+  /** // doc: test__op_assign() {{{
    * \brief Ensure that assignment operator works.
    */ // }}}
-  void test_op_assign( )
+  void test__op_assign( )
   {
-    platform p1(reinterpret_cast<cl_platform_id>(0x1234ul));
+    platform p1((cl_platform_id)0x1234ul);
     platform p2;
     TS_ASSERT_EQUALS(&(p2 = p1), &p2);
-    TS_ASSERT_EQUALS(p2.id(), p1.id());
+    TS_ASSERT_EQUALS(p2.handle(), p1.handle());
   }
-  /** // doc: test_op_cast() {{{
-   * \brief Ensure that conversion operator works.
-   */ // }}}
-  void test_op_cast( )
-  {
-    platform p1(reinterpret_cast<cl_platform_id>(0x1234ul));
-    TS_ASSERT_EQUALS((cl_platform_id)p1, reinterpret_cast<cl_platform_id>(0x1234ul));
-  }
-  /** // doc: test_assign() {{{
+  /** // doc: test__assign() {{{
    * \brief Ensure that assign() method works.
    */ // }}}
-  void test_assign( )
+  void test__assign( )
   {
-    platform p1(reinterpret_cast<cl_platform_id>(0x1234ul));
+    platform p1((cl_platform_id)0x1234ul);
     platform p2;
     p2.assign(p1);
-    TS_ASSERT_EQUALS(p2.id(), p1.id());
+    TS_ASSERT_EQUALS(p2.handle(), p1.handle());
   }
-  /** // doc: test_is_initialized_1() {{{
+  /** // doc: test__is_initialized_1() {{{
    * \brief Ensure that is_initialized() method works.
    */ // }}}
-  void test_is_initialized_1( )
+  void test__is_initialized_1( )
   {
-    platform p;
-    TS_ASSERT(!p.is_initialized());
+    TS_ASSERT(!platform().is_initialized());
   }
-  /** // doc: test_is_initialized_2() {{{
+  /** // doc: test__is_initialized_2() {{{
    * \brief Ensure that is_initialized() method works.
    */ // }}}
-  void test_is_initialized_2( )
+  void test__is_initialized_2( )
   {
-    platform p(reinterpret_cast<cl_platform_id>(NULL));
-    TS_ASSERT(!p.is_initialized());
+    TS_ASSERT(!platform((cl_platform_id)NULL).is_initialized());
   }
-  /** // doc: test_is_initialized_3() {{{
+  /** // doc: test__is_initialized_3() {{{
    * \brief Ensure that is_initialized() method works.
    */ // }}}
-  void test_is_initialized_3( )
+  void test__is_initialized_3( )
   {
-    platform p(reinterpret_cast<cl_platform_id>(0x1234ul));
-    TS_ASSERT(p.is_initialized());
+    TS_ASSERT(platform((cl_platform_id)0x1234ul).is_initialized());
   }
-  /** // doc: test_id_1() {{{
+  /** // doc: test__id_1() {{{
    * \brief Ensure that id() method works.
    */ // }}}
-  void test_id_1( )
+  void test__id_1( )
   {
-    platform p(reinterpret_cast<cl_platform_id>(NULL));
-    TS_ASSERT_EQUALS(p.id(), reinterpret_cast<cl_platform_id>(NULL));
+    TS_ASSERT_EQUALS(platform((cl_platform_id)NULL).handle(), (cl_platform_id)NULL);
   }
-  /** // doc: test_id_2() {{{
+  /** // doc: test__id_2() {{{
    * \brief Ensure that id() method works.
    */ // }}}
-  void test_id_2( )
+  void test__id_2( )
   {
-    platform p(reinterpret_cast<cl_platform_id>(0x1234ul));
-    TS_ASSERT_EQUALS(p.id(), reinterpret_cast<cl_platform_id>(0x1234ul));
+    TS_ASSERT_EQUALS(platform((cl_platform_id)0x1234ul).handle(), (cl_platform_id)0x1234ul);
   }
-  /** // doc: test_get_valid_id_1() {{{
-   * \brief Ensure that get_valid_id() method works.
+  /** // doc: test__get_valid_handle_1() {{{
+   * \brief Ensure that get_valid_handle() method works.
    */ // }}}
-  void test_get_valid_id_1( )
+  void test__get_valid_handle_1( )
   {
-    platform p(reinterpret_cast<cl_platform_id>(NULL));
-    TS_ASSERT_THROWS(p.get_valid_id(), uninitialized_platform_error);
+    TS_ASSERT_THROWS(platform((cl_platform_id)NULL).get_valid_handle(), uninitialized_platform_error);
   }
-  /** // doc: test_get_valid_id_2() {{{
-   * \brief Ensure that get_valid_id() method works.
+  /** // doc: test__get_valid_handle_2() {{{
+   * \brief Ensure that get_valid_handle() method works.
    */ // }}}
-  void test_get_valid_id_2( )
+  void test__get_valid_handle_2( )
   {
-    platform p(reinterpret_cast<cl_platform_id>(0x1234ul));
-    TS_ASSERT_EQUALS(p.get_valid_id(), reinterpret_cast<cl_platform_id>(0x1234ul));
+    TS_ASSERT_EQUALS(platform((cl_platform_id)0x1234ul).get_valid_handle(), (cl_platform_id)0x1234ul);
   }
-  /** // doc: test_get_info_wrong_id() {{{
-   * \brief Test get_info(platform_info_t::profile, ...) on platform object having wrong id.
+  /** // doc: test__get_info() {{{
+   * \brief Test platform::get_info().
    */ // }}}
-  void test_get_info_wrong_id( )
+  void test__get_info( )
   {
-    T::Newton_clGetPlatformInfo mock;
-    platform p(reinterpret_cast<cl_platform_id>(0x34556ul));
-    TS_ASSERT_THROWS(p.get_info(platform_info_t::profile, 0, NULL, NULL), clerror_no<status_t::invalid_platform>);
+    T::Dummy_clGetPlatformInfo mock(CL_SUCCESS);
+    platform((cl_platform_id)0x1234).get_info(platform_info_t::name, 123, (void*)0x4321, (size_t*)0x8765);
+    TS_ASSERT(mock.called_once_with((cl_platform_id)0x1234, CL_PLATFORM_NAME, 123, (void*)0x4321, (size_t*)0x8765));
   }
-  /** // doc: test_get_info_0() {{{
-   * \brief Test get_info(0, ...).
+  /** // doc: test__get_info__uninitialized_platform_error() {{{
+   * \brief Test platform::get_info() 
    */ // }}}
-  void test_get_info_0( )
+  void test__get_info__uninitialized_platform_error( )
   {
-    T::Newton_clGetPlatformInfo mock;
-    platform p(T::Newton_clGetPlatformIDs::platforms[0]);
-    size_t size;
-    TS_ASSERT_THROWS(p.get_info(static_cast<platform_info_t>(0), 0, NULL, &size), clerror_no<status_t::invalid_value>);
+    T::Dummy_clGetPlatformInfo mock(CL_INVALID_PLATFORM);
+    TS_ASSERT_THROWS(platform().get_info(platform_info_t::profile, 0, NULL, NULL), uninitialized_platform_error);
   }
-  /** // doc: test_get_info_1() {{{
-   * \brief Test get_info(platform_info_t::profile, 1, value, NULL).
+  /** // doc: test__get_info__invalid_platform() {{{
+   * \brief Test platform::get_info() 
    */ // }}}
-  void test_get_info_1( )
+  void test__get_info__invalid_platform( )
   {
-    T::Newton_clGetPlatformInfo mock;
-    platform p(T::Newton_clGetPlatformIDs::platforms[0]);
-    char value[1];
-    TS_ASSERT_THROWS(p.get_info(platform_info_t::profile, 1, value, NULL), clerror_no<status_t::invalid_value>);
+    T::Dummy_clGetPlatformInfo mock(CL_INVALID_PLATFORM);
+    TS_ASSERT_THROWS(platform((cl_platform_id)0x34556ul).get_info(platform_info_t::profile, 0, NULL, NULL), clerror_no<status_t::invalid_platform>);
   }
-  /** // doc: test_get_info_profile_0() {{{
-   * \brief Test get_info(platform_info_t::profile, 0, NULL, &size).
+  /** // doc: test__get_info__invalid_value() {{{
+   * \brief Test platform::get_info() 
    */ // }}}
-  void test_get_info_profile_0( )
+  void test__get_info__invalid_value( )
   {
-    T::Newton_clGetPlatformInfo mock;
-    platform p(T::Newton_clGetPlatformIDs::platforms[0]);
-    size_t size;
-    p.get_info(platform_info_t::profile, 0, NULL, &size);
-    TS_ASSERT_EQUALS(size, 13);
+    T::Dummy_clGetPlatformInfo mock(CL_INVALID_VALUE);
+    TS_ASSERT_THROWS(platform((cl_platform_id)0x34556ul).get_info(platform_info_t::profile, 0, NULL, NULL), clerror_no<status_t::invalid_value>);
   }
-  /** // doc: test_get_info_profile_1() {{{
-   * \brief Test get_info(platform_info_t::profile, ...).
+  /** // doc: test__get_info__out_of_host_memory() {{{
+   * \brief Test platform::get_info() 
    */ // }}}
-  void test_get_info_profile_1( )
+  void test__get_info__out_of_host_memory( )
   {
-    T::Newton_clGetPlatformInfo mock;
-    platform p(T::Newton_clGetPlatformIDs::platforms[0]);
-    char value[13];
-    p.get_info(platform_info_t::profile, sizeof(value), value, NULL);
-    TS_ASSERT_EQUALS(value, "FULL_PROFILE");
+    T::Dummy_clGetPlatformInfo mock(CL_OUT_OF_HOST_MEMORY);
+    TS_ASSERT_THROWS(platform((cl_platform_id)0x34556ul).get_info(platform_info_t::profile, 0, NULL, NULL), clerror_no<status_t::out_of_host_memory>);
   }
-  /** // doc: test_get_info_version_0() {{{
-   * \brief Test get_info(platform_info_t::version, 0, NULL, &size).
+  /** // doc: test__get_info__unexpected_clerror() {{{
+   * \brief Test platform::get_info() 
    */ // }}}
-  void test_get_info_version_0( )
+  void test__get_info__unexpected_clerror( )
   {
-    T::Newton_clGetPlatformInfo mock;
-    platform p(T::Newton_clGetPlatformIDs::platforms[0]);
-    size_t size;
-    p.get_info(platform_info_t::version, 0, NULL, &size);
-    TS_ASSERT_EQUALS(size, 28);
+    T::Dummy_clGetPlatformInfo mock((cl_int)-0x1234567);
+    TS_ASSERT_THROWS(platform((cl_platform_id)0x34556ul).get_info(platform_info_t::profile, 0, NULL, NULL), unexpected_clerror);
   }
-//  /** // doc: test_get_info_version_1() {{{
-//   * \brief Test get_info(platform_info_t::profile, ...).
-//   */ // }}}
-  void test_get_info_version_1( )
-  {
-    T::Newton_clGetPlatformInfo mock;
-    platform p(T::Newton_clGetPlatformIDs::platforms[0]);
-    char value[28];
-    p.get_info(platform_info_t::version, sizeof(value), value, NULL);
-    TS_ASSERT_EQUALS(value, "OpenCL 1.2 AMD-APP (1348.4)");
-  }
-  /** // doc: test_get_info_name_0() {{{
-   * \brief Test get_info(platform_info_t::name, 0, NULL, &size).
-   */ // }}}
-  void test_get_info_name_0( )
-  {
-    T::Newton_clGetPlatformInfo mock;
-    platform p(T::Newton_clGetPlatformIDs::platforms[0]);
-    size_t size;
-    p.get_info(platform_info_t::name, 0, NULL, &size);
-    TS_ASSERT_EQUALS(size, 36);
-  }
-//  /** // doc: test_get_info_name_1() {{{
-//   * \brief Test get_info(platform_info_t::profile, ...).
-//   */ // }}}
-  void test_get_info_name_1( )
-  {
-    T::Newton_clGetPlatformInfo mock;
-    platform p(T::Newton_clGetPlatformIDs::platforms[0]);
-    char value[36];
-    p.get_info(platform_info_t::name, sizeof(value), value, NULL);
-    TS_ASSERT_EQUALS(value, "AMD Accelerated Parallel Processing");
-  }
-  /** // doc: test_get_info_vendor_0() {{{
-   * \brief Test get_info(platform_info_t::vendor, 0, NULL, &size).
-   */ // }}}
-  void test_get_info_vendor_0( )
-  {
-    T::Newton_clGetPlatformInfo mock;
-    platform p(T::Newton_clGetPlatformIDs::platforms[0]);
-    size_t size;
-    p.get_info(platform_info_t::vendor, 0, NULL, &size);
-    TS_ASSERT_EQUALS(size, 29);
-  }
-//  /** // doc: test_get_info_vendor_1() {{{
-//   * \brief Test get_info(platform_info_t::profile, ...).
-//   */ // }}}
-  void test_get_info_vendor_1( )
-  {
-    T::Newton_clGetPlatformInfo mock;
-    platform p(T::Newton_clGetPlatformIDs::platforms[0]);
-    char value[29];
-    p.get_info(platform_info_t::vendor, sizeof(value), value, NULL);
-    TS_ASSERT_EQUALS(value, "Advanced Micro Devices, Inc.");
-  }
-  /** // doc: test_get_info_extensions_0() {{{
-   * \brief Test get_info(platform_info_t::extensions, 0, NULL, &size).
-   */ // }}}
-  void test_get_info_extensions_0( )
-  {
-    T::Newton_clGetPlatformInfo mock;
-    platform p(T::Newton_clGetPlatformIDs::platforms[0]);
-    size_t size;
-    p.get_info(platform_info_t::extensions, 0, NULL, &size);
-    TS_ASSERT_EQUALS(size, 56);
-  }
-//  /** // doc: test_get_info_extensions_1() {{{
-//   * \brief Test get_info(platform_info_t::profile, ...).
-//   */ // }}}
-  void test_get_info_extensions_1( )
-  {
-    T::Newton_clGetPlatformInfo mock;
-    platform p(T::Newton_clGetPlatformIDs::platforms[0]);
-    char value[56];
-    p.get_info(platform_info_t::extensions, sizeof(value), value, NULL);
-    TS_ASSERT_EQUALS(value, "cl_khr_icd cl_amd_event_callback cl_amd_offline_devices");
-  }
-  /** // doc: test_get_profile_1() {{{
+  /** // doc: test__get_profile_1() {{{
    * \brief Test get_profile()
    */ // }}}
-  void test_get_profile_1( )
+  void test__get_profile_1( )
   {
-    T::Newton_clGetPlatformInfo mock;
-    platform p(T::Newton_clGetPlatformIDs::platforms[0]);
-    TS_ASSERT_EQUALS(p.get_profile(), "FULL_PROFILE");
+    const char* _profile = "FULL_PROFILE";
+    size_t _profile_len = std::strlen(_profile) + 1;
+    T::Dummy_clGetPlatformInfo mock(CL_SUCCESS, _profile, &_profile_len);
+
+    TS_ASSERT_EQUALS(platform((cl_platform_id)0x1234).get_profile(), "FULL_PROFILE");
+
+    TS_ASSERT(mock.called_twice());
+    TS_ASSERT_EQUALS(std::get<0>(mock.calls().front()), (cl_platform_id)0x1234);
+    TS_ASSERT_EQUALS(std::get<1>(mock.calls().front()), CL_PLATFORM_PROFILE);
+    TS_ASSERT_EQUALS(std::get<2>(mock.calls().front()), 0u);
+    TS_ASSERT(std::get<3>(mock.calls().front()) == nullptr);
+    TS_ASSERT(std::get<4>(mock.calls().front()) != nullptr);
+
+    TS_ASSERT_EQUALS(std::get<0>(mock.calls().back()), (cl_platform_id)0x1234);
+    TS_ASSERT_EQUALS(std::get<1>(mock.calls().back()), CL_PLATFORM_PROFILE);
+    TS_ASSERT_EQUALS(std::get<2>(mock.calls().back()), _profile_len);
+    TS_ASSERT(std::get<3>(mock.calls().back()) != nullptr);
+    TS_ASSERT(std::get<4>(mock.calls().back()) == nullptr);
   }
-//  /** // doc: test_get_version_1() {{{
+//  /** // doc: test__get_version() {{{
 //   * \brief Test get_version()
 //   */ // }}}
-  void test_get_version_1( )
+  void test__get_version( )
   {
-    T::Newton_clGetPlatformInfo mock;
-    platform p(T::Newton_clGetPlatformIDs::platforms[0]);
-    TS_ASSERT_EQUALS(p.get_version(), "OpenCL 1.2 AMD-APP (1348.4)");
+    const char* _version = "OpenCL 1.2 AMD-APP (1348.4)";
+    size_t _version_len = std::strlen(_version) + 1;
+    T::Dummy_clGetPlatformInfo mock(CL_SUCCESS, _version, &_version_len);
+
+    TS_ASSERT_EQUALS(platform((cl_platform_id)0x1234).get_version(), "OpenCL 1.2 AMD-APP (1348.4)");
+
+    TS_ASSERT(mock.called_twice());
+    TS_ASSERT_EQUALS(std::get<0>(mock.calls().front()), (cl_platform_id)0x1234);
+    TS_ASSERT_EQUALS(std::get<1>(mock.calls().front()), CL_PLATFORM_VERSION);
+    TS_ASSERT_EQUALS(std::get<2>(mock.calls().front()), 0u);
+    TS_ASSERT(std::get<3>(mock.calls().front()) == nullptr);
+    TS_ASSERT(std::get<4>(mock.calls().front()) != nullptr);
+
+    TS_ASSERT_EQUALS(std::get<0>(mock.calls().back()), (cl_platform_id)0x1234);
+    TS_ASSERT_EQUALS(std::get<1>(mock.calls().back()), CL_PLATFORM_VERSION);
+    TS_ASSERT_EQUALS(std::get<2>(mock.calls().back()), _version_len);
+    TS_ASSERT(std::get<3>(mock.calls().back()) != nullptr);
+    TS_ASSERT(std::get<4>(mock.calls().back()) == nullptr);
   }
-//  /** // doc: test_get_name_1() {{{
+//  /** // doc: test__get_name() {{{
 //   * \brief Test get_name()
 //   */ // }}}
-  void test_get_name_1( )
+  void test__get_name( )
   {
-    T::Newton_clGetPlatformInfo mock;
-    platform p(T::Newton_clGetPlatformIDs::platforms[0]);
-    TS_ASSERT_EQUALS(p.get_name(), "AMD Accelerated Parallel Processing");
+    const char* _name = "AMD Accelerated Parallel Processing";
+    size_t _name_len = std::strlen(_name) + 1;
+    T::Dummy_clGetPlatformInfo mock(CL_SUCCESS, _name, &_name_len);
+
+    TS_ASSERT_EQUALS(platform((cl_platform_id)0x1234).get_name(), "AMD Accelerated Parallel Processing");
+
+    TS_ASSERT(mock.called_twice());
+    TS_ASSERT_EQUALS(std::get<0>(mock.calls().front()), (cl_platform_id)0x1234);
+    TS_ASSERT_EQUALS(std::get<1>(mock.calls().front()), CL_PLATFORM_NAME);
+    TS_ASSERT_EQUALS(std::get<2>(mock.calls().front()), 0u);
+    TS_ASSERT(std::get<3>(mock.calls().front()) == nullptr);
+    TS_ASSERT(std::get<4>(mock.calls().front()) != nullptr);
+
+    TS_ASSERT_EQUALS(std::get<0>(mock.calls().back()), (cl_platform_id)0x1234);
+    TS_ASSERT_EQUALS(std::get<1>(mock.calls().back()), CL_PLATFORM_NAME);
+    TS_ASSERT_EQUALS(std::get<2>(mock.calls().back()), _name_len);
+    TS_ASSERT(std::get<3>(mock.calls().back()) != nullptr);
+    TS_ASSERT(std::get<4>(mock.calls().back()) == nullptr);
   }
-//  /** // doc: test_get_vendor_1() {{{
+//  /** // doc: test__get_vendor() {{{
 //   * \brief Test get_vendor()
 //   */ // }}}
-  void test_get_vendor_1( )
+  void test__get_vendor( )
   {
-    T::Newton_clGetPlatformInfo mock;
-    platform p(T::Newton_clGetPlatformIDs::platforms[0]);
-    TS_ASSERT_EQUALS(p.get_vendor(), "Advanced Micro Devices, Inc.");
+    const char* _vendor = "Advanced Micro Devices, Inc.";
+    size_t _vendor_len = std::strlen(_vendor) + 1;
+    T::Dummy_clGetPlatformInfo mock(CL_SUCCESS, _vendor, &_vendor_len);
+
+    TS_ASSERT_EQUALS(platform((cl_platform_id)0x1234).get_vendor(), "Advanced Micro Devices, Inc.");
+
+    TS_ASSERT(mock.called_twice());
+    TS_ASSERT_EQUALS(std::get<0>(mock.calls().front()), (cl_platform_id)0x1234);
+    TS_ASSERT_EQUALS(std::get<1>(mock.calls().front()), CL_PLATFORM_VENDOR);
+    TS_ASSERT_EQUALS(std::get<2>(mock.calls().front()), 0u);
+    TS_ASSERT(std::get<3>(mock.calls().front()) == nullptr);
+    TS_ASSERT(std::get<4>(mock.calls().front()) != nullptr);
+
+    TS_ASSERT_EQUALS(std::get<0>(mock.calls().back()), (cl_platform_id)0x1234);
+    TS_ASSERT_EQUALS(std::get<1>(mock.calls().back()), CL_PLATFORM_VENDOR);
+    TS_ASSERT_EQUALS(std::get<2>(mock.calls().back()), _vendor_len);
+    TS_ASSERT(std::get<3>(mock.calls().back()) != nullptr);
+    TS_ASSERT(std::get<4>(mock.calls().back()) == nullptr);
   }
-//  /** // doc: test_get_extensions_1() {{{
+//  /** // doc: test__get_extensions() {{{
 //   * \brief Test get_extensions()
 //   */ // }}}
-  void test_get_extensions_1( )
+  void test__get_extensions( )
   {
-    T::Newton_clGetPlatformInfo mock;
-    platform p(T::Newton_clGetPlatformIDs::platforms[0]);
-    TS_ASSERT_EQUALS(p.get_extensions(), "cl_khr_icd cl_amd_event_callback cl_amd_offline_devices");
+    const char* _extensions = "cl_khr_icd cl_amd_event_callback cl_amd_offline_devices";
+    size_t _extensions_len = std::strlen(_extensions) + 1;
+    T::Dummy_clGetPlatformInfo mock(CL_SUCCESS, _extensions, &_extensions_len);
+
+    TS_ASSERT_EQUALS(platform((cl_platform_id)0x1234).get_extensions(), "cl_khr_icd cl_amd_event_callback cl_amd_offline_devices");
+
+    TS_ASSERT(mock.called_twice());
+    TS_ASSERT_EQUALS(std::get<0>(mock.calls().front()), (cl_platform_id)0x1234);
+    TS_ASSERT_EQUALS(std::get<1>(mock.calls().front()), CL_PLATFORM_EXTENSIONS);
+    TS_ASSERT_EQUALS(std::get<2>(mock.calls().front()), 0u);
+    TS_ASSERT(std::get<3>(mock.calls().front()) == nullptr);
+    TS_ASSERT(std::get<4>(mock.calls().front()) != nullptr);
+
+    TS_ASSERT_EQUALS(std::get<0>(mock.calls().back()), (cl_platform_id)0x1234);
+    TS_ASSERT_EQUALS(std::get<1>(mock.calls().back()), CL_PLATFORM_EXTENSIONS);
+    TS_ASSERT_EQUALS(std::get<2>(mock.calls().back()), _extensions_len);
+    TS_ASSERT(std::get<3>(mock.calls().back()) != nullptr);
+    TS_ASSERT(std::get<4>(mock.calls().back()) == nullptr);
   }
-//  /** // doc: test_eq_op_1() {{{
+//  /** // doc: test__eq_op_1() {{{
 //   * \brief Test operator==()
 //   */ // }}}
-  void test_eq_op_1( )
+  void test__eq_op_1( )
   {
     TS_ASSERT(  platform((cl_platform_id)0x0000) == platform((cl_platform_id)0x0000));
     TS_ASSERT(  platform((cl_platform_id)0x1234) == platform((cl_platform_id)0x1234));
     TS_ASSERT(!(platform((cl_platform_id)0x1234) == platform((cl_platform_id)0x0000)));
     TS_ASSERT(!(platform((cl_platform_id)0x0000) == platform((cl_platform_id)0x1234)));
   }
-//  /** // doc: test_neq_op_1() {{{
+//  /** // doc: test__neq_op_1() {{{
 //   * \brief Test operator!=()
 //   */ // }}}
-  void test_neq_op_1( )
+  void test__neq_op_1( )
   {
     TS_ASSERT(!(platform((cl_platform_id)0x0000) != platform((cl_platform_id)0x0000)));
     TS_ASSERT(!(platform((cl_platform_id)0x1234) != platform((cl_platform_id)0x1234)));
     TS_ASSERT(  platform((cl_platform_id)0x1234) != platform((cl_platform_id)0x0000));
     TS_ASSERT(  platform((cl_platform_id)0x0000) != platform((cl_platform_id)0x1234));
   }
-//  /** // doc: test_lt_op_1() {{{
+//  /** // doc: test__lt_op_1() {{{
 //   * \brief Test operator<
 //   */ // }}}
-  void test_lt_op_1( )
+  void test__lt_op_1( )
   {
     TS_ASSERT(!(platform((cl_platform_id)0x0000) < platform((cl_platform_id)0x0000)));
     TS_ASSERT(!(platform((cl_platform_id)0x1234) < platform((cl_platform_id)0x1234)));
     TS_ASSERT(!(platform((cl_platform_id)0x1234) < platform((cl_platform_id)0x0000)));
     TS_ASSERT(  platform((cl_platform_id)0x0000) < platform((cl_platform_id)0x1234));
   }
-//  /** // doc: test_gt_op_1() {{{
+//  /** // doc: test__gt_op_1() {{{
 //   * \brief Test operator>
 //   */ // }}}
-  void test_gt_op_1( )
+  void test__gt_op_1( )
   {
     TS_ASSERT(!(platform((cl_platform_id)0x0000) > platform((cl_platform_id)0x0000)));
     TS_ASSERT(!(platform((cl_platform_id)0x1234) > platform((cl_platform_id)0x1234)));
     TS_ASSERT(  platform((cl_platform_id)0x1234) > platform((cl_platform_id)0x0000));
     TS_ASSERT(!(platform((cl_platform_id)0x0000) > platform((cl_platform_id)0x1234)));
   }
-//  /** // doc: test_le_op_1() {{{
+//  /** // doc: test__le_op_1() {{{
 //   * \brief Test operator<=
 //   */ // }}}
-  void test_le_op_1( )
+  void test__le_op_1( )
   {
     TS_ASSERT(  platform((cl_platform_id)0x0000) <= platform((cl_platform_id)0x0000));
     TS_ASSERT(  platform((cl_platform_id)0x1234) <= platform((cl_platform_id)0x1234));
     TS_ASSERT(!(platform((cl_platform_id)0x1234) <= platform((cl_platform_id)0x0000)));
     TS_ASSERT(  platform((cl_platform_id)0x0000) <= platform((cl_platform_id)0x1234));
   }
-//  /** // doc: test_ge_op_1() {{{
+//  /** // doc: test__ge_op_1() {{{
 //   * \brief Test operator>=
 //   */ // }}}
-  void test_ge_op_1( )
+  void test__ge_op_1( )
   {
     TS_ASSERT(  platform((cl_platform_id)0x0000) >= platform((cl_platform_id)0x0000));
     TS_ASSERT(  platform((cl_platform_id)0x1234) >= platform((cl_platform_id)0x1234));
     TS_ASSERT(  platform((cl_platform_id)0x1234) >= platform((cl_platform_id)0x0000));
     TS_ASSERT(!(platform((cl_platform_id)0x0000) >= platform((cl_platform_id)0x1234)));
   }
-//  /** // doc: test_bool_op_1() {{{
-//   * \brief Test operator bool
-//   */ // }}}
-  void test_bool_op_1( )
-  {
-    TS_ASSERT((bool)platform((cl_platform_id)0x1234));
-    TS_ASSERT(!(bool)platform((cl_platform_id)0x000));
-  }
-// sorry, but this may irritate OOM instead of throwing bad_alloc
-//  /** // doc: test_negsize() {{{
-//   * \brief Test get_xxx() methods in a situation when clGetPlatformInfo returns negative string size.
-//   */ // }}}
-//  void test_negsize( )
-//  {
-//    T::SizeRet_clGetPlatformInfo mock(-64);
-//    platform p(reinterpret_cast<cl_platform_id>(0x34556ul));
-//    TS_ASSERT_THROWS(p.get_profile(), CLXX_EXCEPTION(Bad_Alloc));
-//    TS_ASSERT_THROWS(p.get_version(), CLXX_EXCEPTION(Bad_Alloc));
-//    TS_ASSERT_THROWS(p.get_name(), CLXX_EXCEPTION(Bad_Alloc));
-//    TS_ASSERT_THROWS(p.get_vendor(), CLXX_EXCEPTION(Bad_Alloc));
-//    TS_ASSERT_THROWS(p.get_extensions(), CLXX_EXCEPTION(Bad_Alloc));
-//  }
-  /** // doc: test_out_of_host_memory() {{{
+  /** // doc: test__out_of_host_memory() {{{
    * \brief Test get_xxx() methods in a situation when clGetPlatformInfo returns status_t::out_of_host_memory.
    */ // }}}
-  void test_out_of_host_memory( )
+  void test__out_of_host_memory( )
   {
     T::Dummy_clGetPlatformInfo mock(CL_OUT_OF_HOST_MEMORY);
-    platform p(reinterpret_cast<cl_platform_id>(0x34556ul));
+    platform p((cl_platform_id)0x34556ul);
     TS_ASSERT_THROWS(p.get_profile(), clerror_no<status_t::out_of_host_memory>);
     TS_ASSERT_THROWS(p.get_version(), clerror_no<status_t::out_of_host_memory>);
     TS_ASSERT_THROWS(p.get_name(), clerror_no<status_t::out_of_host_memory>);
     TS_ASSERT_THROWS(p.get_vendor(), clerror_no<status_t::out_of_host_memory>);
     TS_ASSERT_THROWS(p.get_extensions(), clerror_no<status_t::out_of_host_memory>);
   }
-  /** // doc: test_out_of_host_memory() {{{
+  /** // doc: test__unexpected_clerror() {{{
    * \brief Test get_xxx() methods in a situation when clGetPlatformInfo returns unknown error.
    */ // }}}
-  void test_other_error( )
+  void test__unexpected_clerror( )
   {
     T::Dummy_clGetPlatformInfo mock(-0x432534);
-    platform p(reinterpret_cast<cl_platform_id>(0x34556ul));
+    platform p((cl_platform_id)0x34556ul);
     TS_ASSERT_THROWS(p.get_profile(), unexpected_clerror);
     TS_ASSERT_THROWS(p.get_version(), unexpected_clerror);
     TS_ASSERT_THROWS(p.get_name(), unexpected_clerror);
     TS_ASSERT_THROWS(p.get_vendor(), unexpected_clerror);
     TS_ASSERT_THROWS(p.get_extensions(), unexpected_clerror);
   }
-//  /** // doc: test_query_platform_info_1() {{{
-//   * \todo Write documentation
+//  /** // doc: test__query_platform_info() {{{
+//   * \brief Test query_platform_info()
 //   */ // }}}
-//  void test_query_platform_info_1( )
-//  {
-//    T::Newton_clGetPlatformInfo mock;
-//    platform p(T::Newton_clGetPlatformIDs::platforms[0]);
-//    Dimbo::Clinfo::Platform_Info info(query_platform_info(p));
-//    TS_ASSERT_EQUALS(info.profile(), "FULL_PROFILE");
-//    TS_ASSERT_EQUALS(info.version(), "OpenCL 1.2 AMD-APP (1348.4)");
-//    TS_ASSERT_EQUALS(info.name(), "AMD Accelerated Parallel Processing");
-//    TS_ASSERT_EQUALS(info.vendor(), "Advanced Micro Devices, Inc.");
-//    TS_ASSERT_EQUALS(info.extensions(), "cl_khr_icd cl_amd_event_callback cl_amd_offline_devices");
-//  }
-//  /** // doc: test_query_platform_info_2() {{{
-//   * \todo Write documentation
-//   */ // }}}
-//  void test_query_platform_info_2( )
-//  {
-//    T::Newton_clGetPlatformInfo mock;
-//    platform p(T::Newton_clGetPlatformIDs::platforms[1]);
-//    Dimbo::Clinfo::Platform_Info info(query_platform_info(p));
-//    TS_ASSERT_EQUALS(info.profile(), "FULL_PROFILE");
-//    TS_ASSERT_EQUALS(info.version(), "OpenCL 1.1 CUDA 4.2.1");
-//    TS_ASSERT_EQUALS(info.name(), "NVIDIA CUDA");
-//    TS_ASSERT_EQUALS(info.vendor(), "NVIDIA Corporation");
-//    TS_ASSERT_EQUALS(info.extensions(), "cl_khr_byte_addressable_store cl_khr_icd cl_khr_gl_sharing cl_nv_compiler_options cl_nv_device_attribute_query cl_nv_pragma_unroll");
-//  }
+  void test__query_platform_info( )
+  {
+    T::Newton_clGetPlatformInfo mock;
+    platform p(T::Newton_clGetPlatformIDs::platforms[0]);
+    platform_info info(query_platform_info(p));
+
+    TS_ASSERT_EQUALS(info.profile(), "FULL_PROFILE");
+    TS_ASSERT_EQUALS(info.version(), "OpenCL 1.2 AMD-APP (1348.4)");
+    TS_ASSERT_EQUALS(info.name(), "AMD Accelerated Parallel Processing");
+    TS_ASSERT_EQUALS(info.vendor(), "Advanced Micro Devices, Inc.");
+    TS_ASSERT_EQUALS(info.extensions(), "cl_khr_icd cl_amd_event_callback cl_amd_offline_devices");
+  }
 };
 
 #endif /* CLXX_CL_PLATFORM_T_H_INCLUDED */

@@ -8,105 +8,35 @@
 #include <clxx/command_queue.hpp>
 #include <clxx/context.hpp>
 #include <clxx/device.hpp>
+#include <clxx/clobj_impl.hpp>
 #include <clxx/functions.hpp>
-#include <clxx/exceptions.hpp>
-#include <vector>
 
 namespace clxx {
-
 /* ------------------------------------------------------------------------ */
-template<typename T> static T
-_get_pod_info(command_queue const& p, command_queue_info_t name)
-{
-  T value;
-  p.get_info(name,sizeof(value),&value,NULL);
-  return value;
-}
-/* ------------------------------------------------------------------------ */
-void command_queue::
-_set_id(cl_command_queue id, bool retain_new, bool release_old)
-{
-  if(id != this->_id) // Avoid unintended deletion by clReleaseCommandQueue()
-    {
-      if(release_old && this->is_initialized())
-        {
-          release_command_queue(this->_id);
-        }
-      this->_id = id;
-      if(retain_new)
-        {
-          retain_command_queue(this->_id);
-        }
-    }
-}
-/* ------------------------------------------------------------------------ */
-command_queue::
-command_queue() noexcept
-  : _id((cl_command_queue)NULL)
-{
-}
-/* ------------------------------------------------------------------------ */
-command_queue::
-command_queue(cl_command_queue id)
-  : _id((cl_command_queue)NULL) // because it's read by _set_id()
-{
-  this->_set_id(id, true, false);
-}
+// Instantiate the base class
+template class clobj<cl_command_queue>;
+static_assert(
+    sizeof(clobj<cl_command_queue>) == sizeof(cl_command_queue),
+    "sizeof(clobj<cl_command_queue>) differs from sizeof(cl_command_queue)"
+);
 /* ------------------------------------------------------------------------ */
 command_queue::
 command_queue(context const& ctx, device const& dev, command_queue_properties_t props)
 {
 #if CLXX_OPENCL_ALLOWED(clCreateCommandQueue)
-  cl_command_queue id = create_command_queue(ctx.get_valid_id(),
-                                             dev.get_valid_id(),
-                                             props);
+  cl_command_queue handle = create_command_queue( ctx.get_valid_handle(),
+                                                  dev.get_valid_handle(),
+                                                  props );
 #elif CLXX_OPENCL_ALLOWED(clCreateCommandQueueWithProperties)
-  cl_queue_properties props_array[3] = {CL_QUEUE_PROPERTIES, intval(props),
-                                        static_cast<cl_queue_properties>(0)};
-  cl_command_queue id = create_command_queue_with_properties(ctx.get_valid_id(),
-                                                             dev.get_valid_id(),
-                                                             props_array);
+  cl_queue_properties props_array[3] = {  CL_QUEUE_PROPERTIES,
+                                          intval(props),
+                                          static_cast<cl_queue_properties>(0) };
+  cl_command_queue handle = create_command_queue_with_properties(
+                                                  ctx.get_valid_handle(),
+                                                  dev.get_valid_handle(),
+                                                  props_array );
 #endif
-  this->_set_id(id, false, false);
-}
-/* ------------------------------------------------------------------------ */
-command_queue::
-command_queue(const command_queue& rhs)
-  : _id((cl_command_queue)NULL) // because it's read by _set_id()
-{
-  this->_set_id(rhs.get_valid_id(), true, false);
-}
-/* ------------------------------------------------------------------------ */
-command_queue::
-~command_queue()
-{
-  if(this->is_initialized())
-    {
-      try { this->_set_id(NULL, false, true); }
-      catch(clerror_no<status_t::invalid_command_queue> const&){ }
-    }
-}
-/* ------------------------------------------------------------------------ */
-void command_queue::
-get_info(command_queue_info_t name, size_t value_size, void* value,
-         size_t* value_size_ret) const
-{
-  get_command_queue_info(this->get_valid_id(), name, value_size, value, value_size_ret);
-}
-/* ------------------------------------------------------------------------ */
-cl_command_queue command_queue::
-get_valid_id() const
-{
-  if(!this->is_initialized())
-    throw uninitialized_command_queue_error();
-  return this->_id;
-}
-/* ------------------------------------------------------------------------ */
-void command_queue::
-assign(command_queue const& rhs)
-{
-  if(&rhs != this)
-    this->_set_id(rhs.get_valid_id(), true, true);
+  this->_set_handle(handle, false, false);
 }
 /* ------------------------------------------------------------------------ */
 context command_queue::
@@ -121,12 +51,6 @@ get_device() const
   return device(_get_pod_info<cl_device_id>(*this, command_queue_info_t::device));
 }
 /* ------------------------------------------------------------------------ */
-cl_uint command_queue::
-get_reference_count() const
-{
-  return _get_pod_info<cl_uint>(*this, command_queue_info_t::reference_count);
-}
-/* ------------------------------------------------------------------------ */
 command_queue_properties_t command_queue::
 get_properties() const
 {
@@ -138,13 +62,13 @@ get_properties() const
 void command_queue::
 flush() const
 {
-  clxx::flush(get_valid_id());
+  clxx::flush(get_valid_handle());
 }
 /* ------------------------------------------------------------------------ */
 void command_queue::
 finish() const
 {
-  clxx::finish(get_valid_id());
+  clxx::finish(get_valid_handle());
 }
 /* ------------------------------------------------------------------------ */
 

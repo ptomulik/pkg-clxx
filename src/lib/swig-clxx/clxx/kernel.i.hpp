@@ -12,6 +12,7 @@
 
 // dependencies on other swig modules
 #include <clxx/types.i.hpp>
+#include <clxx/clobj.i.hpp>
 #include <clxx/program.i.hpp>
 #include <clxx/context.i.hpp>
 #include <clxx/devices.i.hpp>

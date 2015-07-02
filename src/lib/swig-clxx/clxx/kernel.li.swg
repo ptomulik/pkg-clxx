@@ -9,6 +9,9 @@
 %{
 #include <clxx/kernel.hpp>
 %}
+
+%template(clobj_kernel) clxx::clobj<cl_kernel>;
+
 %include <clxx/kernel.hpp>
 
 // vim: set expandtab tabstop=2 shiftwidth=2:

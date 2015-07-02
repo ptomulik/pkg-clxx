@@ -42,14 +42,6 @@ decls = GVarDeclsU(
         'action'    : 'store_true',
         'help'      : 'Do not include CL/cl_egl.h, even if it is available'
     },
-    WITH_YAUL_TML = {
-        'env_key'   : 'WITH_YAUL_TML',
-        #'var_key'   : 'WITH_YAUL_TML',
-        'opt_key'   : 'WITH_YAUL_TML',
-        'option'    : '--with-yaul-tml',
-        'default'   : None,
-        'help'      : 'Path to the yaul-tml library (headers)'
-    }
 )
 ##############################################################################
 # Declare some standard CLI variables

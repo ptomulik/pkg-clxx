@@ -102,8 +102,8 @@ public:
     TS_ASSERT_EQUALS(std::get<4>(mock.calls().back()), nullptr);
 
     TS_ASSERT_EQUALS(devs.size(),2);
-    TS_ASSERT_EQUALS(devs[0].handle(), (cl_device_id)0x2345);
-    TS_ASSERT_EQUALS(devs[1].handle(), (cl_device_id)0x3456);
+    TS_ASSERT_EQUALS(devs[0].get(), (cl_device_id)0x2345);
+    TS_ASSERT_EQUALS(devs[1].get(), (cl_device_id)0x3456);
 #endif
   }
 };

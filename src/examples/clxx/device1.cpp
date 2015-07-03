@@ -31,7 +31,7 @@ public:
   void operator ()(clxx::device const& d)
   {
     std::cout << "  Device " << count << ":" << std::endl;
-    std::cout << "    Id ........ : " << d.handle() << std::endl;
+    std::cout << "    Id ........ : " << d.get() << std::endl;
     std::cout << "    Name ...... : " << d.get_name() << std::endl;
     std::cout << "    Vendor .... : " << d.get_vendor() << std::endl;
     std::cout << "    Version: .. : " << d.get_version() << std::endl;
@@ -53,7 +53,7 @@ public:
   void operator () (clxx::platform const& p)
   {
     std::cout << "Platform " << count << ":" << std::endl;
-    std::cout << "  Id .......... : " << p.handle() << std::endl;
+    std::cout << "  Id .......... : " << p.get() << std::endl;
     std::cout << "  Name ........ : " << p.get_name() << std::endl;
     std::cout << "  Profile ..... : " << p.get_profile() << std::endl;
     std::cout << "  Version ..... : " << p.get_version() << std::endl;

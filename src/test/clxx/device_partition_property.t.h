@@ -38,7 +38,7 @@ public:
   {
     TS_ASSERT_THROWS_NOTHING(device_partition_property(device_partition_property_t::equally, (cl_device_partition_property)2));
     TS_ASSERT_THROWS_NOTHING(device_partition_property(device_partition_property_t::by_counts, device_partition_counts({2u})));
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
     TS_ASSERT_THROWS_NOTHING(device_partition_property(device_partition_property_t::by_affinity_domain, static_cast<cl_device_partition_property>(device_affinity_domain_t::l4_cache)));
 #endif
   }
@@ -49,7 +49,7 @@ public:
   {
     TS_ASSERT_THROWS_NOTHING(device_partition_property(CL_DEVICE_PARTITION_EQUALLY, (cl_device_partition_property)1));
     TS_ASSERT_THROWS_NOTHING(device_partition_property(CL_DEVICE_PARTITION_BY_COUNTS, device_partition_counts({2ul})));
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
     TS_ASSERT_THROWS_NOTHING(device_partition_property(CL_DEVICE_PARTITION_BY_AFFINITY_DOMAIN, (cl_device_partition_property)CL_DEVICE_AFFINITY_DOMAIN_L4_CACHE));
 #endif
   }
@@ -143,7 +143,7 @@ public:
     TS_ASSERT_EQUALS(device_partition_by_counts({4u,5u}).name(),device_partition_property_t::by_counts);
     TS_ASSERT_EQUALS(device_partition_by_counts({4u,5u}).value(0),(cl_device_partition_property)4);
     TS_ASSERT_EQUALS(device_partition_by_counts({4u,5u}).value(1),(cl_device_partition_property)5);
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
     TS_ASSERT_EQUALS(device_partition_by_affinity_domain(device_affinity_domain_t::l4_cache).name(),device_partition_property_t::by_affinity_domain);
     TS_ASSERT_EQUALS(device_partition_by_affinity_domain(device_affinity_domain_t::l4_cache).value(),(cl_device_partition_property)device_affinity_domain_t::l4_cache);
 #endif

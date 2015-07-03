@@ -22,7 +22,7 @@
 }
 %enddef
 
-%exception clxx::platform::get_valid_handle() const {
+%exception clxx::platform::chk_get() const {
   try { $action }
   %catch_uninitialized_platform_error
   %catch_exception

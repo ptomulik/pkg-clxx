@@ -24,16 +24,16 @@ command_queue::
 command_queue(context const& ctx, device const& dev, command_queue_properties_t props)
 {
 #if CLXX_OPENCL_ALLOWED(clCreateCommandQueue)
-  cl_command_queue handle = create_command_queue( ctx.get_valid_handle(),
-                                                  dev.get_valid_handle(),
+  cl_command_queue handle = create_command_queue( ctx.chk_get(),
+                                                  dev.chk_get(),
                                                   props );
 #elif CLXX_OPENCL_ALLOWED(clCreateCommandQueueWithProperties)
   cl_queue_properties props_array[3] = {  CL_QUEUE_PROPERTIES,
                                           intval(props),
                                           static_cast<cl_queue_properties>(0) };
   cl_command_queue handle = create_command_queue_with_properties(
-                                                  ctx.get_valid_handle(),
-                                                  dev.get_valid_handle(),
+                                                  ctx.chk_get(),
+                                                  dev.chk_get(),
                                                   props_array );
 #endif
   this->_set_handle(handle, false, false);
@@ -62,13 +62,13 @@ get_properties() const
 void command_queue::
 flush() const
 {
-  clxx::flush(get_valid_handle());
+  clxx::flush(chk_get());
 }
 /* ------------------------------------------------------------------------ */
 void command_queue::
 finish() const
 {
-  clxx::finish(get_valid_handle());
+  clxx::finish(chk_get());
 }
 /* ------------------------------------------------------------------------ */
 

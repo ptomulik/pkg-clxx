@@ -30,7 +30,7 @@ context(context_properties const& props, devices const& devs,
   context_properties_fill_array(props, &props_v.front(), props_n);
   const size_t devs_n = devs.size();
   std::vector<cl_device_id> dev_ids(devs_n);
-  for(size_t i = 0; i < devs_n; dev_ids[i] = devs[i].handle(), ++i) { }
+  for(size_t i = 0; i < devs_n; dev_ids[i] = devs[i].get(), ++i) { }
   cl_context handle = create_context(&props_v.front(), devs_n, &dev_ids.front(),
                                       pfn_notify, user_data);
   this->_set_handle(handle, false, false);

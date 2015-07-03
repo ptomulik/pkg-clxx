@@ -139,65 +139,34 @@ struct not_enough_space_error
       : Base(what_arg)
     { }
   };
-/** // doc: uninitialized_platform_error {{{
+/** // doc: uninitialized_command_queue_error {{{
  * \ingroup clxx_exceptions
- * \brief An exception thrown when user tries to operate on an uninitialized
- *        \ref clxx::platform "platform" object
+ * \brief An exception being thrown when a user tries to operate on an
+ *        uninitialized \ref clxx::command_queue "command_queue" object
  */ // }}}
-struct uninitialized_platform_error
+struct uninitialized_command_queue_error
     : public exception_base<clxx::exception, std::logic_error>
   {
     /** // doc: Base {{{
      * \brief Typedef for base class
      */ // }}}
     typedef clxx::exception_base<clxx::exception, std::logic_error> Base;
-    /** // doc: uninitialized_platform_error() {{{
+    /** // doc: uninitialized_command_queue_error() {{{
      * \brief Default constructor
      */ // }}}
-    uninitialized_platform_error() noexcept
-      : Base("attempted to use uninitialized clxx::platform object")
+    uninitialized_command_queue_error() noexcept
+      : Base("attempted to use uninitialized command_queue object")
     { }
-    /** // doc: uninitialized_platform_error() {{{
+    /** // doc: uninitialized_command_queue_error() {{{
      * \brief Constructor
      */ // }}}
-    uninitialized_platform_error(std::string const& what_arg) noexcept
+    uninitialized_command_queue_error(std::string const& what_arg) noexcept
       : Base(what_arg)
     { }
-    /** // doc: uninitialized_platform_error() {{{
+    /** // doc: uninitialized_command_queue_error() {{{
      * \brief Constructor
      */ // }}}
-    uninitialized_platform_error(char const* what_arg) noexcept
-      : Base(what_arg)
-    { }
-  };
-/** // doc: uninitialized_device_error {{{
- * \ingroup clxx_exceptions
- * \brief An exception thrown when a user tries to operate on an uninitialized
- *        \ref clxx::device "device" object
- */ // }}}
-struct uninitialized_device_error
-    : public exception_base<clxx::exception, std::logic_error>
-  {
-    /** // doc: Base {{{
-     * \brief Typedef for base class
-     */ // }}}
-    typedef clxx::exception_base<clxx::exception, std::logic_error> Base;
-    /** // doc: uninitialized_device_error() {{{
-     * \brief Default constructor
-     */ // }}}
-    uninitialized_device_error() noexcept
-      : Base("attempted to use uninitialized clxx::device object")
-    { }
-    /** // doc: uninitialized_device_error() {{{
-     * \brief Constructor
-     */ // }}}
-    uninitialized_device_error(std::string const& what_arg) noexcept
-      : Base(what_arg)
-    { }
-    /** // doc: uninitialized_device_error() {{{
-     * \brief Constructor
-     */ // }}}
-    uninitialized_device_error(char const* what_arg) noexcept
+    uninitialized_command_queue_error(char const* what_arg) noexcept
       : Base(what_arg)
     { }
   };
@@ -217,7 +186,7 @@ struct uninitialized_context_error
      * \brief Default constructor
      */ // }}}
     uninitialized_context_error() noexcept
-      : Base("attempted to use uninitialized clxx::context object")
+      : Base("attempted to use uninitialized context object")
     { }
     /** // doc: uninitialized_context_error() {{{
      * \brief Constructor
@@ -232,127 +201,34 @@ struct uninitialized_context_error
       : Base(what_arg)
     { }
   };
-/** // doc: uninitialized_command_queue_error {{{
+/** // doc: uninitialized_device_error {{{
  * \ingroup clxx_exceptions
- * \brief An exception being thrown when a user tries to operate on an
- *        uninitialized \ref clxx::command_queue "command_queue" object
+ * \brief An exception thrown when a user tries to operate on an uninitialized
+ *        \ref clxx::device "device" object
  */ // }}}
-struct uninitialized_command_queue_error
+struct uninitialized_device_error
     : public exception_base<clxx::exception, std::logic_error>
   {
     /** // doc: Base {{{
      * \brief Typedef for base class
      */ // }}}
     typedef clxx::exception_base<clxx::exception, std::logic_error> Base;
-    /** // doc: uninitialized_command_queue_error() {{{
+    /** // doc: uninitialized_device_error() {{{
      * \brief Default constructor
      */ // }}}
-    uninitialized_command_queue_error() noexcept
-      : Base("attempted to use uninitialized clxx::command_queue object")
+    uninitialized_device_error() noexcept
+      : Base("attempted to use uninitialized device object")
     { }
-    /** // doc: uninitialized_command_queue_error() {{{
+    /** // doc: uninitialized_device_error() {{{
      * \brief Constructor
      */ // }}}
-    uninitialized_command_queue_error(std::string const& what_arg) noexcept
+    uninitialized_device_error(std::string const& what_arg) noexcept
       : Base(what_arg)
     { }
-    /** // doc: uninitialized_command_queue_error() {{{
+    /** // doc: uninitialized_device_error() {{{
      * \brief Constructor
      */ // }}}
-    uninitialized_command_queue_error(char const* what_arg) noexcept
-      : Base(what_arg)
-    { }
-  };
-/** // doc: uninitialized_mem_error {{{
- * \ingroup clxx_exceptions
- * \brief An exception being thrown when a user tries to operate on an
- *        uninitialized \ref clxx::mem "mem" object
- */ // }}}
-struct uninitialized_mem_error
-    : public exception_base<clxx::exception, std::logic_error>
-  {
-    /** // doc: Base {{{
-     * \brief Typedef for base class
-     */ // }}}
-    typedef clxx::exception_base<clxx::exception, std::logic_error> Base;
-    /** // doc: uninitialized_mem_error() {{{
-     * \brief Default constructor
-     */ // }}}
-    uninitialized_mem_error() noexcept
-      : Base("attempted to use uninitialized clxx::mem object")
-    { }
-    /** // doc: uninitialized_mem_error() {{{
-     * \brief Constructor
-     */ // }}}
-    uninitialized_mem_error(std::string const& what_arg) noexcept
-      : Base(what_arg)
-    { }
-    /** // doc: uninitialized_mem_error() {{{
-     * \brief Constructor
-     */ // }}}
-    uninitialized_mem_error(char const* what_arg) noexcept
-      : Base(what_arg)
-    { }
-  };
-/** // doc: uninitialized_program_error {{{
- * \ingroup clxx_exceptions
- * \brief An exception being thrown when a user tries to operate on an
- *        uninitialized \ref clxx::program "program" object
- */ // }}}
-struct uninitialized_program_error
-    : public exception_base<clxx::exception, std::logic_error>
-  {
-    /** // doc: Base {{{
-     * \brief Typedef for base class
-     */ // }}}
-    typedef clxx::exception_base<clxx::exception, std::logic_error> Base;
-    /** // doc: uninitialized_program_error() {{{
-     * \brief Default constructor
-     */ // }}}
-    uninitialized_program_error() noexcept
-      : Base("attempted to use uninitialized clxx::program object")
-    { }
-    /** // doc: uninitialized_program_error() {{{
-     * \brief Constructor
-     */ // }}}
-    uninitialized_program_error(std::string const& what_arg) noexcept
-      : Base(what_arg)
-    { }
-    /** // doc: uninitialized_program_error() {{{
-     * \brief Constructor
-     */ // }}}
-    uninitialized_program_error(char const* what_arg) noexcept
-      : Base(what_arg)
-    { }
-  };
-/** // doc: uninitialized_kernel_error {{{
- * \ingroup clxx_exceptions
- * \brief An exception being thrown when a user tries to operate on an
- *        uninitialized \ref clxx::kernel "kernel" object
- */ // }}}
-struct uninitialized_kernel_error
-    : public exception_base<clxx::exception, std::logic_error>
-  {
-    /** // doc: Base {{{
-     * \brief Typedef for base class
-     */ // }}}
-    typedef clxx::exception_base<clxx::exception, std::logic_error> Base;
-    /** // doc: uninitialized_kernel_error() {{{
-     * \brief Default constructor
-     */ // }}}
-    uninitialized_kernel_error() noexcept
-      : Base("attempted to use uninitialized clxx::kernel object")
-    { }
-    /** // doc: uninitialized_kernel_error() {{{
-     * \brief Constructor
-     */ // }}}
-    uninitialized_kernel_error(std::string const& what_arg) noexcept
-      : Base(what_arg)
-    { }
-    /** // doc: uninitialized_kernel_error() {{{
-     * \brief Constructor
-     */ // }}}
-    uninitialized_kernel_error(char const* what_arg) noexcept
+    uninitialized_device_error(char const* what_arg) noexcept
       : Base(what_arg)
     { }
   };
@@ -372,7 +248,7 @@ struct uninitialized_event_error
      * \brief Default constructor
      */ // }}}
     uninitialized_event_error() noexcept
-      : Base("attempted to use uninitialized clxx::event object")
+      : Base("attempted to use uninitialized event object")
     { }
     /** // doc: uninitialized_event_error() {{{
      * \brief Constructor
@@ -384,6 +260,161 @@ struct uninitialized_event_error
      * \brief Constructor
      */ // }}}
     uninitialized_event_error(char const* what_arg) noexcept
+      : Base(what_arg)
+    { }
+  };
+/** // doc: uninitialized_kernel_error {{{
+ * \ingroup clxx_exceptions
+ * \brief An exception being thrown when a user tries to operate on an
+ *        uninitialized \ref clxx::kernel "kernel" object
+ */ // }}}
+struct uninitialized_kernel_error
+    : public exception_base<clxx::exception, std::logic_error>
+  {
+    /** // doc: Base {{{
+     * \brief Typedef for base class
+     */ // }}}
+    typedef clxx::exception_base<clxx::exception, std::logic_error> Base;
+    /** // doc: uninitialized_kernel_error() {{{
+     * \brief Default constructor
+     */ // }}}
+    uninitialized_kernel_error() noexcept
+      : Base("attempted to use uninitialized kernel object")
+    { }
+    /** // doc: uninitialized_kernel_error() {{{
+     * \brief Constructor
+     */ // }}}
+    uninitialized_kernel_error(std::string const& what_arg) noexcept
+      : Base(what_arg)
+    { }
+    /** // doc: uninitialized_kernel_error() {{{
+     * \brief Constructor
+     */ // }}}
+    uninitialized_kernel_error(char const* what_arg) noexcept
+      : Base(what_arg)
+    { }
+  };
+/** // doc: uninitialized_mem_error {{{
+ * \ingroup clxx_exceptions
+ * \brief An exception being thrown when a user tries to operate on an
+ *        uninitialized \ref clxx::mem "mem" object
+ */ // }}}
+struct uninitialized_mem_error
+    : public exception_base<clxx::exception, std::logic_error>
+  {
+    /** // doc: Base {{{
+     * \brief Typedef for base class
+     */ // }}}
+    typedef clxx::exception_base<clxx::exception, std::logic_error> Base;
+    /** // doc: uninitialized_mem_error() {{{
+     * \brief Default constructor
+     */ // }}}
+    uninitialized_mem_error() noexcept
+      : Base("attempted to use uninitialized memory object")
+    { }
+    /** // doc: uninitialized_mem_error() {{{
+     * \brief Constructor
+     */ // }}}
+    uninitialized_mem_error(std::string const& what_arg) noexcept
+      : Base(what_arg)
+    { }
+    /** // doc: uninitialized_mem_error() {{{
+     * \brief Constructor
+     */ // }}}
+    uninitialized_mem_error(char const* what_arg) noexcept
+      : Base(what_arg)
+    { }
+  };
+/** // doc: uninitialized_platform_error {{{
+ * \ingroup clxx_exceptions
+ * \brief An exception thrown when user tries to operate on an uninitialized
+ *        \ref clxx::platform "platform" object
+ */ // }}}
+struct uninitialized_platform_error
+    : public exception_base<clxx::exception, std::logic_error>
+  {
+    /** // doc: Base {{{
+     * \brief Typedef for base class
+     */ // }}}
+    typedef clxx::exception_base<clxx::exception, std::logic_error> Base;
+    /** // doc: uninitialized_platform_error() {{{
+     * \brief Default constructor
+     */ // }}}
+    uninitialized_platform_error() noexcept
+      : Base("attempted to use uninitialized platform object")
+    { }
+    /** // doc: uninitialized_platform_error() {{{
+     * \brief Constructor
+     */ // }}}
+    uninitialized_platform_error(std::string const& what_arg) noexcept
+      : Base(what_arg)
+    { }
+    /** // doc: uninitialized_platform_error() {{{
+     * \brief Constructor
+     */ // }}}
+    uninitialized_platform_error(char const* what_arg) noexcept
+      : Base(what_arg)
+    { }
+  };
+/** // doc: uninitialized_program_error {{{
+ * \ingroup clxx_exceptions
+ * \brief An exception being thrown when a user tries to operate on an
+ *        uninitialized \ref clxx::program "program" object
+ */ // }}}
+struct uninitialized_program_error
+    : public exception_base<clxx::exception, std::logic_error>
+  {
+    /** // doc: Base {{{
+     * \brief Typedef for base class
+     */ // }}}
+    typedef clxx::exception_base<clxx::exception, std::logic_error> Base;
+    /** // doc: uninitialized_program_error() {{{
+     * \brief Default constructor
+     */ // }}}
+    uninitialized_program_error() noexcept
+      : Base("attempted to use uninitialized program object")
+    { }
+    /** // doc: uninitialized_program_error() {{{
+     * \brief Constructor
+     */ // }}}
+    uninitialized_program_error(std::string const& what_arg) noexcept
+      : Base(what_arg)
+    { }
+    /** // doc: uninitialized_program_error() {{{
+     * \brief Constructor
+     */ // }}}
+    uninitialized_program_error(char const* what_arg) noexcept
+      : Base(what_arg)
+    { }
+  };
+/** // doc: uninitialized_sampler_error {{{
+ * \ingroup clxx_exceptions
+ * \brief An exception being thrown when a user tries to operate on an
+ *        uninitialized \ref clxx::sampler "sampler" object
+ */ // }}}
+struct uninitialized_sampler_error
+    : public exception_base<clxx::exception, std::logic_error>
+  {
+    /** // doc: Base {{{
+     * \brief Typedef for base class
+     */ // }}}
+    typedef clxx::exception_base<clxx::exception, std::logic_error> Base;
+    /** // doc: uninitialized_sampler_error() {{{
+     * \brief Default constructor
+     */ // }}}
+    uninitialized_sampler_error() noexcept
+      : Base("attempted to use uninitialized sampler object")
+    { }
+    /** // doc: uninitialized_sampler_error() {{{
+     * \brief Constructor
+     */ // }}}
+    uninitialized_sampler_error(std::string const& what_arg) noexcept
+      : Base(what_arg)
+    { }
+    /** // doc: uninitialized_sampler_error() {{{
+     * \brief Constructor
+     */ // }}}
+    uninitialized_sampler_error(char const* what_arg) noexcept
       : Base(what_arg)
     { }
   };
@@ -562,6 +593,39 @@ struct unexpected_clerror
     unexpected_clerror();
   };
 
+/** // doc: uninitialized_cl_object_error {{{
+ * \ingroup clxx_exceptions
+ * \brief Return the exception type for an uninitialized OpenCL object
+ *
+ * The returned type is, for example, \ref clxx::uninitialized_command_queue_error
+ * "clxx::uninitialized_command_queue_error" for \c cl_command_queue,
+ * \ref clxx::uninitialized_context_error "uninitialized_context_error" for
+ * \c cl_context, and so forth.
+ *
+ * \par Example
+ * \code
+ *    typedef uninitialized_cl_object_error<cl_device_id>::type E;
+ * \endcode
+ */ // }}}
+template< typename Handle >
+  struct uninitialized_cl_object_error;
+
+/** \cond SHOW_TEMPLATE_SPECIALIZATIONS */
+#define CLXX_SPECIALIZE_uninitialized_cl_object_error(ClObjT, ErrT) \
+template<> \
+  struct uninitialized_cl_object_error<ClObjT> \
+  { typedef ErrT type; }
+
+CLXX_SPECIALIZE_uninitialized_cl_object_error(cl_command_queue, uninitialized_command_queue_error);
+CLXX_SPECIALIZE_uninitialized_cl_object_error(cl_context, uninitialized_context_error);
+CLXX_SPECIALIZE_uninitialized_cl_object_error(cl_device_id, uninitialized_device_error);
+CLXX_SPECIALIZE_uninitialized_cl_object_error(cl_event, uninitialized_event_error);
+CLXX_SPECIALIZE_uninitialized_cl_object_error(cl_kernel, uninitialized_kernel_error);
+CLXX_SPECIALIZE_uninitialized_cl_object_error(cl_mem, uninitialized_mem_error);
+CLXX_SPECIALIZE_uninitialized_cl_object_error(cl_platform_id, uninitialized_platform_error);
+CLXX_SPECIALIZE_uninitialized_cl_object_error(cl_program, uninitialized_program_error);
+CLXX_SPECIALIZE_uninitialized_cl_object_error(cl_sampler, uninitialized_sampler_error);
+/** \endcond */
 } // end namespace clxx
 
 #endif /* CLXX_EXCEPTIONS_HPP_INCLUDED */

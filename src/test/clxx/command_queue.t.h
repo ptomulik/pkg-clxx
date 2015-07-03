@@ -34,7 +34,7 @@ public:
     T::Dummy_clReleaseCommandQueue mock2(CL_SUCCESS);
     command_queue q;
     TS_ASSERT(!q.is_initialized());
-    TS_ASSERT_EQUALS(q.handle(), (cl_command_queue)NULL);
+    TS_ASSERT_EQUALS(q.get(), (cl_command_queue)NULL);
     TS_ASSERT(mock1.never_called());
     TS_ASSERT(mock2.never_called());
   }

@@ -1986,6 +1986,63 @@ enum class profiling_info_t : cl_profiling_info {
 };
 
 CLXX_MAKE_INTEGER_ENUM(profiling_info_t, cl_profiling_info)
+
+/** // doc: cl_object_info_type {{{
+ * \brief Return the appropriate xyz_info_t type for a particular OpenCL object
+ *
+ * \par Example
+ * \code
+ *    typedef cl_object_info_type<cl_command_queue>::type info_t;
+ * \endcode
+ */ // }}}
+template< typename ClObjT >
+  struct cl_object_info_type;
+/** \cond SHOW_TEMPLATE_SPECIALIZATIONS */
+#define CLXX_SPECIALIZE_cl_object_info_type(ClObjT,InfoT) \
+template< > \
+  struct cl_object_info_type<ClObjT> \
+  { typedef InfoT type; }
+
+CLXX_SPECIALIZE_cl_object_info_type(cl_command_queue, command_queue_info_t);
+CLXX_SPECIALIZE_cl_object_info_type(cl_context, context_info_t);
+CLXX_SPECIALIZE_cl_object_info_type(cl_device_id, device_info_t);
+CLXX_SPECIALIZE_cl_object_info_type(cl_event, event_info_t);
+CLXX_SPECIALIZE_cl_object_info_type(cl_kernel, kernel_info_t);
+CLXX_SPECIALIZE_cl_object_info_type(cl_mem, mem_info_t);
+CLXX_SPECIALIZE_cl_object_info_type(cl_platform_id, platform_info_t);
+CLXX_SPECIALIZE_cl_object_info_type(cl_program, program_info_t);
+CLXX_SPECIALIZE_cl_object_info_type(cl_sampler, sampler_info_t);
+/** \endcond */
+
+/** // doc: invalid_cl_object_errcode {{{
+ * \brief Return appropriate error code for a given OpenCL object type 
+ *
+ * The returned value is, for example, #status_t::invalid_command_queue for
+ * \c cl_command_queue, #status_t::invalid_context for \c cl_context etc.
+ *
+ * \par Example
+ * \code
+ *    constexpr status_t invalid_mem = invalid_cl_object_errcode<cl_mem>::value;
+ * \endcode
+ */ // }}}
+template< typename Handle >
+  struct invalid_cl_object_errcode;
+/** \cond SHOW_TEMPLATE_SPECIALIZATIONS */
+#define CLXX_SPECIALIZE_invalid_cl_object_errcode(ClObjT,ErrCode) \
+template< > \
+  struct invalid_cl_object_errcode<ClObjT> \
+  { static constexpr status_t value = status_t::ErrCode; }
+
+CLXX_SPECIALIZE_invalid_cl_object_errcode(cl_command_queue, invalid_command_queue);
+CLXX_SPECIALIZE_invalid_cl_object_errcode(cl_context, invalid_context);
+CLXX_SPECIALIZE_invalid_cl_object_errcode(cl_device_id, invalid_device);
+CLXX_SPECIALIZE_invalid_cl_object_errcode(cl_event, invalid_event);
+CLXX_SPECIALIZE_invalid_cl_object_errcode(cl_kernel, invalid_kernel);
+CLXX_SPECIALIZE_invalid_cl_object_errcode(cl_mem, invalid_mem_object);
+CLXX_SPECIALIZE_invalid_cl_object_errcode(cl_platform_id, invalid_platform);
+CLXX_SPECIALIZE_invalid_cl_object_errcode(cl_program, invalid_program);
+CLXX_SPECIALIZE_invalid_cl_object_errcode(cl_sampler, invalid_sampler);
+/** \endcond */
 } // end namespace clxx
 
 #endif /* CLXX_TYPES_HPP_INCLUDED */

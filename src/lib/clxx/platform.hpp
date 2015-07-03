@@ -85,7 +85,7 @@ public:
    *
    * This method returns the OpenCL version supported by the implementation.
    * The returned string is same as that returned by
-   * \c clGetPlatformInfo(this->handle(),CL_PLATFORM_VERSION,...)
+   * \c clGetPlatformInfo(this->get(),CL_PLATFORM_VERSION,...)
    * According to OpenCL specification, this version string has the
    * following format:
      \verbatim OpenCL<space><major_version.minor_version><space><platform-specific information> \endverbatim
@@ -103,7 +103,7 @@ public:
    *
    * This method returns the name of this OpenCL platform.
    * The returned string is same as that returned by
-   * \c clGetPlatformInfo(this->handle(),CL_PLATFORM_NAME,...)
+   * \c clGetPlatformInfo(this->get(),CL_PLATFORM_NAME,...)
    *
    * In case of error, this method throws one of the exceptions mentioned in
    * CLXX_PLATFORM_GET_INFO_EXCEPTIONS, or the
@@ -116,7 +116,7 @@ public:
    *
    * This method returns vendor string shown by this OpenCL platform.
    * The returned string is same as that returned by
-   * \c clGetPlatformInfo(this->handle(),CL_PLATFORM_VENDOR,...)
+   * \c clGetPlatformInfo(this->get(),CL_PLATFORM_VENDOR,...)
    *
    * In case of error, this method throws one of the exceptions mentioned in
    * CLXX_PLATFORM_GET_INFO_EXCEPTIONS, or the
@@ -133,7 +133,7 @@ public:
    * associated with this platform.
    *
    * The returned string is same as that returned by
-   * \c clGetPlatformInfo(this->handle(),CL_PLATFORM_EXTENSIONS,...)
+   * \c clGetPlatformInfo(this->get(),CL_PLATFORM_EXTENSIONS,...)
    *
    * In case of error, this method throws one of the exceptions mentioned in
    * CLXX_PLATFORM_GET_INFO_EXCEPTIONS, or the

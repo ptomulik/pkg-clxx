@@ -1,7 +1,7 @@
 // @COPYRIGHT@
 // Licensed under MIT license (LICENSE.txt)
 /**
- * \defgroup clxx_exceptions Clxx exceptions
+ * \defgroup clxx_exceptions Exceptions
  *
  * This module introduces clxx exceptions.
  *

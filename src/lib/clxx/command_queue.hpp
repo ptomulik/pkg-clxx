@@ -33,7 +33,7 @@ namespace clxx {
  *
  * Although \ref command_queue maintains internally reference count for its
  * \c cl_command_queue handle, it doesn't prevent one from stealing the
- * \c cl_command_queue handle (handle(), get_valid_handle()). This gives rise
+ * \c cl_command_queue handle (get(), chk_get()). This gives rise
  * to manipulate the reference count outside of object. If you need to steal
  * the handle, use the retrieved handle with care. If you retrieve the handle
  * from \ref command_queue object, increase its reference count with

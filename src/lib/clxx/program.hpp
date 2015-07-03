@@ -47,7 +47,7 @@ namespace clxx {
  *
  * Although \ref clxx::program "program" maintains internally reference count
  * for its \c cl_program handle, it doesn't prevent one from stealing the \c
- * cl_program handle (\ref handle(), \ref get_valid_handle()). This gives rise to
+ * cl_program handle (\ref get(), \ref chk_get()). This gives rise to
  * manipulate the reference count outside of the \ref clxx::program object for
  * the given OpenCL program object. If you need to steal, use the retrieved
  * handle with care. If you retrieve the handle from \ref clxx::program

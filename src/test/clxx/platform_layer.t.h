@@ -99,7 +99,7 @@ public:
     platform_layer pl(true);
     platform p = pl.get_platforms()[0];
 
-    TS_ASSERT_EQUALS(p.handle(), T::Newton_clGetPlatformIDs::platforms[0]);
+    TS_ASSERT_EQUALS(p.get(), T::Newton_clGetPlatformIDs::platforms[0]);
     TS_ASSERT_EQUALS(p.get_profile(), "FULL_PROFILE");
     TS_ASSERT_EQUALS(p.get_version(), "OpenCL 1.2 AMD-APP (1348.4)");
     TS_ASSERT_EQUALS(p.get_name(), "AMD Accelerated Parallel Processing");
@@ -124,7 +124,7 @@ public:
     platform_layer pl(true);
     platform p = pl.get_platforms()[1];
 
-    TS_ASSERT_EQUALS(p.handle(), T::Newton_clGetPlatformIDs::platforms[1]);
+    TS_ASSERT_EQUALS(p.get(), T::Newton_clGetPlatformIDs::platforms[1]);
     TS_ASSERT_EQUALS(p.get_profile(), "FULL_PROFILE");
     TS_ASSERT_EQUALS(p.get_version(), "OpenCL 1.1 CUDA 4.2.1");
     TS_ASSERT_EQUALS(p.get_name(), "NVIDIA CUDA");
@@ -150,9 +150,9 @@ public:
     devices d = pl.get_devices();
 
     TS_ASSERT_EQUALS(pl.get_devices().size(), 3);
-    TS_ASSERT_EQUALS(pl.get_platform(d[0]).handle(), T::Newton_clGetPlatformIDs::platforms[0]);
-    TS_ASSERT_EQUALS(pl.get_platform(d[1]).handle(), T::Newton_clGetPlatformIDs::platforms[1]);
-    TS_ASSERT_EQUALS(pl.get_platform(d[2]).handle(), T::Newton_clGetPlatformIDs::platforms[1]);
+    TS_ASSERT_EQUALS(pl.get_platform(d[0]).get(), T::Newton_clGetPlatformIDs::platforms[0]);
+    TS_ASSERT_EQUALS(pl.get_platform(d[1]).get(), T::Newton_clGetPlatformIDs::platforms[1]);
+    TS_ASSERT_EQUALS(pl.get_platform(d[2]).get(), T::Newton_clGetPlatformIDs::platforms[1]);
   }
   /** // doc: test__get_devices_1() {{{
    * \todo Write documentation
@@ -172,7 +172,7 @@ public:
     platform_layer pl(true);
     device d = pl.get_devices()[0];
 
-    TS_ASSERT_EQUALS(d.handle(), T::Newton_clGetDeviceIDs::devices[0]);
+    TS_ASSERT_EQUALS(d.get(), T::Newton_clGetDeviceIDs::devices[0]);
     TS_ASSERT_EQUALS(d.get_name(), "Intel(R) Xeon(R) CPU           E5620  @ 2.40GHz");
     TS_ASSERT_EQUALS(d.get_vendor(), "GenuineIntel");
     TS_ASSERT_EQUALS(d.get_driver_version(), "1348.4 (sse2)");
@@ -197,7 +197,7 @@ public:
     platform_layer pl(true);
     device d = pl.get_devices()[1];
 
-    TS_ASSERT_EQUALS(d.handle(), T::Newton_clGetDeviceIDs::devices[1]);
+    TS_ASSERT_EQUALS(d.get(), T::Newton_clGetDeviceIDs::devices[1]);
     TS_ASSERT_EQUALS(d.get_name(), "Tesla C1060");
     TS_ASSERT_EQUALS(d.get_vendor(), "NVIDIA Corporation");
     TS_ASSERT_EQUALS(d.get_driver_version(), "319.76");
@@ -222,7 +222,7 @@ public:
     platform_layer pl(true);
     device d = pl.get_devices()[2];
 
-    TS_ASSERT_EQUALS(d.handle(), T::Newton_clGetDeviceIDs::devices[2]);
+    TS_ASSERT_EQUALS(d.get(), T::Newton_clGetDeviceIDs::devices[2]);
     TS_ASSERT_EQUALS(d.get_name(), "Tesla C1060");
     TS_ASSERT_EQUALS(d.get_vendor(), "NVIDIA Corporation");
     TS_ASSERT_EQUALS(d.get_driver_version(), "319.76");
@@ -252,7 +252,7 @@ public:
 
     device d = ds[0];
 
-    TS_ASSERT_EQUALS(d.handle(), T::Newton_clGetDeviceIDs::devices[0]);
+    TS_ASSERT_EQUALS(d.get(), T::Newton_clGetDeviceIDs::devices[0]);
   }
   /** // doc: test__get_devices_5() {{{
    * \todo Write documentation
@@ -277,7 +277,7 @@ public:
 
     device d = ds[0];
 
-    TS_ASSERT_EQUALS(d.handle(), T::Newton_clGetDeviceIDs::devices[1]);
+    TS_ASSERT_EQUALS(d.get(), T::Newton_clGetDeviceIDs::devices[1]);
   }
   /** // doc: test__get_devices_6() {{{
    * \todo Write documentation
@@ -302,7 +302,7 @@ public:
 
     device d = ds[1];
 
-    TS_ASSERT_EQUALS(d.handle(), T::Newton_clGetDeviceIDs::devices[2]);
+    TS_ASSERT_EQUALS(d.get(), T::Newton_clGetDeviceIDs::devices[2]);
   }
   /** // doc: test__get_devices__invalid_key_error() {{{
    * \todo Write documentation

@@ -201,7 +201,7 @@ public:
     TS_ASSERT_THROWS(throw T(), std::runtime_error const&);
     TS_ASSERT_THROWS(throw T(), std::exception const&);
   }
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
   /** // doc: test_misaligned_sub_buffer_offset() {{{
    * \todo Write documentation
    */ // }}}
@@ -233,7 +233,7 @@ public:
     TS_ASSERT_THROWS(throw T(), std::exception const&);
   }
 #endif
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
   /** // doc: test_compile_program_failure() {{{
    * \todo Write documentation
    */ // }}}
@@ -820,7 +820,7 @@ public:
     TS_ASSERT_THROWS(throw T(), std::invalid_argument const&);
     TS_ASSERT_THROWS(throw T(), std::exception const&);
   }
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
   /** // doc: test_invalid_property() {{{
    * \todo Write documentation
    */ // }}}
@@ -837,7 +837,7 @@ public:
     TS_ASSERT_THROWS(throw T(), std::exception const&);
   }
 #endif
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
   /** // doc: test_invalid_image_descriptor() {{{
    * \todo Write documentation
    */ // }}}

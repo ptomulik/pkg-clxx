@@ -33,7 +33,7 @@ public:
     T::Dummy_clReleaseProgram mock2(CL_SUCCESS);
     program p;
     TS_ASSERT(!p.is_initialized());
-    TS_ASSERT_EQUALS(p.handle(), (cl_program)NULL);
+    TS_ASSERT_EQUALS(p.get(), (cl_program)NULL);
     TS_ASSERT(mock1.never_called());
     TS_ASSERT(mock2.never_called());
   }
@@ -46,7 +46,7 @@ public:
     T::Dummy_clReleaseProgram mock2(CL_SUCCESS);
     program p((cl_program)0x1234);
     TS_ASSERT(p.is_initialized());
-    TS_ASSERT_EQUALS(p.handle(), (cl_program)0x1234);
+    TS_ASSERT_EQUALS(p.get(), (cl_program)0x1234);
     TS_ASSERT(mock1.called_once_with((cl_program)0x1234));
     TS_ASSERT(mock2.never_called());
   }
@@ -78,7 +78,7 @@ public:
     program p(ctx, srcs);
 
     TS_ASSERT(p.is_initialized());
-    TS_ASSERT_EQUALS(p.handle(), (cl_program)0x5678);
+    TS_ASSERT_EQUALS(p.get(), (cl_program)0x5678);
     TS_ASSERT(mock3.called_once());
     // mock1 not called because the class assumes the implicit retain performed
     // by clCreateProgramWithSource()
@@ -110,7 +110,7 @@ public:
     program p(ctx, devs, bins, stats);
 
     TS_ASSERT(p.is_initialized());
-    TS_ASSERT_EQUALS(p.handle(), (cl_program)0x5678);
+    TS_ASSERT_EQUALS(p.get(), (cl_program)0x5678);
     TS_ASSERT(mock3.called_once());
     // mock1 not called because the class assumes the implicit retain performed
     // by clCreateProgramWithSource()
@@ -142,7 +142,7 @@ public:
     program p(ctx, devs, bins);
 
     TS_ASSERT(p.is_initialized());
-    TS_ASSERT_EQUALS(p.handle(), (cl_program)0x5678);
+    TS_ASSERT_EQUALS(p.get(), (cl_program)0x5678);
     TS_ASSERT(mock3.called_once());
     // mock1 not called because the class assumes the implicit retain performed
     // by clCreateProgramWithBinary()
@@ -174,7 +174,7 @@ public:
     program p(ctx, devs, kerns);
 
     TS_ASSERT(p.is_initialized());
-    TS_ASSERT_EQUALS(p.handle(), (cl_program)0x5678);
+    TS_ASSERT_EQUALS(p.get(), (cl_program)0x5678);
     TS_ASSERT(mock3.called_once());
     // mock1 not called because the class assumes the implicit retain performed
     // by clCreateProgramWithBuiltinKernels()
@@ -228,19 +228,19 @@ public:
     T::Dummy_clRetainProgram mock1(CL_SUCCESS);
     T::Dummy_clReleaseProgram mock2(CL_SUCCESS);
 
-    TS_ASSERT_EQUALS(program((cl_program)0x1234).handle(), (cl_program)0x1234);
-    TS_ASSERT_EQUALS(program((cl_program)NULL).handle(), (cl_program)NULL);
+    TS_ASSERT_EQUALS(program((cl_program)0x1234).get(), (cl_program)0x1234);
+    TS_ASSERT_EQUALS(program((cl_program)NULL).get(), (cl_program)NULL);
   }
-  /** // doc: test_get_valid_handle() {{{
+  /** // doc: test_chk_get() {{{
    * \todo Write documentation
    */ // }}}
-  void test_get_valid_handle( )
+  void test_chk_get( )
   {
     T::Dummy_clRetainProgram mock1(CL_SUCCESS);
     T::Dummy_clReleaseProgram mock2(CL_SUCCESS);
 
-    TS_ASSERT_EQUALS(program((cl_program)0x1234).get_valid_handle(), (cl_program)0x1234);
-    TS_ASSERT_THROWS(program((cl_program)NULL).get_valid_handle(), uninitialized_program_error);
+    TS_ASSERT_EQUALS(program((cl_program)0x1234).chk_get(), (cl_program)0x1234);
+    TS_ASSERT_THROWS(program((cl_program)NULL).chk_get(), uninitialized_program_error);
   }
   /** // doc: test_op_assign() {{{
    * \todo Write documentation
@@ -252,7 +252,7 @@ public:
     program p1((cl_program)0x1234);
     program p2((cl_program)0x5678);
     p1 = p2;
-    TS_ASSERT_EQUALS(p1.handle(), (cl_program)0x5678);
+    TS_ASSERT_EQUALS(p1.get(), (cl_program)0x5678);
   }
   /** // doc: test_op_eq() {{{
    * \todo Write documentation
@@ -479,9 +479,9 @@ public:
     TS_ASSERT(mock3.called_twice());
     TS_ASSERT_EQUALS(std::get<1>(mock3.calls().back()), (cl_uint)CL_PROGRAM_DEVICES);
     TS_ASSERT_EQUALS(ds.size(), 3);
-    TS_ASSERT_EQUALS(ds[0].handle(), (cl_device_id)0x123);
-    TS_ASSERT_EQUALS(ds[1].handle(), (cl_device_id)0x456);
-    TS_ASSERT_EQUALS(ds[2].handle(), (cl_device_id)0x789);
+    TS_ASSERT_EQUALS(ds[0].get(), (cl_device_id)0x123);
+    TS_ASSERT_EQUALS(ds[1].get(), (cl_device_id)0x456);
+    TS_ASSERT_EQUALS(ds[2].get(), (cl_device_id)0x789);
   }
   /** // doc: test_get_source() {{{
    * \todo Write documentation

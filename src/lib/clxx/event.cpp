@@ -29,7 +29,7 @@ event::
 event(context const& ctx)
   :Base((cl_event)NULL) // because it's read by _set_handle()
 {
-  this->_set_handle(create_user_event(ctx.get_valid_handle()), false, false);
+  this->_set_handle(create_user_event(ctx.chk_get()), false, false);
 }
 /* ----------------------------------------------------------------------- */
 void event::
@@ -37,7 +37,7 @@ get_profiling_info(profiling_info_t name, size_t value_size, void* value,
                    size_t* value_size_ret) const
 {
   get_event_profiling_info(
-      this->get_valid_handle(),
+      this->chk_get(),
       name,
       value_size,
       value,

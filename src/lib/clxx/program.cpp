@@ -101,7 +101,7 @@ program(context const& ctx, program_sources const& sources)
       throw invalid_argument_error();
 
   cl_program id = create_program_with_source(
-      ctx.get_valid_handle(),
+      ctx.chk_get(),
       sources.size(),
       _cstrings(sources).get(),
       NULL
@@ -122,7 +122,7 @@ program(context const& ctx, devices const& device_list,
 
   binary_status.resize(device_list.size());
   cl_program id = create_program_with_binary(
-      ctx.get_valid_handle(),
+      ctx.chk_get(),
       device_list.size(),
       obj2cl(device_list),
       _lengths(binaries).get(),
@@ -143,7 +143,7 @@ program(context const& ctx, devices const& device_list,
       throw invalid_argument_error();
 
   cl_program id = create_program_with_binary(
-      ctx.get_valid_handle(),
+      ctx.chk_get(),
       device_list.size(),
       obj2cl(device_list),
       _lengths(binaries).get(),
@@ -162,7 +162,7 @@ program(context const& ctx, devices const& device_list,
   : Base()
 {
   cl_program id = create_program_with_built_in_kernels(
-      ctx.get_valid_handle(),
+      ctx.chk_get(),
       device_list.size(),
       obj2cl(device_list),
       kernel_names.data()
@@ -178,8 +178,8 @@ get_build_info(device const& dev, program_build_info_t name,
                size_t value_size, void* value, size_t* value_size_ret) const
 {
   get_program_build_info(
-      this->get_valid_handle(),
-      dev.get_valid_handle(),
+      this->chk_get(),
+      dev.chk_get(),
       name,
       value_size,
       value,
@@ -227,7 +227,7 @@ get_binaries() const
     bins[i].resize(sizes[i]);
 
   get_program_info(
-      this->get_valid_handle(),
+      this->chk_get(),
       program_info_t::binaries,
       bins.size(),
       _pointers(bins).get(),
@@ -284,7 +284,7 @@ void
 build_program(program const& prog, std::string const& options)
 {
   build_program(
-      prog.get_valid_handle(),
+      prog.chk_get(),
       0ul,
       NULL,
       options.data(),
@@ -298,7 +298,7 @@ build_program(program const& prog, devices const& devs,
               std::string const& options)
 {
   build_program(
-      prog.get_valid_handle(),
+      prog.chk_get(),
       devs.size(),
       obj2cl(devs),
       options.data(),
@@ -312,7 +312,7 @@ build_program(program const& prog, std::string const& options,
               program_observer& observer)
 {
   build_program(
-      prog.get_valid_handle(),
+      prog.chk_get(),
       0ul,
       NULL,
       options.data(),
@@ -326,7 +326,7 @@ build_program(program const& prog, devices const& devs, std::string const& optio
               program_observer& observer)
 {
   build_program(
-      prog.get_valid_handle(),
+      prog.chk_get(),
       devs.size(),
       obj2cl(devs),
       options.data(),
@@ -345,7 +345,7 @@ compile_program(program const& prog, std::string const& options,
     throw invalid_argument_error();
 
   compile_program(
-      prog.get_valid_handle(),
+      prog.chk_get(),
       0ul,
       NULL,
       options.data(),
@@ -367,7 +367,7 @@ compile_program(program const& prog, std::string const& options,
     throw invalid_argument_error();
 
   compile_program(
-      prog.get_valid_handle(),
+      prog.chk_get(),
       0ul,
       NULL,
       options.data(),
@@ -388,7 +388,7 @@ compile_program(program const& prog, devices const& devs,
     throw invalid_argument_error();
 
   compile_program(
-      prog.get_valid_handle(),
+      prog.chk_get(),
       devs.size(),
       obj2cl(devs),
       options.data(),
@@ -410,7 +410,7 @@ compile_program(program const& prog, devices const& devs,
     throw invalid_argument_error();
 
   compile_program(
-      prog.get_valid_handle(),
+      prog.chk_get(),
       devs.size(),
       obj2cl(devs),
       options.data(),
@@ -431,7 +431,7 @@ link_program(context const& ctx, devices const& device_list,
 {
   return program(
     link_program(
-      ctx.get_valid_handle(),
+      ctx.chk_get(),
       device_list.size(),
       obj2cl(device_list),
       options.data(),
@@ -450,7 +450,7 @@ link_program(context const& ctx, devices const& device_list,
 {
   return program(
     link_program(
-      ctx.get_valid_handle(),
+      ctx.chk_get(),
       device_list.size(),
       obj2cl(device_list),
       options.data(),

@@ -54,7 +54,7 @@ kernel::
 kernel(program const& prog, std::string const& name)
   :Base((cl_kernel)NULL) // because it's readby _set_handle()
 {
-  cl_kernel id = create_kernel(prog.get_valid_handle(), name.data());
+  cl_kernel id = create_kernel(prog.chk_get(), name.data());
   // create_kernel() performs implicit retain, so we
   // don't have to retain it again here (thus 2 x false below)
   this->_set_handle(id, false, false);
@@ -97,7 +97,7 @@ void kernel::
 get_arg_info(cl_uint arg_index, kernel_arg_info_t name, size_t value_size,
              void* value, size_t* value_size_ret) const
 {
-  get_kernel_arg_info(this->get_valid_handle(),
+  get_kernel_arg_info(this->chk_get(),
                       arg_index,
                       name,
                       value_size,
@@ -154,8 +154,8 @@ get_work_group_info(device const& dev, kernel_work_group_info_t name,
 {
   // note: NULL is allowed for device ID, see clGetKernelWorkGroupInfo()
   get_kernel_work_group_info(
-      this->get_valid_handle(),
-      dev.handle(),
+      this->chk_get(),
+      dev.get(),
       name,
       value_size,
       value,
@@ -218,20 +218,20 @@ get_global_work_size(size_t* result, device const& dev) const
 void kernel::
 set_arg(cl_uint arg_index, size_t size, const void* arg_value) const
 {
-  set_kernel_arg(this->get_valid_handle(), arg_index, size, arg_value);
+  set_kernel_arg(this->chk_get(), arg_index, size, arg_value);
 }
 /* ----------------------------------------------------------------------- */
 void kernel::
 set_arg(cl_uint arg_index, clxx::mem const& mem) const
 {
-  set_kernel_arg(this->get_valid_handle(), arg_index, sizeof(cl_mem), obj2cl(&mem));
+  set_kernel_arg(this->chk_get(), arg_index, sizeof(cl_mem), obj2cl(&mem));
 }
 /* ----------------------------------------------------------------------- */
 #if CLXX_OPENCL_ALLOWED(clSetKernelArgSVMPointer)
 void kernel::
 set_arg_svm_pointer(cl_uint arg_index, const void* arg_value) const
 {
-  set_kernel_arg_svm_pointer(this->get_valid_handle(), arg_index, arg_value);
+  set_kernel_arg_svm_pointer(this->chk_get(), arg_index, arg_value);
 }
 #endif
 /* ----------------------------------------------------------------------- */
@@ -240,7 +240,7 @@ void kernel::
 set_exec_info(kernel_exec_info_t name, size_t value_size, const void* value) const
 {
   set_kernel_exec_info(
-      this->get_valid_handle(),
+      this->chk_get(),
       name,
       value_size,
       value

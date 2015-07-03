@@ -33,7 +33,7 @@ namespace clxx {
  *
  * Although \ref clxx::mem "mem" maintains internally reference count
  * for its \c cl_mem handle, it doesn't prevent one from stealing the
- * \c cl_mem handle (#handle(), #get_valid_handle()). This gives rise to manipulate the
+ * \c cl_mem handle (#get(), #chk_get()). This gives rise to manipulate the
  * reference count outside of the \ref clxx::mem object for the given OpenCL
  * memory object. If you need to steal, use the retrieved handle with care. If
  * you retrieve the handle from \ref clxx::mem "mem" object, increase its

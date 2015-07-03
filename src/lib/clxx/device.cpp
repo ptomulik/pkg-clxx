@@ -15,6 +15,7 @@
 /* ----------------------------------------------------------------------- */
 namespace clxx {
 /** \cond SHOW_IGNORED_COMPOUNDS */
+/* ------------------------------------------------------------------------ */
 template<>
 cl_uint clobj<cl_device_id>::
 get_reference_count() const

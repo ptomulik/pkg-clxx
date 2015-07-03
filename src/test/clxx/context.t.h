@@ -32,7 +32,7 @@ public:
     T::Dummy_clReleaseContext mock2(CL_SUCCESS);
     context c;
     TS_ASSERT(!c.is_initialized());
-    TS_ASSERT_EQUALS(c.handle(), (cl_context)NULL);
+    TS_ASSERT_EQUALS(c.get(), (cl_context)NULL);
     TS_ASSERT(mock1.never_called());
     TS_ASSERT(mock2.never_called());
   }
@@ -284,8 +284,8 @@ public:
     TS_ASSERT_EQUALS(std::get<1>(mock3.calls().back()), CL_CONTEXT_DEVICES);
 
     TS_ASSERT_EQUALS(devs.size(), 2);
-    TS_ASSERT_EQUALS(devs[0].handle(), (cl_device_id)0x1234);
-    TS_ASSERT_EQUALS(devs[1].handle(), (cl_device_id)0x5678);
+    TS_ASSERT_EQUALS(devs[0].get(), (cl_device_id)0x1234);
+    TS_ASSERT_EQUALS(devs[1].get(), (cl_device_id)0x5678);
   }
   /** // doc: test_get_properties() {{{
    * \todo Write documentation

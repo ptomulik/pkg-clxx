@@ -81,7 +81,7 @@ public:
    */ // }}}
   void test__set_kernel_arg__invalid_device_queue( )
   {
-#if CL_VERSION_2_0
+#if CLXX_CL_H_VERSION_2_0
     T::Dummy_clSetKernelArg mock(CL_INVALID_DEVICE_QUEUE);
     TS_ASSERT_THROWS(set_kernel_arg((cl_kernel)NULL, 0x123, 0x543ul, (const void*)0x9876), clerror_no<status_t::invalid_device_queue>);
 #endif

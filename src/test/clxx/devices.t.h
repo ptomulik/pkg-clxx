@@ -97,8 +97,8 @@ public:
     TS_ASSERT(std::get<4>(mock.calls().back()) == nullptr);
 
     TS_ASSERT_EQUALS(devices.size(), 2u);
-    TS_ASSERT_EQUALS(static_cast<device>(devices[0]).handle(), _devices[0]);
-    TS_ASSERT_EQUALS(static_cast<device>(devices[1]).handle(), _devices[1]);
+    TS_ASSERT_EQUALS(static_cast<device>(devices[0]).get(), _devices[0]);
+    TS_ASSERT_EQUALS(static_cast<device>(devices[1]).get(), _devices[1]);
   }
   /** // doc: test__invalid_platform() {{{
    * \brief Test get_xxx() functions in a situation when clGetDeviceIDs returns

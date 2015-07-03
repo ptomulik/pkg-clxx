@@ -39,11 +39,11 @@ public:
     TS_ASSERT_EQUALS(enum2cstr(status_t::image_format_not_supported),"image format not supported");
     TS_ASSERT_EQUALS(enum2cstr(status_t::build_program_failure),"build program failure");
     TS_ASSERT_EQUALS(enum2cstr(status_t::map_failure),"map failure");
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
     TS_ASSERT_EQUALS(enum2cstr(status_t::misaligned_sub_buffer_offset),"misaligned sub buffer offset");
     TS_ASSERT_EQUALS(enum2cstr(status_t::exec_status_error_for_events_in_wait_list),"execution status error for events in wait list");
 #endif
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
     TS_ASSERT_EQUALS(enum2cstr(status_t::compile_program_failure),"compile program failure");
     TS_ASSERT_EQUALS(enum2cstr(status_t::linker_not_available),"linker not available");
     TS_ASSERT_EQUALS(enum2cstr(status_t::link_program_failure),"link program failure");
@@ -84,16 +84,16 @@ public:
     TS_ASSERT_EQUALS(enum2cstr(status_t::invalid_buffer_size),"invalid buffer size");
     TS_ASSERT_EQUALS(enum2cstr(status_t::invalid_mip_level),"invalid mip level");
     TS_ASSERT_EQUALS(enum2cstr(status_t::invalid_global_work_size),"invalid global work size");
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
     TS_ASSERT_EQUALS(enum2cstr(status_t::invalid_property),"invalid property");
 #endif
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
     TS_ASSERT_EQUALS(enum2cstr(status_t::invalid_image_descriptor),"invalid image descriptor");
     TS_ASSERT_EQUALS(enum2cstr(status_t::invalid_compiler_options),"invalid compiler options");
     TS_ASSERT_EQUALS(enum2cstr(status_t::invalid_linker_options),"invalid linker options");
     TS_ASSERT_EQUALS(enum2cstr(status_t::invalid_device_partition_count),"invalid device partition count");
 #endif
-#if CL_VERSION_2_0
+#if CLXX_CL_H_VERSION_2_0
     TS_ASSERT_EQUALS(enum2cstr(status_t::invalid_pipe_size),"invalid pipe size");
     TS_ASSERT_EQUALS(enum2cstr(status_t::invalid_device_queue),"invalid device queue");
 #endif
@@ -151,7 +151,7 @@ public:
     TS_ASSERT_EQUALS(enum2cstr(device_type_t::cpu), "cpu");
     TS_ASSERT_EQUALS(enum2cstr(device_type_t::gpu), "gpu");
     TS_ASSERT_EQUALS(enum2cstr(device_type_t::accelerator), "accelerator");
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
     TS_ASSERT_EQUALS(enum2cstr(device_type_t::custom), "custom");
 #endif
     TS_ASSERT_EQUALS(enum2cstr(device_type_t::all), "all");
@@ -212,10 +212,10 @@ public:
     TS_ASSERT_EQUALS(enum2cstr(device_info_t::version), "version");
     TS_ASSERT_EQUALS(enum2cstr(device_info_t::extensions), "extensions");
     TS_ASSERT_EQUALS(enum2cstr(device_info_t::platform), "platform");
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
     TS_ASSERT_EQUALS(enum2cstr(device_info_t::double_fp_config), "double fp config");
 #endif
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
     TS_ASSERT_EQUALS(enum2cstr(device_info_t::preferred_vector_width_half), "preferred vector width half");
     TS_ASSERT_EQUALS(enum2cstr(device_info_t::host_unified_memory), "host unified memory");
     TS_ASSERT_EQUALS(enum2cstr(device_info_t::native_vector_width_char), "native vector width char");
@@ -227,7 +227,7 @@ public:
     TS_ASSERT_EQUALS(enum2cstr(device_info_t::native_vector_width_half), "native vector width half");
     TS_ASSERT_EQUALS(enum2cstr(device_info_t::opencl_c_version), "opencl c version");
 #endif
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
     TS_ASSERT_EQUALS(enum2cstr(device_info_t::linker_available), "linker available");
     TS_ASSERT_EQUALS(enum2cstr(device_info_t::built_in_kernels), "built in kernels");
     TS_ASSERT_EQUALS(enum2cstr(device_info_t::image_max_buffer_size), "image max buffer size");
@@ -257,10 +257,10 @@ public:
     TS_ASSERT_EQUALS(enum2cstr(device_fp_config_t::round_to_zero), "round to zero");
     TS_ASSERT_EQUALS(enum2cstr(device_fp_config_t::round_to_inf), "round to inf");
     TS_ASSERT_EQUALS(enum2cstr(device_fp_config_t::fma), "fma");
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
     TS_ASSERT_EQUALS(enum2cstr(device_fp_config_t::soft_float), "soft float");
 #endif
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
     TS_ASSERT_EQUALS(enum2cstr(device_fp_config_t::correctly_rounded_divide_sqrt), "correctly rounded divide sqrt");
 #endif
     TS_ASSERT_EQUALS(enum2cstr(static_cast<device_fp_config_t>(-1l)), nullptr);
@@ -312,7 +312,7 @@ public:
     TS_ASSERT_EQUALS(enum2cstr(context_info_t::reference_count), "reference count");
     TS_ASSERT_EQUALS(enum2cstr(context_info_t::devices), "devices");
     TS_ASSERT_EQUALS(enum2cstr(context_info_t::properties), "properties");
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
     TS_ASSERT_EQUALS(enum2cstr(context_info_t::num_devices), "num devices");
 #endif
     TS_ASSERT_EQUALS(enum2cstr(static_cast<context_info_t>(-1l)), nullptr);
@@ -323,7 +323,7 @@ public:
   void test_context_properties_t( )
   {
     TS_ASSERT_EQUALS(enum2cstr(context_properties_t::platform),"platform");
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
     TS_ASSERT_EQUALS(enum2cstr(context_properties_t::interop_user_sync),"interop user sync");
 #endif
 #if cl_khr_gl_sharing
@@ -346,7 +346,7 @@ public:
 #endif
     TS_ASSERT_EQUALS(enum2cstr(static_cast<context_properties_t>(-1l)), nullptr);
   }
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
   /** // doc: test_device_partition_property_t() {{{
    * \brief Ensure that enum2cstr() works with device_partition_property_t.
    */ // }}}
@@ -359,7 +359,7 @@ public:
     TS_ASSERT_EQUALS(enum2cstr(static_cast<device_partition_property_t>(-1l)), nullptr);
   }
 #endif
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
   /** // doc: test_device_affinity_domain_t() {{{
    * \brief Ensure that enum2cstr() works with device_affinity_domain_t.
    */ // }}}
@@ -398,14 +398,14 @@ public:
     TS_ASSERT_EQUALS(enum2cstr(mem_flags_t::use_host_ptr), "use host ptr");
     TS_ASSERT_EQUALS(enum2cstr(mem_flags_t::alloc_host_ptr), "alloc host ptr");
     TS_ASSERT_EQUALS(enum2cstr(mem_flags_t::copy_host_ptr), "copy host ptr");
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
     TS_ASSERT_EQUALS(enum2cstr(mem_flags_t::host_write_only), "host write only");
     TS_ASSERT_EQUALS(enum2cstr(mem_flags_t::host_read_only), "host read only");
     TS_ASSERT_EQUALS(enum2cstr(mem_flags_t::host_no_access), "host no access");
 #endif
     TS_ASSERT_EQUALS(enum2cstr(static_cast<mem_flags_t>(-1l)), nullptr);
   }
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
   /** // doc: test_mem_migration_flags_t() {{{
    * \brief Ensure that enum2cstr() works with mem_migration_flags_t.
    */ // }}}
@@ -432,12 +432,12 @@ public:
     TS_ASSERT_EQUALS(enum2cstr(channel_order_t::argb), "ARGB");
     TS_ASSERT_EQUALS(enum2cstr(channel_order_t::intensity), "intensity");
     TS_ASSERT_EQUALS(enum2cstr(channel_order_t::luminance), "luminance");
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
     TS_ASSERT_EQUALS(enum2cstr(channel_order_t::rx), "Rx");
     TS_ASSERT_EQUALS(enum2cstr(channel_order_t::rgx), "RGx");
     TS_ASSERT_EQUALS(enum2cstr(channel_order_t::rgbx), "RGBx");
 #endif
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
     TS_ASSERT_EQUALS(enum2cstr(channel_order_t::depth), "depth");
     TS_ASSERT_EQUALS(enum2cstr(channel_order_t::depth_stencil), "depth stencil");
 #endif
@@ -463,7 +463,7 @@ public:
     TS_ASSERT_EQUALS(enum2cstr(channel_type_t::unsigned_int32), "unsigned_int32");
     TS_ASSERT_EQUALS(enum2cstr(channel_type_t::half_float), "half_float");
     TS_ASSERT_EQUALS(enum2cstr(channel_type_t::float_), "float");
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
     TS_ASSERT_EQUALS(enum2cstr(channel_type_t::unorm_int24), "unorm_int24");
 #endif
     TS_ASSERT_EQUALS(enum2cstr(static_cast<channel_type_t>(-1l)), nullptr);
@@ -476,7 +476,7 @@ public:
     TS_ASSERT_EQUALS(enum2cstr(mem_object_type_t::buffer), "buffer");
     TS_ASSERT_EQUALS(enum2cstr(mem_object_type_t::image2d), "image2d");
     TS_ASSERT_EQUALS(enum2cstr(mem_object_type_t::image3d), "image3d");
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
     TS_ASSERT_EQUALS(enum2cstr(mem_object_type_t::image2d_array), "image2d array");
     TS_ASSERT_EQUALS(enum2cstr(mem_object_type_t::image1d), "image1d");
     TS_ASSERT_EQUALS(enum2cstr(mem_object_type_t::image1d_array), "image1d array");
@@ -496,7 +496,7 @@ public:
     TS_ASSERT_EQUALS(enum2cstr(mem_info_t::map_count), "map count");
     TS_ASSERT_EQUALS(enum2cstr(mem_info_t::reference_count), "reference count");
     TS_ASSERT_EQUALS(enum2cstr(mem_info_t::context), "context");
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
     TS_ASSERT_EQUALS(enum2cstr(mem_info_t::associated_memobject), "associated memobject");
     TS_ASSERT_EQUALS(enum2cstr(mem_info_t::offset), "offset");
 #endif
@@ -514,7 +514,7 @@ public:
     TS_ASSERT_EQUALS(enum2cstr(image_info_t::width), "width");
     TS_ASSERT_EQUALS(enum2cstr(image_info_t::height), "height");
     TS_ASSERT_EQUALS(enum2cstr(image_info_t::depth), "depth");
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
     TS_ASSERT_EQUALS(enum2cstr(image_info_t::array_size), "array size");
     TS_ASSERT_EQUALS(enum2cstr(image_info_t::buffer), "buffer");
     TS_ASSERT_EQUALS(enum2cstr(image_info_t::num_mip_levels), "num mip levels");
@@ -531,7 +531,7 @@ public:
     TS_ASSERT_EQUALS(enum2cstr(addressing_mode_t::clamp_to_edge), "clamp to edge");
     TS_ASSERT_EQUALS(enum2cstr(addressing_mode_t::clamp), "clamp");
     TS_ASSERT_EQUALS(enum2cstr(addressing_mode_t::repeat), "repeat");
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
     TS_ASSERT_EQUALS(enum2cstr(addressing_mode_t::mirrored_repeat), "mirrored repeat");
 #endif
     TS_ASSERT_EQUALS(enum2cstr(static_cast<addressing_mode_t>(-1l)), nullptr);
@@ -565,7 +565,7 @@ public:
     TS_ASSERT_EQUALS(enum2cstr(map_flags_t::none), "none");
     TS_ASSERT_EQUALS(enum2cstr(map_flags_t::read), "read");
     TS_ASSERT_EQUALS(enum2cstr(map_flags_t::write), "write");
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
     TS_ASSERT_EQUALS(enum2cstr(map_flags_t::write_invalidate_region), "write invalidate region");
 #endif
     TS_ASSERT_EQUALS(enum2cstr(static_cast<map_flags_t>(-1l)), nullptr);
@@ -582,7 +582,7 @@ public:
     TS_ASSERT_EQUALS(enum2cstr(program_info_t::source), "source");
     TS_ASSERT_EQUALS(enum2cstr(program_info_t::binary_sizes), "binary sizes");
     TS_ASSERT_EQUALS(enum2cstr(program_info_t::binaries), "binaries");
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
     TS_ASSERT_EQUALS(enum2cstr(program_info_t::num_kernels), "num kernels");
     TS_ASSERT_EQUALS(enum2cstr(program_info_t::kernel_names), "kernel names");
 #endif
@@ -596,12 +596,12 @@ public:
     TS_ASSERT_EQUALS(enum2cstr(program_build_info_t::status), "status");
     TS_ASSERT_EQUALS(enum2cstr(program_build_info_t::options), "options");
     TS_ASSERT_EQUALS(enum2cstr(program_build_info_t::log), "log");
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
     TS_ASSERT_EQUALS(enum2cstr(program_build_info_t::binary_type), "binary type");
 #endif
     TS_ASSERT_EQUALS(enum2cstr(static_cast<program_build_info_t>(-1l)), nullptr);
   }
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
   /** // doc: test_program_binary_type_t() {{{
    * \brief Ensure that enum2cstr() works with program_binary_type_t.
    */ // }}}
@@ -635,12 +635,12 @@ public:
     TS_ASSERT_EQUALS(enum2cstr(kernel_info_t::reference_count), "reference count");
     TS_ASSERT_EQUALS(enum2cstr(kernel_info_t::context), "context");
     TS_ASSERT_EQUALS(enum2cstr(kernel_info_t::program), "program");
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
     TS_ASSERT_EQUALS(enum2cstr(kernel_info_t::attributes), "attributes");
 #endif
     TS_ASSERT_EQUALS(enum2cstr(static_cast<kernel_info_t>(-1l)), nullptr);
   }
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
   /** // doc: test_kernel_arg_info_t() {{{
    * \brief Ensure that enum2cstr() works with kernel_arg_info_t.
    */ // }}}
@@ -654,7 +654,7 @@ public:
     TS_ASSERT_EQUALS(enum2cstr(static_cast<kernel_arg_info_t>(-1l)), nullptr);
   }
 #endif
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
   /** // doc: test_kernel_arg_address_qualifier_t() {{{
    * \brief Ensure that enum2cstr() works with kernel_arg_address_qualifier_t.
    */ // }}}
@@ -667,7 +667,7 @@ public:
     TS_ASSERT_EQUALS(enum2cstr(static_cast<kernel_arg_address_qualifier_t>(-1l)), nullptr);
   }
 #endif
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
   /** // doc: test_kernel_arg_access_qualifier_t() {{{
    * \brief Ensure that enum2cstr() works with kernel_arg_access_qualifier_t.
    */ // }}}
@@ -680,7 +680,7 @@ public:
     TS_ASSERT_EQUALS(enum2cstr(static_cast<kernel_arg_access_qualifier_t>(-1l)), nullptr);
   }
 #endif
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
   /** // doc: test_kernel_arg_type_qualifier_t() {{{
    * \brief Ensure that enum2cstr() works with kernel_arg_type_qualifier_t.
    */ // }}}
@@ -701,11 +701,11 @@ public:
     TS_ASSERT_EQUALS(enum2cstr(kernel_work_group_info_t::work_group_size), "work group size");
     TS_ASSERT_EQUALS(enum2cstr(kernel_work_group_info_t::compile_work_group_size), "compile work group size");
     TS_ASSERT_EQUALS(enum2cstr(kernel_work_group_info_t::local_mem_size), "local mem size");
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
     TS_ASSERT_EQUALS(enum2cstr(kernel_work_group_info_t::preferred_work_group_size_multiple), "preferred work group size multiple");
     TS_ASSERT_EQUALS(enum2cstr(kernel_work_group_info_t::private_mem_size), "private mem size");
 #endif
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
     TS_ASSERT_EQUALS(enum2cstr(kernel_work_group_info_t::global_work_size), "global work size");
 #endif
     TS_ASSERT_EQUALS(enum2cstr(static_cast<kernel_work_group_info_t>(-1l)), nullptr);
@@ -719,7 +719,7 @@ public:
     TS_ASSERT_EQUALS(enum2cstr(event_info_t::command_type), "command type");
     TS_ASSERT_EQUALS(enum2cstr(event_info_t::reference_count), "reference count");
     TS_ASSERT_EQUALS(enum2cstr(event_info_t::command_execution_status), "command execution status");
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
     TS_ASSERT_EQUALS(enum2cstr(event_info_t::context), "context");
 #endif
     TS_ASSERT_EQUALS(enum2cstr(static_cast<event_info_t>(-1l)), nullptr);
@@ -746,13 +746,13 @@ public:
     TS_ASSERT_EQUALS(enum2cstr(command_type_t::marker), "marker");
     TS_ASSERT_EQUALS(enum2cstr(command_type_t::acquire_gl_objects), "acquire GL objects");
     TS_ASSERT_EQUALS(enum2cstr(command_type_t::release_gl_objects), "release GL objects");
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
     TS_ASSERT_EQUALS(enum2cstr(command_type_t::read_buffer_rect), "read buffer rect");
     TS_ASSERT_EQUALS(enum2cstr(command_type_t::write_buffer_rect), "write buffer rect");
     TS_ASSERT_EQUALS(enum2cstr(command_type_t::copy_buffer_rect), "copy buffer rect");
     TS_ASSERT_EQUALS(enum2cstr(command_type_t::user), "user");
 #endif
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
     TS_ASSERT_EQUALS(enum2cstr(command_type_t::barrier), "barrier");
     TS_ASSERT_EQUALS(enum2cstr(command_type_t::migrate_mem_objects), "migrate mem objects");
     TS_ASSERT_EQUALS(enum2cstr(command_type_t::fill_buffer), "fill buffer");
@@ -782,7 +782,7 @@ public:
     TS_ASSERT_EQUALS(enum2cstr(static_cast<command_exec_status_t>(status_t::invalid_value)), "invalid value");
     TS_ASSERT_EQUALS(enum2cstr(static_cast<command_exec_status_t>(-0x7FFF)), nullptr);
   }
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
   /** // doc: test_buffer_create_type_t() {{{
    * \brief Ensure that enum2cstr() works with buffer_create_type_t.
    */ // }}}

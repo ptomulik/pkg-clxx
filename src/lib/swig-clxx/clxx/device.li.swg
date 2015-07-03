@@ -44,7 +44,7 @@
 }
 %enddef
 
-%exception clxx::device::get_valid_handle() {
+%exception clxx::device::chk_get() {
   try { $action }
   %catch_uninitialized_device_error
   %catch_exception

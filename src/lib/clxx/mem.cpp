@@ -22,7 +22,7 @@ mem::
 mem(context const& ctx, mem_flags_t flags, size_t size, void* host_ptr)
   :Base((cl_mem)NULL)
 {
-  this->_set_handle(create_buffer(ctx.get_valid_handle(), flags, size, host_ptr), false, false);
+  this->_set_handle(create_buffer(ctx.chk_get(), flags, size, host_ptr), false, false);
 }
 /* ----------------------------------------------------------------------- */
 mem_object_type_t mem::

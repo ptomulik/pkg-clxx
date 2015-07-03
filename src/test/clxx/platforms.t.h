@@ -73,8 +73,8 @@ public:
 
     platforms p(get_platforms());
     TS_ASSERT_EQUALS(p.size(), 2);
-    TS_ASSERT_EQUALS(p[0].handle(), _platforms[0]);
-    TS_ASSERT_EQUALS(p[1].handle(), _platforms[1]);
+    TS_ASSERT_EQUALS(p[0].get(), _platforms[0]);
+    TS_ASSERT_EQUALS(p[1].get(), _platforms[1]);
 
     TS_ASSERT(mock.called_twice());
     TS_ASSERT_EQUALS(std::get<0>(mock.calls().front()), 0u);

@@ -49,7 +49,7 @@ public:
    */ // }}}
   void test__create_context__invalid_property( )
   {
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
     T::Dummy_clCreateContext mock((cl_context)NULL, CL_INVALID_PROPERTY);
     TS_ASSERT_THROWS(clxx::create_context(nullptr,0,nullptr,nullptr,nullptr), clerror_no<status_t::invalid_property>);
 #endif
@@ -59,7 +59,7 @@ public:
    */ // }}}
   void test__create_context__invalid_operation( )
   {
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
     T::Dummy_clCreateContext mock((cl_context)NULL, CL_INVALID_OPERATION);
     TS_ASSERT_THROWS(clxx::create_context(nullptr,0,nullptr,nullptr,nullptr), clerror_no<status_t::invalid_operation>);
 #endif

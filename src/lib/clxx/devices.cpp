@@ -41,7 +41,7 @@ devices
 get_devices(platform const& platform, device_type_t device_type)
 
 {
-  return get_devices(platform.handle(), device_type);
+  return get_devices(platform.get(), device_type);
 }
 /* ------------------------------------------------------------------------ */
 devices

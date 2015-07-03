@@ -71,7 +71,7 @@ query_platform_info(platform const& p, platform_query const& query)
 {
   platform_info info;
   if(query.id_selected())
-    info.set_id(reinterpret_cast<unsigned long>(p.handle()));
+    info.set_id(reinterpret_cast<unsigned long>(p.get()));
   if(query.profile_selected())
     info.set_profile(p.get_profile());
   if(query.version_selected())

@@ -34,7 +34,7 @@ namespace clxx {
  *
  * Although \ref context maintains internally reference count for its
  * \c cl_context handle, it doesn't prevent one from stealing the
- * \c cl_context handle (handle(), get_valid_handle()). This gives rise to manipulate
+ * \c cl_context handle (get(), chk_get()). This gives rise to manipulate
  * the reference count outside of object. If you need to steal, use the
  * retrieved handle with care. If you retrieve the handle from \ref context
  * object, increase its reference count with \ref retain_context() as soon as

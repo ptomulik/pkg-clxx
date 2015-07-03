@@ -47,11 +47,11 @@ public:
     TS_ASSERT_EQUALS(static_cast<cl_int>(status_t::image_format_not_supported), CL_IMAGE_FORMAT_NOT_SUPPORTED);
     TS_ASSERT_EQUALS(static_cast<cl_int>(status_t::build_program_failure), CL_BUILD_PROGRAM_FAILURE);
     TS_ASSERT_EQUALS(static_cast<cl_int>(status_t::map_failure), CL_MAP_FAILURE);
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
     TS_ASSERT_EQUALS(static_cast<cl_int>(status_t::misaligned_sub_buffer_offset), CL_MISALIGNED_SUB_BUFFER_OFFSET);
     TS_ASSERT_EQUALS(static_cast<cl_int>(status_t::exec_status_error_for_events_in_wait_list), CL_EXEC_STATUS_ERROR_FOR_EVENTS_IN_WAIT_LIST);
 #endif
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
     TS_ASSERT_EQUALS(static_cast<cl_int>(status_t::compile_program_failure), CL_COMPILE_PROGRAM_FAILURE);
     TS_ASSERT_EQUALS(static_cast<cl_int>(status_t::linker_not_available), CL_LINKER_NOT_AVAILABLE);
     TS_ASSERT_EQUALS(static_cast<cl_int>(status_t::link_program_failure), CL_LINK_PROGRAM_FAILURE);
@@ -92,16 +92,16 @@ public:
     TS_ASSERT_EQUALS(static_cast<cl_int>(status_t::invalid_buffer_size), CL_INVALID_BUFFER_SIZE);
     TS_ASSERT_EQUALS(static_cast<cl_int>(status_t::invalid_mip_level), CL_INVALID_MIP_LEVEL);
     TS_ASSERT_EQUALS(static_cast<cl_int>(status_t::invalid_global_work_size), CL_INVALID_GLOBAL_WORK_SIZE);
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
     TS_ASSERT_EQUALS(static_cast<cl_int>(status_t::invalid_property), CL_INVALID_PROPERTY);
 #endif
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
     TS_ASSERT_EQUALS(static_cast<cl_int>(status_t::invalid_image_descriptor), CL_INVALID_IMAGE_DESCRIPTOR);
     TS_ASSERT_EQUALS(static_cast<cl_int>(status_t::invalid_compiler_options), CL_INVALID_COMPILER_OPTIONS);
     TS_ASSERT_EQUALS(static_cast<cl_int>(status_t::invalid_linker_options), CL_INVALID_LINKER_OPTIONS);
     TS_ASSERT_EQUALS(static_cast<cl_int>(status_t::invalid_device_partition_count), CL_INVALID_DEVICE_PARTITION_COUNT);
 #endif
-#if CL_VERSION_2_0
+#if CLXX_CL_H_VERSION_2_0
     TS_ASSERT_EQUALS(static_cast<cl_int>(status_t::invalid_pipe_size), CL_INVALID_PIPE_SIZE);
     TS_ASSERT_EQUALS(static_cast<cl_int>(status_t::invalid_device_queue), CL_INVALID_DEVICE_QUEUE);
 #endif
@@ -156,11 +156,11 @@ public:
     TS_ASSERT_EQUALS(intval(status_t::image_format_not_supported), CL_IMAGE_FORMAT_NOT_SUPPORTED);
     TS_ASSERT_EQUALS(intval(status_t::build_program_failure), CL_BUILD_PROGRAM_FAILURE);
     TS_ASSERT_EQUALS(intval(status_t::map_failure), CL_MAP_FAILURE);
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
     TS_ASSERT_EQUALS(intval(status_t::misaligned_sub_buffer_offset), CL_MISALIGNED_SUB_BUFFER_OFFSET);
     TS_ASSERT_EQUALS(intval(status_t::exec_status_error_for_events_in_wait_list), CL_EXEC_STATUS_ERROR_FOR_EVENTS_IN_WAIT_LIST);
 #endif
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
     TS_ASSERT_EQUALS(intval(status_t::compile_program_failure), CL_COMPILE_PROGRAM_FAILURE);
     TS_ASSERT_EQUALS(intval(status_t::linker_not_available), CL_LINKER_NOT_AVAILABLE);
     TS_ASSERT_EQUALS(intval(status_t::link_program_failure), CL_LINK_PROGRAM_FAILURE);
@@ -201,10 +201,10 @@ public:
     TS_ASSERT_EQUALS(intval(status_t::invalid_buffer_size), CL_INVALID_BUFFER_SIZE);
     TS_ASSERT_EQUALS(intval(status_t::invalid_mip_level), CL_INVALID_MIP_LEVEL);
     TS_ASSERT_EQUALS(intval(status_t::invalid_global_work_size), CL_INVALID_GLOBAL_WORK_SIZE);
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
     TS_ASSERT_EQUALS(intval(status_t::invalid_property), CL_INVALID_PROPERTY);
 #endif
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
     TS_ASSERT_EQUALS(intval(status_t::invalid_image_descriptor), CL_INVALID_IMAGE_DESCRIPTOR);
     TS_ASSERT_EQUALS(intval(status_t::invalid_compiler_options), CL_INVALID_COMPILER_OPTIONS);
     TS_ASSERT_EQUALS(intval(status_t::invalid_linker_options), CL_INVALID_LINKER_OPTIONS);
@@ -264,11 +264,11 @@ public:
     TS_ASSERT(!is_success(status_t::image_format_not_supported));
     TS_ASSERT(!is_success(status_t::build_program_failure));
     TS_ASSERT(!is_success(status_t::map_failure));
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
     TS_ASSERT(!is_success(status_t::misaligned_sub_buffer_offset));
     TS_ASSERT(!is_success(status_t::exec_status_error_for_events_in_wait_list));
 #endif
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
     TS_ASSERT(!is_success(status_t::compile_program_failure));
     TS_ASSERT(!is_success(status_t::linker_not_available));
     TS_ASSERT(!is_success(status_t::link_program_failure));
@@ -309,10 +309,10 @@ public:
     TS_ASSERT(!is_success(status_t::invalid_buffer_size));
     TS_ASSERT(!is_success(status_t::invalid_mip_level));
     TS_ASSERT(!is_success(status_t::invalid_global_work_size));
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
     TS_ASSERT(!is_success(status_t::invalid_property));
 #endif
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
     TS_ASSERT(!is_success(status_t::invalid_image_descriptor));
     TS_ASSERT(!is_success(status_t::invalid_compiler_options));
     TS_ASSERT(!is_success(status_t::invalid_linker_options));
@@ -372,11 +372,11 @@ public:
     TS_ASSERT(is_error(status_t::image_format_not_supported));
     TS_ASSERT(is_error(status_t::build_program_failure));
     TS_ASSERT(is_error(status_t::map_failure));
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
     TS_ASSERT(is_error(status_t::misaligned_sub_buffer_offset));
     TS_ASSERT(is_error(status_t::exec_status_error_for_events_in_wait_list));
 #endif
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
     TS_ASSERT(is_error(status_t::compile_program_failure));
     TS_ASSERT(is_error(status_t::linker_not_available));
     TS_ASSERT(is_error(status_t::link_program_failure));
@@ -417,10 +417,10 @@ public:
     TS_ASSERT(is_error(status_t::invalid_buffer_size));
     TS_ASSERT(is_error(status_t::invalid_mip_level));
     TS_ASSERT(is_error(status_t::invalid_global_work_size));
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
     TS_ASSERT(is_error(status_t::invalid_property));
 #endif
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
     TS_ASSERT(is_error(status_t::invalid_image_descriptor));
     TS_ASSERT(is_error(status_t::invalid_compiler_options));
     TS_ASSERT(is_error(status_t::invalid_linker_options));
@@ -505,7 +505,7 @@ public:
     TS_ASSERT_EQUALS(static_cast<cl_device_type>(device_type_t::cpu), CL_DEVICE_TYPE_CPU);
     TS_ASSERT_EQUALS(static_cast<cl_device_type>(device_type_t::gpu), CL_DEVICE_TYPE_GPU);
     TS_ASSERT_EQUALS(static_cast<cl_device_type>(device_type_t::accelerator), CL_DEVICE_TYPE_ACCELERATOR);
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
     TS_ASSERT_EQUALS(static_cast<cl_device_type>(device_type_t::custom), CL_DEVICE_TYPE_CUSTOM);
 #endif
     TS_ASSERT_EQUALS(static_cast<cl_device_type>(device_type_t::all), CL_DEVICE_TYPE_ALL);
@@ -523,7 +523,7 @@ public:
     TS_ASSERT_EQUALS(intval(device_type_t::cpu), CL_DEVICE_TYPE_CPU);
     TS_ASSERT_EQUALS(intval(device_type_t::gpu), CL_DEVICE_TYPE_GPU);
     TS_ASSERT_EQUALS(intval(device_type_t::accelerator), CL_DEVICE_TYPE_ACCELERATOR);
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
     TS_ASSERT_EQUALS(intval(device_type_t::custom), CL_DEVICE_TYPE_CUSTOM);
 #endif
     TS_ASSERT_EQUALS(intval(device_type_t::all), CL_DEVICE_TYPE_ALL);
@@ -610,10 +610,10 @@ public:
     TS_ASSERT_EQUALS(static_cast<cl_device_info>(device_info_t::version), CL_DEVICE_VERSION);
     TS_ASSERT_EQUALS(static_cast<cl_device_info>(device_info_t::extensions), CL_DEVICE_EXTENSIONS);
     TS_ASSERT_EQUALS(static_cast<cl_device_info>(device_info_t::platform), CL_DEVICE_PLATFORM);
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
     TS_ASSERT_EQUALS(static_cast<cl_device_info>(device_info_t::double_fp_config), CL_DEVICE_DOUBLE_FP_CONFIG);
 #endif
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
     TS_ASSERT_EQUALS(static_cast<cl_device_info>(device_info_t::preferred_vector_width_half), CL_DEVICE_PREFERRED_VECTOR_WIDTH_HALF);
     TS_ASSERT_EQUALS(static_cast<cl_device_info>(device_info_t::host_unified_memory), CL_DEVICE_HOST_UNIFIED_MEMORY);
     TS_ASSERT_EQUALS(static_cast<cl_device_info>(device_info_t::native_vector_width_char), CL_DEVICE_NATIVE_VECTOR_WIDTH_CHAR);
@@ -625,7 +625,7 @@ public:
     TS_ASSERT_EQUALS(static_cast<cl_device_info>(device_info_t::native_vector_width_half), CL_DEVICE_NATIVE_VECTOR_WIDTH_HALF);
     TS_ASSERT_EQUALS(static_cast<cl_device_info>(device_info_t::opencl_c_version), CL_DEVICE_OPENCL_C_VERSION);
 #endif
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
     TS_ASSERT_EQUALS(static_cast<cl_device_info>(device_info_t::linker_available), CL_DEVICE_LINKER_AVAILABLE);
     TS_ASSERT_EQUALS(static_cast<cl_device_info>(device_info_t::built_in_kernels), CL_DEVICE_BUILT_IN_KERNELS);
     TS_ASSERT_EQUALS(static_cast<cl_device_info>(device_info_t::image_max_buffer_size), CL_DEVICE_IMAGE_MAX_BUFFER_SIZE);
@@ -700,10 +700,10 @@ public:
     TS_ASSERT_EQUALS(intval(device_info_t::version), CL_DEVICE_VERSION);
     TS_ASSERT_EQUALS(intval(device_info_t::extensions), CL_DEVICE_EXTENSIONS);
     TS_ASSERT_EQUALS(intval(device_info_t::platform), CL_DEVICE_PLATFORM);
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
     TS_ASSERT_EQUALS(intval(device_info_t::double_fp_config), CL_DEVICE_DOUBLE_FP_CONFIG);
 #endif
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
     TS_ASSERT_EQUALS(intval(device_info_t::preferred_vector_width_half), CL_DEVICE_PREFERRED_VECTOR_WIDTH_HALF);
     TS_ASSERT_EQUALS(intval(device_info_t::host_unified_memory), CL_DEVICE_HOST_UNIFIED_MEMORY);
     TS_ASSERT_EQUALS(intval(device_info_t::native_vector_width_char), CL_DEVICE_NATIVE_VECTOR_WIDTH_CHAR);
@@ -715,7 +715,7 @@ public:
     TS_ASSERT_EQUALS(intval(device_info_t::native_vector_width_half), CL_DEVICE_NATIVE_VECTOR_WIDTH_HALF);
     TS_ASSERT_EQUALS(intval(device_info_t::opencl_c_version), CL_DEVICE_OPENCL_C_VERSION);
 #endif
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
     TS_ASSERT_EQUALS(intval(device_info_t::linker_available), CL_DEVICE_LINKER_AVAILABLE);
     TS_ASSERT_EQUALS(intval(device_info_t::built_in_kernels), CL_DEVICE_BUILT_IN_KERNELS);
     TS_ASSERT_EQUALS(intval(device_info_t::image_max_buffer_size), CL_DEVICE_IMAGE_MAX_BUFFER_SIZE);
@@ -751,10 +751,10 @@ public:
     TS_ASSERT_EQUALS(static_cast<cl_device_fp_config>(device_fp_config_t::round_to_zero), CL_FP_ROUND_TO_ZERO);
     TS_ASSERT_EQUALS(static_cast<cl_device_fp_config>(device_fp_config_t::round_to_inf), CL_FP_ROUND_TO_INF);
     TS_ASSERT_EQUALS(static_cast<cl_device_fp_config>(device_fp_config_t::fma), CL_FP_FMA);
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
     TS_ASSERT_EQUALS(static_cast<cl_device_fp_config>(device_fp_config_t::soft_float), CL_FP_SOFT_FLOAT);
 #endif
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
     TS_ASSERT_EQUALS(static_cast<cl_device_fp_config>(device_fp_config_t::correctly_rounded_divide_sqrt), CL_FP_CORRECTLY_ROUNDED_DIVIDE_SQRT);
 #endif
   }
@@ -773,10 +773,10 @@ public:
     TS_ASSERT_EQUALS(intval(device_fp_config_t::round_to_zero), CL_FP_ROUND_TO_ZERO);
     TS_ASSERT_EQUALS(intval(device_fp_config_t::round_to_inf), CL_FP_ROUND_TO_INF);
     TS_ASSERT_EQUALS(intval(device_fp_config_t::fma), CL_FP_FMA);
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
     TS_ASSERT_EQUALS(intval(device_fp_config_t::soft_float), CL_FP_SOFT_FLOAT);
 #endif
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
     TS_ASSERT_EQUALS(intval(device_fp_config_t::correctly_rounded_divide_sqrt), CL_FP_CORRECTLY_ROUNDED_DIVIDE_SQRT);
 #endif
   }
@@ -965,7 +965,7 @@ public:
     TS_ASSERT_EQUALS(static_cast<cl_context_info>(context_info_t::reference_count), CL_CONTEXT_REFERENCE_COUNT);
     TS_ASSERT_EQUALS(static_cast<cl_context_info>(context_info_t::devices), CL_CONTEXT_DEVICES);
     TS_ASSERT_EQUALS(static_cast<cl_context_info>(context_info_t::properties), CL_CONTEXT_PROPERTIES);
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
     TS_ASSERT_EQUALS(static_cast<cl_context_info>(context_info_t::num_devices), CL_CONTEXT_NUM_DEVICES);
 #endif
   }
@@ -980,7 +980,7 @@ public:
     TS_ASSERT_EQUALS(intval(context_info_t::reference_count), CL_CONTEXT_REFERENCE_COUNT);
     TS_ASSERT_EQUALS(intval(context_info_t::devices), CL_CONTEXT_DEVICES);
     TS_ASSERT_EQUALS(intval(context_info_t::properties), CL_CONTEXT_PROPERTIES);
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
     TS_ASSERT_EQUALS(intval(context_info_t::num_devices), CL_CONTEXT_NUM_DEVICES);
 #endif
   }
@@ -997,7 +997,7 @@ public:
     // Check enum values
     //
     TS_ASSERT_EQUALS(static_cast<cl_context_properties>(context_properties_t::platform), CL_CONTEXT_PLATFORM);
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
     TS_ASSERT_EQUALS(static_cast<cl_context_properties>(context_properties_t::interop_user_sync), CL_CONTEXT_INTEROP_USER_SYNC);
 #endif
 #if cl_khr_gl_sharing
@@ -1032,7 +1032,7 @@ public:
     // Check enum values
     //
     TS_ASSERT_EQUALS(intval(context_properties_t::platform), CL_CONTEXT_PLATFORM);
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
     TS_ASSERT_EQUALS(intval(context_properties_t::interop_user_sync), CL_CONTEXT_INTEROP_USER_SYNC);
 #endif
 #if cl_khr_gl_sharing
@@ -1059,7 +1059,7 @@ public:
    */ // }}}
   void test_device_partition_property_t( )
   {
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
     //
     // Check the underlying type
     //
@@ -1078,7 +1078,7 @@ public:
    */ // }}}
   void test_device_partition_property_t__intval( )
   {
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
     //
     // Check enum values
     //
@@ -1093,7 +1093,7 @@ public:
    */ // }}}
   void test_device_affinity_domain_t( )
   {
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
     //
     // Check the underlying type
     //
@@ -1115,7 +1115,7 @@ public:
    */ // }}}
   void test_device_affinity_domain_t__intval( )
   {
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
     //
     // Check enum values
     //
@@ -1133,7 +1133,7 @@ public:
    */ // }}}
   void test_device_affinity_domain_t__bitops( )
   {
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
     // Just ensure that certain expressions get compiled ...
     TS_ASSERT_EQUALS(~(device_affinity_domain_t::numa), static_cast<device_affinity_domain_t>(~CL_DEVICE_AFFINITY_DOMAIN_NUMA));
     TS_ASSERT_EQUALS((device_affinity_domain_t::numa & device_affinity_domain_t::l4_cache), static_cast<device_affinity_domain_t>(CL_DEVICE_AFFINITY_DOMAIN_NUMA & CL_DEVICE_AFFINITY_DOMAIN_L4_CACHE));
@@ -1199,7 +1199,7 @@ public:
     TS_ASSERT_EQUALS(static_cast<cl_mem_flags>(mem_flags_t::use_host_ptr), CL_MEM_USE_HOST_PTR);
     TS_ASSERT_EQUALS(static_cast<cl_mem_flags>(mem_flags_t::alloc_host_ptr), CL_MEM_ALLOC_HOST_PTR);
     TS_ASSERT_EQUALS(static_cast<cl_mem_flags>(mem_flags_t::copy_host_ptr), CL_MEM_COPY_HOST_PTR);
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
     TS_ASSERT_EQUALS(static_cast<cl_mem_flags>(mem_flags_t::host_write_only), CL_MEM_HOST_WRITE_ONLY);
     TS_ASSERT_EQUALS(static_cast<cl_mem_flags>(mem_flags_t::host_read_only), CL_MEM_HOST_READ_ONLY);
     TS_ASSERT_EQUALS(static_cast<cl_mem_flags>(mem_flags_t::host_no_access), CL_MEM_HOST_NO_ACCESS);
@@ -1220,7 +1220,7 @@ public:
     TS_ASSERT_EQUALS(intval(mem_flags_t::use_host_ptr), CL_MEM_USE_HOST_PTR);
     TS_ASSERT_EQUALS(intval(mem_flags_t::alloc_host_ptr), CL_MEM_ALLOC_HOST_PTR);
     TS_ASSERT_EQUALS(intval(mem_flags_t::copy_host_ptr), CL_MEM_COPY_HOST_PTR);
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
     TS_ASSERT_EQUALS(intval(mem_flags_t::host_write_only), CL_MEM_HOST_WRITE_ONLY);
     TS_ASSERT_EQUALS(intval(mem_flags_t::host_read_only), CL_MEM_HOST_READ_ONLY);
     TS_ASSERT_EQUALS(intval(mem_flags_t::host_no_access), CL_MEM_HOST_NO_ACCESS);
@@ -1316,12 +1316,12 @@ public:
     TS_ASSERT_EQUALS(static_cast<cl_channel_order>(channel_order_t::argb), CL_ARGB);
     TS_ASSERT_EQUALS(static_cast<cl_channel_order>(channel_order_t::intensity), CL_INTENSITY);
     TS_ASSERT_EQUALS(static_cast<cl_channel_order>(channel_order_t::luminance), CL_LUMINANCE);
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
     TS_ASSERT_EQUALS(static_cast<cl_channel_order>(channel_order_t::rx), CL_Rx);
     TS_ASSERT_EQUALS(static_cast<cl_channel_order>(channel_order_t::rgx), CL_RGx);
     TS_ASSERT_EQUALS(static_cast<cl_channel_order>(channel_order_t::rgbx), CL_RGBx);
 #endif
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
     TS_ASSERT_EQUALS(static_cast<cl_channel_order>(channel_order_t::depth), CL_DEPTH);
     TS_ASSERT_EQUALS(static_cast<cl_channel_order>(channel_order_t::depth_stencil), CL_DEPTH_STENCIL);
 #endif
@@ -1344,12 +1344,12 @@ public:
     TS_ASSERT_EQUALS(intval(channel_order_t::argb), CL_ARGB);
     TS_ASSERT_EQUALS(intval(channel_order_t::intensity), CL_INTENSITY);
     TS_ASSERT_EQUALS(intval(channel_order_t::luminance), CL_LUMINANCE);
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
     TS_ASSERT_EQUALS(intval(channel_order_t::rx), CL_Rx);
     TS_ASSERT_EQUALS(intval(channel_order_t::rgx), CL_RGx);
     TS_ASSERT_EQUALS(intval(channel_order_t::rgbx), CL_RGBx);
 #endif
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
     TS_ASSERT_EQUALS(intval(channel_order_t::depth), CL_DEPTH);
     TS_ASSERT_EQUALS(intval(channel_order_t::depth_stencil), CL_DEPTH_STENCIL);
 #endif
@@ -1381,7 +1381,7 @@ public:
     TS_ASSERT_EQUALS(static_cast<cl_channel_type>(channel_type_t::unsigned_int32), CL_UNSIGNED_INT32);
     TS_ASSERT_EQUALS(static_cast<cl_channel_type>(channel_type_t::half_float), CL_HALF_FLOAT);
     TS_ASSERT_EQUALS(static_cast<cl_channel_type>(channel_type_t::float_), CL_FLOAT);
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
     TS_ASSERT_EQUALS(static_cast<cl_channel_type>(channel_type_t::unorm_int24), CL_UNORM_INT24);
 #endif
   }
@@ -1408,7 +1408,7 @@ public:
     TS_ASSERT_EQUALS(intval(channel_type_t::unsigned_int32), CL_UNSIGNED_INT32);
     TS_ASSERT_EQUALS(intval(channel_type_t::half_float), CL_HALF_FLOAT);
     TS_ASSERT_EQUALS(intval(channel_type_t::float_), CL_FLOAT);
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
     TS_ASSERT_EQUALS(intval(channel_type_t::unorm_int24), CL_UNORM_INT24);
 #endif
   }
@@ -1427,7 +1427,7 @@ public:
     TS_ASSERT_EQUALS(static_cast<cl_mem_object_type>(mem_object_type_t::buffer), CL_MEM_OBJECT_BUFFER);
     TS_ASSERT_EQUALS(static_cast<cl_mem_object_type>(mem_object_type_t::image2d), CL_MEM_OBJECT_IMAGE2D);
     TS_ASSERT_EQUALS(static_cast<cl_mem_object_type>(mem_object_type_t::image3d), CL_MEM_OBJECT_IMAGE3D);
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
     TS_ASSERT_EQUALS(static_cast<cl_mem_object_type>(mem_object_type_t::image2d_array), CL_MEM_OBJECT_IMAGE2D_ARRAY);
     TS_ASSERT_EQUALS(static_cast<cl_mem_object_type>(mem_object_type_t::image1d), CL_MEM_OBJECT_IMAGE1D);
     TS_ASSERT_EQUALS(static_cast<cl_mem_object_type>(mem_object_type_t::image1d_array), CL_MEM_OBJECT_IMAGE1D_ARRAY);
@@ -1445,7 +1445,7 @@ public:
     TS_ASSERT_EQUALS(intval(mem_object_type_t::buffer), CL_MEM_OBJECT_BUFFER);
     TS_ASSERT_EQUALS(intval(mem_object_type_t::image2d), CL_MEM_OBJECT_IMAGE2D);
     TS_ASSERT_EQUALS(intval(mem_object_type_t::image3d), CL_MEM_OBJECT_IMAGE3D);
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
     TS_ASSERT_EQUALS(intval(mem_object_type_t::image2d_array), CL_MEM_OBJECT_IMAGE2D_ARRAY);
     TS_ASSERT_EQUALS(intval(mem_object_type_t::image1d), CL_MEM_OBJECT_IMAGE1D);
     TS_ASSERT_EQUALS(intval(mem_object_type_t::image1d_array), CL_MEM_OBJECT_IMAGE1D_ARRAY);
@@ -1471,7 +1471,7 @@ public:
     TS_ASSERT_EQUALS(static_cast<cl_mem_info>(mem_info_t::map_count), CL_MEM_MAP_COUNT);
     TS_ASSERT_EQUALS(static_cast<cl_mem_info>(mem_info_t::reference_count), CL_MEM_REFERENCE_COUNT);
     TS_ASSERT_EQUALS(static_cast<cl_mem_info>(mem_info_t::context), CL_MEM_CONTEXT);
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
     TS_ASSERT_EQUALS(static_cast<cl_mem_info>(mem_info_t::associated_memobject), CL_MEM_ASSOCIATED_MEMOBJECT);
     TS_ASSERT_EQUALS(static_cast<cl_mem_info>(mem_info_t::offset), CL_MEM_OFFSET);
 #endif
@@ -1491,7 +1491,7 @@ public:
     TS_ASSERT_EQUALS(intval(mem_info_t::map_count), CL_MEM_MAP_COUNT);
     TS_ASSERT_EQUALS(intval(mem_info_t::reference_count), CL_MEM_REFERENCE_COUNT);
     TS_ASSERT_EQUALS(intval(mem_info_t::context), CL_MEM_CONTEXT);
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
     TS_ASSERT_EQUALS(intval(mem_info_t::associated_memobject), CL_MEM_ASSOCIATED_MEMOBJECT);
     TS_ASSERT_EQUALS(intval(mem_info_t::offset), CL_MEM_OFFSET);
 #endif
@@ -1515,7 +1515,7 @@ public:
     TS_ASSERT_EQUALS(static_cast<cl_image_info>(image_info_t::width), CL_IMAGE_WIDTH);
     TS_ASSERT_EQUALS(static_cast<cl_image_info>(image_info_t::height), CL_IMAGE_HEIGHT);
     TS_ASSERT_EQUALS(static_cast<cl_image_info>(image_info_t::depth), CL_IMAGE_DEPTH);
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
     TS_ASSERT_EQUALS(static_cast<cl_image_info>(image_info_t::array_size), CL_IMAGE_ARRAY_SIZE);
     TS_ASSERT_EQUALS(static_cast<cl_image_info>(image_info_t::buffer), CL_IMAGE_BUFFER);
     TS_ASSERT_EQUALS(static_cast<cl_image_info>(image_info_t::num_mip_levels), CL_IMAGE_NUM_MIP_LEVELS);
@@ -1537,7 +1537,7 @@ public:
     TS_ASSERT_EQUALS(intval(image_info_t::width), CL_IMAGE_WIDTH);
     TS_ASSERT_EQUALS(intval(image_info_t::height), CL_IMAGE_HEIGHT);
     TS_ASSERT_EQUALS(intval(image_info_t::depth), CL_IMAGE_DEPTH);
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
     TS_ASSERT_EQUALS(intval(image_info_t::array_size), CL_IMAGE_ARRAY_SIZE);
     TS_ASSERT_EQUALS(intval(image_info_t::buffer), CL_IMAGE_BUFFER);
     TS_ASSERT_EQUALS(intval(image_info_t::num_mip_levels), CL_IMAGE_NUM_MIP_LEVELS);
@@ -1560,7 +1560,7 @@ public:
     TS_ASSERT_EQUALS(static_cast<cl_addressing_mode>(addressing_mode_t::clamp_to_edge), CL_ADDRESS_CLAMP_TO_EDGE);
     TS_ASSERT_EQUALS(static_cast<cl_addressing_mode>(addressing_mode_t::clamp), CL_ADDRESS_CLAMP);
     TS_ASSERT_EQUALS(static_cast<cl_addressing_mode>(addressing_mode_t::repeat), CL_ADDRESS_REPEAT);
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
     TS_ASSERT_EQUALS(static_cast<cl_addressing_mode>(addressing_mode_t::mirrored_repeat), CL_ADDRESS_MIRRORED_REPEAT);
 #endif
   }
@@ -1576,7 +1576,7 @@ public:
     TS_ASSERT_EQUALS(intval(addressing_mode_t::clamp_to_edge), CL_ADDRESS_CLAMP_TO_EDGE);
     TS_ASSERT_EQUALS(intval(addressing_mode_t::clamp), CL_ADDRESS_CLAMP);
     TS_ASSERT_EQUALS(intval(addressing_mode_t::repeat), CL_ADDRESS_REPEAT);
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
     TS_ASSERT_EQUALS(intval(addressing_mode_t::mirrored_repeat), CL_ADDRESS_MIRRORED_REPEAT);
 #endif
   }
@@ -1653,7 +1653,7 @@ public:
     TS_ASSERT_EQUALS(static_cast<cl_map_flags>(map_flags_t::none), 0ul);
     TS_ASSERT_EQUALS(static_cast<cl_map_flags>(map_flags_t::read), CL_MAP_READ);
     TS_ASSERT_EQUALS(static_cast<cl_map_flags>(map_flags_t::write), CL_MAP_WRITE);
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
     TS_ASSERT_EQUALS(static_cast<cl_map_flags>(map_flags_t::write_invalidate_region), CL_MAP_WRITE_INVALIDATE_REGION);
 #endif
   }
@@ -1668,7 +1668,7 @@ public:
     TS_ASSERT_EQUALS(intval(map_flags_t::none), 0ul);
     TS_ASSERT_EQUALS(intval(map_flags_t::read), CL_MAP_READ);
     TS_ASSERT_EQUALS(intval(map_flags_t::write), CL_MAP_WRITE);
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
     TS_ASSERT_EQUALS(intval(map_flags_t::write_invalidate_region), CL_MAP_WRITE_INVALIDATE_REGION);
 #endif
   }
@@ -1711,7 +1711,7 @@ public:
     TS_ASSERT_EQUALS(static_cast<cl_program_info>(program_info_t::source), CL_PROGRAM_SOURCE);
     TS_ASSERT_EQUALS(static_cast<cl_program_info>(program_info_t::binary_sizes), CL_PROGRAM_BINARY_SIZES);
     TS_ASSERT_EQUALS(static_cast<cl_program_info>(program_info_t::binaries), CL_PROGRAM_BINARIES);
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
     TS_ASSERT_EQUALS(static_cast<cl_program_info>(program_info_t::num_kernels), CL_PROGRAM_NUM_KERNELS);
     TS_ASSERT_EQUALS(static_cast<cl_program_info>(program_info_t::kernel_names), CL_PROGRAM_KERNEL_NAMES);
 #endif
@@ -1731,7 +1731,7 @@ public:
     TS_ASSERT_EQUALS(intval(program_info_t::source), CL_PROGRAM_SOURCE);
     TS_ASSERT_EQUALS(intval(program_info_t::binary_sizes), CL_PROGRAM_BINARY_SIZES);
     TS_ASSERT_EQUALS(intval(program_info_t::binaries), CL_PROGRAM_BINARIES);
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
     TS_ASSERT_EQUALS(intval(program_info_t::num_kernels), CL_PROGRAM_NUM_KERNELS);
     TS_ASSERT_EQUALS(intval(program_info_t::kernel_names), CL_PROGRAM_KERNEL_NAMES);
 #endif
@@ -1751,7 +1751,7 @@ public:
     TS_ASSERT_EQUALS(static_cast<cl_program_build_info>(program_build_info_t::status), CL_PROGRAM_BUILD_STATUS);
     TS_ASSERT_EQUALS(static_cast<cl_program_build_info>(program_build_info_t::options), CL_PROGRAM_BUILD_OPTIONS);
     TS_ASSERT_EQUALS(static_cast<cl_program_build_info>(program_build_info_t::log), CL_PROGRAM_BUILD_LOG);
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
     TS_ASSERT_EQUALS(static_cast<cl_program_build_info>(program_build_info_t::binary_type), CL_PROGRAM_BINARY_TYPE);
 #endif
   }
@@ -1766,7 +1766,7 @@ public:
     TS_ASSERT_EQUALS(intval(program_build_info_t::status), CL_PROGRAM_BUILD_STATUS);
     TS_ASSERT_EQUALS(intval(program_build_info_t::options), CL_PROGRAM_BUILD_OPTIONS);
     TS_ASSERT_EQUALS(intval(program_build_info_t::log), CL_PROGRAM_BUILD_LOG);
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
     TS_ASSERT_EQUALS(intval(program_build_info_t::binary_type), CL_PROGRAM_BINARY_TYPE);
 #endif
   }
@@ -1775,7 +1775,7 @@ public:
    */ // }}}
   void test_program_binary_type_t( )
   {
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
     //
     // Check the underlying type
     //
@@ -1794,7 +1794,7 @@ public:
    */ // }}}
   void test_program_binary_type_t__intval( )
   {
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
     //
     // Check enum values
     //
@@ -1809,7 +1809,7 @@ public:
    */ // }}}
   void test_program_binary_type_t__bitops( )
   {
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
     // Just ensure that certain expressions get compiled ...
     TS_ASSERT_EQUALS(~(program_binary_type_t::none), static_cast<program_binary_type_t>(~CL_PROGRAM_BINARY_TYPE_NONE));
     TS_ASSERT_EQUALS((program_binary_type_t::none & program_binary_type_t::compiled_object), program_binary_type_t::none);
@@ -1893,7 +1893,7 @@ public:
     TS_ASSERT_EQUALS(static_cast<cl_kernel_info>(kernel_info_t::reference_count), CL_KERNEL_REFERENCE_COUNT);
     TS_ASSERT_EQUALS(static_cast<cl_kernel_info>(kernel_info_t::context), CL_KERNEL_CONTEXT);
     TS_ASSERT_EQUALS(static_cast<cl_kernel_info>(kernel_info_t::program), CL_KERNEL_PROGRAM);
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
     TS_ASSERT_EQUALS(static_cast<cl_kernel_info>(kernel_info_t::attributes), CL_KERNEL_ATTRIBUTES);
 #endif
   }
@@ -1910,11 +1910,11 @@ public:
     TS_ASSERT_EQUALS(intval(kernel_info_t::reference_count), CL_KERNEL_REFERENCE_COUNT);
     TS_ASSERT_EQUALS(intval(kernel_info_t::context), CL_KERNEL_CONTEXT);
     TS_ASSERT_EQUALS(intval(kernel_info_t::program), CL_KERNEL_PROGRAM);
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
     TS_ASSERT_EQUALS(intval(kernel_info_t::attributes), CL_KERNEL_ATTRIBUTES);
 #endif
   }
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
   /** // doc: test_kernel_arg_info_t() {{{
    * \brief Test the kernel_arg_info_t type.
    */ // }}}
@@ -1950,7 +1950,7 @@ public:
 #endif
   void test_kernel_exec_info_t( )
   {
-#if CL_VERSION_2_0
+#if CLXX_CL_H_VERSION_2_0
     // Check the underlying type
     TS_ASSERT((std::is_same<std::underlying_type<kernel_exec_info_t>::type, cl_kernel_exec_info>::value));
     //
@@ -1962,7 +1962,7 @@ public:
   }
   void test_kernel_exec_info_t__intval( )
   {
-#if CL_VERSION_2_0
+#if CLXX_CL_H_VERSION_2_0
     TS_ASSERT_EQUALS(intval(kernel_exec_info_t::svm_ptrs), CL_KERNEL_EXEC_INFO_SVM_PTRS);
     TS_ASSERT_EQUALS(intval(kernel_exec_info_t::svm_fine_grain_system), CL_KERNEL_EXEC_INFO_SVM_FINE_GRAIN_SYSTEM);
 #endif
@@ -1972,7 +1972,7 @@ public:
    */ // }}}
   void test_kernel_arg_address_qualifier_t( )
   {
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
     //
     // Check the underlying type
     //
@@ -1991,7 +1991,7 @@ public:
    */ // }}}
   void test_kernel_arg_address_qualifier_t__intval( )
   {
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
     //
     // Check enum values
     //
@@ -2006,7 +2006,7 @@ public:
    */ // }}}
   void test_kernel_arg_access_qualifier_t( )
   {
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
     //
     // Check the underlying type
     //
@@ -2025,7 +2025,7 @@ public:
    */ // }}}
   void test_kernel_arg_access_qualifier_t__intval( )
   {
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
     //
     // Check enum values
     //
@@ -2040,7 +2040,7 @@ public:
    */ // }}}
   void test_kernel_arg_type_qualifier_t( )
   {
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
     //
     // Check the underlying type
     //
@@ -2059,7 +2059,7 @@ public:
    */ // }}}
   void test_kernel_arg_type_qualifier_t__intval( )
   {
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
     //
     // Check enum values
     //
@@ -2074,7 +2074,7 @@ public:
    */ // }}}
   void test_kernel_arg_type_qualifier_t__bitops( )
   {
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
     // Just ensure that certain expressions get compiled ...
     TS_ASSERT_EQUALS(~(kernel_arg_type_qualifier_t::none), static_cast<kernel_arg_type_qualifier_t>(~CL_KERNEL_ARG_TYPE_NONE));
     TS_ASSERT_EQUALS((kernel_arg_type_qualifier_t::none & kernel_arg_type_qualifier_t::const_), kernel_arg_type_qualifier_t::none);
@@ -2106,11 +2106,11 @@ public:
     TS_ASSERT_EQUALS(static_cast<cl_kernel_work_group_info>(kernel_work_group_info_t::work_group_size), CL_KERNEL_WORK_GROUP_SIZE);
     TS_ASSERT_EQUALS(static_cast<cl_kernel_work_group_info>(kernel_work_group_info_t::compile_work_group_size), CL_KERNEL_COMPILE_WORK_GROUP_SIZE);
     TS_ASSERT_EQUALS(static_cast<cl_kernel_work_group_info>(kernel_work_group_info_t::local_mem_size), CL_KERNEL_LOCAL_MEM_SIZE);
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
     TS_ASSERT_EQUALS(static_cast<cl_kernel_work_group_info>(kernel_work_group_info_t::preferred_work_group_size_multiple), CL_KERNEL_PREFERRED_WORK_GROUP_SIZE_MULTIPLE);
     TS_ASSERT_EQUALS(static_cast<cl_kernel_work_group_info>(kernel_work_group_info_t::private_mem_size), CL_KERNEL_PRIVATE_MEM_SIZE);
 #endif
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
     TS_ASSERT_EQUALS(static_cast<cl_kernel_work_group_info>(kernel_work_group_info_t::global_work_size), CL_KERNEL_GLOBAL_WORK_SIZE);
 #endif
   }
@@ -2125,11 +2125,11 @@ public:
     TS_ASSERT_EQUALS(intval(kernel_work_group_info_t::work_group_size), CL_KERNEL_WORK_GROUP_SIZE);
     TS_ASSERT_EQUALS(intval(kernel_work_group_info_t::compile_work_group_size), CL_KERNEL_COMPILE_WORK_GROUP_SIZE);
     TS_ASSERT_EQUALS(intval(kernel_work_group_info_t::local_mem_size), CL_KERNEL_LOCAL_MEM_SIZE);
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
     TS_ASSERT_EQUALS(intval(kernel_work_group_info_t::preferred_work_group_size_multiple), CL_KERNEL_PREFERRED_WORK_GROUP_SIZE_MULTIPLE);
     TS_ASSERT_EQUALS(intval(kernel_work_group_info_t::private_mem_size), CL_KERNEL_PRIVATE_MEM_SIZE);
 #endif
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
     TS_ASSERT_EQUALS(intval(kernel_work_group_info_t::global_work_size), CL_KERNEL_GLOBAL_WORK_SIZE);
 #endif
   }
@@ -2149,7 +2149,7 @@ public:
     TS_ASSERT_EQUALS(static_cast<cl_event_info>(event_info_t::command_type), CL_EVENT_COMMAND_TYPE);
     TS_ASSERT_EQUALS(static_cast<cl_event_info>(event_info_t::reference_count), CL_EVENT_REFERENCE_COUNT);
     TS_ASSERT_EQUALS(static_cast<cl_event_info>(event_info_t::command_execution_status), CL_EVENT_COMMAND_EXECUTION_STATUS);
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
     TS_ASSERT_EQUALS(static_cast<cl_event_info>(event_info_t::context), CL_EVENT_CONTEXT);
 #endif
   }
@@ -2165,7 +2165,7 @@ public:
     TS_ASSERT_EQUALS(intval(event_info_t::command_type), CL_EVENT_COMMAND_TYPE);
     TS_ASSERT_EQUALS(intval(event_info_t::reference_count), CL_EVENT_REFERENCE_COUNT);
     TS_ASSERT_EQUALS(intval(event_info_t::command_execution_status), CL_EVENT_COMMAND_EXECUTION_STATUS);
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
     TS_ASSERT_EQUALS(intval(event_info_t::context), CL_EVENT_CONTEXT);
 #endif
   }
@@ -2198,13 +2198,13 @@ public:
     TS_ASSERT_EQUALS(static_cast<cl_command_type>(command_type_t::marker), CL_COMMAND_MARKER);
     TS_ASSERT_EQUALS(static_cast<cl_command_type>(command_type_t::acquire_gl_objects), CL_COMMAND_ACQUIRE_GL_OBJECTS);
     TS_ASSERT_EQUALS(static_cast<cl_command_type>(command_type_t::release_gl_objects), CL_COMMAND_RELEASE_GL_OBJECTS);
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
     TS_ASSERT_EQUALS(static_cast<cl_command_type>(command_type_t::read_buffer_rect), CL_COMMAND_READ_BUFFER_RECT);
     TS_ASSERT_EQUALS(static_cast<cl_command_type>(command_type_t::write_buffer_rect), CL_COMMAND_WRITE_BUFFER_RECT);
     TS_ASSERT_EQUALS(static_cast<cl_command_type>(command_type_t::copy_buffer_rect), CL_COMMAND_COPY_BUFFER_RECT);
     TS_ASSERT_EQUALS(static_cast<cl_command_type>(command_type_t::user), CL_COMMAND_USER);
 #endif
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
     TS_ASSERT_EQUALS(static_cast<cl_command_type>(command_type_t::barrier), CL_COMMAND_BARRIER);
     TS_ASSERT_EQUALS(static_cast<cl_command_type>(command_type_t::migrate_mem_objects), CL_COMMAND_MIGRATE_MEM_OBJECTS);
     TS_ASSERT_EQUALS(static_cast<cl_command_type>(command_type_t::fill_buffer), CL_COMMAND_FILL_BUFFER);
@@ -2236,13 +2236,13 @@ public:
     TS_ASSERT_EQUALS(intval(command_type_t::marker), CL_COMMAND_MARKER);
     TS_ASSERT_EQUALS(intval(command_type_t::acquire_gl_objects), CL_COMMAND_ACQUIRE_GL_OBJECTS);
     TS_ASSERT_EQUALS(intval(command_type_t::release_gl_objects), CL_COMMAND_RELEASE_GL_OBJECTS);
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
     TS_ASSERT_EQUALS(intval(command_type_t::read_buffer_rect), CL_COMMAND_READ_BUFFER_RECT);
     TS_ASSERT_EQUALS(intval(command_type_t::write_buffer_rect), CL_COMMAND_WRITE_BUFFER_RECT);
     TS_ASSERT_EQUALS(intval(command_type_t::copy_buffer_rect), CL_COMMAND_COPY_BUFFER_RECT);
     TS_ASSERT_EQUALS(intval(command_type_t::user), CL_COMMAND_USER);
 #endif
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
     TS_ASSERT_EQUALS(intval(command_type_t::barrier), CL_COMMAND_BARRIER);
     TS_ASSERT_EQUALS(intval(command_type_t::migrate_mem_objects), CL_COMMAND_MIGRATE_MEM_OBJECTS);
     TS_ASSERT_EQUALS(intval(command_type_t::fill_buffer), CL_COMMAND_FILL_BUFFER);
@@ -2336,7 +2336,7 @@ public:
    */ // }}}
   void test_buffer_create_type_t( )
   {
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
     //
     // Check the underlying type
     //
@@ -2352,7 +2352,7 @@ public:
    */ // }}}
   void test_buffer_create_type_t__intval( )
   {
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
     //
     // Check enum values
     //

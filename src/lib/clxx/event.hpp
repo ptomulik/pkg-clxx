@@ -34,7 +34,7 @@ namespace clxx {
  *
  * Although \ref clxx::event "event" maintains internally reference count
  * for its \c cl_event handle, it doesn't prevent one from stealing the
- * \c cl_event handle (\ref handle(), \ref get_valid_handle()). This gives rise to
+ * \c cl_event handle (\ref get(), \ref chk_get()). This gives rise to
  * manipulate the reference count outside of the \ref clxx::event object for
  * the given OpenCL event object. If you need to steal, use the retrieved
  * handle with care. If you retrieve the handle from \ref clxx::event

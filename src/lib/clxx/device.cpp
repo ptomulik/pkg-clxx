@@ -516,7 +516,7 @@ query_device_info(device const& dev, device_query const& query)
   device_info info;
 
   if(query2.id_selected()) {
-    info.set_id(reinterpret_cast<unsigned long>(dev.handle()));
+    info.set_id(reinterpret_cast<unsigned long>(dev.get()));
   }
   if(query2.type_selected()) {
     info.set_type(dev.get_type());

@@ -43,7 +43,7 @@ namespace clxx {
  *
  * Although \ref clxx::kernel "kernel" maintains internally reference count
  * for its \c cl_kernel handle, it doesn't prevent one from stealing the \c
- * cl_kernel handle (#handle(), #get_valid_handle()). This gives rise to
+ * cl_kernel handle (#get(), #chk_get()). This gives rise to
  * manipulate the reference count outside of the \ref clxx::kernel "kernel"
  * object for the given OpenCL kernel object. If you need to steal, use the
  * retrieved handle with care. If you retrieve the handle from

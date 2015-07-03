@@ -29,14 +29,14 @@ public:
    */ // }}}
   void test__ctor_default( )
   {
-    TS_ASSERT_EQUALS(platform().handle(), (cl_platform_id)NULL);
+    TS_ASSERT_EQUALS(platform().get(), (cl_platform_id)NULL);
   }
   /** // doc: test__ctor_assign() {{{
    * \brief Ensure that assigining constructor works as expected.
    */ // }}}
   void test__ctor_assign( )
   {
-    TS_ASSERT_EQUALS(platform((cl_platform_id)0x1234ul).handle(), (cl_platform_id)0x1234ul);
+    TS_ASSERT_EQUALS(platform((cl_platform_id)0x1234ul).get(), (cl_platform_id)0x1234ul);
   }
   /** // doc: test__ctor_copy() {{{
    * \brief Ensure that copy constructor works as expected.
@@ -45,7 +45,7 @@ public:
   {
     platform p1((cl_platform_id)0x1234ul);
     platform p2(p1);
-    TS_ASSERT_EQUALS(p2.handle(), p1.handle());
+    TS_ASSERT_EQUALS(p2.get(), p1.get());
   }
   /** // doc: test__op_assign() {{{
    * \brief Ensure that assignment operator works.
@@ -55,7 +55,7 @@ public:
     platform p1((cl_platform_id)0x1234ul);
     platform p2;
     TS_ASSERT_EQUALS(&(p2 = p1), &p2);
-    TS_ASSERT_EQUALS(p2.handle(), p1.handle());
+    TS_ASSERT_EQUALS(p2.get(), p1.get());
   }
   /** // doc: test__assign() {{{
    * \brief Ensure that assign() method works.
@@ -65,7 +65,7 @@ public:
     platform p1((cl_platform_id)0x1234ul);
     platform p2;
     p2.assign(p1);
-    TS_ASSERT_EQUALS(p2.handle(), p1.handle());
+    TS_ASSERT_EQUALS(p2.get(), p1.get());
   }
   /** // doc: test__is_initialized_1() {{{
    * \brief Ensure that is_initialized() method works.
@@ -93,28 +93,28 @@ public:
    */ // }}}
   void test__id_1( )
   {
-    TS_ASSERT_EQUALS(platform((cl_platform_id)NULL).handle(), (cl_platform_id)NULL);
+    TS_ASSERT_EQUALS(platform((cl_platform_id)NULL).get(), (cl_platform_id)NULL);
   }
   /** // doc: test__id_2() {{{
    * \brief Ensure that id() method works.
    */ // }}}
   void test__id_2( )
   {
-    TS_ASSERT_EQUALS(platform((cl_platform_id)0x1234ul).handle(), (cl_platform_id)0x1234ul);
+    TS_ASSERT_EQUALS(platform((cl_platform_id)0x1234ul).get(), (cl_platform_id)0x1234ul);
   }
-  /** // doc: test__get_valid_handle_1() {{{
-   * \brief Ensure that get_valid_handle() method works.
+  /** // doc: test__chk_get_1() {{{
+   * \brief Ensure that chk_get() method works.
    */ // }}}
-  void test__get_valid_handle_1( )
+  void test__chk_get_1( )
   {
-    TS_ASSERT_THROWS(platform((cl_platform_id)NULL).get_valid_handle(), uninitialized_platform_error);
+    TS_ASSERT_THROWS(platform((cl_platform_id)NULL).chk_get(), uninitialized_platform_error);
   }
-  /** // doc: test__get_valid_handle_2() {{{
-   * \brief Ensure that get_valid_handle() method works.
+  /** // doc: test__chk_get_2() {{{
+   * \brief Ensure that chk_get() method works.
    */ // }}}
-  void test__get_valid_handle_2( )
+  void test__chk_get_2( )
   {
-    TS_ASSERT_EQUALS(platform((cl_platform_id)0x1234ul).get_valid_handle(), (cl_platform_id)0x1234ul);
+    TS_ASSERT_EQUALS(platform((cl_platform_id)0x1234ul).chk_get(), (cl_platform_id)0x1234ul);
   }
   /** // doc: test__get_info() {{{
    * \brief Test platform::get_info().

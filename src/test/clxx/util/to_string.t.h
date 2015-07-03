@@ -122,7 +122,7 @@ public:
     TS_ASSERT_EQUALS(std::to_string(context_properties_t::platform), "platform");
     TS_ASSERT_EQUALS(std::to_string(static_cast<context_properties_t>(0x1234)), enum2hex(static_cast<context_properties_t>(0x1234)));
   }
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
   /** // doc: test_device_partition_property_t() {{{
    * \todo Write documentation
    */ // }}}
@@ -132,7 +132,7 @@ public:
     TS_ASSERT_EQUALS(std::to_string(static_cast<device_partition_property_t>(0x1234)), enum2hex(static_cast<device_partition_property_t>(0x1234)));
   }
 #endif
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
   /** // doc: test_device_affinity_domain_t() {{{
    * \todo Write documentation
    */ // }}}
@@ -162,7 +162,7 @@ public:
     TS_ASSERT_EQUALS(std::to_string(mem_flags_t::read_write | mem_flags_t::use_host_ptr), "read_write | use_host_ptr");
     TS_ASSERT_EQUALS(std::to_string(static_cast<mem_flags_t>(0x1800)), enum2hex(static_cast<mem_flags_t>(0x0800)) + " | " + enum2hex(static_cast<mem_flags_t>(0x1000)));
   }
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
   /** // doc: test_mem_migration_flags_t() {{{
    * \todo Write documentation
    */ // }}}
@@ -264,7 +264,7 @@ public:
     TS_ASSERT_EQUALS(std::to_string(program_build_info_t::options), "options");
     TS_ASSERT_EQUALS(std::to_string(static_cast<program_build_info_t>(0x1234)), enum2hex(static_cast<program_build_info_t>(0x1234)));
   }
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
   /** // doc: test_program_binary_type_t() {{{
    * \todo Write documentation
    */ // }}}
@@ -292,7 +292,7 @@ public:
     TS_ASSERT_EQUALS(std::to_string(kernel_info_t::num_args), "num_args");
     TS_ASSERT_EQUALS(std::to_string(static_cast<kernel_info_t>(0x1234)), enum2hex(static_cast<kernel_info_t>(0x1234)));
   }
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
   /** // doc: test_kernel_arg_info_t() {{{
    * \todo Write documentation
    */ // }}}
@@ -302,7 +302,7 @@ public:
     TS_ASSERT_EQUALS(std::to_string(static_cast<kernel_arg_info_t>(0x1234)), enum2hex(static_cast<kernel_arg_info_t>(0x1234)));
   }
 #endif
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
   /** // doc: test_kernel_arg_address_qualifier_t() {{{
    * \todo Write documentation
    */ // }}}
@@ -312,7 +312,7 @@ public:
     TS_ASSERT_EQUALS(std::to_string(static_cast<kernel_arg_address_qualifier_t>(0x1234)), enum2hex(static_cast<kernel_arg_address_qualifier_t>(0x1234)));
   }
 #endif
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
   /** // doc: test_kernel_arg_access_qualifier_t() {{{
    * \todo Write documentation
    */ // }}}
@@ -322,7 +322,7 @@ public:
     TS_ASSERT_EQUALS(std::to_string(static_cast<kernel_arg_access_qualifier_t>(0x1234)), enum2hex(static_cast<kernel_arg_access_qualifier_t>(0x1234)));
   }
 #endif
-#if CL_VERSION_1_2
+#if CLXX_CL_H_VERSION_1_2
   /** // doc: test_kernel_arg_type_qualifier_t() {{{
    * \todo Write documentation
    */ // }}}
@@ -366,7 +366,7 @@ public:
     TS_ASSERT_EQUALS(std::to_string(command_exec_status_t::running), "running");
     TS_ASSERT_EQUALS(std::to_string(static_cast<command_exec_status_t>(0x1234)), enum2hex(static_cast<command_exec_status_t>(0x1234)));
   }
-#if CL_VERSION_1_1
+#if CLXX_CL_H_VERSION_1_1
   /** // doc: test_buffer_create_type_t() {{{
    * \todo Write documentation
    */ // }}}

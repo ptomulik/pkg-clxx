@@ -31,7 +31,7 @@ cl_uint
 get_num_sub_devices(device const& in_device, device_partition_properties const& properties)
 {
   cl_uint num_devices = 0;
-  _create_sub_devices(in_device.get_valid_handle(), properties, 0, nullptr, &num_devices);
+  _create_sub_devices(in_device.chk_get(), properties, 0, nullptr, &num_devices);
   return num_devices;
 }
 /* ------------------------------------------------------------------------ */
@@ -40,7 +40,7 @@ create_sub_devices(device const& in_device,device_partition_properties const& pr
 {
   std::vector<cl_device_id> ids(get_num_sub_devices(in_device, properties));
   if(ids.size() > 0)
-    _create_sub_devices(in_device.get_valid_handle(), properties, ids.size(), &ids[0], NULL);
+    _create_sub_devices(in_device.chk_get(), properties, ids.size(), &ids[0], NULL);
   return make_devices(ids);
 }
 /* ------------------------------------------------------------------------ */

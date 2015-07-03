@@ -32,7 +32,7 @@ public:
     T::Dummy_clReleaseEvent mock2(CL_SUCCESS);
     event e;
     TS_ASSERT(!e.is_initialized());
-    TS_ASSERT_EQUALS(e.handle(), (cl_event)NULL);
+    TS_ASSERT_EQUALS(e.get(), (cl_event)NULL);
     TS_ASSERT(mock1.never_called());
     TS_ASSERT(mock2.never_called());
   }
@@ -45,7 +45,7 @@ public:
     T::Dummy_clReleaseEvent mock2(CL_SUCCESS);
     event e((cl_event)0x1234);
     TS_ASSERT(e.is_initialized());
-    TS_ASSERT_EQUALS(e.handle(), (cl_event)0x1234);
+    TS_ASSERT_EQUALS(e.get(), (cl_event)0x1234);
     TS_ASSERT(mock1.called_once_with((cl_event)0x1234));
     TS_ASSERT(mock2.never_called());
   }
@@ -78,7 +78,7 @@ public:
     event e(c);
 
     TS_ASSERT(e.is_initialized());
-    TS_ASSERT_EQUALS(e.handle(), (cl_event)0x1234);
+    TS_ASSERT_EQUALS(e.get(), (cl_event)0x1234);
     TS_ASSERT(mock2.never_called());
     TS_ASSERT(mock3.never_called());
   }
@@ -128,19 +128,19 @@ public:
     T::Dummy_clRetainEvent mock1(CL_SUCCESS);
     T::Dummy_clReleaseEvent mock2(CL_SUCCESS);
 
-    TS_ASSERT_EQUALS(event((cl_event)0x1234).handle(), (cl_event)0x1234);
-    TS_ASSERT_EQUALS(event((cl_event)NULL).handle(), (cl_event)NULL);
+    TS_ASSERT_EQUALS(event((cl_event)0x1234).get(), (cl_event)0x1234);
+    TS_ASSERT_EQUALS(event((cl_event)NULL).get(), (cl_event)NULL);
   }
-  /** // doc: test__get_valid_handle() {{{
+  /** // doc: test__chk_get() {{{
    * \todo Write documentation
    */ // }}}
-  void test__get_valid_handle( )
+  void test__chk_get( )
   {
     T::Dummy_clRetainEvent mock1(CL_SUCCESS);
     T::Dummy_clReleaseEvent mock2(CL_SUCCESS);
 
-    TS_ASSERT_EQUALS(event((cl_event)0x1234).get_valid_handle(), (cl_event)0x1234);
-    TS_ASSERT_THROWS(event((cl_event)NULL).get_valid_handle(), uninitialized_event_error);
+    TS_ASSERT_EQUALS(event((cl_event)0x1234).chk_get(), (cl_event)0x1234);
+    TS_ASSERT_THROWS(event((cl_event)NULL).chk_get(), uninitialized_event_error);
   }
   /** // doc: test__op_assign() {{{
    * \todo Write documentation
@@ -152,7 +152,7 @@ public:
     event p1((cl_event)0x1234);
     event p2((cl_event)0x5678);
     p1 = p2;
-    TS_ASSERT_EQUALS(p1.handle(), (cl_event)0x5678);
+    TS_ASSERT_EQUALS(p1.get(), (cl_event)0x5678);
   }
   /** // doc: test__op_eq() {{{
    * \todo Write documentation
@@ -336,7 +336,7 @@ public:
 
     T::Dummy_clRetainContext mock4(CL_SUCCESS);
     T::Dummy_clReleaseContext mock5(CL_SUCCESS);
-    TS_ASSERT_EQUALS(e.get_context().handle(), var);
+    TS_ASSERT_EQUALS(e.get_context().get(), var);
 
     TS_ASSERT(mock3.called_once());
     TS_ASSERT_EQUALS(std::get<1>(mock3.calls().back()), (cl_uint)CL_EVENT_CONTEXT);
@@ -358,7 +358,7 @@ public:
 
     T::Dummy_clRetainCommandQueue mock4(CL_SUCCESS);
     T::Dummy_clReleaseCommandQueue mock5(CL_SUCCESS);
-    TS_ASSERT_EQUALS(e.get_command_queue().handle(), var);
+    TS_ASSERT_EQUALS(e.get_command_queue().get(), var);
 
     TS_ASSERT(mock3.called_once());
     TS_ASSERT_EQUALS(std::get<1>(mock3.calls().back()), (cl_uint)CL_EVENT_COMMAND_QUEUE);

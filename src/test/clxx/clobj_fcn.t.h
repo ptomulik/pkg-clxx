@@ -24,332 +24,332 @@ class clxx::clobj_fcn_test_suite : public CxxTest::TestSuite
 {
 public:
   //
-  // retain_clobj()
+  // retain_cl_object()
   //
-  /** // doc: test__retain_clobj__cl_command_queue() {{{
+  /** // doc: test__retain_cl_object__cl_command_queue() {{{
    * \todo Write documentation
    */ // }}}
-  void test__retain_clobj__cl_command_queue( )
+  void test__retain_cl_object__cl_command_queue( )
   {
     {
       T::Dummy_clRetainCommandQueue mock(CL_SUCCESS);
-      TS_ASSERT_THROWS_NOTHING(retain_clobj((cl_command_queue)0x1234));
+      TS_ASSERT_THROWS_NOTHING(retain_cl_object((cl_command_queue)0x1234));
       TS_ASSERT(mock.called_once_with((cl_command_queue)0x1234));
     }
     {
       T::Dummy_clRetainCommandQueue mock(CL_INVALID_COMMAND_QUEUE);
-      TS_ASSERT_THROWS(retain_clobj((cl_command_queue)0), clerror_no<status_t::invalid_command_queue>);
+      TS_ASSERT_THROWS(retain_cl_object((cl_command_queue)0), clerror_no<status_t::invalid_command_queue>);
     }
     {
       T::Dummy_clRetainCommandQueue mock((cl_int)-0x1234567);
-      TS_ASSERT_THROWS(retain_clobj((cl_command_queue)0), unexpected_clerror);
+      TS_ASSERT_THROWS(retain_cl_object((cl_command_queue)0), unexpected_clerror);
     }
   }
-  /** // doc: test__retain_clobj__cl_context() {{{
+  /** // doc: test__retain_cl_object__cl_context() {{{
    * \todo Write documentation
    */ // }}}
-  void test__retain_clobj__cl_context( )
+  void test__retain_cl_object__cl_context( )
   {
     {
       T::Dummy_clRetainContext mock(CL_SUCCESS);
-      TS_ASSERT_THROWS_NOTHING(retain_clobj((cl_context)0x1234));
+      TS_ASSERT_THROWS_NOTHING(retain_cl_object((cl_context)0x1234));
       TS_ASSERT(mock.called_once_with((cl_context)0x1234));
     }
     {
       T::Dummy_clRetainContext mock(CL_INVALID_CONTEXT);
-      TS_ASSERT_THROWS(retain_clobj((cl_context)0), clerror_no<status_t::invalid_context>);
+      TS_ASSERT_THROWS(retain_cl_object((cl_context)0), clerror_no<status_t::invalid_context>);
     }
     {
       T::Dummy_clRetainContext mock((cl_int)-0x1234567);
-      TS_ASSERT_THROWS(retain_clobj((cl_context)0), unexpected_clerror);
+      TS_ASSERT_THROWS(retain_cl_object((cl_context)0), unexpected_clerror);
     }
   }
-  /** // doc: test__retain_clobj__cl_device_id() {{{
+  /** // doc: test__retain_cl_object__cl_device_id() {{{
    * \todo Write documentation
    */ // }}}
-  void test__retain_clobj__cl_device_id( )
+  void test__retain_cl_object__cl_device_id( )
   {
     {
       T::Dummy_clRetainDevice mock(CL_SUCCESS);
-      TS_ASSERT_THROWS_NOTHING(retain_clobj((cl_device_id)0x1234));
+      TS_ASSERT_THROWS_NOTHING(retain_cl_object((cl_device_id)0x1234));
       TS_ASSERT(mock.called_once_with((cl_device_id)0x1234));
     }
     {
       T::Dummy_clRetainDevice mock(CL_INVALID_DEVICE);
-      TS_ASSERT_THROWS(retain_clobj((cl_device_id)0), clerror_no<status_t::invalid_device>);
+      TS_ASSERT_THROWS(retain_cl_object((cl_device_id)0), clerror_no<status_t::invalid_device>);
     }
     {
       T::Dummy_clRetainDevice mock((cl_int)-0x1234567);
-      TS_ASSERT_THROWS(retain_clobj((cl_device_id)0), unexpected_clerror);
+      TS_ASSERT_THROWS(retain_cl_object((cl_device_id)0), unexpected_clerror);
     }
   }
-  /** // doc: test__retain_clobj__cl_event() {{{
+  /** // doc: test__retain_cl_object__cl_event() {{{
    * \todo Write documentation
    */ // }}}
-  void test__retain_clobj__cl_event( )
+  void test__retain_cl_object__cl_event( )
   {
     {
       T::Dummy_clRetainEvent mock(CL_SUCCESS);
-      TS_ASSERT_THROWS_NOTHING(retain_clobj((cl_event)0x1234));
+      TS_ASSERT_THROWS_NOTHING(retain_cl_object((cl_event)0x1234));
       TS_ASSERT(mock.called_once_with((cl_event)0x1234));
     }
     {
       T::Dummy_clRetainEvent mock(CL_INVALID_EVENT);
-      TS_ASSERT_THROWS(retain_clobj((cl_event)0), clerror_no<status_t::invalid_event>);
+      TS_ASSERT_THROWS(retain_cl_object((cl_event)0), clerror_no<status_t::invalid_event>);
     }
     {
       T::Dummy_clRetainEvent mock((cl_int)-0x1234567);
-      TS_ASSERT_THROWS(retain_clobj((cl_event)0), unexpected_clerror);
+      TS_ASSERT_THROWS(retain_cl_object((cl_event)0), unexpected_clerror);
     }
   }
-  /** // doc: test__retain_clobj__cl_kernel() {{{
+  /** // doc: test__retain_cl_object__cl_kernel() {{{
    * \todo Write documentation
    */ // }}}
-  void test__retain_clobj__cl_kernel( )
+  void test__retain_cl_object__cl_kernel( )
   {
     {
       T::Dummy_clRetainKernel mock(CL_SUCCESS);
-      TS_ASSERT_THROWS_NOTHING(retain_clobj((cl_kernel)0x1234));
+      TS_ASSERT_THROWS_NOTHING(retain_cl_object((cl_kernel)0x1234));
       TS_ASSERT(mock.called_once_with((cl_kernel)0x1234));
     }
     {
       T::Dummy_clRetainKernel mock(CL_INVALID_KERNEL);
-      TS_ASSERT_THROWS(retain_clobj((cl_kernel)0), clerror_no<status_t::invalid_kernel>);
+      TS_ASSERT_THROWS(retain_cl_object((cl_kernel)0), clerror_no<status_t::invalid_kernel>);
     }
     {
       T::Dummy_clRetainKernel mock((cl_int)-0x1234567);
-      TS_ASSERT_THROWS(retain_clobj((cl_kernel)0), unexpected_clerror);
+      TS_ASSERT_THROWS(retain_cl_object((cl_kernel)0), unexpected_clerror);
     }
   }
-  /** // doc: test__retain_clobj__cl_mem() {{{
+  /** // doc: test__retain_cl_object__cl_mem() {{{
    * \todo Write documentation
    */ // }}}
-  void test__retain_clobj__cl_mem( )
+  void test__retain_cl_object__cl_mem( )
   {
     {
       T::Dummy_clRetainMemObject mock(CL_SUCCESS);
-      TS_ASSERT_THROWS_NOTHING(retain_clobj((cl_mem)0x1234));
+      TS_ASSERT_THROWS_NOTHING(retain_cl_object((cl_mem)0x1234));
       TS_ASSERT(mock.called_once_with((cl_mem)0x1234));
     }
     {
       T::Dummy_clRetainMemObject mock(CL_INVALID_MEM_OBJECT);
-      TS_ASSERT_THROWS(retain_clobj((cl_mem)0), clerror_no<status_t::invalid_mem_object>);
+      TS_ASSERT_THROWS(retain_cl_object((cl_mem)0), clerror_no<status_t::invalid_mem_object>);
     }
     {
       T::Dummy_clRetainMemObject mock((cl_int)-0x1234567);
-      TS_ASSERT_THROWS(retain_clobj((cl_mem)0), unexpected_clerror);
+      TS_ASSERT_THROWS(retain_cl_object((cl_mem)0), unexpected_clerror);
     }
   }
-  /** // doc: test__retain_clobj__cl_program() {{{
+  /** // doc: test__retain_cl_object__cl_program() {{{
    * \todo Write documentation
    */ // }}}
-  void test__retain_clobj__cl_program( )
+  void test__retain_cl_object__cl_program( )
   {
     {
       T::Dummy_clRetainProgram mock(CL_SUCCESS);
-      TS_ASSERT_THROWS_NOTHING(retain_clobj((cl_program)0x1234));
+      TS_ASSERT_THROWS_NOTHING(retain_cl_object((cl_program)0x1234));
       TS_ASSERT(mock.called_once_with((cl_program)0x1234));
     }
     {
       T::Dummy_clRetainProgram mock(CL_INVALID_PROGRAM);
-      TS_ASSERT_THROWS(retain_clobj((cl_program)0), clerror_no<status_t::invalid_program>);
+      TS_ASSERT_THROWS(retain_cl_object((cl_program)0), clerror_no<status_t::invalid_program>);
     }
     {
       T::Dummy_clRetainProgram mock((cl_int)-0x1234567);
-      TS_ASSERT_THROWS(retain_clobj((cl_program)0), unexpected_clerror);
+      TS_ASSERT_THROWS(retain_cl_object((cl_program)0), unexpected_clerror);
     }
   }
-  /** // doc: test__retain_clobj__cl_sampler() {{{
+  /** // doc: test__retain_cl_object__cl_sampler() {{{
    * \todo Write documentation
    */ // }}}
-  void test__retain_clobj__cl_sampler( )
+  void test__retain_cl_object__cl_sampler( )
   {
 #if 0
     {
       T::Dummy_clRetainSampler mock(CL_SUCCESS);
-      TS_ASSERT_THROWS_NOTHING(retain_clobj((cl_sampler)0x1234));
+      TS_ASSERT_THROWS_NOTHING(retain_cl_object((cl_sampler)0x1234));
       TS_ASSERT(mock.called_once_with((cl_sampler)0x1234));
     }
     {
       T::Dummy_clRetainSampler mock(CL_INVALID_SAMPLER);
-      TS_ASSERT_THROWS(retain_clobj((cl_sampler)0), clerror_no<status_t::invalid_sampler>);
+      TS_ASSERT_THROWS(retain_cl_object((cl_sampler)0), clerror_no<status_t::invalid_sampler>);
     }
     {
       T::Dummy_clRetainSampler mock((cl_int)-0x1234567);
-      TS_ASSERT_THROWS(retain_clobj((cl_sampler)0), unexpected_clerror);
+      TS_ASSERT_THROWS(retain_cl_object((cl_sampler)0), unexpected_clerror);
     }
 #endif
   }
 
   //
-  // release_clobj()
+  // release_cl_object()
   //
-  /** // doc: test__release_clobj__cl_command_queue() {{{
+  /** // doc: test__release_cl_object__cl_command_queue() {{{
    * \todo Write documentation
    */ // }}}
-  void test__release_clobj__cl_command_queue( )
+  void test__release_cl_object__cl_command_queue( )
   {
     {
       T::Dummy_clReleaseCommandQueue mock(CL_SUCCESS);
-      TS_ASSERT_THROWS_NOTHING(release_clobj((cl_command_queue)0x1234));
+      TS_ASSERT_THROWS_NOTHING(release_cl_object((cl_command_queue)0x1234));
       TS_ASSERT(mock.called_once_with((cl_command_queue)0x1234));
     }
     {
       T::Dummy_clReleaseCommandQueue mock(CL_INVALID_COMMAND_QUEUE);
-      TS_ASSERT_THROWS(release_clobj((cl_command_queue)0), clerror_no<status_t::invalid_command_queue>);
+      TS_ASSERT_THROWS(release_cl_object((cl_command_queue)0), clerror_no<status_t::invalid_command_queue>);
     }
     {
       T::Dummy_clReleaseCommandQueue mock((cl_int)-0x1234567);
-      TS_ASSERT_THROWS(release_clobj((cl_command_queue)0), unexpected_clerror);
+      TS_ASSERT_THROWS(release_cl_object((cl_command_queue)0), unexpected_clerror);
     }
   }
-  /** // doc: test__release_clobj__cl_context() {{{
+  /** // doc: test__release_cl_object__cl_context() {{{
    * \todo Write documentation
    */ // }}}
-  void test__release_clobj__cl_context( )
+  void test__release_cl_object__cl_context( )
   {
     {
       T::Dummy_clReleaseContext mock(CL_SUCCESS);
-      TS_ASSERT_THROWS_NOTHING(release_clobj((cl_context)0x1234));
+      TS_ASSERT_THROWS_NOTHING(release_cl_object((cl_context)0x1234));
       TS_ASSERT(mock.called_once_with((cl_context)0x1234));
     }
     {
       T::Dummy_clReleaseContext mock(CL_INVALID_CONTEXT);
-      TS_ASSERT_THROWS(release_clobj((cl_context)0), clerror_no<status_t::invalid_context>);
+      TS_ASSERT_THROWS(release_cl_object((cl_context)0), clerror_no<status_t::invalid_context>);
     }
     {
       T::Dummy_clReleaseContext mock((cl_int)-0x1234567);
-      TS_ASSERT_THROWS(release_clobj((cl_context)0), unexpected_clerror);
+      TS_ASSERT_THROWS(release_cl_object((cl_context)0), unexpected_clerror);
     }
   }
-  /** // doc: test__release_clobj__cl_device_id() {{{
+  /** // doc: test__release_cl_object__cl_device_id() {{{
    * \todo Write documentation
    */ // }}}
-  void test__release_clobj__cl_device_id( )
+  void test__release_cl_object__cl_device_id( )
   {
     {
       T::Dummy_clReleaseDevice mock(CL_SUCCESS);
-      TS_ASSERT_THROWS_NOTHING(release_clobj((cl_device_id)0x1234));
+      TS_ASSERT_THROWS_NOTHING(release_cl_object((cl_device_id)0x1234));
       TS_ASSERT(mock.called_once_with((cl_device_id)0x1234));
     }
     {
       T::Dummy_clReleaseDevice mock(CL_INVALID_DEVICE);
-      TS_ASSERT_THROWS(release_clobj((cl_device_id)0), clerror_no<status_t::invalid_device>);
+      TS_ASSERT_THROWS(release_cl_object((cl_device_id)0), clerror_no<status_t::invalid_device>);
     }
     {
       T::Dummy_clReleaseDevice mock((cl_int)-0x1234567);
-      TS_ASSERT_THROWS(release_clobj((cl_device_id)0), unexpected_clerror);
+      TS_ASSERT_THROWS(release_cl_object((cl_device_id)0), unexpected_clerror);
     }
   }
-  /** // doc: test__release_clobj__cl_event() {{{
+  /** // doc: test__release_cl_object__cl_event() {{{
    * \todo Write documentation
    */ // }}}
-  void test__release_clobj__cl_event( )
+  void test__release_cl_object__cl_event( )
   {
     {
       T::Dummy_clReleaseEvent mock(CL_SUCCESS);
-      TS_ASSERT_THROWS_NOTHING(release_clobj((cl_event)0x1234));
+      TS_ASSERT_THROWS_NOTHING(release_cl_object((cl_event)0x1234));
       TS_ASSERT(mock.called_once_with((cl_event)0x1234));
     }
     {
       T::Dummy_clReleaseEvent mock(CL_INVALID_EVENT);
-      TS_ASSERT_THROWS(release_clobj((cl_event)0), clerror_no<status_t::invalid_event>);
+      TS_ASSERT_THROWS(release_cl_object((cl_event)0), clerror_no<status_t::invalid_event>);
     }
     {
       T::Dummy_clReleaseEvent mock((cl_int)-0x1234567);
-      TS_ASSERT_THROWS(release_clobj((cl_event)0), unexpected_clerror);
+      TS_ASSERT_THROWS(release_cl_object((cl_event)0), unexpected_clerror);
     }
   }
-  /** // doc: test__release_clobj__cl_kernel() {{{
+  /** // doc: test__release_cl_object__cl_kernel() {{{
    * \todo Write documentation
    */ // }}}
-  void test__release_clobj__cl_kernel( )
+  void test__release_cl_object__cl_kernel( )
   {
     {
       T::Dummy_clReleaseKernel mock(CL_SUCCESS);
-      TS_ASSERT_THROWS_NOTHING(release_clobj((cl_kernel)0x1234));
+      TS_ASSERT_THROWS_NOTHING(release_cl_object((cl_kernel)0x1234));
       TS_ASSERT(mock.called_once_with((cl_kernel)0x1234));
     }
     {
       T::Dummy_clReleaseKernel mock(CL_INVALID_KERNEL);
-      TS_ASSERT_THROWS(release_clobj((cl_kernel)0), clerror_no<status_t::invalid_kernel>);
+      TS_ASSERT_THROWS(release_cl_object((cl_kernel)0), clerror_no<status_t::invalid_kernel>);
     }
     {
       T::Dummy_clReleaseKernel mock((cl_int)-0x1234567);
-      TS_ASSERT_THROWS(release_clobj((cl_kernel)0), unexpected_clerror);
+      TS_ASSERT_THROWS(release_cl_object((cl_kernel)0), unexpected_clerror);
     }
   }
-  /** // doc: test__release_clobj__cl_mem() {{{
+  /** // doc: test__release_cl_object__cl_mem() {{{
    * \todo Write documentation
    */ // }}}
-  void test__release_clobj__cl_mem( )
+  void test__release_cl_object__cl_mem( )
   {
     {
       T::Dummy_clReleaseMemObject mock(CL_SUCCESS);
-      TS_ASSERT_THROWS_NOTHING(release_clobj((cl_mem)0x1234));
+      TS_ASSERT_THROWS_NOTHING(release_cl_object((cl_mem)0x1234));
       TS_ASSERT(mock.called_once_with((cl_mem)0x1234));
     }
     {
       T::Dummy_clReleaseMemObject mock(CL_INVALID_MEM_OBJECT);
-      TS_ASSERT_THROWS(release_clobj((cl_mem)0), clerror_no<status_t::invalid_mem_object>);
+      TS_ASSERT_THROWS(release_cl_object((cl_mem)0), clerror_no<status_t::invalid_mem_object>);
     }
     {
       T::Dummy_clReleaseMemObject mock((cl_int)-0x1234567);
-      TS_ASSERT_THROWS(release_clobj((cl_mem)0), unexpected_clerror);
+      TS_ASSERT_THROWS(release_cl_object((cl_mem)0), unexpected_clerror);
     }
   }
-  /** // doc: test__release_clobj__cl_program() {{{
+  /** // doc: test__release_cl_object__cl_program() {{{
    * \todo Write documentation
    */ // }}}
-  void test__release_clobj__cl_program( )
+  void test__release_cl_object__cl_program( )
   {
     {
       T::Dummy_clReleaseProgram mock(CL_SUCCESS);
-      TS_ASSERT_THROWS_NOTHING(release_clobj((cl_program)0x1234));
+      TS_ASSERT_THROWS_NOTHING(release_cl_object((cl_program)0x1234));
       TS_ASSERT(mock.called_once_with((cl_program)0x1234));
     }
     {
       T::Dummy_clReleaseProgram mock(CL_INVALID_PROGRAM);
-      TS_ASSERT_THROWS(release_clobj((cl_program)0), clerror_no<status_t::invalid_program>);
+      TS_ASSERT_THROWS(release_cl_object((cl_program)0), clerror_no<status_t::invalid_program>);
     }
     {
       T::Dummy_clReleaseProgram mock((cl_int)-0x1234567);
-      TS_ASSERT_THROWS(release_clobj((cl_program)0), unexpected_clerror);
+      TS_ASSERT_THROWS(release_cl_object((cl_program)0), unexpected_clerror);
     }
   }
-  /** // doc: test__release_clobj__cl_sampler() {{{
+  /** // doc: test__release_cl_object__cl_sampler() {{{
    * \todo Write documentation
    */ // }}}
-  void test__release_clobj__cl_sampler( )
+  void test__release_cl_object__cl_sampler( )
   {
 #if 0
     {
       T::Dummy_clReleaseSampler mock(CL_SUCCESS);
-      TS_ASSERT_THROWS_NOTHING(release_clobj((cl_sampler)0x1234));
+      TS_ASSERT_THROWS_NOTHING(release_cl_object((cl_sampler)0x1234));
       TS_ASSERT(mock.called_once_with((cl_sampler)0x1234));
     }
     {
       T::Dummy_clReleaseSampler mock(CL_INVALID_SAMPLER);
-      TS_ASSERT_THROWS(release_clobj((cl_sampler)0), clerror_no<status_t::invalid_sampler>);
+      TS_ASSERT_THROWS(release_cl_object((cl_sampler)0), clerror_no<status_t::invalid_sampler>);
     }
     {
       T::Dummy_clReleaseSampler mock((cl_int)-0x1234567);
-      TS_ASSERT_THROWS(release_clobj((cl_sampler)0), unexpected_clerror);
+      TS_ASSERT_THROWS(release_cl_object((cl_sampler)0), unexpected_clerror);
     }
 #endif
   }
 
   //
-  // get_clobj_info()
+  // get_cl_object_info()
   //
-  /** // doc: test__get_clobj_info__cl_command_queue() {{{
+  /** // doc: test__get_cl_object_info__cl_command_queue() {{{
    * \todo Write documentation
    */ // }}}
-  void test__get_clobj_info__cl_command_queue( )
+  void test__get_cl_object_info__cl_command_queue( )
   {
     {
       T::Dummy_clGetCommandQueueInfo mock(CL_SUCCESS);
-      TS_ASSERT_THROWS_NOTHING(get_clobj_info(
+      TS_ASSERT_THROWS_NOTHING(get_cl_object_info(
             (cl_command_queue)0x1234,
             command_queue_info_t::reference_count,
             123,
@@ -367,7 +367,7 @@ public:
     {
       T::Dummy_clGetCommandQueueInfo mock(CL_INVALID_COMMAND_QUEUE);
       TS_ASSERT_THROWS(
-          get_clobj_info(
+          get_cl_object_info(
             (cl_command_queue)0,
             command_queue_info_t::reference_count,
             0,
@@ -380,7 +380,7 @@ public:
     {
       T::Dummy_clGetCommandQueueInfo mock(-0x1234567);
       TS_ASSERT_THROWS(
-          get_clobj_info(
+          get_cl_object_info(
             (cl_command_queue)0,
             command_queue_info_t::reference_count,
             0,
@@ -391,14 +391,14 @@ public:
       );
     }
   }
-  /** // doc: test__get_clobj_info__cl_context() {{{
+  /** // doc: test__get_cl_object_info__cl_context() {{{
    * \todo Write documentation
    */ // }}}
-  void test__get_clobj_info__cl_context( )
+  void test__get_cl_object_info__cl_context( )
   {
     {
       T::Dummy_clGetContextInfo mock(CL_SUCCESS);
-      TS_ASSERT_THROWS_NOTHING(get_clobj_info(
+      TS_ASSERT_THROWS_NOTHING(get_cl_object_info(
             (cl_context)0x1234,
             context_info_t::reference_count,
             123,
@@ -416,7 +416,7 @@ public:
     {
       T::Dummy_clGetContextInfo mock(CL_INVALID_CONTEXT);
       TS_ASSERT_THROWS(
-          get_clobj_info(
+          get_cl_object_info(
             (cl_context)0,
             context_info_t::reference_count,
             0,
@@ -429,7 +429,7 @@ public:
     {
       T::Dummy_clGetContextInfo mock(-0x1234567);
       TS_ASSERT_THROWS(
-          get_clobj_info(
+          get_cl_object_info(
             (cl_context)0,
             context_info_t::reference_count,
             0,
@@ -440,14 +440,14 @@ public:
       );
     }
   }
-  /** // doc: test__get_clobj_info__cl_device() {{{
+  /** // doc: test__get_cl_object_info__cl_device() {{{
    * \todo Write documentation
    */ // }}}
-  void test__get_clobj_info__cl_device( )
+  void test__get_cl_object_info__cl_device( )
   {
     {
       T::Dummy_clGetDeviceInfo mock(CL_SUCCESS);
-      TS_ASSERT_THROWS_NOTHING(get_clobj_info(
+      TS_ASSERT_THROWS_NOTHING(get_cl_object_info(
             (cl_device_id)0x1234,
             device_info_t::platform,
             123,
@@ -465,7 +465,7 @@ public:
     {
       T::Dummy_clGetDeviceInfo mock(CL_INVALID_DEVICE);
       TS_ASSERT_THROWS(
-          get_clobj_info(
+          get_cl_object_info(
             (cl_device_id)0,
             device_info_t::platform,
             0,
@@ -478,7 +478,7 @@ public:
     {
       T::Dummy_clGetDeviceInfo mock(-0x1234567);
       TS_ASSERT_THROWS(
-          get_clobj_info(
+          get_cl_object_info(
             (cl_device_id)0,
             device_info_t::platform,
             0,
@@ -489,14 +489,14 @@ public:
       );
     }
   }
-  /** // doc: test__get_clobj_info__cl_event() {{{
+  /** // doc: test__get_cl_object_info__cl_event() {{{
    * \todo Write documentation
    */ // }}}
-  void test__get_clobj_info__cl_event( )
+  void test__get_cl_object_info__cl_event( )
   {
     {
       T::Dummy_clGetEventInfo mock(CL_SUCCESS);
-      TS_ASSERT_THROWS_NOTHING(get_clobj_info(
+      TS_ASSERT_THROWS_NOTHING(get_cl_object_info(
             (cl_event)0x1234,
             event_info_t::reference_count,
             123,
@@ -514,7 +514,7 @@ public:
     {
       T::Dummy_clGetEventInfo mock(CL_INVALID_EVENT);
       TS_ASSERT_THROWS(
-          get_clobj_info(
+          get_cl_object_info(
             (cl_event)0,
             event_info_t::reference_count,
             0,
@@ -527,7 +527,7 @@ public:
     {
       T::Dummy_clGetEventInfo mock(-0x1234567);
       TS_ASSERT_THROWS(
-          get_clobj_info(
+          get_cl_object_info(
             (cl_event)0,
             event_info_t::reference_count,
             0,
@@ -538,14 +538,14 @@ public:
       );
     }
   }
-  /** // doc: test__get_clobj_info__cl_kernel() {{{
+  /** // doc: test__get_cl_object_info__cl_kernel() {{{
    * \todo Write documentation
    */ // }}}
-  void test__get_clobj_info__cl_kernel( )
+  void test__get_cl_object_info__cl_kernel( )
   {
     {
       T::Dummy_clGetKernelInfo mock(CL_SUCCESS);
-      TS_ASSERT_THROWS_NOTHING(get_clobj_info(
+      TS_ASSERT_THROWS_NOTHING(get_cl_object_info(
             (cl_kernel)0x1234,
             kernel_info_t::reference_count,
             123,
@@ -563,7 +563,7 @@ public:
     {
       T::Dummy_clGetKernelInfo mock(CL_INVALID_KERNEL);
       TS_ASSERT_THROWS(
-          get_clobj_info(
+          get_cl_object_info(
             (cl_kernel)0,
             kernel_info_t::reference_count,
             0,
@@ -576,7 +576,7 @@ public:
     {
       T::Dummy_clGetKernelInfo mock(-0x1234567);
       TS_ASSERT_THROWS(
-          get_clobj_info(
+          get_cl_object_info(
             (cl_kernel)0,
             kernel_info_t::reference_count,
             0,
@@ -587,14 +587,14 @@ public:
       );
     }
   }
-  /** // doc: test__get_clobj_info__cl_mem() {{{
+  /** // doc: test__get_cl_object_info__cl_mem() {{{
    * \todo Write documentation
    */ // }}}
-  void test__get_clobj_info__cl_mem( )
+  void test__get_cl_object_info__cl_mem( )
   {
     {
       T::Dummy_clGetMemObjectInfo mock(CL_SUCCESS);
-      TS_ASSERT_THROWS_NOTHING(get_clobj_info(
+      TS_ASSERT_THROWS_NOTHING(get_cl_object_info(
             (cl_mem)0x1234,
             mem_info_t::reference_count,
             123,
@@ -612,7 +612,7 @@ public:
     {
       T::Dummy_clGetMemObjectInfo mock(CL_INVALID_MEM_OBJECT);
       TS_ASSERT_THROWS(
-          get_clobj_info(
+          get_cl_object_info(
             (cl_mem)0,
             mem_info_t::reference_count,
             0,
@@ -625,7 +625,7 @@ public:
     {
       T::Dummy_clGetMemObjectInfo mock(-0x1234567);
       TS_ASSERT_THROWS(
-          get_clobj_info(
+          get_cl_object_info(
             (cl_mem)0,
             mem_info_t::reference_count,
             0,
@@ -636,14 +636,14 @@ public:
       );
     }
   }
-  /** // doc: test__get_clobj_info__cl_platform_id() {{{
+  /** // doc: test__get_cl_object_info__cl_platform_id() {{{
    * \todo Write documentation
    */ // }}}
-  void test__get_clobj_info__cl_platform_id( )
+  void test__get_cl_object_info__cl_platform_id( )
   {
     {
       T::Dummy_clGetPlatformInfo mock(CL_SUCCESS);
-      TS_ASSERT_THROWS_NOTHING(get_clobj_info(
+      TS_ASSERT_THROWS_NOTHING(get_cl_object_info(
             (cl_platform_id)0x1234,
             platform_info_t::name,
             123,
@@ -661,7 +661,7 @@ public:
     {
       T::Dummy_clGetPlatformInfo mock(CL_INVALID_PLATFORM);
       TS_ASSERT_THROWS(
-          get_clobj_info(
+          get_cl_object_info(
             (cl_platform_id)0,
             platform_info_t::name,
             0,
@@ -674,7 +674,7 @@ public:
     {
       T::Dummy_clGetPlatformInfo mock(-0x1234567);
       TS_ASSERT_THROWS(
-          get_clobj_info(
+          get_cl_object_info(
             (cl_platform_id)0,
             platform_info_t::name,
             0,
@@ -685,14 +685,14 @@ public:
       );
     }
   }
-  /** // doc: test__get_clobj_info__cl_program() {{{
+  /** // doc: test__get_cl_object_info__cl_program() {{{
    * \todo Write documentation
    */ // }}}
-  void test__get_clobj_info__cl_program( )
+  void test__get_cl_object_info__cl_program( )
   {
     {
       T::Dummy_clGetProgramInfo mock(CL_SUCCESS);
-      TS_ASSERT_THROWS_NOTHING(get_clobj_info(
+      TS_ASSERT_THROWS_NOTHING(get_cl_object_info(
             (cl_program)0x1234,
             program_info_t::reference_count,
             123,
@@ -710,7 +710,7 @@ public:
     {
       T::Dummy_clGetProgramInfo mock(CL_INVALID_PROGRAM);
       TS_ASSERT_THROWS(
-          get_clobj_info(
+          get_cl_object_info(
             (cl_program)0,
             program_info_t::reference_count,
             0,
@@ -723,7 +723,7 @@ public:
     {
       T::Dummy_clGetProgramInfo mock(-0x1234567);
       TS_ASSERT_THROWS(
-          get_clobj_info(
+          get_cl_object_info(
             (cl_program)0,
             program_info_t::reference_count,
             0,
@@ -734,15 +734,15 @@ public:
       );
     }
   }
-  /** // doc: test__get_clobj_info__cl_sampler() {{{
+  /** // doc: test__get_cl_object_info__cl_sampler() {{{
    * \todo Write documentation
    */ // }}}
-  void test__get_clobj_info__cl_sampler( )
+  void test__get_cl_object_info__cl_sampler( )
   {
 #if 0
     {
       T::Dummy_clGetSamplerInfo mock(CL_SUCCESS);
-      TS_ASSERT_THROWS_NOTHING(get_clobj_info(
+      TS_ASSERT_THROWS_NOTHING(get_cl_object_info(
             (cl_sampler)0x1234,
             sampler_info_t::reference_count,
             123,
@@ -760,7 +760,7 @@ public:
     {
       T::Dummy_clGetSamplerInfo mock(CL_INVALID_SAMPLER);
       TS_ASSERT_THROWS(
-          get_clobj_info(
+          get_cl_object_info(
             (cl_sampler)0,
             sampler_info_t::reference_count,
             0,
@@ -773,7 +773,7 @@ public:
     {
       T::Dummy_clGetSamplerInfo mock(-0x1234567);
       TS_ASSERT_THROWS(
-          get_clobj_info(
+          get_cl_object_info(
             (cl_sampler)0,
             sampler_info_t::reference_count,
             0,

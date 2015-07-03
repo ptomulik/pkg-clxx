@@ -98,6 +98,14 @@ protected:
    * overload of the \ref clxx::retain_cl_object() "retain_cl_object()" function.
    */ // }}}
   void _set_handle(handle_t handle, bool retain_new, bool release_old);
+  /** // doc: _retain() {{{
+   * \brief Increment reference count for the OpenCL object identified by \p handle
+   */ // }}}
+  static void _retain(handle_t handle);
+  /** // doc: _retain() {{{
+   * \brief Decrement reference count for the OpenCL object identified by \p handle
+   */ // }}}
+  static void _release(handle_t handle);
 public:
   /** // doc: clobj() {{{
    * \brief Default constructor

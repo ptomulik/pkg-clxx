@@ -53,7 +53,7 @@ _get_vec_info(clobj<Handle> const& obj, typename clobj<Handle>::info_t name)
 } // end namespace clxx
 
 namespace clxx {
-/* ----------------------------------------------------------------------- */
+/* ------------------------------------------------------------------------ */
 template< typename Handle >
 void clobj<Handle>::
 _set_handle(handle_t handle, bool retain_new, bool release_old)
@@ -62,14 +62,72 @@ _set_handle(handle_t handle, bool retain_new, bool release_old)
     {
       if(release_old && this->is_initialized())
         {
-          release_cl_object(this->_handle);
+          _release(this->_handle);
         }
       this->_handle = handle;
       if(retain_new)
         {
-          retain_cl_object(this->_handle);
+          _retain(this->_handle);
         }
     }
+}
+/* ----------------------------------------------------------------------- */
+template< typename Handle >
+void clobj<Handle>::
+_retain(handle_t handle)
+{
+  retain_cl_object(handle);
+}
+/* ----------------------------------------------------------------------- */
+template< typename Handle >
+void clobj<Handle>::
+_release(handle_t handle)
+{
+  release_cl_object(handle);
+}
+/* ----------------------------------------------------------------------- */
+template<>
+inline void clobj<cl_device_id>::
+_retain(cl_device_id)
+{
+  // NOTE: I've fought a while with a SEGFAULT originating from 1.1 NVIDIA
+  //       driver. I had a 2.0 OpenCL header and 1.1 NVIDIA OpenCL driver
+  //       (also 1.1 GPU) where the clRetainDevice was not implemented.
+  //       Finally decided to ignore the reference count management for
+  //       device class. This needs to be fixed at some point.
+  // 
+  // NOTE: I could eventually check if this device is a subdevice (with
+  //       get_device_info()) and maintain the reference count conditionally,
+  //       but this would introduce clGetDeviceInfo mock into the code of
+  //       _retain() so that writting unit-tests would become unbearable.
+}
+/* ----------------------------------------------------------------------- */
+template<>
+inline void clobj<cl_device_id>::
+_release(cl_device_id)
+{
+  // NOTE: I've fought a while with a SEGFAULT originating from 1.1 NVIDIA
+  //       driver. I had a 2.0 OpenCL header and 1.1 NVIDIA OpenCL driver
+  //       (also 1.1 GPU) where the clReleaseDevice was not implemented.
+  //       Finally decided to ignore the reference count management for
+  //       device class. This needs to be fixed at some point.
+  // 
+  // NOTE: I could eventually check if this device is a subdevice (with
+  //       get_device_info()) and maintain the reference count conditionally
+  //       but this would introduce clGetDeviceInfo mock into the code of
+  //       _release() so that writting unit-tests would become unbearable.
+}
+/* ----------------------------------------------------------------------- */
+template<>
+inline void clobj<cl_platform_id>::
+_retain(cl_platform_id)
+{
+}
+/* ----------------------------------------------------------------------- */
+template<>
+inline void clobj<cl_platform_id>::
+_release(cl_platform_id)
+{
 }
 /* ----------------------------------------------------------------------- */
 template< typename Handle >

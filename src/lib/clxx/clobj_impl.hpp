@@ -60,12 +60,12 @@ _set_handle(handle_t handle, bool retain_new, bool release_old)
 {
   if(handle != this->_handle) // Avoid unintended deletion by release_cl_object()
     {
-      if(release_old && this->is_initialized())
+      if(release_old && this->_handle)
         {
           _release(this->_handle);
         }
       this->_handle = handle;
-      if(retain_new)
+      if(retain_new && this->_handle)
         {
           _retain(this->_handle);
         }
@@ -206,7 +206,7 @@ void clobj<Handle>::
 assign(clobj const& rhs)
 {
   if(&rhs != this)
-    this->_set_handle(rhs.chk_get(), true, true);
+    this->_set_handle(rhs.get(), true, true);
 }
 /* ----------------------------------------------------------------------- */
 template< typename Handle >

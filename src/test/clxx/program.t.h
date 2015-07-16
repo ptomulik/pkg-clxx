@@ -242,6 +242,56 @@ public:
     TS_ASSERT_EQUALS(program((cl_program)0x1234).chk_get(), (cl_program)0x1234);
     TS_ASSERT_THROWS(program((cl_program)NULL).chk_get(), uninitialized_program_error);
   }
+  /** // doc: test__assign__1() {{{
+   * \todo Write documentation
+   */ // }}}
+  void test__assign__1( )
+  {
+    T::Dummy_clRetainProgram mock1(CL_SUCCESS);
+    T::Dummy_clReleaseProgram mock2(CL_SUCCESS);
+    program c1((cl_program)0x1234);
+    program c2((cl_program)0x5678);
+    TS_ASSERT(c1 != c2);
+    c2.assign(c1);
+    TS_ASSERT(mock1.called_three_times());
+    TS_ASSERT(mock1.last_called_with((cl_program)0x1234));
+    TS_ASSERT(mock2.called_once_with((cl_program)0x5678));
+    TS_ASSERT_EQUALS(c1,c2);
+  }
+  /** // doc: test__assign__2() {{{
+   * \todo Write documentation
+   */ // }}}
+  void test__assign__2( )
+  {
+    program c1;
+    program c2;
+    {
+      T::Dummy_clRetainProgram mock_clRetainProgram(CL_SUCCESS);
+      T::Dummy_clReleaseProgram mock_clReleaseProgram(CL_SUCCESS);
+      TS_ASSERT_THROWS_NOTHING(c2.assign(c1));
+      TS_ASSERT(mock_clRetainProgram.never_called());
+      TS_ASSERT(mock_clReleaseProgram.never_called());
+    }
+    TS_ASSERT_EQUALS(c1,c2);
+  }
+  /** // doc: test__assign__3() {{{
+   * \todo Write documentation
+   */ // }}}
+  void test__assign__3( )
+  {
+    T::Dummy_clRetainProgram mock_clRetainProgram(CL_SUCCESS);
+    T::Dummy_clReleaseProgram mock_clReleaseProgram(CL_SUCCESS);
+    program c1;
+    program c2((cl_program)0x1234);
+    {
+      T::Dummy_clRetainProgram mock_clRetainProgram2(CL_SUCCESS);
+      T::Dummy_clReleaseProgram mock_clReleaseProgram2(CL_SUCCESS);
+      TS_ASSERT_THROWS_NOTHING(c2.assign(c1));
+      TS_ASSERT(mock_clRetainProgram2.never_called());
+      TS_ASSERT(mock_clReleaseProgram2.called_once_with((cl_program)0x1234));
+    }
+    TS_ASSERT_EQUALS(c1,c2);
+  }
   /** // doc: test_op_assign() {{{
    * \todo Write documentation
    */ // }}}

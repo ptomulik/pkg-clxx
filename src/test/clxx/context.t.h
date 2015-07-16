@@ -15,12 +15,12 @@
 #include <clxx/exceptions.hpp>
 #include <clxx/cl/mock.hpp>
 
-namespace clxx { class context_test_suite; }
+namespace clxx { class context_test__suite; }
 
-/** // doc: class clxx::context_test_suite {{{
+/** // doc: class clxx::context_test__suite {{{
  * \todo Write documentation
  */ // }}}
-class clxx::context_test_suite : public CxxTest::TestSuite
+class clxx::context_test__suite : public CxxTest::TestSuite
 {
 public:
   /** // doc: test__default_ctor() {{{
@@ -36,10 +36,10 @@ public:
     TS_ASSERT(mock1.never_called());
     TS_ASSERT(mock2.never_called());
   }
-  /** // doc: test_ctor_1() {{{
+  /** // doc: test__ctor__1() {{{
    * \todo Write documentation
    */ // }}}
-  void test_ctor_1( )
+  void test__ctor__1( )
   {
     T::Dummy_clRetainContext mock1(CL_SUCCESS);
     T::Dummy_clReleaseContext mock2(CL_SUCCESS);
@@ -48,10 +48,10 @@ public:
     TS_ASSERT(mock1.called_once_with((cl_context)0x1234));
     TS_ASSERT(mock2.never_called());
   }
-  /** // doc: test_ctor_2() {{{
+  /** // doc: test__ctor__2() {{{
    * \todo Write documentation
    */ // }}}
-  void test_ctor_2( )
+  void test__ctor__2( )
   {
     T::Dummy_clCreateContext mock1((cl_context)0, CL_SUCCESS);
     T::Dummy_clRetainContext mock2(CL_SUCCESS);
@@ -62,10 +62,10 @@ public:
     TS_ASSERT(mock2.never_called());
     TS_ASSERT(mock3.never_called());
   }
-  /** // doc: test_ctor_3() {{{
+  /** // doc: test__ctor__3() {{{
    * \todo Write documentation
    */ // }}}
-  void test_ctor_3( )
+  void test__ctor__3( )
   {
     T::Dummy_clCreateContext mock1((cl_context)0x123, CL_SUCCESS);
     T::Dummy_clRetainContext mock2(CL_SUCCESS);
@@ -77,10 +77,10 @@ public:
     TS_ASSERT(mock3.never_called());
     TS_ASSERT_EQUALS(c, context((cl_context)0x123));
   }
-  /** // doc: test_ctor_4() {{{
+  /** // doc: test__ctor__4() {{{
    * \todo Write documentation
    */ // }}}
-  void test_ctor_4( )
+  void test__ctor__4( )
   {
     T::Dummy_clCreateContextFromType mock1((cl_context)0x123, CL_SUCCESS);
     T::Dummy_clRetainContext mock2(CL_SUCCESS);
@@ -92,10 +92,10 @@ public:
     TS_ASSERT(mock3.never_called());
     TS_ASSERT_EQUALS(c, context((cl_context)0x123));
   }
-  /** // doc: test_copy_ctor() {{{
+  /** // doc: test__copy_ctor() {{{
    * \todo Write documentation
    */ // }}}
-  void test_copy_ctor( )
+  void test__copy_ctor( )
   {
     T::Dummy_clCreateContext mock1((cl_context)0x123, CL_SUCCESS);
     T::Dummy_clRetainContext mock2(CL_SUCCESS);
@@ -108,10 +108,10 @@ public:
     TS_ASSERT(mock3.never_called());
     TS_ASSERT_EQUALS(c2, context((cl_context)0x123));
   }
-  /** // doc: test_dtor() {{{
+  /** // doc: test__dtor() {{{
    * \todo Write documentation
    */ // }}}
-  void test_dtor( )
+  void test__dtor( )
   {
     T::Dummy_clRetainContext mock1(CL_SUCCESS);
     T::Dummy_clReleaseContext mock2(CL_SUCCESS);
@@ -122,10 +122,10 @@ public:
     }
     TS_ASSERT(mock2.called_once_with((cl_context)0x1234));
   }
-  /** // doc: test_op_assign() {{{
+  /** // doc: test__op_assign__1() {{{
    * \todo Write documentation
    */ // }}}
-  void test_op_assign( )
+  void test__op_assign__1( )
   {
     T::Dummy_clRetainContext mock1(CL_SUCCESS);
     T::Dummy_clReleaseContext mock2(CL_SUCCESS);
@@ -138,10 +138,10 @@ public:
     TS_ASSERT(mock2.called_once_with((cl_context)0x5678));
     TS_ASSERT_EQUALS(c1,c2);
   }
-  /** // doc: test_op_eq() {{{
+  /** // doc: test__op_eq() {{{
    * \todo Write documentation
    */ // }}}
-  void test_op_eq( )
+  void test__op_eq( )
   {
     T::Dummy_clRetainContext mock1(CL_SUCCESS);
     T::Dummy_clReleaseContext mock2(CL_SUCCESS);
@@ -156,10 +156,10 @@ public:
     TS_ASSERT(c1 == c3);
     TS_ASSERT(c3 == c1);
   }
-  /** // doc: test_op_neq() {{{
+  /** // doc: test__op_neq() {{{
    * \todo Write documentation
    */ // }}}
-  void test_op_neq( )
+  void test__op_neq( )
   {
     T::Dummy_clRetainContext mock1(CL_SUCCESS);
     T::Dummy_clReleaseContext mock2(CL_SUCCESS);
@@ -174,10 +174,10 @@ public:
     TS_ASSERT(!(c1 != c3));
     TS_ASSERT(!(c3 != c1));
   }
-  /** // doc: test_assign() {{{
+  /** // doc: test__assign__1() {{{
    * \todo Write documentation
    */ // }}}
-  void test_assign( )
+  void test__assign__1( )
   {
     T::Dummy_clRetainContext mock1(CL_SUCCESS);
     T::Dummy_clReleaseContext mock2(CL_SUCCESS);
@@ -190,28 +190,51 @@ public:
     TS_ASSERT(mock2.called_once_with((cl_context)0x5678));
     TS_ASSERT_EQUALS(c1,c2);
   }
-  /** // doc: test_assign__uninitialized_context_error() {{{
+  /** // doc: test__assign__2() {{{
    * \todo Write documentation
    */ // }}}
-  void test_assign__uninitialized_context_error( )
+  void test__assign__2( )
   {
-    T::Dummy_clRetainContext mock1(CL_SUCCESS);
-    T::Dummy_clReleaseContext mock2(CL_SUCCESS);
-    context c1((cl_context)NULL);
-    context c2((cl_context)0x5678);
-    TS_ASSERT_THROWS(c2.assign(c1), uninitialized_context_error);
+    context c1;
+    context c2;
+    {
+      T::Dummy_clRetainContext mock_clRetainContext(CL_SUCCESS);
+      T::Dummy_clReleaseContext mock_clReleaseContext(CL_SUCCESS);
+      TS_ASSERT_THROWS_NOTHING(c2.assign(c1));
+      TS_ASSERT(mock_clRetainContext.never_called());
+      TS_ASSERT(mock_clReleaseContext.never_called());
+    }
+    TS_ASSERT_EQUALS(c1,c2);
   }
-  /** // doc: test_is_initialized() {{{
+  /** // doc: test__assign__3() {{{
    * \todo Write documentation
    */ // }}}
-  void test_is_initialized( )
+  void test__assign__3( )
+  {
+    T::Dummy_clRetainContext mock_clRetainContext(CL_SUCCESS);
+    T::Dummy_clReleaseContext mock_clReleaseContext(CL_SUCCESS);
+    context c1;
+    context c2((cl_context)0x1234);
+    {
+      T::Dummy_clRetainContext mock_clRetainContext2(CL_SUCCESS);
+      T::Dummy_clReleaseContext mock_clReleaseContext2(CL_SUCCESS);
+      TS_ASSERT_THROWS_NOTHING(c2.assign(c1));
+      TS_ASSERT(mock_clRetainContext2.never_called());
+      TS_ASSERT(mock_clReleaseContext2.called_once_with((cl_context)0x1234));
+    }
+    TS_ASSERT_EQUALS(c1,c2);
+  }
+  /** // doc: test__is_initialized() {{{
+   * \todo Write documentation
+   */ // }}}
+  void test__is_initialized( )
   {
     TS_ASSERT(true); // we've actually tested it with constructors...
   }
-  /** // doc: test_get_info() {{{
+  /** // doc: test__get_info() {{{
    * \todo Write documentation
    */ // }}}
-  void test_get_info( )
+  void test__get_info( )
   {
     T::Dummy_clRetainContext mock1(CL_SUCCESS);
     T::Dummy_clReleaseContext mock2(CL_SUCCESS);
@@ -224,10 +247,10 @@ public:
 
     TS_ASSERT(mock3.called_once_with((cl_context)0x1234, CL_CONTEXT_DEVICES, 1, (void*)&value, &value_size_ret));
   }
-  /** // doc: test_get_reference_count() {{{
+  /** // doc: test__get_reference_count() {{{
    * \todo Write documentation
    */ // }}}
-  void test_get_reference_count( )
+  void test__get_reference_count( )
   {
     T::Dummy_clRetainContext mock1(CL_SUCCESS);
     T::Dummy_clReleaseContext mock2(CL_SUCCESS);
@@ -240,10 +263,10 @@ public:
     TS_ASSERT_EQUALS(std::get<0>(mock3.calls().back()), (cl_context)0x1234);
     TS_ASSERT_EQUALS(std::get<1>(mock3.calls().back()), CL_CONTEXT_REFERENCE_COUNT);
   }
-  /** // doc: test_get_num_devices() {{{
+  /** // doc: test__get_num_devices() {{{
    * \todo Write documentation
    */ // }}}
-  void test_get_num_devices( )
+  void test__get_num_devices( )
   {
     T::Dummy_clRetainContext mock1(CL_SUCCESS);
     T::Dummy_clReleaseContext mock2(CL_SUCCESS);
@@ -256,10 +279,10 @@ public:
     TS_ASSERT_EQUALS(std::get<0>(mock3.calls().back()), (cl_context)0x1234);
     TS_ASSERT_EQUALS(std::get<1>(mock3.calls().back()), CL_CONTEXT_NUM_DEVICES);
   }
-  /** // doc: test_get_devices() {{{
+  /** // doc: test__get_devices() {{{
    * \todo Write documentation
    */ // }}}
-  void test_get_devices( )
+  void test__get_devices( )
   {
     cl_device_id array[2] = { (cl_device_id)0x1234, (cl_device_id)0x5678 };
     size_t size = sizeof(array);
@@ -287,10 +310,10 @@ public:
     TS_ASSERT_EQUALS(devs[0].get(), (cl_device_id)0x1234);
     TS_ASSERT_EQUALS(devs[1].get(), (cl_device_id)0x5678);
   }
-  /** // doc: test_get_properties() {{{
+  /** // doc: test__get_properties() {{{
    * \todo Write documentation
    */ // }}}
-  void test_get_properties( )
+  void test__get_properties( )
   {
     cl_context_properties array[3] = {
         (cl_context_properties)CL_CONTEXT_INTEROP_USER_SYNC,
@@ -316,7 +339,7 @@ public:
     TS_ASSERT_EQUALS(props[0].name(), context_properties_t::interop_user_sync);
     TS_ASSERT_EQUALS(props[0].value(), (cl_context_properties)CL_TRUE);
   }
-  void test_foo( )
+  void test__foo( )
   {
     TS_ASSERT(true);
   }

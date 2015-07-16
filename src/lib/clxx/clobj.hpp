@@ -228,8 +228,6 @@ public:
    *  handle held up to now by \c this object is decreased by one, as it is
    *  forgotten by one user (namely, by \c this object).
    *
-   * \throw uninitialized_cl_object_error<handle_t>::type
-   *    when \e rhs is an uninitialized clobj object.
    * \throw clerror_no<status_t::invalid_clobj>
    *    when \e rhs holds a \c handle_t handle that is invalid.
    * \throw clerror_no<status_t::out_of_resources>
@@ -254,8 +252,6 @@ public:
    *
    * \return Reference to this object
    *
-   * \throw uninitialized_cl_object_error<handle_t>::type
-   *    when the \e rhs object is in uninitialized state
    * \throw clerror_no<status_t::invalid_clobj>
    *    propagated from retain_cl_object() and release_cl_object()
    * \throw clerror_no<status_t::out_of_resources>

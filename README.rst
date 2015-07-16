@@ -30,7 +30,7 @@ The repository contains several separate branches for different purposes
 Tasks
 -----
 
-General: Creating soruce tarball
+General: Creating source tarball
 ````````````````````````````````
 
 - Create tarball out of upstream's ``v0.1.1`` tag::
@@ -47,10 +47,10 @@ The script requires an access to temporary directory (usually ``/tmp``, see
 ``mktemp(1)``) where it clones the upstream repository and manipulates files.
 
 
-Debian: Creating soruce tarball
+Debian: Creating source tarball
 ```````````````````````````````
 
-- Create normal source tarball and rename it appropriatelly::
+- Create normal source tarball and rename it appropriately::
 
     git checkout default
     ./scripts/create-tarball v0.1.1
@@ -118,7 +118,7 @@ Debian: Build package
 
     git checkout debian-debian/stretch
     debian/rules clean
-    gbp buildpackage
+    DEB_BUILD_OPTIONS="parallel=12" gbp buildpackage
 
 Debian: New release of package
 ``````````````````````````````

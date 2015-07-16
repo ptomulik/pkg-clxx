@@ -214,10 +214,10 @@ public:
     TS_ASSERT(!(c1 != c3));
     TS_ASSERT(!(c3 != c1));
   }
-  /** // doc: test__assign() {{{
+  /** // doc: test__assign__1() {{{
    * \todo Write documentation
    */ // }}}
-  void test__assign( )
+  void test__assign__1( )
   {
     T::Dummy_clRetainCommandQueue mock1(CL_SUCCESS);
     T::Dummy_clReleaseCommandQueue mock2(CL_SUCCESS);
@@ -230,16 +230,39 @@ public:
     TS_ASSERT(mock2.called_once_with((cl_command_queue)0x5678));
     TS_ASSERT_EQUALS(c1,c2);
   }
-  /** // doc: test__assign__uninitialized_command_queue_error() {{{
+  /** // doc: test__assign__2() {{{
    * \todo Write documentation
    */ // }}}
-  void test__assign__uninitialized_command_queue_error( )
+  void test__assign__2( )
   {
-    T::Dummy_clRetainCommandQueue mock1(CL_SUCCESS);
-    T::Dummy_clReleaseCommandQueue mock2(CL_SUCCESS);
-    command_queue c1((cl_command_queue)NULL);
-    command_queue c2((cl_command_queue)0x5678);
-    TS_ASSERT_THROWS(c2.assign(c1), uninitialized_command_queue_error);
+    command_queue c1;
+    command_queue c2;
+    {
+      T::Dummy_clRetainCommandQueue mock_clRetainCommandQueue(CL_SUCCESS);
+      T::Dummy_clReleaseCommandQueue mock_clReleaseCommandQueue(CL_SUCCESS);
+      TS_ASSERT_THROWS_NOTHING(c2.assign(c1));
+      TS_ASSERT(mock_clRetainCommandQueue.never_called());
+      TS_ASSERT(mock_clReleaseCommandQueue.never_called());
+    }
+    TS_ASSERT_EQUALS(c1,c2);
+  }
+  /** // doc: test__assign__3() {{{
+   * \todo Write documentation
+   */ // }}}
+  void test__assign__3( )
+  {
+    T::Dummy_clRetainCommandQueue mock_clRetainCommandQueue(CL_SUCCESS);
+    T::Dummy_clReleaseCommandQueue mock_clReleaseCommandQueue(CL_SUCCESS);
+    command_queue c1;
+    command_queue c2((cl_command_queue)0x1234);
+    {
+      T::Dummy_clRetainCommandQueue mock_clRetainCommandQueue2(CL_SUCCESS);
+      T::Dummy_clReleaseCommandQueue mock_clReleaseCommandQueue2(CL_SUCCESS);
+      TS_ASSERT_THROWS_NOTHING(c2.assign(c1));
+      TS_ASSERT(mock_clRetainCommandQueue2.never_called());
+      TS_ASSERT(mock_clReleaseCommandQueue2.called_once_with((cl_command_queue)0x1234));
+    }
+    TS_ASSERT_EQUALS(c1,c2);
   }
   /** // doc: test__is_initialized() {{{
    * \todo Write documentation

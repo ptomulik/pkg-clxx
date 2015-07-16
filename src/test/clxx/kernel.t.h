@@ -147,6 +147,56 @@ public:
     TS_ASSERT_EQUALS(kernel((cl_kernel)0x1234).chk_get(), (cl_kernel)0x1234);
     TS_ASSERT_THROWS(kernel((cl_kernel)NULL).chk_get(), uninitialized_kernel_error);
   }
+  /** // doc: test__assign__1() {{{
+   * \todo Write documentation
+   */ // }}}
+  void test__assign__1( )
+  {
+    T::Dummy_clRetainKernel mock1(CL_SUCCESS);
+    T::Dummy_clReleaseKernel mock2(CL_SUCCESS);
+    kernel c1((cl_kernel)0x1234);
+    kernel c2((cl_kernel)0x5678);
+    TS_ASSERT(c1 != c2);
+    c2.assign(c1);
+    TS_ASSERT(mock1.called_three_times());
+    TS_ASSERT(mock1.last_called_with((cl_kernel)0x1234));
+    TS_ASSERT(mock2.called_once_with((cl_kernel)0x5678));
+    TS_ASSERT_EQUALS(c1,c2);
+  }
+  /** // doc: test__assign__2() {{{
+   * \todo Write documentation
+   */ // }}}
+  void test__assign__2( )
+  {
+    kernel c1;
+    kernel c2;
+    {
+      T::Dummy_clRetainKernel mock_clRetainKernel(CL_SUCCESS);
+      T::Dummy_clReleaseKernel mock_clReleaseKernel(CL_SUCCESS);
+      TS_ASSERT_THROWS_NOTHING(c2.assign(c1));
+      TS_ASSERT(mock_clRetainKernel.never_called());
+      TS_ASSERT(mock_clReleaseKernel.never_called());
+    }
+    TS_ASSERT_EQUALS(c1,c2);
+  }
+  /** // doc: test__assign__3() {{{
+   * \todo Write documentation
+   */ // }}}
+  void test__assign__3( )
+  {
+    T::Dummy_clRetainKernel mock_clRetainKernel(CL_SUCCESS);
+    T::Dummy_clReleaseKernel mock_clReleaseKernel(CL_SUCCESS);
+    kernel c1;
+    kernel c2((cl_kernel)0x1234);
+    {
+      T::Dummy_clRetainKernel mock_clRetainKernel2(CL_SUCCESS);
+      T::Dummy_clReleaseKernel mock_clReleaseKernel2(CL_SUCCESS);
+      TS_ASSERT_THROWS_NOTHING(c2.assign(c1));
+      TS_ASSERT(mock_clRetainKernel2.never_called());
+      TS_ASSERT(mock_clReleaseKernel2.called_once_with((cl_kernel)0x1234));
+    }
+    TS_ASSERT_EQUALS(c1,c2);
+  }
   /** // doc: test__op_assign() {{{
    * \todo Write documentation
    */ // }}}

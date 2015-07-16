@@ -144,6 +144,56 @@ public:
     TS_ASSERT_EQUALS(mem((cl_mem)0x1234).chk_get(), (cl_mem)0x1234);
     TS_ASSERT_THROWS(mem((cl_mem)NULL).chk_get(), uninitialized_mem_error);
   }
+  /** // doc: test__assign__1() {{{
+   * \todo Write documentation
+   */ // }}}
+  void test__assign__1( )
+  {
+    T::Dummy_clRetainMemObject mock1(CL_SUCCESS);
+    T::Dummy_clReleaseMemObject mock2(CL_SUCCESS);
+    mem c1((cl_mem)0x1234);
+    mem c2((cl_mem)0x5678);
+    TS_ASSERT(c1 != c2);
+    c2.assign(c1);
+    TS_ASSERT(mock1.called_three_times());
+    TS_ASSERT(mock1.last_called_with((cl_mem)0x1234));
+    TS_ASSERT(mock2.called_once_with((cl_mem)0x5678));
+    TS_ASSERT_EQUALS(c1,c2);
+  }
+  /** // doc: test__assign__2() {{{
+   * \todo Write documentation
+   */ // }}}
+  void test__assign__2( )
+  {
+    mem c1;
+    mem c2;
+    {
+      T::Dummy_clRetainMemObject mock_clRetainMemObject(CL_SUCCESS);
+      T::Dummy_clReleaseMemObject mock_clReleaseMemObject(CL_SUCCESS);
+      TS_ASSERT_THROWS_NOTHING(c2.assign(c1));
+      TS_ASSERT(mock_clRetainMemObject.never_called());
+      TS_ASSERT(mock_clReleaseMemObject.never_called());
+    }
+    TS_ASSERT_EQUALS(c1,c2);
+  }
+  /** // doc: test__assign__3() {{{
+   * \todo Write documentation
+   */ // }}}
+  void test__assign__3( )
+  {
+    T::Dummy_clRetainMemObject mock_clRetainMemObject(CL_SUCCESS);
+    T::Dummy_clReleaseMemObject mock_clReleaseMemObject(CL_SUCCESS);
+    mem c1;
+    mem c2((cl_mem)0x1234);
+    {
+      T::Dummy_clRetainMemObject mock_clRetainMemObject2(CL_SUCCESS);
+      T::Dummy_clReleaseMemObject mock_clReleaseMemObject2(CL_SUCCESS);
+      TS_ASSERT_THROWS_NOTHING(c2.assign(c1));
+      TS_ASSERT(mock_clRetainMemObject2.never_called());
+      TS_ASSERT(mock_clReleaseMemObject2.called_once_with((cl_mem)0x1234));
+    }
+    TS_ASSERT_EQUALS(c1,c2);
+  }
   /** // doc: test__op_assign() {{{
    * \todo Write documentation
    */ // }}}

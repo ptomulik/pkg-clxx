@@ -142,6 +142,56 @@ public:
     TS_ASSERT_EQUALS(event((cl_event)0x1234).chk_get(), (cl_event)0x1234);
     TS_ASSERT_THROWS(event((cl_event)NULL).chk_get(), uninitialized_event_error);
   }
+  /** // doc: test__assign__1() {{{
+   * \todo Write documentation
+   */ // }}}
+  void test__assign__1( )
+  {
+    T::Dummy_clRetainEvent mock1(CL_SUCCESS);
+    T::Dummy_clReleaseEvent mock2(CL_SUCCESS);
+    event c1((cl_event)0x1234);
+    event c2((cl_event)0x5678);
+    TS_ASSERT(c1 != c2);
+    c2.assign(c1);
+    TS_ASSERT(mock1.called_three_times());
+    TS_ASSERT(mock1.last_called_with((cl_event)0x1234));
+    TS_ASSERT(mock2.called_once_with((cl_event)0x5678));
+    TS_ASSERT_EQUALS(c1,c2);
+  }
+  /** // doc: test__assign__2() {{{
+   * \todo Write documentation
+   */ // }}}
+  void test__assign__2( )
+  {
+    event c1;
+    event c2;
+    {
+      T::Dummy_clRetainEvent mock_clRetainEvent(CL_SUCCESS);
+      T::Dummy_clReleaseEvent mock_clReleaseEvent(CL_SUCCESS);
+      TS_ASSERT_THROWS_NOTHING(c2.assign(c1));
+      TS_ASSERT(mock_clRetainEvent.never_called());
+      TS_ASSERT(mock_clReleaseEvent.never_called());
+    }
+    TS_ASSERT_EQUALS(c1,c2);
+  }
+  /** // doc: test__assign__3() {{{
+   * \todo Write documentation
+   */ // }}}
+  void test__assign__3( )
+  {
+    T::Dummy_clRetainEvent mock_clRetainEvent(CL_SUCCESS);
+    T::Dummy_clReleaseEvent mock_clReleaseEvent(CL_SUCCESS);
+    event c1;
+    event c2((cl_event)0x1234);
+    {
+      T::Dummy_clRetainEvent mock_clRetainEvent2(CL_SUCCESS);
+      T::Dummy_clReleaseEvent mock_clReleaseEvent2(CL_SUCCESS);
+      TS_ASSERT_THROWS_NOTHING(c2.assign(c1));
+      TS_ASSERT(mock_clRetainEvent2.never_called());
+      TS_ASSERT(mock_clReleaseEvent2.called_once_with((cl_event)0x1234));
+    }
+    TS_ASSERT_EQUALS(c1,c2);
+  }
   /** // doc: test__op_assign() {{{
    * \todo Write documentation
    */ // }}}

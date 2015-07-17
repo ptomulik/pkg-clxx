@@ -17,6 +17,7 @@ tests = [
     'device_partition_property.t.h',
     'devices.t.h',
     'event.t.h',
+    'events.t.h',
     'functions/build_program.t.h',
     'functions/compile_program.t.h',
     'functions/create_buffer.t.h',

@@ -15,6 +15,7 @@
 
 #ifndef CLXX_MAX_NDRANGE_DIMENSIONS
 /** // doc: CLXX_MAX_NDRANGE_DIMENSIONS {{{
+ * \ingroup clxx_executing_kernels
  * \brief Max number of dimensions supported by \ref clxx::ndrange
  */ // }}}
 # define CLXX_MAX_NDRANGE_DIMENSIONS 3
@@ -26,12 +27,12 @@ namespace clxx {
  * \brief Describes an ND-range over which a kernel is supposed to execute
  *
  * This object gathers together numbers used to describe size of an OpenCL work
- * group. The following information is encapsulated by
+ * and work groups. The following information is encapsulated by
  * \ref clxx::ndrange "ndrange"
  *
  * - #dimension &mdash; the number of dimensions used to specify the global
  *   work-items and work-items in a work-group; the maximum number of
- *   dimensions supported by clxx is defined by CLXX_MAX_NDRANGE_DIMENSIONS,
+ *   dimensions supported by clxx is defined by #CLXX_MAX_NDRANGE_DIMENSIONS,
  * - #global_offset &mdash; an array of #dimension unsigned values that
  *   describe the offset used to calculate the global ID of a work-item,
  * - #global_size &mdash; and array of #dimension unsigned values that describe

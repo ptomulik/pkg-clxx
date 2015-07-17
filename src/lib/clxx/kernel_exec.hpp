@@ -30,6 +30,46 @@ namespace clxx {
  * \param ndrange
  *    A valid \ref clxx::ndrange "ndrange" object. Defines work size and work
  *    group size used to execute the kernel.
+ * \param num_events_in_wait_list
+ *    Number of events in \p event_wait_list. If \p event_wait_list is \c NULL,
+ *    \p num_events_in_wait_list must be \c 0. If \p event_wait_list is not
+ *    \c NULL, the list of events pointed to by \p event_wait_list must be
+ *    valid and \p num_events_in_wait_list must be greater than \c 0.
+ * \param event_wait_list
+ *    Specify events that need to complete before this particular command can
+ *    be executed.
+ * \param event
+ *    Returns an \ref clxx::event "event" object that identifies this
+ *    particular kernel execution instance. Event obejcts are unique and can be
+ *    used to identify a particular kernel execution instance later on.
+ *
+ * \throw uninitialized_command_queue_error
+ *    When the \p command_queue is uninitialized
+ * \throw uninitialized_kernel_error
+ *    When the \p kernel is uninitialized
+ *
+ * Also throws exceptions originating from #enqueue_ndrange_kernel() and from
+ * \ref clxx::event::operator=.
+ */ // }}}
+void
+enqueue_ndrange_kernel(clxx::command_queue const& command_queue,
+                       clxx::kernel const& kernel,
+                       clxx::ndrange const& ndrange,
+                       cl_uint num_events_in_wait_list,
+                       clxx::event const* event_wait_list,
+                       clxx::event* event = nullptr);
+/** // doc: enqueue_ndrange_kernel() {{{
+ * \brief Enqueues a command to execute a kernel on a device
+ *
+ * \param command_queue
+ *    A valid host command-queue. The \p kenel will be queued for execution on
+ *    the device associated with \p command_queue.
+ * \param kernel
+ *    A valid \ref clxx::kernel "kernel" object. The OpenCL context associated
+ *    with \p kernel and \p command_queue must be the same.
+ * \param ndrange
+ *    A valid \ref clxx::ndrange "ndrange" object. Defines work size and work
+ *    group size used to execute the kernel.
  * \param event_wait_list
  *    Specify events that need to complete before this particular command can
  *    be executed.
@@ -51,7 +91,7 @@ enqueue_ndrange_kernel(clxx::command_queue const& command_queue,
                        clxx::kernel const& kernel,
                        clxx::ndrange const& ndrange,
                        clxx::events const& event_wait_list,
-                       clxx::event& event);
+                       clxx::event* event = nullptr);
 /** // doc: enqueue_ndrange_kernel() {{{
  * \brief Enqueues a command to execute a kernel on a device
  *
@@ -81,59 +121,7 @@ void
 enqueue_ndrange_kernel(clxx::command_queue const& command_queue,
                        clxx::kernel const& kernel,
                        clxx::ndrange const& ndrange,
-                       clxx::event& event);
-/** // doc: enqueue_ndrange_kernel() {{{
- * \brief Enqueues a command to execute a kernel on a device
- *
- * \param command_queue
- *    A valid host command-queue. The \p kenel will be queued for execution on
- *    the device associated with \p command_queue.
- * \param kernel
- *    A valid \ref clxx::kernel "kernel" object. The OpenCL context associated
- *    with \p kernel and \p command_queue must be the same.
- * \param ndrange
- *    A valid \ref clxx::ndrange "ndrange" object. Defines work size and work
- *    group size used to execute the kernel.
- * \param event_wait_list
- *    Specify events that need to complete before this particular command can
- *    be executed.
- *
- * \throw uninitialized_command_queue_error
- *    When the \p command_queue is uninitialized
- * \throw uninitialized_kernel_error
- *    When the \p kernel is uninitialized
- *
- * Also throws exceptions originating from #enqueue_ndrange_kernel().
- */ // }}}
-void
-enqueue_ndrange_kernel(clxx::command_queue const& command_queue,
-                       clxx::kernel const& kernel,
-                       clxx::ndrange const& ndrange,
-                       clxx::events const& event_wait_list);
-/** // doc: enqueue_ndrange_kernel() {{{
- * \brief Enqueues a command to execute a kernel on a device
- *
- * \param command_queue
- *    A valid host command-queue. The \p kenel will be queued for execution on
- *    the device associated with \p command_queue.
- * \param kernel
- *    A valid \ref clxx::kernel "kernel" object. The OpenCL context associated with \p kernel
- *    and \p command_queue must be the same.
- * \param ndrange
- *    A valid \ref clxx::ndrange "ndrange" object. Defines work size and work
- *    group size used to execute the kernel.
- *
- * \throw uninitialized_command_queue_error
- *    When the \p command_queue is uninitialized
- * \throw uninitialized_kernel_error
- *    When the \p kernel is uninitialized
- *
- * Also throws exceptions originating from #enqueue_ndrange_kernel().
- */ // }}}
-void
-enqueue_ndrange_kernel(clxx::command_queue const& command_queue,
-                       clxx::kernel const& kernel,
-                       clxx::ndrange const& ndrange);
+                       clxx::event* event = nullptr);
 /* @} */
 } // end namespace clxx
 

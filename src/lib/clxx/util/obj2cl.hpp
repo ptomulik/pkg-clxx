@@ -170,6 +170,26 @@ obj2cl(std::vector<T>& v)
 {
   return obj2cl(v.data());
 }
+/** // doc: obj2cl {{{
+ * \todo Write documentation
+ */ // }}}
+template<typename T>
+inline auto
+obj2cl(std::vector<T> const* v)
+  -> decltype(obj2cl(v->data()))
+{
+  return v ? obj2cl(v->data()) : nullptr;
+}
+/** // doc: obj2cl {{{
+ * \todo Write documentation
+ */ // }}}
+template<typename T>
+inline auto
+obj2cl(std::vector<T>* v)
+  -> decltype(obj2cl(v->data()))
+{
+  return v ? obj2cl(v->data()) : nullptr;
+}
 } // end namespace clxx
 
 #endif /* CLXX_OBJ2CL_HPP_INCLUDED */

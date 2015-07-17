@@ -17,8 +17,30 @@ void
 enqueue_ndrange_kernel(clxx::command_queue const& command_queue,
                        clxx::kernel const& kernel,
                        clxx::ndrange const& ndrange,
+                       cl_uint num_events_in_wait_list,
+                       clxx::event const* event_wait_list,
+                       clxx::event* event)
+{
+  clxx::event tmp;
+  enqueue_ndrange_kernel(command_queue.chk_get(),
+                         kernel.chk_get(),
+                         static_cast<cl_uint>(ndrange.dimension()),
+                         ndrange.global_offset_ptr(),
+                         ndrange.global_size_ptr(),
+                         ndrange.local_size_ptr(),
+                         num_events_in_wait_list,
+                         obj2cl(event_wait_list),
+                         event ? obj2cl(&tmp) : nullptr);
+  if(event)
+    *event = tmp; // maintain reference count in *event
+}
+/* ------------------------------------------------------------------------ */
+void
+enqueue_ndrange_kernel(clxx::command_queue const& command_queue,
+                       clxx::kernel const& kernel,
+                       clxx::ndrange const& ndrange,
                        clxx::events const& event_wait_list,
-                       clxx::event& event)
+                       clxx::event* event)
 {
   clxx::event tmp;
   enqueue_ndrange_kernel(command_queue.chk_get(),
@@ -29,15 +51,16 @@ enqueue_ndrange_kernel(clxx::command_queue const& command_queue,
                          ndrange.local_size_ptr(),
                          event_wait_list.size(),
                          obj2cl(event_wait_list),
-                         obj2cl(&tmp));
-  event = tmp; // this maintains reference count appropriately
+                         event ? obj2cl(&tmp) : nullptr);
+  if(event)
+    *event = tmp; // maintain reference count in *event
 }
 /* ------------------------------------------------------------------------ */
 void
 enqueue_ndrange_kernel(clxx::command_queue const& command_queue,
                        clxx::kernel const& kernel,
                        clxx::ndrange const& ndrange,
-                       clxx::event& event)
+                       clxx::event* event)
 {
   clxx::event tmp;
   enqueue_ndrange_kernel(command_queue.chk_get(),
@@ -48,41 +71,9 @@ enqueue_ndrange_kernel(clxx::command_queue const& command_queue,
                          ndrange.local_size_ptr(),
                          0,
                          nullptr,
-                         obj2cl(&tmp));
-  event = tmp; // this maintains reference count appropriately
-}
-/* ------------------------------------------------------------------------ */
-void
-enqueue_ndrange_kernel(clxx::command_queue const& command_queue,
-                       clxx::kernel const& kernel,
-                       clxx::ndrange const& ndrange,
-                       clxx::events const& event_wait_list)
-{
-  enqueue_ndrange_kernel(command_queue.chk_get(),
-                         kernel.chk_get(),
-                         static_cast<cl_uint>(ndrange.dimension()),
-                         ndrange.global_offset_ptr(),
-                         ndrange.global_size_ptr(),
-                         ndrange.local_size_ptr(),
-                         event_wait_list.size(),
-                         obj2cl(event_wait_list),
-                         nullptr);
-}
-/* ------------------------------------------------------------------------ */
-void
-enqueue_ndrange_kernel(clxx::command_queue const& command_queue,
-                       clxx::kernel const& kernel,
-                       clxx::ndrange const& ndrange)
-{
-  enqueue_ndrange_kernel(command_queue.chk_get(),
-                         kernel.chk_get(),
-                         static_cast<cl_uint>(ndrange.dimension()),
-                         ndrange.global_offset_ptr(),
-                         ndrange.global_size_ptr(),
-                         ndrange.local_size_ptr(),
-                         0,
-                         nullptr,
-                         nullptr);
+                         event ? obj2cl(&tmp) : nullptr);
+  if(event)
+    *event = tmp; // maintain reference count in *event
 }
 /* ------------------------------------------------------------------------ */
 } // end namespace clxx

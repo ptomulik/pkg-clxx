@@ -4277,6 +4277,19 @@ set_user_event_status(cl_event event, cl_int execution_status);
  * \param event_list
  *    The events specified in \p event_list act as synchronization points
  *
+ * \throw clerror_no<status_t::invalid_value>
+ *    When \c clWaitForEvents returns CL_INVALID_VALUE
+ * \throw clerror_no<status_t::invalid_context>
+ *    When \c clWaitForEvents returns CL_INVALID_CONTEXT
+ * \throw clerror_no<status_t::invalid_event>
+ *    When \c clWaitForEvents returns CL_INVALID_EVENT
+ * \throw clerror_no<status_t::exec_status_error_for_events_in_wait_list>
+ *    When \c clWaitForEvents returns CL_EXEC_STATUS_ERROR_FOR_EVENTS_IN_WAIT_LIST
+ * \throw clerror_no<status_t::out_of_resources>
+ *    When \c clWaitForEvents returns CL_OUT_OF_RESOURCES
+ * \throw clerror_no<status_t::out_of_host_memory>
+ *    When \c clWaitForEvents returns CL_OUT_OF_HOST_MEMORY
+ *
  * \par Available in OpenCL versions
  * |    1.0    |    1.1    |    1.2    |    2.0    |    2.1    |
  * | --------- | --------- | --------- | --------- | --------- |

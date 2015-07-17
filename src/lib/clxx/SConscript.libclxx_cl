@@ -15,6 +15,7 @@ sources =  [
     'device_partition_properties.cpp',
     'devices.cpp',
     'event.cpp',
+    'events.cpp',
     'functions.cpp',
     'kernel.cpp',
     'kernel_exec.cpp',

@@ -85,6 +85,8 @@
 
 /**
  * \defgroup clxx_flush_and_finish Flush and Finish
+ * \sa \ref clxx::command_queue::flush() "command_queue::flush()"
+ * \sa \ref clxx::command_queue::finish() "command_queue::finish()"
  */
 
 /**

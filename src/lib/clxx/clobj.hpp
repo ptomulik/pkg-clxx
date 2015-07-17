@@ -79,14 +79,13 @@ protected:
    * handle) as requested.
    *
    * \param handle
-   *    An OpenCL object handle to be encapsulated. It must be a valid OpenCL
-   *    object handle if \p retain_new is \c true. It may be \c NULL if
-   *    \p retain_new is \c false.
+   *    An OpenCL object handle to be encapsulated.
    * \param retain_new
-   *    If \c true, the reference count for \p handle gets increased,
+   *    If \c true, and \p handle is not null, the reference count for
+   *    \p handle gets incremented,
    * \param release_old
-   *    If \c true, the reference count for old identifier encapsulated to this
-   *    end by the object gets decreased,
+   *    If \c true, and the currently held OpenCL handle is not null the
+   *    reference count for old handle gets decremented.
    *
    * \throw clerror_no<invalid_cl_object_errcode<handle_t>::value>
    *    when the \p retain_new is true and \p handle is not a valid OpenCL

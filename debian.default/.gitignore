@@ -25,6 +25,10 @@
 /libclxx-cl@PKGVERSION@.postrm.debhelper
 /libclxx-cl@PKGVERSION@.substvars
 /libclxx-cl@PKGVERSION@/
+/libclxx-common@PKGVERSION@.postinst.debhelper
+/libclxx-common@PKGVERSION@.postrm.debhelper
+/libclxx-common@PKGVERSION@.substvars
+/libclxx-common@PKGVERSION@/
 /libclxx-common@PKGVERSION@-dev.substvars
 /libclxx-common@PKGVERSION@-dev/
 /libclxx-info@PKGVERSION@-dev.substvars

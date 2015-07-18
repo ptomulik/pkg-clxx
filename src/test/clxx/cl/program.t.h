@@ -13,7 +13,7 @@
 #include <cxxtest/TestSuite.h>
 #include <clxx/cl/program.hpp>
 #include <clxx/cl/context.hpp>
-#include <clxx/exceptions.hpp>
+#include <clxx/common/exceptions.hpp>
 #include <clxx/cl/mock.hpp>
 
 namespace clxx { class program_test_suite; }

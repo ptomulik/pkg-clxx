@@ -8,7 +8,7 @@
  * \brief Implements the \ref clxx::device_info "device_info" class
  */ // }}}
 #include <clxx/info/device_info.hpp>
-#include <clxx/exceptions.hpp>
+#include <clxx/common/exceptions.hpp>
 #include <string>
 
 namespace clxx {

@@ -11,7 +11,7 @@
  */ // }}}
 // [Program]
 #include <clxx/io/types.hpp>
-#include <clxx/types.hpp>
+#include <clxx/common/types.hpp>
 #include <iostream>
 // [Main]
 /// \brief Main function

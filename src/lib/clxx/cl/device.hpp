@@ -15,7 +15,7 @@
 
 #include <clxx/cl/device_fwd.hpp>
 #include <clxx/cl/clobj.hpp>
-#include <clxx/types.hpp>
+#include <clxx/common/types.hpp>
 #include <vector>
 #include <string>
 

@@ -14,7 +14,7 @@
 #include <clxx/cl/command_queue.hpp>
 #include <clxx/cl/context.hpp>
 #include <clxx/cl/device.hpp>
-#include <clxx/exceptions.hpp>
+#include <clxx/common/exceptions.hpp>
 #include <clxx/cl/mock.hpp>
 
 namespace clxx { class command_queue_test__suite; }

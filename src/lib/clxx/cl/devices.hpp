@@ -13,7 +13,7 @@
 
 #include <clxx/cl/device.hpp>
 #include <clxx/cl/platform.hpp>
-#include <clxx/types.hpp>
+#include <clxx/common/types.hpp>
 #include <vector>
 
 namespace clxx {

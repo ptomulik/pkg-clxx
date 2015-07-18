@@ -5,7 +5,7 @@
  * \brief Implements the \ref clxx::device_partition_properties "device_partition_properties"
  */ // }}}
 #include <clxx/cl/device_partition_properties.hpp>
-#include <clxx/exceptions.hpp>
+#include <clxx/common/exceptions.hpp>
 
 namespace clxx {
 /* ----------------------------------------------------------------------- */

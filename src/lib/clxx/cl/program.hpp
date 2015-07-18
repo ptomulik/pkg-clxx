@@ -13,10 +13,10 @@
 #include <clxx/cl/program_fwd.hpp>
 #include <clxx/cl/devices.hpp>
 #include <clxx/cl/context_fwd.hpp>
-#include <clxx/program_sources.hpp>
-#include <clxx/program_binaries.hpp>
+#include <clxx/common/program_sources.hpp>
+#include <clxx/common/program_binaries.hpp>
 #include <clxx/cl/program_observer.hpp>
-#include <clxx/types.hpp>
+#include <clxx/common/types.hpp>
 #include <clxx/cl/clobj.hpp>
 #include <vector>
 #include <string>

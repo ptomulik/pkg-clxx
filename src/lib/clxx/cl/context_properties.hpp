@@ -12,7 +12,7 @@
 #define CLXX_CL_CONTEXT_PROPERTIES_HPP_INCLUDED
 
 #include <clxx/cl/context_property.hpp>
-#include <clxx/opencl.h>
+#include <clxx/common/opencl.h>
 #include <vector>
 
 namespace clxx {

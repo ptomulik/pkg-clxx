@@ -12,7 +12,7 @@
 
 #include <cxxtest/TestSuite.h>
 #include <clxx/util/to_string.hpp>
-#include <clxx/types.hpp>
+#include <clxx/common/types.hpp>
 #include <clxx/util/enum2hex.hpp>
 
 namespace clxx { class to_string_test_suite; }

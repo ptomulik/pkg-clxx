@@ -10,7 +10,7 @@
 #ifndef CLXX_INFO_PLATFORM_INFO_PTR_HPP_INCLUDED
 #define CLXX_INFO_PLATFORM_INFO_PTR_HPP_INCLUDED
 
-#include <clxx/shared_ptr.hpp>
+#include <clxx/common/shared_ptr.hpp>
 
 namespace clxx {
 

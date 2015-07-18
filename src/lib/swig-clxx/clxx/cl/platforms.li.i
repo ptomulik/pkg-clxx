@@ -11,14 +11,14 @@
 %import <clxx/wknd.swg>
 %include <clxx/exception_support.swg>
 
-%import <clxx/types.i>
+%import <clxx/common/types.i>
 %import <clxx/cl/clobj.i>
 %import <clxx/std/string.i>
 %import <clxx/info/platform_query.i>
 %import <clxx/info/platform_info.i>
 
 %{
-#include <clxx/types.i.hpp>
+#include <clxx/common/types.i.hpp>
 #include <clxx/cl/clobj.i.hpp>
 #include <clxx/std/string.i.hpp>
 #include <clxx/info/platform_query.i.hpp>

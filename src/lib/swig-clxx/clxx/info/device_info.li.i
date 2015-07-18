@@ -11,11 +11,11 @@
 %import <clxx/wknd.swg>
 %include <clxx/exception_support.swg>
 
-%import <clxx/types.i>
+%import <clxx/common/types.i>
 %import <clxx/std/string.i>
 
 %{
-#include <clxx/types.i.hpp>
+#include <clxx/common/types.i.hpp>
 #include <clxx/std/string.i.hpp>
 %}
 

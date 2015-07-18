@@ -11,7 +11,7 @@
 #define CLXX_CL_MEM_I_HPP_INCLUDED
 
 // dependencies on other swig modules
-#include <clxx/types.i.hpp>
+#include <clxx/common/types.i.hpp>
 #include <clxx/cl/clobj.i.hpp>
 #include <clxx/cl/context.i.hpp>
 

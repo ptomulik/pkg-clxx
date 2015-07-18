@@ -13,7 +13,7 @@
 #define CLXX_CL_PLATFORMS_HPP_INCLUDED
 
 #include <clxx/cl/platform.hpp>
-#include <clxx/opencl.h>
+#include <clxx/common/opencl.h>
 #include <vector>
 
 namespace clxx {

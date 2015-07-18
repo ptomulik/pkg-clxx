@@ -5,12 +5,12 @@
 
 /** // doc: clxx/io/types.hpp {{{
  * \file clxx/io/types.hpp
- * \brief Declares I/O functions for types defined in clxx/types.hpp
+ * \brief Declares I/O functions for types defined in clxx/common/types.hpp
  */ // }}}
 #ifndef CLXX_IO_TYPES_HPP_INCLUDED
 #define CLXX_IO_TYPES_HPP_INCLUDED
 
-#include <clxx/types.hpp>
+#include <clxx/common/types.hpp>
 #include <iosfwd>
 
 /** \addtogroup clxx_io

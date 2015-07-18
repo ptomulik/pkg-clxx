@@ -12,7 +12,7 @@
 
 #include <cxxtest/TestSuite.h>
 #include <clxx/cl/context_properties.hpp>
-#include <clxx/exceptions.hpp>
+#include <clxx/common/exceptions.hpp>
 
 namespace clxx { class context_properties_test_suite; }
 

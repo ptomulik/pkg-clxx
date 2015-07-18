@@ -10,7 +10,7 @@
 #ifndef CLXX_UTIL_CLERROR_STDEXCEPT_HPP_INCLUDED
 #define CLXX_UTIL_CLERROR_STDEXCEPT_HPP_INCLUDED
 
-#include <clxx/types.hpp>
+#include <clxx/common/types.hpp>
 #include <stdexcept>
 
 namespace clxx {

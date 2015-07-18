@@ -8,7 +8,7 @@
 #include <clxx/cl/program.hpp>
 #include <clxx/cl/context.hpp>
 #include <clxx/cl/functions.hpp>
-#include <clxx/exceptions.hpp>
+#include <clxx/common/exceptions.hpp>
 #include <clxx/util/obj2cl.hpp>
 #include <clxx/cl/clobj_impl.hpp>
 #include <boost/shared_array.hpp>

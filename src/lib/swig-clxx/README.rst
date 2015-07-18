@@ -62,7 +62,7 @@ This subtree provides one ``.swg`` and one ``.li.swg`` file for each ``.hpp``,
 whose interfaces may be potentially wrapped with swig. For example, we have
 following correspondence:
 
-- ``#/src/lib/clxx/exception.hpp -> clxx/exception.swg, clxx/exceptions.li.swg``
+- ``#/src/lib/clxx/common/exception.hpp -> clxx/common/exception.swg, clxx/common/exceptions.li.swg``
 - ``#/src/lib/clxx/cl/device.hpp -> clxx/cl/device.swg, clxx/cl/device.li.swg``
 - ``[...]``
 
@@ -118,7 +118,7 @@ It is responsibility of the target subtree to define module names and location o
 ``.i`` files (target subtree layout don't have to be same as the swig
 subtree). For python language, for example, we have such a correspondence:
 
-- ``#/build/lib/python-clxx/clxx/exceptions.i`` %includes ``clxx/exceptions.li.i``
+- ``#/build/lib/python-clxx/clxx/common/exceptions.i`` %includes ``clxx/common/exceptions.li.i``
 - ``#/build/lib/python-clxx/clxx/cl/platforms.i`` %includes ``clxx/cl/platforms.li.i``
 
 .. _swig: https://swig.org

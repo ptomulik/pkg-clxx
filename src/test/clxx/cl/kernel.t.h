@@ -16,7 +16,7 @@
 #include <clxx/cl/context.hpp>
 #include <clxx/cl/mem.hpp>
 #include <clxx/cl/program.hpp>
-#include <clxx/exceptions.hpp>
+#include <clxx/common/exceptions.hpp>
 #include <clxx/cl/mock.hpp>
 
 namespace clxx { class kernel_test_suite; }

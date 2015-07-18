@@ -12,7 +12,7 @@
 
 #include <cxxtest/TestSuite.h>
 #include <clxx/cl/clobj_fcn.hpp>
-#include <clxx/exceptions.hpp>
+#include <clxx/common/exceptions.hpp>
 #include <clxx/cl/mock.hpp>
 
 namespace clxx { class clobj_fcn_test_suite; }

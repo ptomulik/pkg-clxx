@@ -11,10 +11,10 @@
 %import <clxx/wknd.swg>
 %include <clxx/exception_support.swg>
 
-%import <clxx/types.i>
+%import <clxx/common/types.i>
 
 %{
-#include <clxx/types.i.hpp>
+#include <clxx/common/types.i.hpp>
 %}
 
 %include <clxx/cl/clobj.swg>

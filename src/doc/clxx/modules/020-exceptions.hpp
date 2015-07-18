@@ -127,12 +127,12 @@
  * exceptions. More information about exceptions may be inferred from file
  * and class documentation.
  *
- * \see clxx/exception.hpp
- * \see clxx/exception_base.hpp
- * \see clxx/clerror.hpp
- * \see clxx/clerror_base.hpp
- * \see clxx/clerror_no.hpp
- * \see clxx/exceptions.hpp
+ * \see clxx/common/exception.hpp
+ * \see clxx/common/exception_base.hpp
+ * \see clxx/common/clerror.hpp
+ * \see clxx/common/clerror_base.hpp
+ * \see clxx/common/clerror_no.hpp
+ * \see clxx/common/exceptions.hpp
  * \see clxx::exception,
  * \see clxx::exception_base,
  * \see clxx::clerror,

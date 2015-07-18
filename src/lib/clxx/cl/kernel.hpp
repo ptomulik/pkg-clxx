@@ -15,8 +15,8 @@
 #include <clxx/cl/context_fwd.hpp>
 #include <clxx/cl/mem_fwd.hpp>
 #include <clxx/cl/device.hpp>
-#include <clxx/types.hpp>
-#include <clxx/config.hpp>
+#include <clxx/common/types.hpp>
+#include <clxx/common/config.hpp>
 #include <clxx/cl/clobj.hpp>
 #include <string>
 

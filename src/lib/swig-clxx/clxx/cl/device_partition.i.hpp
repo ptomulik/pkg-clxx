@@ -11,7 +11,7 @@
 #define CLXX_CL_DEVICE_PARTITION_I_HPP_INCLUDED
 
 // dependencies on other swig modules
-#include <clxx/types.i.hpp>
+#include <clxx/common/types.i.hpp>
 #include <clxx/cl/device_partition_properties.i.hpp>
 
 // stuff included by this module

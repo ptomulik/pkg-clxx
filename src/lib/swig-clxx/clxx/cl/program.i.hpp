@@ -11,12 +11,12 @@
 #define CLXX_CL_PROGRAM_I_HPP_INCLUDED
 
 // dependencies on other swig modules
-#include <clxx/types.i.hpp>
+#include <clxx/common/types.i.hpp>
 #include <clxx/cl/clobj.i.hpp>
 #include <clxx/cl/devices.i.hpp>
 #include <clxx/cl/context.i.hpp>
-#include <clxx/program_sources.i.hpp>
-#include <clxx/program_binaries.i.hpp>
+#include <clxx/common/program_sources.i.hpp>
+#include <clxx/common/program_binaries.i.hpp>
 #include <clxx/std/string.i.hpp>
 
 // stuff included by this module

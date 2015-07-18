@@ -11,7 +11,7 @@
  * guarantee that our binding will still work with older shared libraries.
  */
 %import <clxx/config.h>
-%import <clxx/config.hpp>
+%import <clxx/common/config.hpp>
 
 #if CLXX_CL_H_VERSION_1_1
 

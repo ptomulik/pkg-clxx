@@ -10,7 +10,7 @@
 #ifndef CLXX_CL_DEVICE_FWD_HPP_INCLUDED
 #define CLXX_CL_DEVICE_FWD_HPP_INCLUDED
 
-#include <clxx/opencl.h>
+#include <clxx/common/opencl.h>
 
 namespace clxx {
 class alignas(cl_device_id) device;

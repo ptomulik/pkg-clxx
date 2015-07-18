@@ -11,10 +11,10 @@
 #define CLXX_CL_EVENT_HPP_INCLUDED
 
 #include <clxx/cl/event_fwd.hpp>
-#include <clxx/opencl.h>
+#include <clxx/common/opencl.h>
 #include <clxx/cl/command_queue.hpp>
 #include <clxx/cl/context.hpp>
-#include <clxx/types.hpp>
+#include <clxx/common/types.hpp>
 #include <clxx/cl/clobj.hpp>
 
 namespace clxx {

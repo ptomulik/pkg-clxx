@@ -11,7 +11,7 @@
 
 
 /* clxx includes */
-#include <clxx/exception.hpp>
+#include <clxx/common/exception.hpp>
 
 namespace clxx { namespace app {
 class exception

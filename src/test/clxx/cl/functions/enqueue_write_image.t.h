@@ -12,7 +12,7 @@
 
 #include <cxxtest/TestSuite.h>
 #include <clxx/cl/functions.hpp>
-#include <clxx/exceptions.hpp>
+#include <clxx/common/exceptions.hpp>
 #include <clxx/cl/mock.hpp>
 
 namespace clxx { class functions_enqueue_write_image_test_suite; }

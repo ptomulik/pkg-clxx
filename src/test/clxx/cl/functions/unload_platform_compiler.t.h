@@ -12,7 +12,7 @@
 
 #include <cxxtest/TestSuite.h>
 #include <clxx/cl/functions.hpp>
-#include <clxx/exceptions.hpp>
+#include <clxx/common/exceptions.hpp>
 #include <clxx/cl/mock.hpp>
 
 namespace clxx { class functions_unload_platform_compiler_test_suite; }

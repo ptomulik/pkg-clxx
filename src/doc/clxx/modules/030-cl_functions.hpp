@@ -9,9 +9,9 @@
  *   - introduce \ref clxx_exceptions "our exceptions" &mdash; the new
  *     functions throw appropriate \ref clxx_exceptions "exceptions" instead of
  *     returning OpenCL error codes,
- *   - introduce \ref clxx/types.hpp "our strongly typed enums" &mdash;
+ *   - introduce \ref clxx/common/types.hpp "our strongly typed enums" &mdash;
  *     whenever appropriate, the new functions accept strongly typed enums
- *     defined in \ref clxx/types.hpp, instead of the OpenCL's \c CL_* constants,
+ *     defined in \ref clxx/common/types.hpp, instead of the OpenCL's \c CL_* constants,
  *   - introduce cxxtest mocks &mdash; this is used internally for unit
  *     testing.
  */ // }}}

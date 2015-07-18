@@ -10,7 +10,7 @@
 #ifndef CLXX_UTIL_CONTEXT_PROPERTY_TYPE_HPP_INCLUDED
 #define CLXX_UTIL_CONTEXT_PROPERTY_TYPE_HPP_INCLUDED
 
-#include <clxx/types.hpp>
+#include <clxx/common/types.hpp>
 #include <clxx/util/context_property_type_fwd.hpp>
 
 namespace clxx {

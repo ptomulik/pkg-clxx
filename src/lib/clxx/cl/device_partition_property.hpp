@@ -11,8 +11,8 @@
 #define CLXX_CL_DEVICE_PARTITION_PROPERTY_HPP_INCLUDED
 
 #include <clxx/util/device_partition_property_type.hpp>
-#include <clxx/types.hpp>
-#include <clxx/exceptions.hpp>
+#include <clxx/common/types.hpp>
+#include <clxx/common/exceptions.hpp>
 #include <vector>
 
 namespace clxx {

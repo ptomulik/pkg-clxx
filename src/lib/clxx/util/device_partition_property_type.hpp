@@ -11,7 +11,7 @@
 #define CLXX_UTIL_DEVICE_PARTITION_PROPERTY_TYPE_HPP_INCLUDED
 
 #include <clxx/util/device_partition_property_type_fwd.hpp>
-#include <clxx/types.hpp>
+#include <clxx/common/types.hpp>
 #include <vector>
 
 namespace clxx {

@@ -11,21 +11,21 @@
 %import <clxx/wknd.swg>
 %include <clxx/exception_support.swg>
 
-%import <clxx/types.i>
+%import <clxx/common/types.i>
 %import <clxx/cl/clobj.i>
 %import <clxx/cl/devices.i>
 %import <clxx/cl/context.i>
-%import <clxx/program_sources.i>
-%import <clxx/program_binaries.i>
+%import <clxx/common/program_sources.i>
+%import <clxx/common/program_binaries.i>
 %import <clxx/std/string.i>
 
 %{
-#include <clxx/types.i.hpp>
+#include <clxx/common/types.i.hpp>
 #include <clxx/cl/clobj.i.hpp>
 #include <clxx/cl/devices.i.hpp>
 #include <clxx/cl/context.i.hpp>
-#include <clxx/program_sources.i.hpp>
-#include <clxx/program_binaries.i.hpp>
+#include <clxx/common/program_sources.i.hpp>
+#include <clxx/common/program_binaries.i.hpp>
 #include <clxx/std/string.i.hpp>
 %}
 

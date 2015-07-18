@@ -11,7 +11,7 @@
 #define CLXX_CL_CONTEXT_PROPERTIES_I_HPP_INCLUDED
 
 // dependencies on other swig modules
-#include <clxx/types.i.hpp>
+#include <clxx/common/types.i.hpp>
 #include <clxx/cl/platforms.i.hpp>
 
 // stuff included by this module

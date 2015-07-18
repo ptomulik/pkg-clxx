@@ -10,7 +10,7 @@
 #ifndef CLXX_DEVICE_INFO_FIXTURES_HPP_INCLUDED
 #define CLXX_DEVICE_INFO_FIXTURES_HPP_INCLUDED
 
-#include <clxx/device_info.hpp>
+#include <clxx/info/device_info.hpp>
 
 namespace clxx {
 

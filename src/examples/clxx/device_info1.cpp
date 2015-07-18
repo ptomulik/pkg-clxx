@@ -11,7 +11,7 @@
  */ // }}}
 
 // [Program]
-#include <clxx/device_info.hpp>
+#include <clxx/info/device_info.hpp>
 #include <clxx/io/device_info.hpp>
 #include <iostream>
 

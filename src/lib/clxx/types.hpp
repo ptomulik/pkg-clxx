@@ -15,7 +15,7 @@
 #ifndef CLXX_TYPES_HPP_INCLUDED
 #define CLXX_TYPES_HPP_INCLUDED
 
-#include <clxx/cl/cl.h>
+#include <clxx/opencl.h>
 #include <clxx/macros.hpp>
 
 namespace clxx {

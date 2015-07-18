@@ -14,7 +14,7 @@
 #ifndef CLXX_CL_MOCK_HPP_INCLUDED
 #define CLXX_CL_MOCK_HPP_INCLUDED
 
-#include <clxx/cl/cl.h>
+#include <clxx/opencl.h>
 #include <cxxtest/Mock.h>
 
 /** \cond SHOW_IGNORED_COMPOUNDS */

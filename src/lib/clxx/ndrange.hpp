@@ -10,8 +10,8 @@
 #ifndef CLXX_NDRANGE_HPP_INCLUDED
 #define CLXX_NDRANGE_HPP_INCLUDED
 
-#include <clxx/command_queue.hpp>
-#include <clxx/kernel.hpp>
+#include <clxx/cl/command_queue.hpp>
+#include <clxx/cl/kernel.hpp>
 
 #ifndef CLXX_MAX_NDRANGE_DIMENSIONS
 /** // doc: CLXX_MAX_NDRANGE_DIMENSIONS {{{

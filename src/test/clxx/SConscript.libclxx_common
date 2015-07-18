@@ -16,6 +16,7 @@ tests = [
 #    'macros.t.h',
 #    'shared_ptr.t.h',
     'types.t.h',
+    'ndrange.t.h',
 #    'util/clerror_stdexcept.t.h',
     'util/context_property_type.t.h',
 #    'util/context_property_type_fwd.t.h',
@@ -30,7 +31,7 @@ tests = [
 ]
 
 env.CxxTest('../check-libclxx_common', tests,
-           LIBS = CLVar(),
+           LIBS = CLVar('clxx_common'),
            CXXTEST_CPPPATH = ['..'],
            CXXTEST_LIBPATH = env.get('LIBPATH', CLVar()),
            CXXTEST_TARGET = 'check-libclxx_common')

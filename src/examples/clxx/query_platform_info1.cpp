@@ -11,7 +11,7 @@
  */ // }}}
 
 // [Program]
-#include <clxx/platforms.hpp>
+#include <clxx/cl/platforms.hpp>
 #include <clxx/io/platform_info.hpp>
 #include <iostream>
 

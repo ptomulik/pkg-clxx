@@ -1,7 +1,7 @@
 // @COPYRIGHT@
 // Licensed under MIT license (LICENSE.txt)
 
-// clxx/platform_info.t.h
+// clxx/info/platform_info.t.h
 
 /** // doc: clxx/s11n/platform_info.t.h {{{
  * \file clxx/s11n/platform_info.t.h

@@ -10,9 +10,9 @@
 #include <clxx/app/clcc/main.hpp>
 #include <clxx/app/clinfo/main.hpp>
 #include <clxx/app/options/rethrow.hpp>
-#include <clxx/platform_layer_info.hpp>
+#include <clxx/info/platform_layer_info.hpp>
 #include <clxx/io/platform_layer_info.hpp>
-#include <clxx/program.hpp>
+#include <clxx/cl/program.hpp>
 #include <clxx/exceptions.hpp>
 #include <clxx/clerror_no.hpp>
 #include <algorithm>

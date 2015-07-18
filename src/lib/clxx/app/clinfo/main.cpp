@@ -10,8 +10,8 @@
 #include <clxx/app/clinfo/main.hpp>
 #include <clxx/app/clinfo/create_query.hpp>
 
-#include <clxx/platform_layer.hpp>
-#include <clxx/platform_layer_info.hpp>
+#include <clxx/cl/platform_layer.hpp>
+#include <clxx/info/platform_layer_info.hpp>
 #include <clxx/s11n/platform_layer_info.hpp>
 #include <clxx/io/platform_layer_info.hpp>
 #include <clxx/app/options/rethrow.hpp>

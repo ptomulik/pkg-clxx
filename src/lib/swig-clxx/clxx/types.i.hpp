@@ -11,7 +11,7 @@
 #define CLXX_TYPES_I_HPP_INCLUDED
 
 // dependencies on other swig modules
-#include <clxx/cl/opencl_types.i.hpp>
+#include <clxx/opencl_types.i.hpp>
 
 // stuff included by this module
 #include <clxx/types.hpp>

@@ -12,8 +12,8 @@
 
 #include <clxx/app/main.hpp>
 #include <clxx/app/clcc/options.hpp>
-#include <clxx/platform_layer.hpp>
-#include <clxx/context.hpp>
+#include <clxx/cl/platform_layer.hpp>
+#include <clxx/cl/context.hpp>
 #include <string>
 #include <vector>
 

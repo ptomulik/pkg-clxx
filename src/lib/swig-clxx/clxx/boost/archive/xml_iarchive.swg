@@ -9,7 +9,7 @@
 %{
 #include <clxx/std/iostream_mod.hpp>
 #include <boost/archive/xml_iarchive.hpp>
-#include <clxx/device_info.hpp>
+#include <clxx/info/device_info.hpp>
 #include <boost/serialization/shared_ptr.hpp>
 %}
 

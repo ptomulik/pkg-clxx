@@ -1,7 +1,7 @@
 // @COPYRIGHT@
 // Licensed under MIT license (LICENSE.txt)
 
-// clxx/device_query.t.h
+// clxx/info/device_query.t.h
 
 /** // doc: clxx/s11n/device_query.t.h {{{
  * \file clxx/s11n/device_query.t.h

@@ -7,8 +7,8 @@
  *    \ref clxx::platform_layer_info "platform_layer_info"
  */ // }}}
 #include <clxx/s11n/platform_layer_info_impl.hpp>
-#include <clxx/platform_info.hpp>
-#include <clxx/device_info.hpp>
+#include <clxx/info/platform_info.hpp>
+#include <clxx/info/device_info.hpp>
 #include <boost/archive/text_iarchive.hpp>
 #include <boost/archive/text_oarchive.hpp>
 #include <boost/archive/xml_iarchive.hpp>

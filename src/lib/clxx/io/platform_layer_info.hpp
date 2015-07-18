@@ -10,7 +10,7 @@
 #ifndef CLXX_IO_PLATFORM_LAYER_INFO_HPP_INCLUDED
 #define CLXX_IO_PLATFORM_LAYER_INFO_HPP_INCLUDED
 
-#include <clxx/platform_layer_info.hpp>
+#include <clxx/info/platform_layer_info.hpp>
 #include <iosfwd>
 
 namespace clxx { namespace io {

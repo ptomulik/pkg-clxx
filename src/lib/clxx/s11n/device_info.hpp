@@ -11,7 +11,7 @@
 #ifndef CLXX_S11N_DEVICE_INFO_HPP_INCLUDED
 #define CLXX_S11N_DEVICE_INFO_HPP_INCLUDED
 
-#include <clxx/device_info.hpp>
+#include <clxx/info/device_info.hpp>
 #include <boost/serialization/version.hpp>
 
 BOOST_CLASS_VERSION( clxx::device_info

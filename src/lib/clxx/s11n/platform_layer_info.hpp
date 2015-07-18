@@ -11,7 +11,7 @@
 #ifndef CLXX_S11N_PLATFORM_LAYER_INFO_HPP_INCLUDED
 #define CLXX_S11N_PLATFORM_LAYER_INFO_HPP_INCLUDED
 
-#include <clxx/platform_layer_info.hpp>
+#include <clxx/info/platform_layer_info.hpp>
 #include <boost/serialization/version.hpp>
 
 BOOST_CLASS_VERSION( clxx::platform_layer_info

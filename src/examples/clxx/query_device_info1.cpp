@@ -11,8 +11,8 @@
  */ // }}}
 
 // [Program]
-#include <clxx/platforms.hpp>
-#include <clxx/devices.hpp>
+#include <clxx/cl/platforms.hpp>
+#include <clxx/cl/devices.hpp>
 #include <clxx/io/device_info.hpp>
 #include <iostream>
 

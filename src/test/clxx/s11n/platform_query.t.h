@@ -1,7 +1,7 @@
 // @COPYRIGHT@
 // Licensed under MIT license (LICENSE.txt)
 
-// clxx/platform_query.t.h
+// clxx/info/platform_query.t.h
 
 /** // doc: clxx/s11n/platform_query.t.h {{{
  * \file clxx/s11n/platform_query.t.h

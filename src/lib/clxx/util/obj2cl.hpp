@@ -10,15 +10,15 @@
 #ifndef CLXX_OBJ2CL_HPP_INCLUDED
 #define CLXX_OBJ2CL_HPP_INCLUDED
 
-#include <clxx/command_queue_fwd.hpp>
-#include <clxx/context_fwd.hpp>
-#include <clxx/device_fwd.hpp>
-#include <clxx/event_fwd.hpp>
-#include <clxx/kernel_fwd.hpp>
-#include <clxx/mem_fwd.hpp>
-#include <clxx/platform_fwd.hpp>
-#include <clxx/program_fwd.hpp>
-#include <clxx/cl/cl.h>
+#include <clxx/cl/command_queue_fwd.hpp>
+#include <clxx/cl/context_fwd.hpp>
+#include <clxx/cl/device_fwd.hpp>
+#include <clxx/cl/event_fwd.hpp>
+#include <clxx/cl/kernel_fwd.hpp>
+#include <clxx/cl/mem_fwd.hpp>
+#include <clxx/cl/platform_fwd.hpp>
+#include <clxx/cl/program_fwd.hpp>
+#include <clxx/opencl.h>
 #include <vector>
 
 namespace clxx {

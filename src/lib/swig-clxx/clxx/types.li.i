@@ -7,9 +7,9 @@
  */ // }}}
 
 %import <clxx/wknd.swg>
-%import <clxx/cl/opencl_types.i>
+%import <clxx/opencl_types.i>
 %{
-#include <clxx/cl/opencl_types.i.hpp>
+#include <clxx/opencl_types.i.hpp>
 %}
 
 %include <clxx/types.swg>

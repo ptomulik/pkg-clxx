@@ -1,3 +1,11 @@
+clxx0 (0.1.12~alpha1-1) unstable; urgency=medium
+
+  * add libclxx-common0 package to the stuff
+  * Imported Upstream version 0.1.12~alpha1
+  * Imported Upstream version 0.1.12~alpha1
+
+ -- Paweł Tomulik <ptomulik@meil.pw.edu.pl>  Sat, 18 Jul 2015 04:29:16 +0200
+
 clxx0 (0.1.11-1) unstable; urgency=medium
 
   * Imported Upstream version 0.1.11

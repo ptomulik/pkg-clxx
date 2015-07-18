@@ -25,6 +25,10 @@
 /libclxx-cl0.postrm.debhelper
 /libclxx-cl0.substvars
 /libclxx-cl0/
+/libclxx-common0.postinst.debhelper
+/libclxx-common0.postrm.debhelper
+/libclxx-common0.substvars
+/libclxx-common0/
 /libclxx-common0-dev.substvars
 /libclxx-common0-dev/
 /libclxx-info0-dev.substvars

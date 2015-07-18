@@ -44,8 +44,8 @@ SOVERSION = $(version_major)
 
 INSTBASE=$(CURDIR)/debian
 
-clxx_libs = libclxx_app libclxx_app_clcc libclxx_app_clinfo libclxx_io \
-						libclxx_cl libclxx_info libclxx_s11n
+clxx_libs = libclxx_common libclxx_app libclxx_app_clcc libclxx_app_clinfo \
+						libclxx_io libclxx_cl libclxx_info libclxx_s11n
 
 # Change library name to install target name
 # Input: library name (without extensions)

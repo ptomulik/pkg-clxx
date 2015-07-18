@@ -8,11 +8,30 @@ Homepage: https://github.com/ptomulik/clxx
 Vcs-Git: git://github.com/ptomulik/pkg-clxx.git
 Vcs-Browser: https://github.com/ptomulik/pkg-clxx
 
+Package: libclxx-common0
+Homepage: https://github.com/ptomulik/clxx
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: C++ library for object-oriented OpenCL programming
+ Clxx is a C++ library which exposes OpenCL's functionality in an
+ object-oriented way. Its goal is to simplify usage of the OpenCL functions
+ by providing type-safe and easy to use interface.
+ .
+ Clxx is not just a set of bare wrappers around OpenCL calls. In addition to
+ several objects and functions provided for accessing the OpenCL
+ functionality, it also implements additional facilities such as specialized
+ I/O functions, serialization, swig-based wrappers to access clxx from
+ scripting languages (Python), and even ready-to use applications such as
+ clxx-clinfo or clxx-clcc.
+ .
+ This package contains libclxx_common.so, a library used by several subpackages
+ of the clxx project.
+
 Package: libclxx-common0-dev
 Homepage: https://github.com/ptomulik/clxx
 Architecture: any
 Section: libdevel
-Depends: ${misc:Depends}, libyaul0.1-dev | libyaul-dev (>= 0.1.1)
+Depends: ${misc:Depends}
 Description: C++ library for object-oriented OpenCL programming
  Clxx is a C++ library which exposes OpenCL's functionality in an
  object-oriented way. Its goal is to simplify usage of the OpenCL functions

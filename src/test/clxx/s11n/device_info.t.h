@@ -1,7 +1,7 @@
 // @COPYRIGHT@
 // Licensed under MIT license (LICENSE.txt)
 
-// clxx/device_info.t.h
+// clxx/info/device_info.t.h
 
 /** // doc: clxx/s11n/device_info.t.h {{{
  * \file clxx/s11n/device_info.t.h

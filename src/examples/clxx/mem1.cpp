@@ -11,9 +11,9 @@
  */ // }}}
 
 // [Program]
-#include <clxx/platforms.hpp>
-#include <clxx/mem.hpp>
-#include <clxx/context.hpp>
+#include <clxx/cl/platforms.hpp>
+#include <clxx/cl/mem.hpp>
+#include <clxx/cl/context.hpp>
 #include <clxx/io/types.hpp>
 #include <iostream>
 

@@ -10,7 +10,7 @@
 #ifndef CLXX_IO_DEVICE_QUERY_HPP_INCLUDED
 #define CLXX_IO_DEVICE_QUERY_HPP_INCLUDED
 
-#include <clxx/device_query.hpp>
+#include <clxx/info/device_query.hpp>
 #include <iosfwd>
 
 namespace clxx { namespace io {

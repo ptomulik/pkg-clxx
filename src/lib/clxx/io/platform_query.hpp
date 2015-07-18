@@ -10,7 +10,7 @@
 #ifndef CLXX_IO_PLATFORM_QUERY_HPP_INCLUDED
 #define CLXX_IO_PLATFORM_QUERY_HPP_INCLUDED
 
-#include <clxx/platform_query.hpp>
+#include <clxx/info/platform_query.hpp>
 #include <iosfwd>
 
 namespace clxx { namespace io {

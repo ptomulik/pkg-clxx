@@ -10,9 +10,9 @@
 #ifndef CLXX_PLATFORM_LAYER_INFO_FIXTURES_HPP_INCLUDED
 #define CLXX_PLATFORM_LAYER_INFO_FIXTURES_HPP_INCLUDED
 
-#include <clxx/platform_layer_info.hpp>
-#include <clxx/platform_info.hpp>
-#include <clxx/device_info.hpp>
+#include <clxx/info/platform_layer_info.hpp>
+#include <clxx/info/platform_info.hpp>
+#include <clxx/info/device_info.hpp>
 
 namespace clxx {
 

@@ -10,7 +10,7 @@
  * \brief Usage example for \ref clxx::query_platform_layer_info() "query_platform_layer_info()"
  */ // }}}
 // [Program]
-#include <clxx/platform_layer.hpp>
+#include <clxx/cl/platform_layer.hpp>
 #include <clxx/io/platform_layer_info.hpp>
 #include <iostream>
 

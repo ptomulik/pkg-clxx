@@ -4,25 +4,31 @@
 
 Import('env')
 
-from SCons.Util import CLVar
+from SCons.Util import CLVar, NodeList
+import os
 
-local_headers = [
-    'config.h',
-    'config.hpp',
+sources = [
+    'ndrange.cpp'
+]
+
+headers = [
+    'opencl.h',
     'clerror.hpp',
     'clerror_base.hpp',
     'clerror_no.hpp',
+    'config.h',
+    'config.hpp',
     'exception.hpp',
     'exception_base.hpp',
     'exceptions.hpp',
     'macros.hpp',
+    'ndrange.hpp',
+    'program_binaries.hpp',
+    'program_binary.hpp',
+    'program_source.hpp',
+    'program_sources.hpp',
     'shared_ptr.hpp',
     'types.hpp',
-]
-cl_headers = [
-    'cl/cl.h',
-]
-util_headers = [
     'util/clerror_stdexcept.hpp',
     'util/context_property_type.hpp',
     'util/context_property_type_fwd.hpp',
@@ -37,18 +43,35 @@ util_headers = [
     'util/to_string.hpp',
 ]
 
-local_iheaders = env.Install("${includedir}/clxx", local_headers)
-cl_iheaders = env.Install("${includedir}/clxx/cl", cl_headers)
-util_iheaders = env.Install("${includedir}/clxx/util", util_headers)
+env['CLXX_PACKAGES']['libclxx_common'] = {
+    'version' : env.subst('$CLXX_VERSION'),
+    'libdeps' : CLVar()
+}
 
-env.Ignore("${INSTALL_SANDBOX}${includedir}/clxx", local_iheaders)
-env.Ignore("${INSTALL_SANDBOX}${includedir}/clxx/cl", cl_iheaders)
-env.Ignore("${INSTALL_SANDBOX}${includedir}/clxx/util", util_iheaders)
+objects = env.SharedObject(sources)
 
-iheaders = local_iheaders + cl_iheaders + util_iheaders
+overrides = {
+    'SHLIBVERSION'  : env['CLXX_PACKAGES']['libclxx_common']['version'],
+    'LIBS'          : env['CLXX_PACKAGES']['libclxx_common']['libdeps']
+}
+
+# rlib - "real" libarary
+lib = env.SharedLibrary('../clxx_common', objects, **overrides)
+
+ilib = env.InstallVersionedLib('${libdir}', lib, **overrides)
+env.Ignore("${INSTALL_SANDBOX}${libdir}", ilib)
+
+iheaders = NodeList()
+for header in headers:
+    [head, tail] = os.path.split(header)
+    idir = os.path.join(env.subst("${includedir}"), "clxx", head);
+    iheader = env.Install(idir, header)
+    env.Ignore(idir, iheader)
+    iheaders += iheader
 
 env.Alias('install-libclxx_common-headers', iheaders)
-env.Alias('install-libclxx_common-dev', ['install-libclxx_common-headers' ])
+env.Alias('install-libclxx_common-lib', ilib)
+env.Alias('install-libclxx_common-dev', ['install-libclxx_common-headers', 'install-libclxx_common-lib' ])
 env.Alias('install','install-libclxx_common-dev')
 
 # Local Variables:

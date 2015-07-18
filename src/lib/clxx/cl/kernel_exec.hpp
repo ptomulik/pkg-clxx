@@ -12,7 +12,7 @@
 
 #include <clxx/cl/command_queue_fwd.hpp>
 #include <clxx/cl/kernel_fwd.hpp>
-#include <clxx/ndrange.hpp>
+#include <clxx/common/ndrange.hpp>
 #include <clxx/cl/events.hpp>
 
 namespace clxx {

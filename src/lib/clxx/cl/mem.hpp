@@ -12,8 +12,8 @@
 
 #include <clxx/cl/mem_fwd.hpp>
 #include <clxx/cl/context_fwd.hpp>
-#include <clxx/types.hpp>
-#include <clxx/opencl.h>
+#include <clxx/common/types.hpp>
+#include <clxx/common/opencl.h>
 #include <clxx/cl/clobj.hpp>
 
 namespace clxx {

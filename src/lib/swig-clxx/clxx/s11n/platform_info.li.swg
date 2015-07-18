@@ -14,7 +14,7 @@
 
 %include <clxx/s11n/platform_info.hpp>
 %import <clxx/s11n/boost_archives.swg>
-%import <clxx/shared_ptr.swg>
+%import <clxx/common/shared_ptr.swg>
 CLXX_EXTEND_BOOST_ARCHIVES(clxx::platform_info);
 CLXX_EXTEND_BOOST_ARCHIVES(CLXX_SHARED_PTR(clxx::platform_info));
 

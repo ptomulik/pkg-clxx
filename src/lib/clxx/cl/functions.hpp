@@ -10,7 +10,7 @@
 #ifndef CLXX_CL_FUNCTIONS_HPP_INCLUDED
 #define CLXX_CL_FUNCTIONS_HPP_INCLUDED
 
-#include <clxx/types.hpp>
+#include <clxx/common/types.hpp>
 
 namespace clxx {
 

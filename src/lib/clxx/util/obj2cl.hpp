@@ -18,7 +18,7 @@
 #include <clxx/cl/mem_fwd.hpp>
 #include <clxx/cl/platform_fwd.hpp>
 #include <clxx/cl/program_fwd.hpp>
-#include <clxx/opencl.h>
+#include <clxx/common/opencl.h>
 #include <vector>
 
 namespace clxx {

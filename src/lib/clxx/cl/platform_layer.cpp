@@ -12,7 +12,7 @@
 #include <clxx/cl/device.hpp>
 #include <clxx/cl/platforms.hpp>
 #include <clxx/cl/devices.hpp>
-#include <clxx/exceptions.hpp>
+#include <clxx/common/exceptions.hpp>
 #include <clxx/cl/mock.hpp>
 #include <algorithm>
 #include <iostream>

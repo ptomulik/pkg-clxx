@@ -8,27 +8,27 @@ from SCons.Util import CLVar, NodeList
 import os
 
 sources = [
-    'ndrange.cpp'
+    'common/ndrange.cpp'
 ]
 
 headers = [
-    'opencl.h',
-    'clerror.hpp',
-    'clerror_base.hpp',
-    'clerror_no.hpp',
+    'common/clerror.hpp',
+    'common/clerror_base.hpp',
+    'common/clerror_no.hpp',
+    'common/config.hpp',
+    'common/exception.hpp',
+    'common/exception_base.hpp',
+    'common/exceptions.hpp',
+    'common/macros.hpp',
+    'common/ndrange.hpp',
+    'common/opencl.h',
+    'common/program_binaries.hpp',
+    'common/program_binary.hpp',
+    'common/program_source.hpp',
+    'common/program_sources.hpp',
+    'common/shared_ptr.hpp',
+    'common/types.hpp',
     'config.h',
-    'config.hpp',
-    'exception.hpp',
-    'exception_base.hpp',
-    'exceptions.hpp',
-    'macros.hpp',
-    'ndrange.hpp',
-    'program_binaries.hpp',
-    'program_binary.hpp',
-    'program_source.hpp',
-    'program_sources.hpp',
-    'shared_ptr.hpp',
-    'types.hpp',
     'util/clerror_stdexcept.hpp',
     'util/context_property_type.hpp',
     'util/context_property_type_fwd.hpp',

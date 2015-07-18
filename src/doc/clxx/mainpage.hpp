@@ -34,7 +34,7 @@
  * (the <tt>CL_...</tt> constants). In %clxx we have replaced these constants
  * with C++11 enum classes. For each specific set of constants (e.g. error
  * codes) we provide a separate enum class with appropriate set of values. All
- * these enums are defined in the header clxx/types.hpp. For example, status
+ * these enums are defined in the header clxx/common/types.hpp. For example, status
  * codes (including error codes) are covered by clxx::status_t enum class.
  *
  * This classification is a first step towards type safety. In addition, it

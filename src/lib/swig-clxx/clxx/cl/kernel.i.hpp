@@ -11,7 +11,7 @@
 #define CLXX_CL_KERNEL_I_HPP_INCLUDED
 
 // dependencies on other swig modules
-#include <clxx/types.i.hpp>
+#include <clxx/common/types.i.hpp>
 #include <clxx/cl/clobj.i.hpp>
 #include <clxx/cl/program.i.hpp>
 #include <clxx/cl/context.i.hpp>
@@ -19,7 +19,7 @@
 #include <clxx/std/string.i.hpp>
 
 // stuff included by this module
-#include <clxx/ndrange.hpp>
+#include <clxx/common/ndrange.hpp>
 #include <clxx/cl/kernel.hpp>
 
 #endif /* CLXX_CL_KERNEL_I_HPP_INCLUDED */

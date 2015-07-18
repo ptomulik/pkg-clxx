@@ -13,7 +13,7 @@
 #ifndef CLXX_UTIL_TO_STRING_HPP_INCLUDED
 #define CLXX_UTIL_TO_STRING_HPP_INCLUDED
 
-#include <clxx/types.hpp>
+#include <clxx/common/types.hpp>
 #include <clxx/util/enum2name.hpp>
 #include <clxx/util/enum2hex.hpp>
 #include <string>
@@ -23,7 +23,7 @@ namespace clxx {
 /** // doc: enum_to_name_of_hex {{{
  * \brief Convert an enum value to its string representation
  *
- * For most values of enums defined in <tt>clxx/types.hpp</tt> it returns a
+ * For most values of enums defined in <tt>clxx/common/types.hpp</tt> it returns a
  * string representation of enum value (name of enum). For the values not
  * recognized by the library, however, it returns a string representation
  * of a hexadecimal value of the enum.

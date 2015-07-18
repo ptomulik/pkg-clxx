@@ -5,7 +5,7 @@
 
 /** // doc: clxx/io/types.cpp {{{
  * \file clxx/io/types.cpp
- * \brief Instantiates template I/O functions for types defined in clxx/types.hpp
+ * \brief Instantiates template I/O functions for types defined in clxx/common/types.hpp
  */ // }}}
 #include <ostream>
 #include <string>

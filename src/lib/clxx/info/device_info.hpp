@@ -10,7 +10,7 @@
 #ifndef CLXX_INFO_DEVICE_INFO_HPP_INCLUDED
 #define CLXX_INFO_DEVICE_INFO_HPP_INCLUDED
 
-#include <clxx/types.hpp>
+#include <clxx/common/types.hpp>
 #include <boost/optional.hpp>
 #include <vector>
 #include <string>

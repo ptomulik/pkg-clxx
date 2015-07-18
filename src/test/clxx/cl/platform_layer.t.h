@@ -13,7 +13,7 @@
 #include <cxxtest/TestSuite.h>
 #include <clxx/cl/platform_layer.hpp>
 #include <clxx/cl/mock.hpp>
-#include <clxx/exceptions.hpp>
+#include <clxx/common/exceptions.hpp>
 
 namespace clxx { class platform_layer_test__suite; }
 

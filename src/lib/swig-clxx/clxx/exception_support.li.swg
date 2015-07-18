@@ -7,7 +7,7 @@
  */ // }}}
 
 %include <exception.i>
-%include <clxx/clerror_support.swg>
+%include <clxx/common/clerror_support.swg>
 
 %{
 #define SWIG_Clxx_MemoryError(e) SWIG_exception(SWIG_MemoryError, (e).what())
@@ -33,7 +33,7 @@
 // clxx::clerror
 #define %catch_clerror catch(clxx::clerror const& e) { SWIG_Clxx_clerror(e); }
 
-// stuff frim clxx/exceptions.hpp
+// stuff frim clxx/common/exceptions.hpp
 #define %catch_invalid_argument_error catch(clxx::invalid_argument_error const& e) { SWIG_Clxx_ValueError(e); }
 #define %catch_length_error catch(clxx::length_error const& e) { SWIG_Clxx_ValueError(e); }
 #define %catch_not_enough_space_error catch(clxx::not_enough_space_error const& e) { SWIG_Clxx_ValueError(e); }
@@ -112,9 +112,9 @@
 }
 %enddef
 
-%import <clxx/exceptions.i>
+%import <clxx/common/exceptions.i>
 %{
-#include <clxx/exceptions.i.hpp>
+#include <clxx/common/exceptions.i.hpp>
 %}
 %exception {
   try {

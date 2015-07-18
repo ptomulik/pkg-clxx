@@ -11,12 +11,12 @@
 %import <clxx/wknd.swg>
 %include <clxx/exception_support.swg>
 
-%import <clxx/types.i>
+%import <clxx/common/types.i>
 %import <clxx/cl/devices.i>
 %import <clxx/cl/device_partition_properties.i>
 
 %{
-#include <clxx/types.i.hpp>
+#include <clxx/common/types.i.hpp>
 #include <clxx/cl/devices.i.hpp>
 #include <clxx/cl/device_partition_properties.i.hpp>
 %}

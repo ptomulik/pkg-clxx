@@ -12,7 +12,7 @@
 
 #include <boost/noncopyable.hpp>
 #include <clxx/app/options.hpp>
-#include <clxx/types.hpp>
+#include <clxx/common/types.hpp>
 
 namespace clxx { namespace app { namespace clcc {
 

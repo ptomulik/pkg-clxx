@@ -10,8 +10,8 @@
 #ifndef CLXX_CL_CLOBJ_HPP_INCLUDED
 #define CLXX_CL_CLOBJ_HPP_INCLUDED
 
-#include <clxx/types.hpp>
-#include <clxx/exceptions.hpp>
+#include <clxx/common/types.hpp>
+#include <clxx/common/exceptions.hpp>
 
 namespace clxx {
 /** // doc: clobj {{{

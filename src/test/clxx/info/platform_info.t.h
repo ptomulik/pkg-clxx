@@ -13,7 +13,7 @@
 #include <cxxtest/TestSuite.h>
 #include <clxx/info/platform_info.hpp>
 #include <clxx/platform_info_fixtures.hpp>
-#include <clxx/exceptions.hpp>
+#include <clxx/common/exceptions.hpp>
 
 // For serialization
 #include <boost/archive/text_oarchive.hpp>

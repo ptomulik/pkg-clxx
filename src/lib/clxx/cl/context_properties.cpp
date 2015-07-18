@@ -5,7 +5,7 @@
  * \brief Implements the \ref clxx::context_properties "context_properties" class
  */ // }}}
 #include <clxx/cl/context_properties.hpp>
-#include <clxx/exceptions.hpp>
+#include <clxx/common/exceptions.hpp>
 
 namespace clxx {
 /* ----------------------------------------------------------------------- */

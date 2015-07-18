@@ -11,7 +11,7 @@
 #define CLXX_APP_OPTIONS_EXCEPTIONS_INVALID_CONFIG_FILE_SYNTAX_HPP_INCLUDED
 
 #include <clxx/app/options/exception.hpp>
-#include <clxx/exception_base.hpp>
+#include <clxx/common/exception_base.hpp>
 #include <boost/program_options/errors.hpp>
 
 namespace clxx {

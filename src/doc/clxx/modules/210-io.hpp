@@ -8,7 +8,7 @@
  * diagnostics, debugging or user-interface implementation.
  *
  * The implemented functions cover all the %clxx enum classes defined in
- * clxx/types.hpp and some of the object classes, such as clxx::platform_info.
+ * clxx/common/types.hpp and some of the object classes, such as clxx::platform_info.
  * For convenience, we have specialized the "shift" operator (\c <<) for these
  * types and these specializations work with most standard streams. In
  * addition, there are also specialized functions named clxx::io::write which

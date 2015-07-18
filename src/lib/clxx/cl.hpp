@@ -29,16 +29,16 @@
 #include <clxx/cl/kernels.hpp>
 #include <clxx/cl/mem.hpp>
 #include <clxx/cl/mem_fcn.hpp>
-#include <clxx/ndrange.hpp>
+#include <clxx/common/ndrange.hpp>
 #include <clxx/cl/platform.hpp>
 #include <clxx/cl/platform_layer.hpp>
 #include <clxx/cl/platforms.hpp>
 #include <clxx/cl/program.hpp>
-#include <clxx/program_binaries.hpp>
-#include <clxx/program_binary.hpp>
+#include <clxx/common/program_binaries.hpp>
+#include <clxx/common/program_binary.hpp>
 #include <clxx/cl/program_observer.hpp>
-#include <clxx/program_source.hpp>
-#include <clxx/program_sources.hpp>
+#include <clxx/common/program_source.hpp>
+#include <clxx/common/program_sources.hpp>
 
 #endif /* CLXX_CL_HPP_INCLUDED */
 // vim: set expandtab tabstop=2 shiftwidth=2:

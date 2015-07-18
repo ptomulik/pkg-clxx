@@ -14,7 +14,7 @@
  */ // }}}
 
 // [Includes]
-#include <clxx/exception_base.hpp>
+#include <clxx/common/exception_base.hpp>
 // [Includes]
 
 // [ExceptionDefinition]

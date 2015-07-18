@@ -12,7 +12,7 @@
 
 #include <cxxtest/TestSuite.h>
 #include <clxx/cl/kernel_exec.hpp>
-#include <clxx/exceptions.hpp>
+#include <clxx/common/exceptions.hpp>
 #include <clxx/cl/command_queue.hpp>
 #include <clxx/cl/kernel.hpp>
 #include <clxx/cl/mock.hpp>

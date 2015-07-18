@@ -10,7 +10,7 @@
 #ifndef CLXX_UTIL_DEVICE_PARTITION_PROPERTY_TYPE_FWD_HPP_INCLUDED
 #define CLXX_UTIL_DEVICE_PARTITION_PROPERTY_TYPE_FWD_HPP_INCLUDED
 
-#include <clxx/types.hpp>
+#include <clxx/common/types.hpp>
 
 namespace clxx {
 

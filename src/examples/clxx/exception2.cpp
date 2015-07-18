@@ -13,7 +13,7 @@
  */ // }}}
 
 // [Includes]
-#include <clxx/exception.hpp>
+#include <clxx/common/exception.hpp>
 #include <stdexcept>
 // [Includes]
 

@@ -10,7 +10,7 @@
 #ifndef CLXX_CL_CLOBJ_FCN_HPP_INCLUDED
 #define CLXX_CL_CLOBJ_FCN_HPP_INCLUDED
 
-#include <clxx/opencl.h>
+#include <clxx/common/opencl.h>
 #include <clxx/cl/functions.hpp>
 
 namespace clxx {

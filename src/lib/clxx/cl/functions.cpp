@@ -6,7 +6,7 @@
  * \brief Implements thin wrappers for OpenCL functions
  */ // }}}
 #include <clxx/cl/functions.hpp>
-#include <clxx/exceptions.hpp>
+#include <clxx/common/exceptions.hpp>
 #include <clxx/cl/mock.hpp>
 
 namespace clxx {

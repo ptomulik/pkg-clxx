@@ -15,7 +15,7 @@
 #define CLXX_CL_PLATFORM_HPP_INCLUDED
 
 #include <clxx/cl/platform_fwd.hpp>
-#include <clxx/types.hpp>
+#include <clxx/common/types.hpp>
 #include <clxx/cl/clobj.hpp>
 #include <string>
 

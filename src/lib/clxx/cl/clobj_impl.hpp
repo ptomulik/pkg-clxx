@@ -85,6 +85,7 @@ _release(handle_t handle)
 {
   release_cl_object(handle);
 }
+/** \cond DOXYGEN_SHOW_TEMPLATE_SPECIALIZATIONS */
 /* ----------------------------------------------------------------------- */
 template<>
 inline void clobj<cl_device_id>::
@@ -129,6 +130,7 @@ inline void clobj<cl_platform_id>::
 _release(cl_platform_id)
 {
 }
+/** \endcond */
 /* ----------------------------------------------------------------------- */
 template< typename Handle >
 clobj<Handle>::

@@ -1,9 +1,35 @@
 // @COPYRIGHT@
 // Licensed under MIT license (LICENSE.txt)
+
+/**
+ * \defgroup clxx_common libclxx_common
+ *
+ * \brief This module documents contents of \ref clxx_common package
+ *
+ * The package contains entities that do not directly fit to any other package
+ * of the clxx project. You'll find here \ref clxx_types "enumerative types"
+ * used across the project, definition of \ref clxx_exceptions "exception classes",
+ * and some other specific \ref clxx_util "utilities".
+ *
+ * \par Linking
+ *
+ * Some programs that use the \ref clxx_common package shall be linked against
+ * \c libclxx_common library (\c -lclxx_common).
+ *
+ * @{ */
+
+/**
+ * \defgroup clxx_types Types
+ *
+ * \brief This module documents enumerative types defined by \ref clxx_common
+ *        package and functions that provide basic operations on them
+ */
+
 /**
  * \defgroup clxx_exceptions Exceptions
  *
- * This module introduces clxx exceptions.
+ * \brief This module introduces clxx exceptions provided by \ref clxx_common
+ *        package
  *
  * <h4>User's view</h4>
  *
@@ -139,5 +165,15 @@
  * \see clxx::clerror_base,
  * \see clxx::clerror_no.
  */
+
+
+/**
+ * \defgroup clxx_util Utilities
+ * 
+ * \brief This module documents utility functions and meta-functions provided
+ *        by \ref clxx_common package
+ */
+/** @} */
+
 // vim: set expandtab tabstop=2 shiftwidth=2:
 // vim: set foldmethod=marker foldcolumn=4:

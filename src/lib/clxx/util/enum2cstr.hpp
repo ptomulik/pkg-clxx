@@ -15,6 +15,8 @@
 #include <type_traits>
 
 namespace clxx {
+/** \addtogroup clxx_util
+ * @{ */
 /** // doc: enum2cstr(status_t, char const*) {{{
  * \brief Convert #status_t to C string (human-readable message)
  * \param x The enum value to be converted
@@ -946,7 +948,7 @@ enum2cstr(profiling_info_t x, char const* dflt = nullptr) noexcept
           (x == profiling_info_t::end) ? "end" :
           dflt;
 }
-
+/** @} */
 } // namespace clxx
 
 #endif /* CLXX_UTIL_ENUM2STR_HPP_INCLUDED */

@@ -14,6 +14,8 @@
 #include <stdexcept>
 
 namespace clxx {
+/** \addtogroup clxx_util
+ * @{ */
 /** // doc: std_except_ctor_arg {{{
  * \brief Determine how to construct a given standard exception.
  *
@@ -104,6 +106,7 @@ template<>
 struct std_except_ctor_arg< std::bad_alloc>
   { typedef std_except_no_ctor_arg_tag type; };
 /** \endcond */
+/** @} */
 } // end namespace clxx
 
 #endif /* CLXX_UTIL_STD_EXCEPT_CTOR_ARG_HPP_INCLUDED */

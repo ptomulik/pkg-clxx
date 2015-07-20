@@ -51,7 +51,7 @@ size_t context_properties_array_size(const context_properties& props);
  * \returns number of elements written out to **array** (including the trailing
  *          zero).
  *
- * \throw invalid_argument_error if **array** <tt>== nullefttr</tt>,
+ * \throw invalid_argument_error if **array** <tt>== nullptr</tt>,
  * \throw not_enough_space_error if **size** is lower than required
  *        minimum (see \ref context_properties_array_size()).
  */ // }}}
@@ -69,7 +69,7 @@ size_t context_properties_fill_array(const context_properties& props,
  * \returns number of elements retrieved from **array** (does not count the
  *          trailing zero)
  *
- * \throw invalid_argument_error if **array** <tt>== nullefttr</tt>,
+ * \throw invalid_argument_error if **array** <tt>== nullptr</tt>,
  */ // }}}
 size_t context_properties_parse_array(context_properties& props,
                                       const cl_context_properties* array);

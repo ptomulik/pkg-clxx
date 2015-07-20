@@ -20,6 +20,8 @@
 #include <type_traits>
 
 namespace clxx {
+/** \addtogroup clxx_util
+ * @{ */
 /** // doc: enum_to_name_of_hex {{{
  * \brief Convert an enum value to its string representation
  *
@@ -385,7 +387,7 @@ inline string to_string(clxx::buffer_create_type_t x)
  */ // }}}
 inline string to_string(clxx::profiling_info_t x)
 { return clxx::enum_to_name_or_hex(x); }
-
+/** @} */
 } // end namespace std
 
 #endif /* CLXX_UTIL_TO_STRING_HPP_INCLUDED */

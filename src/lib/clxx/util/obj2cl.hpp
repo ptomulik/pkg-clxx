@@ -22,6 +22,8 @@
 #include <vector>
 
 namespace clxx {
+/** \addtogroup clxx_util
+ * @{ */
 /** // doc: obj2cl {{{
  * \todo Write documentation
  */ // }}}
@@ -190,6 +192,7 @@ obj2cl(std::vector<T>* v)
 {
   return v ? obj2cl(v->data()) : nullptr;
 }
+/** @} */
 } // end namespace clxx
 
 #endif /* CLXX_OBJ2CL_HPP_INCLUDED */

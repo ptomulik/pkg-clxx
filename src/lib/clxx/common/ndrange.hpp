@@ -42,7 +42,7 @@ namespace clxx {
  *   the number of work-items that make up a work-group.
  *
  * The information encapsulated in \ref clxx::ndrange "ndrange"
- * is used by \ref clxx::enqueue_ndrange_kernel(command_queue const&, kernel const&, ndrange const&, events const&) "enqueue_ndrange_kernel(kernel, queue, ndrange,...)".
+ * is used by \ref clxx::enqueue_ndrange_kernel(command_queue const&, kernel const&, ndrange const&, events const&, event*) "enqueue_ndrange_kernel(kernel, queue, ndrange,...)".
  * When invoking this function, particular attributes of the
  * \ref clxx::ndrange "ndrange" are passed to appropriate
  * arguments of the #enqueue_ndrange_kernel() as follows:

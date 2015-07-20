@@ -82,7 +82,7 @@
  * functions may be found in module \ref clxx_io. With the I/O module, you may
  * easily dump object internals or print %clxx error codes such as:
  *
- * \snippet io1.cpp OutputStatusT
+ * \snippet clxx/io1.cpp OutputStatusT
  *
  * \par Serialization
  *

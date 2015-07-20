@@ -19,6 +19,9 @@
 #include <clxx/common/macros.hpp>
 
 namespace clxx {
+/** \addtogroup clxx_types
+ * @{ */
+
 /** // doc: status_t {{{
  * \brief A value returned by several functions to indicate success or failure.
  *
@@ -2043,6 +2046,8 @@ CLXX_SPECIALIZE_invalid_cl_object_errcode(cl_platform_id, invalid_platform);
 CLXX_SPECIALIZE_invalid_cl_object_errcode(cl_program, invalid_program);
 CLXX_SPECIALIZE_invalid_cl_object_errcode(cl_sampler, invalid_sampler);
 /** \endcond */
+
+/** @} */
 } // end namespace clxx
 
 #endif /* CLXX_COMMON_TYPES_HPP_INCLUDED */

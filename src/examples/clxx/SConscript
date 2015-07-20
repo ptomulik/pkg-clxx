@@ -23,6 +23,8 @@ env.Program('query_platform_info1.cpp', LIBS = CLVar('clxx_info clxx_io clxx_cl'
 env.Program('query_device_info1.cpp', LIBS = CLVar('clxx_info clxx_io clxx_cl'))
 env.Program('query_platform_layer_info1.cpp', LIBS = CLVar('clxx_info clxx_io clxx_cl'))
 env.Program('mem1.cpp', LIBS = CLVar('clxx_cl clxx_io'))
+env.Program('s11n1.cpp', LIBS = CLVar('clxx_cl clxx_info clxx_s11n boost_serialization'))
+env.Program('s11n2.cpp', LIBS = CLVar('clxx_info clxx_s11n clxx_io boost_serialization'))
 
 # Local Variables:
 # # tab-width:4

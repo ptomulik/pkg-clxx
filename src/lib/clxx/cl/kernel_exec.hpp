@@ -5,7 +5,7 @@
 
 /** // doc: clxx/cl/kernel_exec.hpp {{{
  * \file clxx/cl/kernel_exec.hpp
- * \brief Declares \ref clxx::enqueue_ndrange_kernel(clxx::command_queue const&, clxx::kernel const&, clxx::ndrange const&, clxx::events const&) "enqueue_ndrange_kernel()" and friends.
+ * \brief Declares \ref clxx::enqueue_ndrange_kernel(clxx::command_queue const&, clxx::kernel const&, clxx::ndrange const&, clxx::events const&, clxx::event*) "enqueue_ndrange_kernel()" and friends.
  */ // }}}
 #ifndef CLXX_CL_KERNEL_EXEC_HPP_INCLUDED
 #define CLXX_CL_KERNEL_EXEC_HPP_INCLUDED

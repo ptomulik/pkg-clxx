@@ -17,6 +17,7 @@
 namespace clxx {
 
 /** // doc: device_partition_property_type {{{
+ * \ingroup clxx_util
  * \brief Determines what type is used to represent given device partition property
  *
  * This meta-function returns a type that is used to represent a device

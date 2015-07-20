@@ -3,7 +3,7 @@
 
 /** // doc: clxx/cl/kernel_exec.cpp {{{
  * \file clxx/cl/kernel_exec.cpp
- * \brief Implements \ref clxx::enqueue_ndrange_kernel(clxx::command_queue const&, clxx::kernel const&, clxx::ndrange const&, clxx::events const&) "enqueue_ndrange_kernel()" and friends.
+ * \brief Implements \ref clxx::enqueue_ndrange_kernel(clxx::command_queue const&, clxx::kernel const&, clxx::ndrange const&, clxx::events const&, clxx::event*) "enqueue_ndrange_kernel()" and friends.
  */ // }}}
 #include <clxx/cl/kernel_exec.hpp>
 #include <clxx/cl/functions.hpp>

@@ -26,6 +26,8 @@ sources =  [
     'cl/platform_layer.cpp',
     'cl/platforms.cpp',
     'cl/program.cpp',
+    'cl/program_generator.cpp',
+    'cl/program_lazy_generator.cpp',
     'cl/program_observer.cpp',
 ]
 
@@ -62,6 +64,8 @@ headers = [
     'cl/platforms.hpp',
     'cl/program.hpp',
     'cl/program_fwd.hpp',
+    'cl/program_generator.hpp',
+    'cl/program_lazy_generator.hpp',
     'cl/program_observer.hpp',
 ]
 

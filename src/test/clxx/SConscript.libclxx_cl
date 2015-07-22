@@ -28,6 +28,7 @@ tests = [
     'cl/platform_layer.t.h',
     'cl/platforms.t.h',
     'cl/program.t.h',
+    'cl/program_generator.t.h',
     'cl/functions/build_program.t.h',
     'cl/functions/compile_program.t.h',
     'cl/functions/create_buffer.t.h',

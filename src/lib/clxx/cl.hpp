@@ -37,6 +37,8 @@
 #include <clxx/common/program_binaries.hpp>
 #include <clxx/common/program_binary.hpp>
 #include <clxx/cl/program_observer.hpp>
+#include <clxx/cl/program_generator.hpp>
+#include <clxx/cl/program_lazy_generator.hpp>
 #include <clxx/common/program_source.hpp>
 #include <clxx/common/program_sources.hpp>
 

@@ -65,7 +65,7 @@ clxx::program program_generator::
 get_program(clxx::context const& context) const
 {
   std::string src;
-  this->generate_program_source(src);
+  this->generate_program_source(src, context);
   return clxx::program(context, clxx::program_sources{ src });
 }
 /* ----------------------------------------------------------------------- */

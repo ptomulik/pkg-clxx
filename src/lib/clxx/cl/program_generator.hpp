@@ -32,7 +32,8 @@ public:
   /** // doc: generate_program_source(std::string&) {{{
    * \todo Write documentation
    */ // }}}
-  virtual void generate_program_source(std::string& str) const = 0;
+  virtual void generate_program_source(std::string& str,
+                                       clxx::context const& context) const = 0;
   /** // doc: program_name() {{{
    * \todo Write documentation
    */ // }}}

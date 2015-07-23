@@ -25,7 +25,7 @@ class clxx::program_generator_test_suite : public CxxTest::TestSuite
   {
   public:
     std::string program_name() const { return "g0"; }
-    void generate_program_source(std::string&) const { }
+    void generate_program_source(std::string&, clxx::context const&) const { }
   };
 
   class G1 : public program_generator
@@ -35,7 +35,7 @@ class clxx::program_generator_test_suite : public CxxTest::TestSuite
     std::string program_namespace() const { return "clxx"; }
     std::string program_file_suffix() const { return ".xyz"; }
     std::string program_dir() const { return "/tmp/clxx"; }
-    void generate_program_source(std::string& src) const
+    void generate_program_source(std::string& src, clxx::context const&) const
     {
       src.append("__kernel void foo() {}\n");
     }
@@ -119,7 +119,7 @@ public:
   {
     class G : public program_generator
     {
-      void generate_program_source(std::string&) const { }
+      void generate_program_source(std::string&, clxx::context const&) const { }
       std::string program_name() const { return "g"; }
       std::string program_dir() const { return "/tmp/clxx/"; }
     };

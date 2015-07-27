@@ -14,10 +14,9 @@ program_lazy_generator::
 program_lazy_generator()
   : program_generator(),
    _lazy_get_program(
-       make_memoized_function(
-         &clxx::program_generator::get_program, 
-         static_cast<program_generator const*>(this)
-       )
+       [this](clxx::context const& context) -> clxx::program {
+          return this->program_generator::get_program(context);
+       }
    )
 { }
 /* ----------------------------------------------------------------------- */

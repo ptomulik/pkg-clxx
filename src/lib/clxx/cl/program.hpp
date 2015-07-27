@@ -328,7 +328,7 @@ public:
    * It also throws exceptions originating from \ref get_program_info().
    */ // }}}
   std::string get_kernel_names() const;
-  /** doc: get_build_status() {{{
+  /** // doc: get_build_status() {{{
    * \brief Return build, compile or link status
    *
    * Returns the build, compile or link status, whichever was performed last on
@@ -346,7 +346,7 @@ public:
    * It also throws exceptions originating from \ref get_program_build_info().
    */ // }}}
   build_status_t get_build_status(device const& dev) const;
-  /** doc: get_build_options() {{{
+  /** // doc: get_build_options() {{{
    * \brief Return build, compile or link options
    *
    * Return the build, compile or link options specified by the options
@@ -367,7 +367,7 @@ public:
    * It also throws exceptions originating from \ref get_program_build_info().
    */ // }}}
   std::string get_build_options(device const& dev) const;
-  /** doc: get_build_log() {{{
+  /** // doc: get_build_log() {{{
    * \brief Return build, compile or link log
    *
    * Return the build, compile or link log for \ref build_program() or
@@ -387,7 +387,7 @@ public:
    * It also throws exceptions originating from \ref get_program_build_info().
    */ // }}}
   std::string get_build_log(device const& dev) const;
-  /** doc: get_binary_type() {{{
+  /** // doc: get_binary_type() {{{
    * \brief Return the program binary type for a device
    *
    * Return the program binary type for device *dev*. Possible values are

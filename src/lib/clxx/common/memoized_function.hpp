@@ -63,6 +63,7 @@ public:
    *    The other object which initialized this one
    */ // }}}
   memoized_function(memoized_function const& other)
+    : Base(other)
   {
     if(this == &other) return; // avoid self-deadlock
     // To be thread-safe we have to protect mutable member(s)

@@ -86,10 +86,10 @@ public:
     TS_ASSERT(p1 == p2);
   }
 
-  /** // doc: test__forget_memoized_program__1() {{{
+  /** // doc: test__discard_cached_program__1() {{{
    * \todo Write documentation
    */ // }}}
-  void test__forget_memoized_program__1( )
+  void test__discard_cached_program__1( )
   {
     T::Dummy_clRetainContext mockRetainContext(CL_SUCCESS);
     T::Dummy_clReleaseContext mockReleaseContext(CL_SUCCESS);
@@ -100,9 +100,9 @@ public:
     program_lazy_generator const& g0 = G0{};
     clxx::context const& c{ (cl_context)0x4567 };
 
-    TS_ASSERT_EQUALS(g0.forget_memoized_program(c), 0u);
+    TS_ASSERT_EQUALS(g0.discard_cached_program(c), 0u);
     clxx::program const& p{ g0.get_program(c) };
-    TS_ASSERT_EQUALS(g0.forget_memoized_program(c), 1u);
+    TS_ASSERT_EQUALS(g0.discard_cached_program(c), 1u);
       
     TS_ASSERT(mockRetainContext.called_once_with((cl_context)0x4567));
     TS_ASSERT(mockReleaseContext.caled_once_with((cl_context)0x4567));
@@ -112,10 +112,10 @@ public:
     TS_ASSERT_EQUALS(g0.count, 1);
   }
 
-  /** // doc: test__forget_memoized_programs__1() {{{
+  /** // doc: test__discard_cached_programs__1() {{{
    * \todo Write documentation
    */ // }}}
-  void test__forget_memoized_programs__1( )
+  void test__discard_cached_programs__1( )
   {
     T::Dummy_clRetainContext mockRetainContext(CL_SUCCESS);
     T::Dummy_clReleaseContext mockReleaseContext(CL_SUCCESS);
@@ -126,9 +126,9 @@ public:
     program_lazy_generator const& g0 = G0{};
     clxx::context const& c{ (cl_context)0x4567 };
 
-    TS_ASSERT_EQUALS(g0.forget_memoized_program(c), 0u);
+    TS_ASSERT_EQUALS(g0.discard_cached_program(c), 0u);
     clxx::program const& p{ g0.get_program(c) };
-    TS_ASSERT_EQUALS(g0.forget_memoized_program(c), 1u);
+    TS_ASSERT_EQUALS(g0.discard_cached_program(c), 1u);
       
     TS_ASSERT(mockRetainContext.called_once_with((cl_context)0x4567));
     TS_ASSERT(mockReleaseContext.caled_once_with((cl_context)0x4567));

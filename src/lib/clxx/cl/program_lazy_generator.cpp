@@ -6,44 +6,31 @@
  * \todo Write documentation
  */ // }}}
 #include <clxx/cl/program_lazy_generator.hpp>
+#include <clxx/common/exceptions.hpp>
 
 namespace clxx {
 /* ----------------------------------------------------------------------- */
+program_lazy_generator::
+program_lazy_generator()
+  : program_generator(),
+   _lazy_get_program(make_memoized_function(&clxx::program_generator::get_program, this))
+{ }
+/* ----------------------------------------------------------------------- */
 clxx::program program_lazy_generator::
 get_program(clxx::context const& context) const
-{
-  // To be thread-safe we have to protect mutable member(s) in const functions,
-  // otherwise user may be surprised. The std::lock_guard is exception-safe.
-  try {
-    std::lock_guard<std::mutex> lock(this->_programs_mutex);
-    return _programs.at(context);
-  } catch(std::out_of_range const&) {
-    clxx::program const& p = this->program_generator::get_program(context);
-    std::lock_guard<std::mutex> lock(this->_programs_mutex);
-    return _programs[context] = p;
-  }
-  // _programs_mutex is automatically released when lock goes out of scope
-}
+{ return _lazy_get_program(context); }
+/* ----------------------------------------------------------------------- */
+clxx::program program_lazy_generator::
+get_cached_program(clxx::context const& context) const
+{ return _lazy_get_program.get_cached_result(context); }
 /* ----------------------------------------------------------------------- */
 size_t program_lazy_generator::
-forget_memoized_program(clxx::context const& context) const
-{
-  // To be thread-safe we have to protect mutable member(s) in const functions,
-  // otherwise user may be surprised. The std::lock_guard is exception-safe.
-  std::lock_guard<std::mutex> lock(this->_programs_mutex);
-  return _programs.erase(context);
-  // _programs_mutex is automatically released when lock goes out of scope
-}
+discard_cached_program(clxx::context const& context) const
+{ return _lazy_get_program.discard_cached_result(context); }
 /* ----------------------------------------------------------------------- */
 void program_lazy_generator::
-forget_memoized_programs() const
-{
-  // To be thread-safe we have to protect mutable member(s) in const functions,
-  // otherwise user may be surprised. The std::lock_guard is exception-safe.
-  std::lock_guard<std::mutex> lock(this->_programs_mutex);
-  _programs.clear();
-  // _programs_mutex is automatically released when lock goes out of scope
-}
+discard_cached_programs() const
+{ _lazy_get_program.discard_cached_results(); }
 /* ----------------------------------------------------------------------- */
 } // end namespace clxx
 

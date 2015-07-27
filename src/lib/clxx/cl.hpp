@@ -26,6 +26,7 @@
 #include <clxx/cl/functions.hpp>
 #include <clxx/cl/kernel.hpp>
 #include <clxx/cl/kernel_exec.hpp>
+#include <clxx/cl/kernel_lazy_generator.hpp>
 #include <clxx/cl/kernels.hpp>
 #include <clxx/cl/mem.hpp>
 #include <clxx/cl/mem_fcn.hpp>

@@ -5,7 +5,7 @@
  * \file clxx/unit.cpp
  * \todo Write file documentation
  */ // }}}
-/** // doc: unit.cpp {{{
+/** // doc: clxx/unit.cpp {{{
  * \example clxx/unit.cpp
  * \brief Usage example for TODO:
  */ // }}}

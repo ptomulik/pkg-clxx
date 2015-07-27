@@ -20,6 +20,7 @@ headers = [
     'common/exception_base.hpp',
     'common/exceptions.hpp',
     'common/macros.hpp',
+    'common/memoized_function.hpp',
     'common/ndrange.hpp',
     'common/opencl.h',
     'common/program_binaries.hpp',

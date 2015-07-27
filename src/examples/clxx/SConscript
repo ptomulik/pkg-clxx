@@ -25,6 +25,9 @@ env.Program('query_platform_layer_info1.cpp', LIBS = CLVar('clxx_info clxx_io cl
 env.Program('mem1.cpp', LIBS = CLVar('clxx_cl clxx_io'))
 env.Program('s11n1.cpp', LIBS = CLVar('clxx_cl clxx_info clxx_s11n boost_serialization'))
 env.Program('s11n2.cpp', LIBS = CLVar('clxx_info clxx_s11n clxx_io boost_serialization'))
+env.Program('cl/program_generator1.cpp', LIBS = CLVar('clxx_cl clxx_io'))
+env.Program('cl/kernel_lazy_constructor1.cpp', LIBS = CLVar('clxx_cl'))
+env.Program('common/memoized_function1.cpp', LIBS = CLVar())
 
 # Local Variables:
 # # tab-width:4

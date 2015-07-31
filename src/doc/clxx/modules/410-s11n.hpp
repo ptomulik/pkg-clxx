@@ -21,7 +21,7 @@
  * Serialize platform layer info to an XML archive using
  * <a href="http://www.boost.org/doc/libs/release/libs/serialization/doc/archives.html#archive_models">boost::xml_oarchive</a>.
  *
- * \snippet clxx/s11n1.cpp Program
+ * \snippet clxx/s11n/s11n1.cpp Program
  *
  * \par Example
  *
@@ -29,7 +29,7 @@
  * <a href="http://www.boost.org/doc/libs/release/libs/serialization/doc/archives.html#archive_models">boost::xml_iarchive</a>
  * and print it out to standard output.
  *
- * \snippet clxx/s11n2.cpp Program
+ * \snippet clxx/s11n/s11n2.cpp Program
  */
 // vim: set expandtab tabstop=2 shiftwidth=2:
 // vim: set foldmethod=marker foldcolumn=4:

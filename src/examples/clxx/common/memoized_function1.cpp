@@ -32,8 +32,8 @@ int main()
   std::cout << "2 + 2 = " << lazy_add(2,2) << std::endl;
   std::cout << "3 + 4 = " << lazy_add(3,4) << std::endl;
 
-  std::cout << "discard_cached_result(2,2)" << std::endl;
-  lazy_add.discard_cached_result(2,2);
+  std::cout << "discard_memoized_result(2,2)" << std::endl;
+  lazy_add.discard_memoized_result(2,2);
   std::cout << "2 + 2 = " << lazy_add(2,2) << std::endl;
   std::cout << "3 + 4 = " << lazy_add(3,4) << std::endl;
 
@@ -46,7 +46,7 @@ int main()
 3 + 4 = (computing sum...) 7
 2 + 2 = 4
 3 + 4 = 7
-discard_cached_result(2,2)
+discard_memoized_result(2,2)
 2 + 2 = (computing sum...) 4
 3 + 4 = 7
  *  [Output] */

@@ -6,28 +6,33 @@ Import(['env'])
 
 from SCons.Util import CLVar
 
-env.Program('exception1.cpp')
-env.Program('exception2.cpp')
-env.Program('exception3.cpp')
-env.Program('exception4.cpp')
-env.Program('autosep1.cpp', LIBS = CLVar('clxx_io'))
-env.Program('io1.cpp', LIBS = CLVar('clxx_io'))
-env.Program('platform1.cpp', LIBS = CLVar('clxx_cl'))
-env.Program('platform2.cpp', LIBS = CLVar('clxx_cl clxx_info clxx_io'))
-env.Program('platform3.cpp', LIBS = CLVar('clxx_cl clxx_info clxx_io'))
-env.Program('platform4.cpp', LIBS = CLVar('clxx_cl clxx_info clxx_io'))
-env.Program('device1.cpp', LIBS = CLVar('clxx_cl'))
-env.Program('device_info1.cpp', LIBS = CLVar('clxx_info clxx_io'))
-env.Program('platform_info1.cpp', LIBS = CLVar('clxx_info clxx_io'))
-env.Program('query_platform_info1.cpp', LIBS = CLVar('clxx_info clxx_io clxx_cl'))
-env.Program('query_device_info1.cpp', LIBS = CLVar('clxx_info clxx_io clxx_cl'))
-env.Program('query_platform_layer_info1.cpp', LIBS = CLVar('clxx_info clxx_io clxx_cl'))
-env.Program('mem1.cpp', LIBS = CLVar('clxx_cl clxx_io'))
-env.Program('s11n1.cpp', LIBS = CLVar('clxx_cl clxx_info clxx_s11n boost_serialization'))
-env.Program('s11n2.cpp', LIBS = CLVar('clxx_info clxx_s11n clxx_io boost_serialization'))
+env.Program('cl/device1.cpp', LIBS = CLVar('clxx_cl'))
+env.Program('cl/kernel_lazy_ctor1.cpp', LIBS = CLVar('clxx_cl'))
+env.Program('cl/lazy_build_program1.cpp', LIBS = CLVar('clxx_cl'))
+env.Program('cl/mem1.cpp', LIBS = CLVar('clxx_cl clxx_io'))
+env.Program('cl/platform1.cpp', LIBS = CLVar('clxx_cl'))
+env.Program('cl/platform2.cpp', LIBS = CLVar('clxx_cl clxx_info clxx_io'))
+env.Program('cl/platform3.cpp', LIBS = CLVar('clxx_cl clxx_info clxx_io'))
+env.Program('cl/platform4.cpp', LIBS = CLVar('clxx_cl clxx_info clxx_io'))
 env.Program('cl/program_generator1.cpp', LIBS = CLVar('clxx_cl clxx_io'))
-env.Program('cl/kernel_lazy_constructor1.cpp', LIBS = CLVar('clxx_cl'))
+env.Program('cl/query_device_info1.cpp', LIBS = CLVar('clxx_info clxx_io clxx_cl'))
+env.Program('cl/query_platform_info1.cpp', LIBS = CLVar('clxx_info clxx_io clxx_cl'))
+env.Program('cl/query_platform_layer_info1.cpp', LIBS = CLVar('clxx_info clxx_io clxx_cl'))
+#
+env.Program('common/exception1.cpp')
+env.Program('common/exception2.cpp')
+env.Program('common/exception3.cpp')
+env.Program('common/exception4.cpp')
 env.Program('common/memoized_function1.cpp', LIBS = CLVar())
+#
+env.Program('info/device_info1.cpp', LIBS = CLVar('clxx_info clxx_io'))
+env.Program('info/platform_info1.cpp', LIBS = CLVar('clxx_info clxx_io'))
+#
+env.Program('io/autosep1.cpp', LIBS = CLVar('clxx_io'))
+env.Program('io/io1.cpp', LIBS = CLVar('clxx_io'))
+#
+env.Program('s11n/s11n1.cpp', LIBS = CLVar('clxx_cl clxx_info clxx_s11n boost_serialization'))
+env.Program('s11n/s11n2.cpp', LIBS = CLVar('clxx_info clxx_s11n clxx_io boost_serialization'))
 
 # Local Variables:
 # # tab-width:4

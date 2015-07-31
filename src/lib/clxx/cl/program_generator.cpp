@@ -6,24 +6,58 @@
  * \todo Write documentation
  */ // }}}
 #include <clxx/cl/program_generator.hpp>
+#include <clxx/cl/program.hpp>
+#include <clxx/cl/context.hpp>
+#include <clxx/cl/command_queue.hpp>
 
 namespace clxx {
+/* ----------------------------------------------------------------------- */
+thread_local program_generator::program_ctor_t program_generator::
+_default_program_ctor = [](clxx::context const& context, std::string const& src)
+      -> clxx::program
+{
+  return clxx::program(context, clxx::program_sources{ src });
+};
+/* ----------------------------------------------------------------------- */
+program_generator::program_ctor_t const& program_generator::
+default_program_ctor()
+{
+  return _default_program_ctor;
+}
+/* ----------------------------------------------------------------------- */
+void program_generator::
+set_default_program_ctor(program_ctor_t const& ctor)
+{
+  _default_program_ctor = ctor;
+}
+/* ----------------------------------------------------------------------- */
+program_generator::
+program_generator()
+{
+}
+/* ----------------------------------------------------------------------- */
+program_generator::
+program_generator(program_ctor_t const& program_ctor)
+  : _program_ctor(program_ctor)
+{
+}
 /* ----------------------------------------------------------------------- */
 program_generator::
 ~program_generator()
 {
 }
 /* ----------------------------------------------------------------------- */
-std::string program_generator::
-program_path() const
+clxx::program program_generator::
+create_program(clxx::context const& context, std::string const& src) const
 {
-  return this->program_name();
+  return _program_ctor ? _program_ctor(context, src)
+                       : _default_program_ctor(context, src);
 }
 /* ----------------------------------------------------------------------- */
 std::string program_generator::
-line_directive(size_t line) const
+line_directive(clxx::context const& context, size_t line) const
 {
-  return "#line " + std::to_string(line) + " \"" + this->program_path() + "\"";
+  return "#line " + std::to_string(line) + " \"" + this->program_path(context) + "\"";
 }
 /* ----------------------------------------------------------------------- */
 clxx::program program_generator::
@@ -31,46 +65,7 @@ get_program(clxx::context const& context) const
 {
   std::string src;
   this->generate_program_source(src, context);
-  return clxx::program(context, clxx::program_sources{ src });
-}
-/* ----------------------------------------------------------------------- */
-} // end namespace clxx
-
-namespace clxx {
-/* ----------------------------------------------------------------------- */
-void
-generate_and_build_program(clxx::program& program,
-                           clxx::program_generator const& program_generator,
-                           clxx::command_queue const& command_queue,
-                           std::string const& build_options)
-{
-  clxx::context context{ command_queue.get_context() };
-  clxx::device device{ command_queue.get_device() };
-
-  program = program_generator.get_program(context);
-  build_program(program, clxx::devices{ device }, build_options);
-}
-/* ----------------------------------------------------------------------- */
-void
-generate_and_lazy_build_program(clxx::program& program,
-                                clxx::program_generator const& program_generator,
-                                clxx::command_queue const& command_queue,
-                                std::string const& build_options)
-{
-  clxx::context context{ command_queue.get_context() };
-  clxx::device device{ command_queue.get_device() };
-
-  program = program_generator.get_program(context);
-
-  switch(program.get_build_status(device))
-    {
-      case build_status_t::none:
-      case build_status_t::error:
-        build_program(program, clxx::devices{ device }, build_options);
-        break;
-      default:
-        break;
-    }
+  return this->create_program(context, src);
 }
 /* ----------------------------------------------------------------------- */
 } // end namespace clxx

@@ -10,7 +10,7 @@
 #include <clxx/common/exception_base.hpp>
 %}
 %include <clxx/common/exception.swg>
-%include <clxx/util/std_except_ctor_arg.swg>
+%include <clxx/common/std_except_ctor_arg.swg>
 
 %include <clxx/common/exception_base.hpp>
 

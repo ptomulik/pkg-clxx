@@ -25,16 +25,16 @@ get_program(clxx::context const& context) const
 { return _lazy_get_program(context); }
 /* ----------------------------------------------------------------------- */
 clxx::program program_lazy_generator::
-get_cached_program(clxx::context const& context) const
-{ return _lazy_get_program.get_cached_result(context); }
+get_memoized_program(clxx::context const& context) const
+{ return _lazy_get_program.get_memoized_result(context); }
 /* ----------------------------------------------------------------------- */
 size_t program_lazy_generator::
-discard_cached_program(clxx::context const& context) const
-{ return _lazy_get_program.discard_cached_result(context); }
+discard_memoized_program(clxx::context const& context) const
+{ return _lazy_get_program.discard_memoized_result(context); }
 /* ----------------------------------------------------------------------- */
 void program_lazy_generator::
-discard_cached_programs() const
-{ _lazy_get_program.discard_cached_results(); }
+discard_memoized_programs() const
+{ _lazy_get_program.discard_memoized_results(); }
 /* ----------------------------------------------------------------------- */
 } // end namespace clxx
 

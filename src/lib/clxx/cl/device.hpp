@@ -41,7 +41,7 @@ namespace clxx {
  *
  * \par Example:
  * Simple functor to dump some device info to stdout
- * \snippet device1.cpp DumpDevice
+ * \snippet clxx/cl/device1.cpp DumpDevice
  *
  *
  * Depending on the OpenCL version, the following device info may be queried.
@@ -689,7 +689,7 @@ namespace clxx {
  * Print device info for a first OpenCL device of a first OpenCL platform found
  * in operating system
  *
- * \snippet clxx/query_device_info1.cpp Program
+ * \snippet clxx/cl/query_device_info1.cpp Program
  */ // }}}
 device_info
 query_device_info( device const& device,

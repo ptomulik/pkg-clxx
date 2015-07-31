@@ -10,10 +10,13 @@
 #ifndef CLXX_CL_PROGRAM_GENERATOR_HPP_INCLUDED
 #define CLXX_CL_PROGRAM_GENERATOR_HPP_INCLUDED
 
-#include <clxx/cl/program.hpp>
-#include <clxx/cl/context.hpp>
-#include <clxx/cl/command_queue.hpp>
+#include <clxx/cl/program_generator_fwd.hpp>
+#include <clxx/cl/program_fwd.hpp>
+#include <clxx/cl/context_fwd.hpp>
+#include <clxx/cl/command_queue_fwd.hpp>
+#include <clxx/common/shared_ptr.hpp>
 #include <string>
+#include <functional>
 
 namespace clxx {
 /** // doc: program_generator {{{
@@ -25,19 +28,36 @@ namespace clxx {
  * created for an OpenCL \c context given as an argument to generator. The
  * programs created by program generators are NOT assumed to be automatically
  * compiled/built (generators are not responsible for building their generated
- * programs). As such, they will require to be built for one or more devices in
- * the \c context before the actual use.
+ * programs). As such, they MAY require to be built for one or more devices in
+ * the \c context before the actual use. Whether the returned programs are
+ * already built or not, depends on the program constructor used by the
+ * \ref clxx::program_generator "program_generator" object.
+ *
+ * A program constructor is a C++11 callable object of type
+ * \c std::function<clxx::program(clxx::context const&, std::string const&)>
+ * (we have a typedef for it, see \ref clxx::program_generator::program_ctor_t "program_ctor_t").
+ * The program constructor is pluggable, so each instanace of
+ * \ref clxx::program_generator "program_generator" may use its own program
+ * constructor. The program constructor may add several features to the
+ * program generator, such as automatic program compilation/building or
+ * offline program caching.
+ *
+ * If not explicitly provided, the \ref clxx::program_generator "program_generator"
+ * uses the default program constructor returned by #default_program_ctor()
+ * static method. The object indicated by #default_program_ctor() is local to
+ * the current thread. Changing the default program constructor (with
+ * #set_default_program_ctor()) is a thread-safe operation, the changes are
+ * not visible to other threads.
  *
  * A program generator class (derived from \ref clxx::program_generator
  * "program_generator") \b MUST implement following virtual methods:
  *
  * - \ref generate_program_source(std::string&, clxx::context const&) const,
- * - \ref program_name() const.
+ * - \ref program_path(clxx::context const&) const.
  *
  * It also \b MAY overwrite the following virtual methods:
  *
- * - \ref program_path() const,
- * - \ref line_directive(size_t) const,
+ * - \ref line_directive(clxx::context const&, size_t) const,
  * - \ref get_program(clxx::context const&) const.
  *
  * \par Example
@@ -49,14 +69,57 @@ namespace clxx {
 class program_generator
 {
 public:
+  /** // doc: program_ctor_t {{{
+   * \brief Type of the pluggable program constructor
+   */ // }}}
+  typedef std::function<clxx::program(clxx::context const&, std::string const&)> program_ctor_t;
+private:
+  static thread_local program_ctor_t _default_program_ctor;
+  program_ctor_t _program_ctor;
+protected:
+  /** // doc: create_program() {{{
+   * \todo Write documentation
+   */ // }}}
+  clxx::program create_program(clxx::context const& context, std::string const& src) const;
+public:
+  /** // doc: default_program_ctor() {{{
+   * \brief Returns a reference to program constructor used to initialize
+   *        default-constructed \ref clxx::program_generator "program_generators"
+   *
+   * The returned functor is used as a fallback constructor by
+   * \ref clxx::program_generator "program_generators" that have not
+   * plugged in program constructors.
+   *
+   * If not changed with #set_default_program_ctor(), the constructor used by
+   * #default_program_ctor() simply forwards the program construction to
+   * \ref clxx::program::program(clxx::context const&, clxx::program_sources const&).
+   */ // }}}
+  static program_ctor_t const& default_program_ctor();
+  /** // doc: set_default_program_ctor() {{{
+   * \brief Assign a program constructor that shall be used used to initialize
+   *        default-constructed \ref clxx::program_generator "program_generators"
+   * \param ctor
+   *    New program constructor
+   */ // }}}
+  void set_default_program_ctor(program_ctor_t const& ctor);
+public:
+  /** // doc: program_generator() {{{
+   * \brief Default constructor
+   */ // }}}
+  program_generator();
+  /** // doc: program_generator() {{{
+   * \brief Constructor with pluggable program constructor
+   *
+   * \param program_ctor
+   *    The program 
+   */ // }}}
+  program_generator(program_ctor_t const& program_ctor);
   /** // doc: ~program_generator() {{{
    * \brief Destructor
    */ // }}}
   virtual ~program_generator();
   /** // doc: generate_program_source(std::string&) {{{
    * \brief Generate program source
-   *
-   * \pure
    *
    * The \p context may be used by generator to select particular
    * implementation of the program being generated (this enables possible
@@ -68,40 +131,21 @@ public:
    *    Specifies the OpenCL contex for which the program is generated.
    */ // }}}
   virtual void generate_program_source(std::string& str, clxx::context const& context) const = 0;
-  /** // doc: program_name() {{{
-   * \brief Returns program name
-   *
-   * The program name shall identify particular source code snippet generated
-   * by the generator. For, example <tt>"mylib::blas1<float>"</tt> may be
-   * a program which implements kernels used to implement level-1
-   * (vector-vector operations) of basic linear algebra by a numerical library
-   * named \c mylib.
-   *
-   * The program name shall not change for a particular instance of the program
-   * generator. It shall at least remain constant after the first call to
-   * \ref get_program(clxx::context const&) const "get_program()" for a given
-   * instance.
-   *
-   * \returns program name as c++ string
-   */ // }}}
-  virtual std::string program_name() const = 0;
   /** // doc: program_path() {{{
    * \brief Returns the virtual path of the generated program
    *
-   * Program path identifies the generated program source in a similar manner
-   * as the #program_name() does, but it may, for example, use different syntax.
-   * The #program_path() shall follow syntax of file-system path names. The
-   * string returned by #program_path() does not have to point to actual file,
-   * it's rather a virtual path. The string returned by #program_path() is used
-   * by the #line_directive() method to generate line control stamps in the 
-   * generated source code. The #program_path() should thus return strings
-   * that can be correctly parsed by an OpenCL C99 compiler as a file path.
+   * Program path identifies the generated program source. The string returned
+   * by #program_path() shall follow syntax of file-system path names. The
+   * string returned by #program_path() does not have to point to actual file.
+   * #program_path() is used by the #line_directive() method to generate line
+   * control stamps in the generated source code. The #program_path() should
+   * thus return strings that can be correctly parsed by OpenCL C99 compiler.
    *
-   * The default implementation of #program_path() returns the #program_name().
-   *
+   * \param context
+   *    A valid \ref clxx::context "context" for which the program is generated
    * \returns program path as c++ string
    */ // }}}
-  virtual std::string program_path() const;
+  virtual std::string program_path(clxx::context const& context) const = 0;
   /** // doc: line_directive() {{{
    * \brief Returns a line directive
    *
@@ -115,6 +159,8 @@ public:
    * \p linenum parameter, whereas the \e "program/path" is a string
    * returned by the #program_path() method.
    *
+   * \param context
+   *    A valid \ref clxx::context "context" for which the program is generated
    * \param linenum
    *    Line number, starting from \c 1 for the first line.
    *
@@ -134,7 +180,7 @@ public:
    *  }
    * \endcode
    */ // }}}
-  virtual std::string line_directive(size_t linenum) const;
+  virtual std::string line_directive(clxx::context const& context, size_t linenum) const;
   /** // doc: get_program() {{{
    * \brief Get the program created for \p context
    *
@@ -150,23 +196,14 @@ public:
 } // end namespace clxx
 
 namespace clxx {
-/** doc: generate_and_lazy_build_program() {{{
- * \todo Write documentation
+/** // doc: program_generator_ptr {{{
+ * \brief Shared pointer to \ref clxx::program_generator "program_generator" object
+ *
+ * This is used by containers, for example by the generator map in \ref clxx::runtime.
  */ // }}}
-void
-generate_and_build_program(clxx::program& program,
-                           clxx::program_generator const& program_generator,
-                           clxx::command_queue const& command_queue,
-                           std::string const& build_options = "");
-/** doc: generate_and_lazy_build_program() {{{
- * \todo Write documentation
- */ // }}}
-void
-generate_and_lazy_build_program(clxx::program& program,
-                                clxx::program_generator const& program_generator,
-                                clxx::command_queue const& command_queue,
-                                std::string const& build_options = "");
+typedef shared_ptr<program_generator> program_generator_ptr;
 } // end namespace clxx
+
 #endif /* CLXX_CL_PROGRAM_GENERATOR_HPP_INCLUDED */
 // vim: set expandtab tabstop=2 shiftwidth=2:
 // vim: set foldmethod=marker foldcolumn=4:

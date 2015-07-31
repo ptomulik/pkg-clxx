@@ -29,11 +29,11 @@ namespace clxx {
  *
  * Manipulating #platform_info attributes "by hand"
  *
- * \snippet clxx/platform_info1.cpp Program
+ * \snippet clxx/info/platform_info1.cpp Program
  *
  * \par Output
  *
- * \snippet clxx/platform_info1.cpp Output
+ * \snippet clxx/info/platform_info1.cpp Output
  */ // }}}
 class platform_info
 {

@@ -26,13 +26,13 @@ namespace clxx {
  *
  * 1. Include necessary headers:
  *
- *    \snippet exception1.cpp Includes
+ *    \snippet clxx/common/exception1.cpp Includes
  *
  * 2. Define custom exception class which derives from both, the
  *    clxx::exception and a standard exception (for example
  *    \c std::runtime_error):
  *
- *    \snippet exception1.cpp ExceptionDefinition
+ *    \snippet clxx/common/exception1.cpp ExceptionDefinition
  *
  *    The new exception must implement the clxx2std() member method. The
  *    exception message is passed as an argument to \c std::runtime_error
@@ -42,7 +42,7 @@ namespace clxx {
  *    for object creation and implement the member method \c what() as in the
  *    following snippet
  *
- *    \snippet exception2.cpp ExceptionDefinition
+ *    \snippet clxx/common/exception2.cpp ExceptionDefinition
  *
  *    The above snippets are provided only to explain some basic concepts. As
  *    it can be seen, there is some code repetition (clxx2std() implementation
@@ -53,24 +53,24 @@ namespace clxx {
  * 3. From now on, the new exception may be caught in a several ways:
  *    - as the new clxx::exception1 object:
  *
- *      \snippet exception1.cpp CatchClxxException1
+ *      \snippet clxx/common/exception1.cpp CatchClxxException1
  *
  *    - as a clxx::exception:
  *
- *      \snippet exception1.cpp CatchClxxException
+ *      \snippet clxx/common/exception1.cpp CatchClxxException
  *
  *    - as a std::runtime_error
  *
- *      \snippet exception1.cpp CatchStdRuntimeError
+ *      \snippet clxx/common/exception1.cpp CatchStdRuntimeError
  *
  *    - as a std::exception:
  *
- *      \snippet exception1.cpp CatchStdException
+ *      \snippet clxx/common/exception1.cpp CatchStdException
  *
  *    - you may also catch exceptions "by priority", starting from most
  *      particular ones and falling-back to more generic ones:
  *
- *      \snippet exception1.cpp CatchHierarchy
+ *      \snippet clxx/common/exception1.cpp CatchHierarchy
  *
  *      In the above case, the first catch clause is executed.
  */ // }}}

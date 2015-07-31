@@ -11,7 +11,6 @@
 #define CLXX_CL_CLOBJ_HPP_INCLUDED
 
 #include <clxx/common/types.hpp>
-#include <clxx/common/exceptions.hpp>
 
 namespace clxx {
 /** // doc: clobj {{{

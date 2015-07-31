@@ -7,7 +7,7 @@
  */ // }}}
 #include <clxx/cl/events.hpp>
 #include <clxx/cl/functions.hpp>
-#include <clxx/util/obj2cl.hpp>
+#include <clxx/common/obj2cl.hpp>
 
 namespace clxx {
 void

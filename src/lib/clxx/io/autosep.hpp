@@ -30,7 +30,7 @@ namespace clxx { namespace io {
  * operator \c <<.
  *
  * \b Example:
- * \snippet autosep1.cpp Program
+ * \snippet clxx/io/autosep1.cpp Program
  *
  * The output of the above program is
  * \verbatim

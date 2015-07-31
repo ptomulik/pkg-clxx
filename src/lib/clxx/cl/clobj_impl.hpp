@@ -5,13 +5,14 @@
 
 /** // doc: clxx/cl/clobj_impl.hpp {{{
  * \file clxx/cl/clobj_impl.hpp
- * \todo Write documentation
+ * \brief Provides implementation of the \ref clxx::clobj "clobj" methods
  */ // }}}
 #ifndef CLXX_CL_CLOBJ_IMPL_HPP_INCLUDED
 #define CLXX_CL_CLOBJ_IMPL_HPP_INCLUDED
 
 #include <clxx/cl/clobj.hpp>
 #include <clxx/cl/clobj_fcn.hpp>
+#include <clxx/common/exceptions.hpp>
 #include <vector>
 #include <string>
 #include <memory>

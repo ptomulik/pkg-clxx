@@ -9,7 +9,7 @@
 #include <clxx/cl/program.hpp>
 #include <clxx/cl/context.hpp>
 #include <clxx/cl/device.hpp>
-#include <clxx/util/obj2cl.hpp>
+#include <clxx/common/obj2cl.hpp>
 #include <clxx/cl/clobj_impl.hpp>
 #include <memory>
 

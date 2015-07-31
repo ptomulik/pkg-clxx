@@ -295,7 +295,7 @@ private:
  *
  * Print complete information about all OpenCL platforms/devices available
  *
- * \snippet clxx/query_platform_layer_info1.cpp Program
+ * \snippet clxx/cl/query_platform_layer_info1.cpp Program
  */ // }}}
 platform_layer_info
 query_platform_layer_info(

@@ -11,6 +11,7 @@
 #define CLXX_COMMON_SHARED_PTR_HPP_INCLUDED
 
 #include <boost/shared_ptr.hpp>
+#include <boost/make_shared.hpp>
 namespace clxx {
 /** // doc: shared_ptr {{{
  * \brief Shared pointer
@@ -18,6 +19,10 @@ namespace clxx {
  * Currently \c boost::shared_ptr is used.
  */ // }}}
 template <typename T> using shared_ptr = boost::shared_ptr<T>;
+/** // doc: make_shared() {{{
+ * \brief Currently its an alias to \c boost::make_shared() is used.
+ */ // }}}
+using boost::make_shared;
 } // end namespace clxx
 #endif /* CLXX_COMMON_SHARED_PTR_HPP_INCLUDED */
 // vim: set expandtab tabstop=2 shiftwidth=2:

@@ -26,7 +26,7 @@ class clxx::program_lazy_generator_test_suite : public CxxTest::TestSuite
   public:
     mutable int count;
     G0() : program_lazy_generator(), count(0) { }
-    std::string program_name() const { return "g0"; }
+    std::string program_path(clxx::context const&) const { return "/tmp/clxx/g0.cl"; }
     void generate_program_source(std::string&) const
     {
       count++;
@@ -38,10 +38,7 @@ class clxx::program_lazy_generator_test_suite : public CxxTest::TestSuite
   public:
     mutable int count;
     G1() : program_lazy_generator(), count(0) { }
-    std::string program_name() const { return "g1"; }
-    std::string program_namespace() const { return "clxx"; }
-    std::string program_file_suffix() const { return ".xyz"; }
-    std::string program_dir() const { return "/tmp/clxx"; }
+    std::string program_path(clxx::context const&) const { return "/tmp/clxx/g1.cl"; }
     void generate_program_source(std::string& src) const
     {
       src.append("__kernel void foo() {}\n");
@@ -86,10 +83,10 @@ public:
     TS_ASSERT(p1 == p2);
   }
 
-  /** // doc: test__discard_cached_program__1() {{{
+  /** // doc: test__discard_memoized_program__1() {{{
    * \todo Write documentation
    */ // }}}
-  void test__discard_cached_program__1( )
+  void test__discard_memoized_program__1( )
   {
     T::Dummy_clRetainContext mockRetainContext(CL_SUCCESS);
     T::Dummy_clReleaseContext mockReleaseContext(CL_SUCCESS);
@@ -100,9 +97,9 @@ public:
     program_lazy_generator const& g0 = G0{};
     clxx::context const& c{ (cl_context)0x4567 };
 
-    TS_ASSERT_EQUALS(g0.discard_cached_program(c), 0u);
+    TS_ASSERT_EQUALS(g0.discard_memoized_program(c), 0u);
     clxx::program const& p{ g0.get_program(c) };
-    TS_ASSERT_EQUALS(g0.discard_cached_program(c), 1u);
+    TS_ASSERT_EQUALS(g0.discard_memoized_program(c), 1u);
       
     TS_ASSERT(mockRetainContext.called_once_with((cl_context)0x4567));
     TS_ASSERT(mockReleaseContext.caled_once_with((cl_context)0x4567));
@@ -112,10 +109,10 @@ public:
     TS_ASSERT_EQUALS(g0.count, 1);
   }
 
-  /** // doc: test__discard_cached_programs__1() {{{
+  /** // doc: test__discard_memoized_programs__1() {{{
    * \todo Write documentation
    */ // }}}
-  void test__discard_cached_programs__1( )
+  void test__discard_memoized_programs__1( )
   {
     T::Dummy_clRetainContext mockRetainContext(CL_SUCCESS);
     T::Dummy_clReleaseContext mockReleaseContext(CL_SUCCESS);
@@ -126,9 +123,9 @@ public:
     program_lazy_generator const& g0 = G0{};
     clxx::context const& c{ (cl_context)0x4567 };
 
-    TS_ASSERT_EQUALS(g0.discard_cached_program(c), 0u);
+    TS_ASSERT_EQUALS(g0.discard_memoized_program(c), 0u);
     clxx::program const& p{ g0.get_program(c) };
-    TS_ASSERT_EQUALS(g0.discard_cached_program(c), 1u);
+    TS_ASSERT_EQUALS(g0.discard_memoized_program(c), 1u);
       
     TS_ASSERT(mockRetainContext.called_once_with((cl_context)0x4567));
     TS_ASSERT(mockReleaseContext.caled_once_with((cl_context)0x4567));

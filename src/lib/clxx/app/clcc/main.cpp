@@ -13,6 +13,7 @@
 #include <clxx/info/platform_layer_info.hpp>
 #include <clxx/io/platform_layer_info.hpp>
 #include <clxx/cl/program.hpp>
+#include <clxx/cl/program_fcn.hpp>
 #include <clxx/common/exceptions.hpp>
 #include <clxx/common/clerror_no.hpp>
 #include <algorithm>

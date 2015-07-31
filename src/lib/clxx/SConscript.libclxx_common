@@ -7,60 +7,45 @@ Import('env')
 from SCons.Util import CLVar, NodeList
 import os
 
-sources = [
-    'common/ndrange.cpp'
-]
-
 headers = [
     'common/clerror.hpp',
     'common/clerror_base.hpp',
     'common/clerror_no.hpp',
+    'common/clerror_stdexcept.hpp',
     'common/config.hpp',
+    'common/context_property_type.hpp',
+    'common/context_property_type_fwd.hpp',
+    'common/device_partition_property_type.hpp',
+    'common/device_partition_property_type_fwd.hpp',
+    'common/enum2cstr.hpp',
+    'common/enum2hex.hpp',
+    'common/enum2name.hpp',
     'common/exception.hpp',
     'common/exception_base.hpp',
     'common/exceptions.hpp',
     'common/macros.hpp',
     'common/memoized_function.hpp',
     'common/ndrange.hpp',
+    'common/ndrange_fwd.hpp',
+    'common/obj2cl.hpp',
     'common/opencl.h',
     'common/program_binaries.hpp',
     'common/program_binary.hpp',
     'common/program_source.hpp',
     'common/program_sources.hpp',
+    'common/sha1.hpp',
     'common/shared_ptr.hpp',
+    'common/std_except_ctor_arg.hpp',
+    'common/std_except_ctor_arg_fwd.hpp',
+    'common/to_string.hpp',
     'common/types.hpp',
     'config.h',
-    'util/clerror_stdexcept.hpp',
-    'util/context_property_type.hpp',
-    'util/context_property_type_fwd.hpp',
-    'util/device_partition_property_type.hpp',
-    'util/device_partition_property_type_fwd.hpp',
-    'util/enum2cstr.hpp',
-    'util/enum2hex.hpp',
-    'util/enum2name.hpp',
-    'util/obj2cl.hpp',
-    'util/std_except_ctor_arg.hpp',
-    'util/std_except_ctor_arg_fwd.hpp',
-    'util/to_string.hpp',
 ]
 
 env['CLXX_PACKAGES']['libclxx_common'] = {
     'version' : env.subst('$CLXX_VERSION'),
     'libdeps' : CLVar()
 }
-
-objects = env.SharedObject(sources)
-
-overrides = {
-    'SHLIBVERSION'  : env['CLXX_PACKAGES']['libclxx_common']['version'],
-    'LIBS'          : env['CLXX_PACKAGES']['libclxx_common']['libdeps']
-}
-
-# rlib - "real" libarary
-lib = env.SharedLibrary('../clxx_common', objects, **overrides)
-
-ilib = env.InstallVersionedLib('${libdir}', lib, **overrides)
-env.Ignore("${INSTALL_SANDBOX}${libdir}", ilib)
 
 iheaders = NodeList()
 for header in headers:
@@ -71,8 +56,7 @@ for header in headers:
     iheaders += iheader
 
 env.Alias('install-libclxx_common-headers', iheaders)
-env.Alias('install-libclxx_common-lib', ilib)
-env.Alias('install-libclxx_common-dev', ['install-libclxx_common-headers', 'install-libclxx_common-lib' ])
+env.Alias('install-libclxx_common-dev', ['install-libclxx_common-headers' ])
 env.Alias('install','install-libclxx_common-dev')
 
 # Local Variables:

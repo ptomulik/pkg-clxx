@@ -17,21 +17,23 @@
 #include <mutex>
 
 namespace clxx {
-/** \cond DOXYGEN_SHOW_IGNORED_COMPOUNDS */
+/** // doc: memoized_function<R(Args...)> {{{
+ * \brief Memoized function, see \ref clxx__memoized_function__T__R_Args "memoized_function<R(Args...)>"
+ */ // }}}
 template<typename F>
 struct memoized_function;
-/** \endcond */
 /** // doc: memoized_function<R(Args...)> {{{
  * \brief Memoized function
+ * \anchor clxx__memoized_function__T__R_Args
  *
- * The \ref clxx::memoized_function<R(Args...)> adds result caching feature to
+ * The \ref clxx::memoized_function adds result caching feature to
  * a callable object (function, method and such).
  *
  * The internal map used to cache the results is maintained in a thread-safe
  * way. The memoized function object is copy-constructible and copyable.
  *
  * \tparam R
- *    Type of the result of the wrapped calleble object
+ *    Type of the result of the wrapped callable object
  * \tparam Args
  *    Types of arguments accepted by the wrapped callable object
  *
@@ -48,7 +50,8 @@ struct memoized_function<R(Args...)>
 private:
   typedef std::function<R(Args...)> Base;
   typedef std::tuple<typename std::decay<Args>::type...> args_tuple_t;
-  typedef std::map<args_tuple_t, R> cache_t;
+  typedef typename std::decay<R>::type value_t;
+  typedef std::map<args_tuple_t, value_t> cache_t;
   mutable cache_t _cache;
   mutable std::mutex _mutex;
 public:
@@ -97,15 +100,21 @@ public:
    * \brief Returns the result of wrapped function.
    *
    * Returns the result of wrapped function. The wrapped function is invoked
-   * only once and the result is memoized in the internal cache. Each succesive
-   * call to this operator returns the cached result, until it gets removed
-   * from cache (see #discard_cached_result() and #discard_cached_results()).
+   * only once for the given arguments and the result is memoized in the
+   * internal cache. Each subsequent invocation returns the memoized result,
+   * until it gets removed from cache with #discard_memoized_result() or
+   * #discard_memoized_results().
    *
    * \param args
    *    Arguments passed to the wrapped callable object
    *
    * \returns
    *    The result computed by the wrapped callable object
+   *
+   * \par Exceptions
+   * May throw exceptions originating from
+   * <a href="http://en.cppreference.com/w/cpp/thread/lock_guard/lock_guard">std::lock_guard</a>
+   * constructor.
    */ // }}}
   R operator()(Args... args) const
   {
@@ -118,12 +127,12 @@ public:
     else
       return memoized->second;
   }
-  /** // doc: get_cached_result() {{{
-   * \brief Returns cached result
+  /** // doc: get_memoized_result() {{{
+   * \brief Returns memoized result
    *
    * The method returns memoized result for the given arguments.
    * If the result has not been memoized yet, the method throws
-   * \ref clxx::invalid_key_error.
+   * \ref clxx::invalid_key_error "invalid_key_error".
    *
    * \param args
    *    Arguments passed to the wrapped callable object
@@ -131,11 +140,14 @@ public:
    * \returns
    *    The result computed by the wrapped callable object
    *
-   * \throw
-   *    clxx::invalid_key_error
-   *      If the result has not been memorized yet.
+   * \throw clxx::invalid_key_error
+   *    If there is no result memoized for the given arguments.
+   *
+   * It may also throw exceptions originating from
+   * <a href="http://en.cppreference.com/w/cpp/thread/lock_guard/lock_guard">std::lock_guard</a>
+   * constructor.
    */ // }}}
-  R const& get_cached_result(Args... args) const
+  R get_memoized_result(Args... args) const
   {
     // To be thread-safe we have to protect mutable member(s)
     std::lock_guard<std::mutex> lock(_mutex);
@@ -146,24 +158,35 @@ public:
     else
       return memoized->second;
   }
-  /** // doc: discard_cached_result() {{{
-   * \brief Discard result cached for given arguments
+  /** // doc: discard_memoized_result() {{{
+   * \brief Discard result memoized for given arguments
    *
    * \param args
    *    Argument values which determine the particular result
+   *
    * \return
    *    Number of elements removed from cache, which might be either 0 or 1.
+   *
+   * \par Exceptions
+   * May throw exceptions originating from
+   * <a href="http://en.cppreference.com/w/cpp/thread/lock_guard/lock_guard">std::lock_guard</a>
+   * constructor.
    */ // }}}
-  size_t discard_cached_result(Args... args) const
+  size_t discard_memoized_result(Args... args) const
   {
     // To be thread-safe we have to protect mutable member(s)
     std::lock_guard<std::mutex> lock(_mutex);
     return _cache.erase(std::make_tuple(args...));
   }
-  /** // doc: discard_cached_results() {{{
-   * \brief Discard all the cached results
+  /** // doc: discard_memoized_results() {{{
+   * \brief Discard all the memoized results
+   *
+   * \par Exceptions
+   * May throw exceptions originating from
+   * <a href="http://en.cppreference.com/w/cpp/thread/lock_guard/lock_guard">std::lock_guard</a>
+   * constructor.
    */ // }}}
-  void discard_cached_results() const
+  void discard_memoized_results() const
   {
     // To be thread-safe we have to protect mutable member(s)
     std::lock_guard<std::mutex> lock(_mutex);

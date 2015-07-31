@@ -41,7 +41,7 @@ namespace clxx {
  *
  * \par Example:
  * Simple functor to print platform info:
- * \snippet platform1.cpp DumpPlatform
+ * \snippet clxx/cl/platform1.cpp DumpPlatform
  *
  */ // }}}
 class alignas(cl_platform_id) platform
@@ -166,7 +166,7 @@ namespace clxx {
  * Retrieve and print information describing a first OpenCL platform found by
  * clxx in operating system.
  *
- * \snippet clxx/query_platform_info1.cpp Program
+ * \snippet clxx/cl/query_platform_info1.cpp Program
  */ // }}}
 platform_info
 query_platform_info( platform const& platform,

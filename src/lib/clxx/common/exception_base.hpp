@@ -11,7 +11,7 @@
 #define CLXX_COMMON_EXCEPTION_BASE_HPP_INCLUDED
 
 #include <clxx/common/exception.hpp>
-#include <clxx/util/std_except_ctor_arg.hpp>
+#include <clxx/common/std_except_ctor_arg.hpp>
 #include <string>
 
 namespace clxx {
@@ -40,19 +40,19 @@ namespace clxx {
  * The basic usage is the following:
  * 1. Include necessary headers:
  *
- *    \snippet exception3.cpp Includes
+ *    \snippet clxx/common/exception3.cpp Includes
  *
  * 2. Define new exception class, for example a class based on clxx::exception
  *    and std::runtime_error:
  *
- *    \snippet exception3.cpp ExceptionDefinition
+ *    \snippet clxx/common/exception3.cpp ExceptionDefinition
  *
  *    Some standard exceptions, such as \c std::bad_alloc, use hard-coded
  *    exception message and have only default constructor. In these cases, one
  *    has to implement the \c what() method instead of providing a default
  *    message to the constructor:
  *
- *    \snippet exception4.cpp ExceptionDefinition
+ *    \snippet clxx/common/exception4.cpp ExceptionDefinition
  */ // }}}
 template < class ClxxExcept
          , class StdExcept
@@ -108,19 +108,19 @@ template < class ClxxExcept
  * The basic usage is the following:
  * 1. Include necessary headers:
  *
- *    \snippet exception3.cpp Includes
+ *    \snippet clxx/common/exception3.cpp Includes
  *
  * 2. Define new exception class, for example a class based on clxx::exception
  *    and std::runtime_error:
  *
- *    \snippet exception3.cpp ExceptionDefinition
+ *    \snippet clxx/common/exception3.cpp ExceptionDefinition
  *
  *    Some standard exceptions, such as \c std::bad_alloc, use hard-coded
  *    exception message and have only default constructor. In these cases, one
  *    has to implement the \c what() method instead of providing a default
  *    message to the constructor:
  *
- *    \snippet exception4.cpp ExceptionDefinition
+ *    \snippet clxx/common/exception4.cpp ExceptionDefinition
  */ // }}}
 template < class ClxxExcept
          , class StdExcept>

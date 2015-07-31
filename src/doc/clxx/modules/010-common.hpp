@@ -13,8 +13,7 @@
  *
  * \par Linking
  *
- * Some programs that use the \ref clxx_common package shall be linked against
- * \c libclxx_common library (\c -lclxx_common).
+ * The libclxx_common is header-only library.
  *
  * @{ */
 
@@ -128,16 +127,16 @@
  * for errors returned by OpenCL functions is the clxx::clerror class. The
  * category class should be derived from clxx::exception.
  *
- * For quick start we'll follow the \ref exception3.cpp example. In this
+ * For quick start we'll follow the \ref clxx/common/exception3.cpp example. In this
  * example we create a custom exception without a category. Include followig
  * headers
- * \snippet exception3.cpp Includes
+ * \snippet clxx/common/exception3.cpp Includes
  *
  * Next, define within the clxx namespace the new exception class:
- * \snippet exception3.cpp ExceptionDefinition
+ * \snippet clxx/common/exception3.cpp ExceptionDefinition
  *
  * That's all, we can test our new exception with the following program
- * \snippet exception3.cpp Test
+ * \snippet clxx/common/exception3.cpp Test
  *
  * The output from above program will be the following
  * \verbatim

@@ -10,7 +10,7 @@
 #ifndef CLXX_CL_DEVICE_PARTITION_PROPERTY_HPP_INCLUDED
 #define CLXX_CL_DEVICE_PARTITION_PROPERTY_HPP_INCLUDED
 
-#include <clxx/util/device_partition_property_type.hpp>
+#include <clxx/common/device_partition_property_type.hpp>
 #include <clxx/common/types.hpp>
 #include <clxx/common/exceptions.hpp>
 #include <vector>

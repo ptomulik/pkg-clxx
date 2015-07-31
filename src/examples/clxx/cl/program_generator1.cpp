@@ -13,6 +13,12 @@
 // [Program]
 #include <clxx/cl/program_generator.hpp>
 #include <clxx/cl/platforms.hpp>
+#include <clxx/cl/program.hpp>
+#include <clxx/cl/program_fcn.hpp>
+#include <clxx/cl/context.hpp>
+#include <clxx/cl/devices.hpp>
+#include <clxx/cl/device.hpp>
+#include <clxx/common/exceptions.hpp>
 #include <clxx/io/types.hpp>
 #include <iostream>
 
@@ -21,11 +27,10 @@ namespace clxx {
 class trivial_program
   : public clxx::program_generator
 {
-  std::string program_name() const { return "clxx::trivial_program"; }
-  std::string program_path() const { return "clxx/trivial_program.cl"; }
-  void generate_program_source(std::string& src, clxx::context const&) const
+  std::string program_path(clxx::context const&) const { return "clxx/trivial_program.cl"; }
+  void generate_program_source(std::string& src, clxx::context const& c) const
   {
-    src.append(this->line_directive(1)); src.append("\n");
+    src.append(this->line_directive(c, 1)); src.append("\n");
     src.append("__kernel void trivial() { }\n");
   }
 };
@@ -42,8 +47,7 @@ int main()
   clxx::devices                   devices   { program.get_devices()[0] };
 
   // Print some characteristics
-  std::cout << "program name  : " << generator.program_name() << std::endl;
-  std::cout << "program path  : " << generator.program_path() << std::endl;
+  std::cout << "program path  : " << generator.program_path(context) << std::endl;
   std::cout << "================================= SOURCE ======================" << std::endl;
   std::cout << program.get_source() << std::endl;
   std::cout << "=================================  INFO  ======================" << std::endl;

@@ -11,8 +11,8 @@
 #define CLXX_COMMON_CLERROR_NO_HPP_INCLUDED
 
 #include <clxx/common/clerror_base.hpp>
-#include <clxx/util/std_except_ctor_arg.hpp>
-#include <clxx/util/clerror_stdexcept.hpp>
+#include <clxx/common/std_except_ctor_arg.hpp>
+#include <clxx/common/clerror_stdexcept.hpp>
 #include <string>
 
 namespace clxx {

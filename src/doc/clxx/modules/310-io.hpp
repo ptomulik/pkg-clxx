@@ -23,7 +23,7 @@
  *
  * \par Example
  *
- * \snippet clxx/io1.cpp OutputStatusT
+ * \snippet clxx/io/io1.cpp OutputStatusT
  *
  */
 // vim: set expandtab tabstop=2 shiftwidth=2:

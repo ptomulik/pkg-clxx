@@ -11,7 +11,7 @@
  * \brief Implements I/O routines for types defined in clxx/common/types.hpp
  */ // }}}
 #include <clxx/io/types.hpp>
-#include <clxx/util/to_string.hpp>
+#include <clxx/common/to_string.hpp>
 
 template <typename _CharT, typename _Traits>
 std::basic_ostream<_CharT, _Traits>&

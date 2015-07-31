@@ -12,7 +12,7 @@
 
 #include <clxx/common/exception_base.hpp>
 #include <clxx/common/clerror_no.hpp>
-#include <clxx/util/to_string.hpp>
+#include <clxx/common/to_string.hpp>
 #include <clxx/common/types.hpp>
 #include <string>
 

@@ -12,9 +12,9 @@
 
 #include <clxx/common/clerror.hpp>
 #include <clxx/common/exception_base.hpp>
-#include <clxx/util/std_except_ctor_arg.hpp>
-#include <clxx/util/clerror_stdexcept.hpp>
-#include <clxx/util/enum2cstr.hpp>
+#include <clxx/common/std_except_ctor_arg.hpp>
+#include <clxx/common/clerror_stdexcept.hpp>
+#include <clxx/common/enum2cstr.hpp>
 
 namespace clxx {
 

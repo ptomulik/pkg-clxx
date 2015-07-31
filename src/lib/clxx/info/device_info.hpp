@@ -46,11 +46,11 @@ namespace clxx {
  *
  * Manipulating #device_info attributes "by hand"
  *
- * \snippet clxx/device_info1.cpp Program
+ * \snippet clxx/info/device_info1.cpp Program
  *
  * \par Output:
  *
- * \snippet clxx/device_info1.cpp Output
+ * \snippet clxx/info/device_info1.cpp Output
  */ // }}}
 class device_info
 {

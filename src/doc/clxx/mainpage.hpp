@@ -16,9 +16,9 @@
  *
  * To have a first impression, let us present a simple clxx-based
  * implementation of the well-known program called **clinfo** (see example
- * \ref platform4.cpp):
+ * \ref clxx/cl/platform4.cpp):
  *
- * \snippet platform4.cpp Program
+ * \snippet clxx/cl/platform4.cpp Program
  *
  * The above program enumerates all OpenCL platforms/devices available on a
  * host running the program including their properties. Using standard OpenCL
@@ -82,7 +82,7 @@
  * functions may be found in module \ref clxx_io. With the I/O module, you may
  * easily dump object internals or print %clxx error codes such as:
  *
- * \snippet clxx/io1.cpp OutputStatusT
+ * \snippet clxx/io/io1.cpp OutputStatusT
  *
  * \par Serialization
  *

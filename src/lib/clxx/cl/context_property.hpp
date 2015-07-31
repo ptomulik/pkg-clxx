@@ -11,7 +11,7 @@
 #ifndef CLXX_CL_CONTEXT_PROPERTY_HPP_INCLUDED
 #define CLXX_CL_CONTEXT_PROPERTY_HPP_INCLUDED
 
-#include <clxx/util/context_property_type.hpp>
+#include <clxx/common/context_property_type.hpp>
 #include <clxx/common/types.hpp>
 #include <clxx/cl/platform.hpp>
 

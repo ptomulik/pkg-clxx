@@ -77,6 +77,7 @@ headers = [
     'cl/program_lazy_fcn.hpp',
     'cl/program_lazy_generator.hpp',
     'cl/program_observer.hpp',
+    'cl/programs.hpp',
     'cl/runtime.hpp',
 ]
 
